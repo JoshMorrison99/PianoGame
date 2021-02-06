@@ -7,6 +7,8 @@ public class PianoNoteSpawner : MonoBehaviour
 {
 
     public GameObject spawnNoteObject;
+    public GameObject spawnNoteSharpObject;
+
     public PianoUI pianoListRef;
 
     public List<GameObject> spawnedNotes;
@@ -29,9 +31,13 @@ public class PianoNoteSpawner : MonoBehaviour
     private void Start()
     {
         setupUI();
-        spawnNote(1, C2, 0);
-        spawnNote(1, F2, 1);
-        spawnNote(1, B2, 2);
+        spawnNote(1, C2, 0, false);
+        spawnNote(1, F2, 1, false);
+        spawnNote(1, B2, 2, false);
+        spawnNote(1, Fs2, 3, true);
+        spawnNote(1, E2, 4, false);
+        spawnNote(1, G2, 5, false);
+        spawnNote(1, Gs2, 6, true);
     }
 
     private void Update()
@@ -50,9 +56,16 @@ public class PianoNoteSpawner : MonoBehaviour
         
     }
 
-    public void spawnNote(float noteDuration, GameObject note, int id)
+    public void spawnNote(float noteDuration, GameObject note, int id, bool isSharp)
     {
-        spawnedNotes.Add(Instantiate(spawnNoteObject, new Vector3(note.transform.position.x, note.transform.position.y + 9, note.transform.position.z), Quaternion.identity));
+        if (isSharp)
+        {
+            spawnedNotes.Add(Instantiate(spawnNoteSharpObject, new Vector3(note.transform.position.x, note.transform.position.y + 8.55f, note.transform.position.z), Quaternion.identity));
+        }
+        else
+        {
+            spawnedNotes.Add(Instantiate(spawnNoteObject, new Vector3(note.transform.position.x, note.transform.position.y + 9, note.transform.position.z), Quaternion.identity));
+        }
     }
 
     public void setupUI()
