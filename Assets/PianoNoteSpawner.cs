@@ -9,7 +9,7 @@ public class PianoNoteSpawner : MonoBehaviour
     public GameObject spawnNoteObject;
     public PianoUI pianoListRef;
 
-    GameObject spawnedNote;
+    public List<GameObject> spawnedNotes;
     float noteSpeed = 0.005f;
 
     // Piano Notes
@@ -29,24 +29,30 @@ public class PianoNoteSpawner : MonoBehaviour
     private void Start()
     {
         setupUI();
-        spawnNote(1, C2);
+        spawnNote(1, C2, 0);
+        spawnNote(1, F2, 1);
+        spawnNote(1, B2, 2);
     }
 
     private void Update()
     {
-        if (spawnedNote.transform.position.y > -5)
-        {
-            spawnedNote.transform.position = new Vector3(spawnedNote.transform.position.x, spawnedNote.transform.position.y - noteSpeed, spawnedNote.transform.position.z);
+        foreach (GameObject each in spawnedNotes){
+            if (each.transform.position.y > -5)
+            {
+                each.transform.position = new Vector3(each.transform.position.x, each.transform.position.y - noteSpeed, each.transform.position.z);
+            }
+            else
+            {
+                spawnedNotes.Remove(each);
+                Destroy(each);
+            }
         }
-        else
-        {
-            Destroy(spawnedNote);
-        }
+        
     }
 
-    public void spawnNote(float noteDuration, GameObject note)
+    public void spawnNote(float noteDuration, GameObject note, int id)
     {
-        spawnedNote = Instantiate(spawnNoteObject, new Vector3(note.transform.position.x, note.transform.position.y + 9, note.transform.position.z), Quaternion.identity);
+        spawnedNotes.Add(Instantiate(spawnNoteObject, new Vector3(note.transform.position.x, note.transform.position.y + 9, note.transform.position.z), Quaternion.identity));
     }
 
     public void setupUI()
