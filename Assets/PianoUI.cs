@@ -7,8 +7,8 @@ using TMPro;
 
 public class PianoUI : MonoBehaviour
 {
-    public Image[] PianoKeys;
-    public List<Image> currentPressedNotes;
+    public GameObject[] PianoKeys;
+    public List<GameObject> currentPressedNotes;
 
     void Start()
     {
@@ -31,24 +31,32 @@ public class PianoUI : MonoBehaviour
 
     void PianoKeyPressedUI(string notePressed)
     {
-        foreach (Image each in PianoKeys)
+        foreach (GameObject each in PianoKeys)
         {
             if (each.name == notePressed)
             {
                 currentPressedNotes.Add(each);
-                each.color = Color.red;
+                each.GetComponent<SpriteRenderer>().color = Color.red;
             }
         }
     }
 
     void PianoKeyLiftedUI(string notePressed)
     {
-        foreach (Image each in PianoKeys)
+        foreach (GameObject each in PianoKeys)
         {
             if (each.name == notePressed)
             {
                 currentPressedNotes.Remove(each);
-                each.color = Color.white;
+                if (notePressed.Contains("#"))
+                {
+                    each.GetComponent<SpriteRenderer>().color = Color.black;
+                }
+                else
+                {
+                    each.GetComponent<SpriteRenderer>().color = Color.white;
+                }
+                
             }
         }
     }
