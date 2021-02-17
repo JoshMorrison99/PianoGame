@@ -4,21 +4,18 @@ using UnityEngine;
 
 public class NoteCollision : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        // Effects Spawn
+        if (this.GetComponent<Note>().isPressed)
+        {
+            // Effects Spawn
+            ParticleSystem emit = gameObject.GetComponentInChildren<ParticleSystem>();
+            emit.Play();
 
+            // Change color of note
+            collision.gameObject.GetComponent<SpriteRenderer>().color = Color.blue;
+        }
+        
     }
 }

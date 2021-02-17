@@ -37,6 +37,9 @@ public class PianoUI : MonoBehaviour
             {
                 currentPressedNotes.Add(each);
                 each.GetComponent<SpriteRenderer>().color = Color.red;
+
+                // Activate the Note
+                each.GetComponent<Note>().isPressed = true;
             }
         }
     }
@@ -56,7 +59,9 @@ public class PianoUI : MonoBehaviour
                 {
                     each.GetComponent<SpriteRenderer>().color = Color.white;
                 }
-                
+
+                // Deactivate the Note
+                each.GetComponent<Note>().isPressed = false;
             }
         }
     }
