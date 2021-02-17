@@ -8,11 +8,11 @@ TagManager:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Post Processing
   - Water
   - UI
-  - 
-  - 
+  - Piano
+  - Note
   - 
   - 
   - 
@@ -40,4 +40,13 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Piano
+    uniqueID: 2021614691
+    locked: 0
+  - name: Background
+    uniqueID: 52967983
+    locked: 0
+  - name: Note
+    uniqueID: 2076517335
     locked: 0
