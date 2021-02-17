@@ -14,82 +14,92 @@ public class PianoNoteSpawner : MonoBehaviour
     public List<GameObject> spawnedNotes;
     public List<GameObject> garbageNotes;
 
-    float noteSpeed = 0.005f;
+    const float NOTE_WIDTH = 0.45f;
+    const float NOTE_SHARP_WIDTH = 0.3f;
+
+    float noteSpeed = 0.0075f;
 
     // Piano Notes
-    GameObject C2;
-    GameObject D2;
-    GameObject E2;
-    GameObject F2;
-    GameObject G2;
-    GameObject A2;
-    GameObject B2;
-    GameObject Cs2;
-    GameObject Ds2;
-    GameObject Fs2;
-    GameObject Gs2;
-    GameObject As2;
+    public GameObject C2;
+    public GameObject D2;
+    public GameObject E2;
+    public GameObject F2;
+    public GameObject G2;
+    public GameObject A2;
+    public GameObject B2;
+    public GameObject Cs2;
+    public GameObject Ds2;
+    public GameObject Fs2;
+    public GameObject Gs2;
+    public GameObject As2;
 
-    GameObject C3;
-    GameObject D3;
-    GameObject E3;
-    GameObject F3;
-    GameObject G3;
-    GameObject A3;
-    GameObject B3;
-    GameObject Cs3;
-    GameObject Ds3;
-    GameObject Fs3;
-    GameObject Gs3;
-    GameObject As3;
+    public GameObject C3;
+    public GameObject D3;
+    public GameObject E3;
+    public GameObject F3;
+    public GameObject G3;
+    public GameObject A3;
+    public GameObject B3;
+    public GameObject Cs3;
+    public GameObject Ds3;
+    public GameObject Fs3;
+    public GameObject Gs3;
+    public GameObject As3;
 
-    GameObject C4;
-    GameObject D4;
-    GameObject E4;
-    GameObject F4;
-    GameObject G4;
-    GameObject A4;
-    GameObject B4;
-    GameObject Cs4;
-    GameObject Ds4;
-    GameObject Fs4;
-    GameObject Gs4;
-    GameObject As4;
+    public GameObject C4;
+    public GameObject D4;
+    public GameObject E4;
+    public GameObject F4;
+    public GameObject G4;
+    public GameObject A4;
+    public GameObject B4;
+    public GameObject Cs4;
+    public GameObject Ds4;
+    public GameObject Fs4;
+    public GameObject Gs4;
+    public GameObject As4;
 
-    GameObject C5;
-    GameObject D5;
-    GameObject E5;
-    GameObject F5;
-    GameObject G5;
-    GameObject A5;
-    GameObject B5;
-    GameObject Cs5;
-    GameObject Ds5;
-    GameObject Fs5;
-    GameObject Gs5;
-    GameObject As5;
+    public GameObject C5;
+    public GameObject D5;
+    public GameObject E5;
+    public GameObject F5;
+    public GameObject G5;
+    public GameObject A5;
+    public GameObject B5;
+    public GameObject Cs5;
+    public GameObject Ds5;
+    public GameObject Fs5;
+    public GameObject Gs5;
+    public GameObject As5;
 
-    GameObject C6;
-    GameObject D6;
-    GameObject E6;
-    GameObject F6;
-    GameObject G6;
-    GameObject A6;
-    GameObject B6;
-    GameObject Cs6;
-    GameObject Ds6;
-    GameObject Fs6;
-    GameObject Gs6;
-    GameObject As6;
+    public GameObject C6;
+    public GameObject D6;
+    public GameObject E6;
+    public GameObject F6;
+    public GameObject G6;
+    public GameObject A6;
+    public GameObject B6;
+    public GameObject Cs6;
+    public GameObject Ds6;
+    public GameObject Fs6;
+    public GameObject Gs6;
+    public GameObject As6;
+
+    private float TicksPerSecond = 1.5f;
+
+    private float _t;
+    private int counter = 0;
 
 
     private void Start()
     {
         setupUI();
-        spawnNote(1, C2, false);
-        spawnNote(1, F2, false);
-        spawnNote(1, C3, false);
-        spawnNote(1, F3, false);
+    }
+
+    
+    void OnEnable()
+    {
+        _t = 0f;
     }
 
     private void Update()
@@ -113,8 +123,20 @@ public class PianoNoteSpawner : MonoBehaviour
         {
             garbageCollect();
         }
-        
-        
+
+        // Begin Song
+        float dur = 1f / this.TicksPerSecond;
+        _t += Time.deltaTime;
+        int cnt = 4;
+        while (_t > dur && cnt > 0)
+        {
+            counter++;
+            _t -= dur;
+            cnt--;
+            AlanWalker_Faded(counter);
+        }
+
+
     }
 
     public void garbageCollect()
@@ -129,11 +151,15 @@ public class PianoNoteSpawner : MonoBehaviour
     {
         if (isSharp)
         {
-            spawnedNotes.Add(Instantiate(spawnNoteSharpObject, new Vector3(note.transform.position.x, note.transform.position.y + 8.55f, note.transform.position.z), Quaternion.identity));
+            GameObject spawnedNote = Instantiate(spawnNoteSharpObject, new Vector3(note.transform.position.x, note.transform.position.y + 8.55f, note.transform.position.z), Quaternion.identity);
+            spawnedNote.gameObject.transform.localScale = new Vector3(NOTE_SHARP_WIDTH, noteDuration, spawnedNote.gameObject.transform.localScale.z);
+            spawnedNotes.Add(spawnedNote);
         }
         else
         {
-            spawnedNotes.Add(Instantiate(spawnNoteObject, new Vector3(note.transform.position.x, note.transform.position.y + 9, note.transform.position.z), Quaternion.identity));
+            GameObject spawnedNote = Instantiate(spawnNoteSharpObject, new Vector3(note.transform.position.x, note.transform.position.y + 8.55f, note.transform.position.z), Quaternion.identity);
+            spawnedNote.gameObject.transform.localScale = new Vector3(NOTE_WIDTH, noteDuration, spawnedNote.gameObject.transform.localScale.z);
+            spawnedNotes.Add(spawnedNote);
         }
     }
 
@@ -208,5 +234,48 @@ public class PianoNoteSpawner : MonoBehaviour
         Fs6 = pianoListRef.PianoKeys[57];
         Gs6 = pianoListRef.PianoKeys[58];
         As6 = pianoListRef.PianoKeys[59];
+    }
+
+    public void AlanWalker_Faded(int counter)
+    {
+        switch (counter)
+        {
+            case 1:
+                spawnNote(1f, G4, false);
+                spawnNote(4f, E3, false);
+                break;
+            case 2:
+                spawnNote(1f, G4, false);
+                break;
+            case 3:
+                spawnNote(1f, G4, false);
+                break;
+            case 4:
+                spawnNote(1f, B4, false);
+                break;
+            case 5:
+                spawnNote(1f, E5, false);
+                spawnNote(1f, C3, false);
+                break;
+            case 6:
+                spawnNote(1f, E5, false);
+                break;
+            case 7:
+                spawnNote(1f, E5, false);
+                break;
+            case 8:
+                spawnNote(1f, D5, false);
+                break;
+            default:
+                print("End.");
+                break;
+        }
+
+        IEnumerator ExecuteAfterTime(float time)
+        {
+            yield return new WaitForSeconds(time);
+            spawnNote(1f, G2, false);
+            // Code to execute after the delay
+        }
     }
 }
