@@ -18292,6 +18292,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 127612517891499088, guid: 439cb41bf2cd06e49b0bd9d70902895b, type: 3}
+      propertyPath: m_fontColor.b
+      value: 0.96470594
+      objectReference: {fileID: 0}
+    - target: {fileID: 127612517891499088, guid: 439cb41bf2cd06e49b0bd9d70902895b, type: 3}
+      propertyPath: m_fontColor.g
+      value: 0.9607844
+      objectReference: {fileID: 0}
+    - target: {fileID: 127612517891499088, guid: 439cb41bf2cd06e49b0bd9d70902895b, type: 3}
+      propertyPath: m_fontColor.r
+      value: 0.87843144
+      objectReference: {fileID: 0}
+    - target: {fileID: 127612517891499088, guid: 439cb41bf2cd06e49b0bd9d70902895b, type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4294374880
+      objectReference: {fileID: 0}
     - target: {fileID: 346882478429002396, guid: 439cb41bf2cd06e49b0bd9d70902895b, type: 3}
       propertyPath: m_RootOrder
       value: 4
@@ -18339,6 +18355,18 @@ PrefabInstance:
     - target: {fileID: 346882478429002398, guid: 439cb41bf2cd06e49b0bd9d70902895b, type: 3}
       propertyPath: m_Name
       value: NoteSpawn
+      objectReference: {fileID: 0}
+    - target: {fileID: 346882478429002399, guid: 439cb41bf2cd06e49b0bd9d70902895b, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 346882478429002399, guid: 439cb41bf2cd06e49b0bd9d70902895b, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 346882478429002399, guid: 439cb41bf2cd06e49b0bd9d70902895b, type: 3}
+      propertyPath: m_Color.r
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 439cb41bf2cd06e49b0bd9d70902895b, type: 3}

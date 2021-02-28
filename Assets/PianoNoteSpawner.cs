@@ -15,8 +15,6 @@ public class PianoNoteSpawner : MonoBehaviour
     public List<GameObject> spawnedNotes;
     public List<GameObject> garbageNotes;
 
-    const float NOTE_WIDTH = 0.45f;
-    const float NOTE_SHARP_WIDTH = 0.3f;
     const float NOTE_DESTROY_DEPTH = -10f;
 
     float noteSpeed = 0.0075f;
@@ -137,7 +135,7 @@ public class PianoNoteSpawner : MonoBehaviour
             counter++;
             _t -= dur;
             cnt--;
-            AlanWalker_Faded(counter);
+            //AlanWalker_Faded(counter);
         }
 
 
@@ -156,15 +154,15 @@ public class PianoNoteSpawner : MonoBehaviour
         if (isSharp)
         {
             GameObject spawnedNote = Instantiate(spawnNoteSharpObject, new Vector3(note.transform.position.x, note.transform.position.y + 8.55f, note.transform.position.z + 2), Quaternion.identity);
-            spawnedNote.gameObject.transform.localScale = new Vector3(NOTE_SHARP_WIDTH, noteDuration, spawnedNote.gameObject.transform.localScale.z);
             spawnedNote.GetComponentInChildren<TextMeshPro>().text = note.GetComponent<Note>().noteName;
+            spawnedNote.GetComponentInChildren<TextMeshPro>().transform.localPosition = new Vector3(2.1f, -1, 0);
             spawnedNotes.Add(spawnedNote);
         }
         else
         {
             GameObject spawnedNote = Instantiate(spawnNoteObject, new Vector3(note.transform.position.x, note.transform.position.y + 8.55f, note.transform.position.z + 2), Quaternion.identity);
-            spawnedNote.gameObject.transform.localScale = new Vector3(NOTE_WIDTH, noteDuration, spawnedNote.gameObject.transform.localScale.z);
             spawnedNote.GetComponentInChildren<TextMeshPro>().text = note.GetComponent<Note>().noteName;
+            spawnedNote.GetComponentInChildren<TextMeshPro>().transform.localPosition = new Vector3(2.25f,-1 ,0);
             spawnedNotes.Add(spawnedNote);
         }
     }
@@ -300,48 +298,5 @@ public class PianoNoteSpawner : MonoBehaviour
         Gs6.GetComponent<Note>().noteName = "G#";
         As6 = pianoListRef.PianoKeys[59];
         As6.GetComponent<Note>().noteName = "A#";
-    }
-
-    public void AlanWalker_Faded(int counter)
-    {
-        switch (counter)
-        {
-            case 1:
-                spawnNote(1f, G4, false);
-                spawnNote(4f, E4, false);
-                break;
-            case 2:
-                spawnNote(1f, G6, false);
-                break;
-            case 3:
-                spawnNote(1f, G2, false);
-                break;
-            case 4:
-                spawnNote(1f, B5, false);
-                break;
-            case 5:
-                spawnNote(1f, E3, false);
-                spawnNote(1f, C2, false);
-                break;
-            case 6:
-                spawnNote(1f, E2, false);
-                break;
-            case 7:
-                spawnNote(1f, E2, false);
-                break;
-            case 8:
-                spawnNote(1f, D2, false);
-                break;
-            default:
-                print("End.");
-                break;
-        }
-
-        IEnumerator ExecuteAfterTime(float time)
-        {
-            yield return new WaitForSeconds(time);
-            spawnNote(1f, G2, false);
-            // Code to execute after the delay
-        }
     }
 }
