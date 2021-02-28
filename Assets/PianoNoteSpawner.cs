@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class PianoNoteSpawner : MonoBehaviour
 {
@@ -16,6 +17,7 @@ public class PianoNoteSpawner : MonoBehaviour
 
     const float NOTE_WIDTH = 0.45f;
     const float NOTE_SHARP_WIDTH = 0.3f;
+    const float NOTE_DESTROY_DEPTH = -10f;
 
     float noteSpeed = 0.0075f;
 
@@ -104,25 +106,27 @@ public class PianoNoteSpawner : MonoBehaviour
 
     private void Update()
     {
-        if (spawnedNotes.Count > 0)
+
+        for (int i = 0; i < spawnedNotes.Count; i++)
         {
-            for (int i = 0; i < spawnedNotes.Count; i++)
+            if (spawnedNotes[i].transform.position.y > NOTE_DESTROY_DEPTH)
             {
-                if (spawnedNotes[i].transform.position.y > -5)
-                {
-                    spawnedNotes[i].transform.position = new Vector3(spawnedNotes[i].transform.position.x, spawnedNotes[i].transform.position.y - noteSpeed, spawnedNotes[i].transform.position.z);
-                }
-                else
-                {
-                    garbageNotes.Add(spawnedNotes[i]);
-                    spawnedNotes.RemoveAt(i);
-                    i--;
-                }
+                spawnedNotes[i].transform.position = new Vector3(spawnedNotes[i].transform.position.x, spawnedNotes[i].transform.position.y - noteSpeed, spawnedNotes[i].transform.position.z);
             }
-        }else
+            else
+            {
+                garbageNotes.Add(spawnedNotes[i]);
+                spawnedNotes.RemoveAt(i);
+                i--;
+            }
+        }
+
+        if (garbageNotes.Count > 0)
         {
             garbageCollect();
         }
+        
+
 
         // Begin Song
         float dur = 1f / this.TicksPerSecond;
@@ -151,14 +155,16 @@ public class PianoNoteSpawner : MonoBehaviour
     {
         if (isSharp)
         {
-            GameObject spawnedNote = Instantiate(spawnNoteSharpObject, new Vector3(note.transform.position.x, note.transform.position.y + 8.55f, note.transform.position.z), Quaternion.identity);
+            GameObject spawnedNote = Instantiate(spawnNoteSharpObject, new Vector3(note.transform.position.x, note.transform.position.y + 8.55f, note.transform.position.z + 2), Quaternion.identity);
             spawnedNote.gameObject.transform.localScale = new Vector3(NOTE_SHARP_WIDTH, noteDuration, spawnedNote.gameObject.transform.localScale.z);
+            spawnedNote.GetComponentInChildren<TextMeshPro>().text = note.GetComponent<Note>().noteName;
             spawnedNotes.Add(spawnedNote);
         }
         else
         {
-            GameObject spawnedNote = Instantiate(spawnNoteSharpObject, new Vector3(note.transform.position.x, note.transform.position.y + 8.55f, note.transform.position.z), Quaternion.identity);
+            GameObject spawnedNote = Instantiate(spawnNoteObject, new Vector3(note.transform.position.x, note.transform.position.y + 8.55f, note.transform.position.z + 2), Quaternion.identity);
             spawnedNote.gameObject.transform.localScale = new Vector3(NOTE_WIDTH, noteDuration, spawnedNote.gameObject.transform.localScale.z);
+            spawnedNote.GetComponentInChildren<TextMeshPro>().text = note.GetComponent<Note>().noteName;
             spawnedNotes.Add(spawnedNote);
         }
     }
@@ -167,73 +173,133 @@ public class PianoNoteSpawner : MonoBehaviour
     {
         // Octave 2
         C2 = pianoListRef.PianoKeys[0];
+        C2.GetComponent<Note>().noteName = "C";
         D2 = pianoListRef.PianoKeys[1];
+        D2.GetComponent<Note>().noteName = "D";
         E2 = pianoListRef.PianoKeys[2];
+        E2.GetComponent<Note>().noteName = "E";
         F2 = pianoListRef.PianoKeys[3];
+        F2.GetComponent<Note>().noteName = "F";
         G2 = pianoListRef.PianoKeys[4];
+        G2.GetComponent<Note>().noteName = "G";
         A2 = pianoListRef.PianoKeys[5];
+        A2.GetComponent<Note>().noteName = "A";
         B2 = pianoListRef.PianoKeys[6];
+        B2.GetComponent<Note>().noteName = "B";
         Cs2 = pianoListRef.PianoKeys[7];
+        Cs2.GetComponent<Note>().noteName = "C#";
         Ds2 = pianoListRef.PianoKeys[8];
+        Ds2.GetComponent<Note>().noteName = "D#";
         Fs2 = pianoListRef.PianoKeys[9];
+        Fs2.GetComponent<Note>().noteName = "F#";
         Gs2 = pianoListRef.PianoKeys[10];
+        Gs2.GetComponent<Note>().noteName = "G#";
         As2 = pianoListRef.PianoKeys[11];
+        As2.GetComponent<Note>().noteName = "A#";
 
         // Octave 3
         C3 = pianoListRef.PianoKeys[12];
+        C3.GetComponent<Note>().noteName = "C";
         D3 = pianoListRef.PianoKeys[13];
+        D3.GetComponent<Note>().noteName = "D";
         E3 = pianoListRef.PianoKeys[14];
+        E3.GetComponent<Note>().noteName = "E";
         F3 = pianoListRef.PianoKeys[15];
+        F3.GetComponent<Note>().noteName = "F";
         G3 = pianoListRef.PianoKeys[16];
+        G3.GetComponent<Note>().noteName = "G";
         A3 = pianoListRef.PianoKeys[17];
+        A3.GetComponent<Note>().noteName = "A";
         B3 = pianoListRef.PianoKeys[18];
+        B3.GetComponent<Note>().noteName = "B";
         Cs3 = pianoListRef.PianoKeys[19];
+        Cs3.GetComponent<Note>().noteName = "C#";
         Ds3 = pianoListRef.PianoKeys[20];
+        Ds3.GetComponent<Note>().noteName = "D#";
         Fs3 = pianoListRef.PianoKeys[21];
+        Fs3.GetComponent<Note>().noteName = "F#";
         Gs3 = pianoListRef.PianoKeys[22];
+        Gs3.GetComponent<Note>().noteName = "G#";
         As3 = pianoListRef.PianoKeys[23];
+        As3.GetComponent<Note>().noteName = "A#";
 
         // Octave 4
         C4 = pianoListRef.PianoKeys[24];
+        C4.GetComponent<Note>().noteName = "C";
         D4 = pianoListRef.PianoKeys[25];
+        D4.GetComponent<Note>().noteName = "D";
         E4 = pianoListRef.PianoKeys[26];
+        E4.GetComponent<Note>().noteName = "E";
         F4 = pianoListRef.PianoKeys[27];
+        F4.GetComponent<Note>().noteName = "F";
         G4 = pianoListRef.PianoKeys[28];
+        G4.GetComponent<Note>().noteName = "G";
         A4 = pianoListRef.PianoKeys[29];
+        A4.GetComponent<Note>().noteName = "A";
         B4 = pianoListRef.PianoKeys[30];
+        B4.GetComponent<Note>().noteName = "B";
         Cs4 = pianoListRef.PianoKeys[31];
+        Cs4.GetComponent<Note>().noteName = "C#";
         Ds4 = pianoListRef.PianoKeys[32];
+        Ds4.GetComponent<Note>().noteName = "D#";
         Fs4 = pianoListRef.PianoKeys[33];
+        Fs4.GetComponent<Note>().noteName = "F#";
         Gs4 = pianoListRef.PianoKeys[34];
+        Gs4.GetComponent<Note>().noteName = "G#";
         As4 = pianoListRef.PianoKeys[35];
+        As4.GetComponent<Note>().noteName = "A#";
 
         // Octave 5
         C5 = pianoListRef.PianoKeys[36];
+        C5.GetComponent<Note>().noteName = "C";
         D5 = pianoListRef.PianoKeys[37];
+        D5.GetComponent<Note>().noteName = "D";
         E5 = pianoListRef.PianoKeys[38];
+        E5.GetComponent<Note>().noteName = "E";
         F5 = pianoListRef.PianoKeys[39];
+        F5.GetComponent<Note>().noteName = "F";
         G5 = pianoListRef.PianoKeys[40];
+        G5.GetComponent<Note>().noteName = "G";
         A5 = pianoListRef.PianoKeys[41];
+        A5.GetComponent<Note>().noteName = "A";
         B5 = pianoListRef.PianoKeys[42];
+        B5.GetComponent<Note>().noteName = "B";
         Cs5 = pianoListRef.PianoKeys[43];
+        Cs5.GetComponent<Note>().noteName = "C#";
         Ds5 = pianoListRef.PianoKeys[44];
+        Ds5.GetComponent<Note>().noteName = "D#";
         Fs5 = pianoListRef.PianoKeys[45];
+        Fs5.GetComponent<Note>().noteName = "F#";
         Gs5 = pianoListRef.PianoKeys[46];
+        Gs5.GetComponent<Note>().noteName = "G#";
         As5 = pianoListRef.PianoKeys[47];
+        As5.GetComponent<Note>().noteName = "A#";
 
         // Octave 6
         C6 = pianoListRef.PianoKeys[48];
+        C6.GetComponent<Note>().noteName = "C";
         D6 = pianoListRef.PianoKeys[49];
+        D6.GetComponent<Note>().noteName = "D";
         E6 = pianoListRef.PianoKeys[50];
+        E6.GetComponent<Note>().noteName = "E";
         F6 = pianoListRef.PianoKeys[51];
+        F6.GetComponent<Note>().noteName = "F";
         G6 = pianoListRef.PianoKeys[52];
+        G6.GetComponent<Note>().noteName = "G";
         A6 = pianoListRef.PianoKeys[53];
+        A6.GetComponent<Note>().noteName = "A";
         B6 = pianoListRef.PianoKeys[54];
+        B6.GetComponent<Note>().noteName = "B";
         Cs6 = pianoListRef.PianoKeys[55];
+        Cs6.GetComponent<Note>().noteName = "C#";
         Ds6 = pianoListRef.PianoKeys[56];
+        Ds6.GetComponent<Note>().noteName = "D#";
         Fs6 = pianoListRef.PianoKeys[57];
+        Fs6.GetComponent<Note>().noteName = "F#";
         Gs6 = pianoListRef.PianoKeys[58];
+        Gs6.GetComponent<Note>().noteName = "G#";
         As6 = pianoListRef.PianoKeys[59];
+        As6.GetComponent<Note>().noteName = "A#";
     }
 
     public void AlanWalker_Faded(int counter)
@@ -242,29 +308,29 @@ public class PianoNoteSpawner : MonoBehaviour
         {
             case 1:
                 spawnNote(1f, G4, false);
-                spawnNote(4f, E3, false);
+                spawnNote(4f, E4, false);
                 break;
             case 2:
-                spawnNote(1f, G4, false);
+                spawnNote(1f, G6, false);
                 break;
             case 3:
-                spawnNote(1f, G4, false);
+                spawnNote(1f, G2, false);
                 break;
             case 4:
-                spawnNote(1f, B4, false);
+                spawnNote(1f, B5, false);
                 break;
             case 5:
-                spawnNote(1f, E5, false);
-                spawnNote(1f, C3, false);
+                spawnNote(1f, E3, false);
+                spawnNote(1f, C2, false);
                 break;
             case 6:
-                spawnNote(1f, E5, false);
+                spawnNote(1f, E2, false);
                 break;
             case 7:
-                spawnNote(1f, E5, false);
+                spawnNote(1f, E2, false);
                 break;
             case 8:
-                spawnNote(1f, D5, false);
+                spawnNote(1f, D2, false);
                 break;
             default:
                 print("End.");

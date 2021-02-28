@@ -19,6 +19,8 @@ public class PianoUI : MonoBehaviour
             var midiDevice = device as Minis.MidiDevice;
             if (midiDevice == null) return;
 
+            
+
             midiDevice.onWillNoteOn += (note, velocity) => {
                 PianoKeyPressedUI(note.shortDisplayName);
             };
