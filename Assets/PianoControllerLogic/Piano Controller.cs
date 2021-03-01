@@ -1,4 +1,4 @@
-// GENERATED AUTOMATICALLY FROM 'Assets/Piano Controller.inputactions'
+// GENERATED AUTOMATICALLY FROM 'Assets/PianoControllerLogic/Piano Controller.inputactions'
 
 using System;
 using System.Collections;
@@ -19,7 +19,7 @@ public class @PianoController : IInputActionCollection, IDisposable
             ""id"": ""924d268d-2de1-4314-947c-6b992ddd54bc"",
             ""actions"": [
                 {
-                    ""name"": ""New action"",
+                    ""name"": ""PianoAction"",
                     ""type"": ""Button"",
                     ""id"": ""49abdaf8-b8b4-4b07-95d8-67e48c883ece"",
                     ""expectedControlType"": ""Button"",
@@ -35,7 +35,7 @@ public class @PianoController : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""MIDI Device"",
-                    ""action"": ""New action"",
+                    ""action"": ""PianoAction"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -46,7 +46,7 @@ public class @PianoController : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""MIDI Device"",
-                    ""action"": ""New action"",
+                    ""action"": ""PianoAction"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -57,7 +57,7 @@ public class @PianoController : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""MIDI Device"",
-                    ""action"": ""New action"",
+                    ""action"": ""PianoAction"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -68,7 +68,7 @@ public class @PianoController : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""MIDI Device"",
-                    ""action"": ""New action"",
+                    ""action"": ""PianoAction"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -79,7 +79,7 @@ public class @PianoController : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""MIDI Device"",
-                    ""action"": ""New action"",
+                    ""action"": ""PianoAction"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -90,7 +90,7 @@ public class @PianoController : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""MIDI Device"",
-                    ""action"": ""New action"",
+                    ""action"": ""PianoAction"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -101,7 +101,7 @@ public class @PianoController : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""MIDI Device"",
-                    ""action"": ""New action"",
+                    ""action"": ""PianoAction"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -112,7 +112,7 @@ public class @PianoController : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""MIDI Device"",
-                    ""action"": ""New action"",
+                    ""action"": ""PianoAction"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -123,7 +123,7 @@ public class @PianoController : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""MIDI Device"",
-                    ""action"": ""New action"",
+                    ""action"": ""PianoAction"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -134,7 +134,7 @@ public class @PianoController : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""MIDI Device"",
-                    ""action"": ""New action"",
+                    ""action"": ""PianoAction"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -145,7 +145,7 @@ public class @PianoController : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""MIDI Device"",
-                    ""action"": ""New action"",
+                    ""action"": ""PianoAction"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -156,7 +156,7 @@ public class @PianoController : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""MIDI Device"",
-                    ""action"": ""New action"",
+                    ""action"": ""PianoAction"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -167,7 +167,7 @@ public class @PianoController : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""MIDI Device"",
-                    ""action"": ""New action"",
+                    ""action"": ""PianoAction"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -178,7 +178,7 @@ public class @PianoController : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""MIDI Device"",
-                    ""action"": ""New action"",
+                    ""action"": ""PianoAction"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -189,7 +189,7 @@ public class @PianoController : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""MIDI Device"",
-                    ""action"": ""New action"",
+                    ""action"": ""PianoAction"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -200,7 +200,7 @@ public class @PianoController : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""MIDI Device"",
-                    ""action"": ""New action"",
+                    ""action"": ""PianoAction"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -211,7 +211,7 @@ public class @PianoController : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""MIDI Device"",
-                    ""action"": ""New action"",
+                    ""action"": ""PianoAction"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -222,7 +222,7 @@ public class @PianoController : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""MIDI Device"",
-                    ""action"": ""New action"",
+                    ""action"": ""PianoAction"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -233,7 +233,7 @@ public class @PianoController : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""MIDI Device"",
-                    ""action"": ""New action"",
+                    ""action"": ""PianoAction"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -244,7 +244,7 @@ public class @PianoController : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""MIDI Device"",
-                    ""action"": ""New action"",
+                    ""action"": ""PianoAction"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -255,7 +255,7 @@ public class @PianoController : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""MIDI Device"",
-                    ""action"": ""New action"",
+                    ""action"": ""PianoAction"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -266,7 +266,7 @@ public class @PianoController : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""MIDI Device"",
-                    ""action"": ""New action"",
+                    ""action"": ""PianoAction"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -277,7 +277,7 @@ public class @PianoController : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""MIDI Device"",
-                    ""action"": ""New action"",
+                    ""action"": ""PianoAction"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -288,7 +288,7 @@ public class @PianoController : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""MIDI Device"",
-                    ""action"": ""New action"",
+                    ""action"": ""PianoAction"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -299,7 +299,7 @@ public class @PianoController : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""MIDI Device"",
-                    ""action"": ""New action"",
+                    ""action"": ""PianoAction"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -310,7 +310,7 @@ public class @PianoController : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""MIDI Device"",
-                    ""action"": ""New action"",
+                    ""action"": ""PianoAction"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -321,7 +321,7 @@ public class @PianoController : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""MIDI Device"",
-                    ""action"": ""New action"",
+                    ""action"": ""PianoAction"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -332,7 +332,7 @@ public class @PianoController : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""MIDI Device"",
-                    ""action"": ""New action"",
+                    ""action"": ""PianoAction"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -343,7 +343,7 @@ public class @PianoController : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""MIDI Device"",
-                    ""action"": ""New action"",
+                    ""action"": ""PianoAction"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -354,7 +354,7 @@ public class @PianoController : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""MIDI Device"",
-                    ""action"": ""New action"",
+                    ""action"": ""PianoAction"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -365,7 +365,7 @@ public class @PianoController : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""MIDI Device"",
-                    ""action"": ""New action"",
+                    ""action"": ""PianoAction"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -376,7 +376,7 @@ public class @PianoController : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""MIDI Device"",
-                    ""action"": ""New action"",
+                    ""action"": ""PianoAction"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -387,7 +387,7 @@ public class @PianoController : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""MIDI Device"",
-                    ""action"": ""New action"",
+                    ""action"": ""PianoAction"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -398,7 +398,7 @@ public class @PianoController : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""MIDI Device"",
-                    ""action"": ""New action"",
+                    ""action"": ""PianoAction"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -409,7 +409,7 @@ public class @PianoController : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""MIDI Device"",
-                    ""action"": ""New action"",
+                    ""action"": ""PianoAction"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -420,7 +420,7 @@ public class @PianoController : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""MIDI Device"",
-                    ""action"": ""New action"",
+                    ""action"": ""PianoAction"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -431,7 +431,7 @@ public class @PianoController : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""MIDI Device"",
-                    ""action"": ""New action"",
+                    ""action"": ""PianoAction"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -442,7 +442,7 @@ public class @PianoController : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""MIDI Device"",
-                    ""action"": ""New action"",
+                    ""action"": ""PianoAction"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -453,7 +453,7 @@ public class @PianoController : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""MIDI Device"",
-                    ""action"": ""New action"",
+                    ""action"": ""PianoAction"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -464,7 +464,7 @@ public class @PianoController : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""MIDI Device"",
-                    ""action"": ""New action"",
+                    ""action"": ""PianoAction"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -475,7 +475,7 @@ public class @PianoController : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""MIDI Device"",
-                    ""action"": ""New action"",
+                    ""action"": ""PianoAction"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -486,7 +486,7 @@ public class @PianoController : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""MIDI Device"",
-                    ""action"": ""New action"",
+                    ""action"": ""PianoAction"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -497,7 +497,7 @@ public class @PianoController : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""MIDI Device"",
-                    ""action"": ""New action"",
+                    ""action"": ""PianoAction"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -508,7 +508,7 @@ public class @PianoController : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""MIDI Device"",
-                    ""action"": ""New action"",
+                    ""action"": ""PianoAction"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -519,7 +519,7 @@ public class @PianoController : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""MIDI Device"",
-                    ""action"": ""New action"",
+                    ""action"": ""PianoAction"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -530,7 +530,7 @@ public class @PianoController : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""MIDI Device"",
-                    ""action"": ""New action"",
+                    ""action"": ""PianoAction"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -541,7 +541,7 @@ public class @PianoController : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""MIDI Device"",
-                    ""action"": ""New action"",
+                    ""action"": ""PianoAction"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -552,7 +552,7 @@ public class @PianoController : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""MIDI Device"",
-                    ""action"": ""New action"",
+                    ""action"": ""PianoAction"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -563,7 +563,7 @@ public class @PianoController : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""MIDI Device"",
-                    ""action"": ""New action"",
+                    ""action"": ""PianoAction"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -574,7 +574,7 @@ public class @PianoController : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""MIDI Device"",
-                    ""action"": ""New action"",
+                    ""action"": ""PianoAction"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -585,7 +585,7 @@ public class @PianoController : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""MIDI Device"",
-                    ""action"": ""New action"",
+                    ""action"": ""PianoAction"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -596,7 +596,7 @@ public class @PianoController : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""MIDI Device"",
-                    ""action"": ""New action"",
+                    ""action"": ""PianoAction"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -607,7 +607,7 @@ public class @PianoController : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""MIDI Device"",
-                    ""action"": ""New action"",
+                    ""action"": ""PianoAction"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -618,7 +618,7 @@ public class @PianoController : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""MIDI Device"",
-                    ""action"": ""New action"",
+                    ""action"": ""PianoAction"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -629,7 +629,7 @@ public class @PianoController : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""MIDI Device"",
-                    ""action"": ""New action"",
+                    ""action"": ""PianoAction"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -640,7 +640,7 @@ public class @PianoController : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""MIDI Device"",
-                    ""action"": ""New action"",
+                    ""action"": ""PianoAction"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -651,7 +651,7 @@ public class @PianoController : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""MIDI Device"",
-                    ""action"": ""New action"",
+                    ""action"": ""PianoAction"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -662,7 +662,7 @@ public class @PianoController : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""MIDI Device"",
-                    ""action"": ""New action"",
+                    ""action"": ""PianoAction"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -673,7 +673,7 @@ public class @PianoController : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""MIDI Device"",
-                    ""action"": ""New action"",
+                    ""action"": ""PianoAction"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -684,7 +684,7 @@ public class @PianoController : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""MIDI Device"",
-                    ""action"": ""New action"",
+                    ""action"": ""PianoAction"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -695,7 +695,7 @@ public class @PianoController : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""MIDI Device"",
-                    ""action"": ""New action"",
+                    ""action"": ""PianoAction"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -706,7 +706,7 @@ public class @PianoController : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""MIDI Device"",
-                    ""action"": ""New action"",
+                    ""action"": ""PianoAction"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -717,7 +717,7 @@ public class @PianoController : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""MIDI Device"",
-                    ""action"": ""New action"",
+                    ""action"": ""PianoAction"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -728,7 +728,7 @@ public class @PianoController : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""MIDI Device"",
-                    ""action"": ""New action"",
+                    ""action"": ""PianoAction"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -739,7 +739,7 @@ public class @PianoController : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""MIDI Device"",
-                    ""action"": ""New action"",
+                    ""action"": ""PianoAction"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -750,7 +750,7 @@ public class @PianoController : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""MIDI Device"",
-                    ""action"": ""New action"",
+                    ""action"": ""PianoAction"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -761,7 +761,7 @@ public class @PianoController : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""MIDI Device"",
-                    ""action"": ""New action"",
+                    ""action"": ""PianoAction"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -772,7 +772,7 @@ public class @PianoController : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""MIDI Device"",
-                    ""action"": ""New action"",
+                    ""action"": ""PianoAction"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -783,7 +783,7 @@ public class @PianoController : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""MIDI Device"",
-                    ""action"": ""New action"",
+                    ""action"": ""PianoAction"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -794,7 +794,7 @@ public class @PianoController : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""MIDI Device"",
-                    ""action"": ""New action"",
+                    ""action"": ""PianoAction"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -805,7 +805,7 @@ public class @PianoController : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""MIDI Device"",
-                    ""action"": ""New action"",
+                    ""action"": ""PianoAction"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -816,7 +816,7 @@ public class @PianoController : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""MIDI Device"",
-                    ""action"": ""New action"",
+                    ""action"": ""PianoAction"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -827,7 +827,7 @@ public class @PianoController : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""MIDI Device"",
-                    ""action"": ""New action"",
+                    ""action"": ""PianoAction"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -838,7 +838,7 @@ public class @PianoController : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""MIDI Device"",
-                    ""action"": ""New action"",
+                    ""action"": ""PianoAction"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -849,7 +849,7 @@ public class @PianoController : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""MIDI Device"",
-                    ""action"": ""New action"",
+                    ""action"": ""PianoAction"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -860,7 +860,7 @@ public class @PianoController : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""MIDI Device"",
-                    ""action"": ""New action"",
+                    ""action"": ""PianoAction"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -871,7 +871,7 @@ public class @PianoController : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""MIDI Device"",
-                    ""action"": ""New action"",
+                    ""action"": ""PianoAction"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -882,7 +882,7 @@ public class @PianoController : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""MIDI Device"",
-                    ""action"": ""New action"",
+                    ""action"": ""PianoAction"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -893,7 +893,7 @@ public class @PianoController : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""MIDI Device"",
-                    ""action"": ""New action"",
+                    ""action"": ""PianoAction"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -904,7 +904,7 @@ public class @PianoController : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""MIDI Device"",
-                    ""action"": ""New action"",
+                    ""action"": ""PianoAction"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -915,7 +915,7 @@ public class @PianoController : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""MIDI Device"",
-                    ""action"": ""New action"",
+                    ""action"": ""PianoAction"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -926,7 +926,7 @@ public class @PianoController : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""MIDI Device"",
-                    ""action"": ""New action"",
+                    ""action"": ""PianoAction"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -937,7 +937,7 @@ public class @PianoController : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""MIDI Device"",
-                    ""action"": ""New action"",
+                    ""action"": ""PianoAction"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -948,7 +948,7 @@ public class @PianoController : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""MIDI Device"",
-                    ""action"": ""New action"",
+                    ""action"": ""PianoAction"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -959,7 +959,7 @@ public class @PianoController : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""MIDI Device"",
-                    ""action"": ""New action"",
+                    ""action"": ""PianoAction"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -970,7 +970,7 @@ public class @PianoController : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""MIDI Device"",
-                    ""action"": ""New action"",
+                    ""action"": ""PianoAction"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -981,7 +981,7 @@ public class @PianoController : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""MIDI Device"",
-                    ""action"": ""New action"",
+                    ""action"": ""PianoAction"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -992,7 +992,7 @@ public class @PianoController : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""MIDI Device"",
-                    ""action"": ""New action"",
+                    ""action"": ""PianoAction"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -1003,7 +1003,7 @@ public class @PianoController : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""MIDI Device"",
-                    ""action"": ""New action"",
+                    ""action"": ""PianoAction"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -1014,7 +1014,7 @@ public class @PianoController : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""MIDI Device"",
-                    ""action"": ""New action"",
+                    ""action"": ""PianoAction"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -1025,7 +1025,7 @@ public class @PianoController : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""MIDI Device"",
-                    ""action"": ""New action"",
+                    ""action"": ""PianoAction"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -1036,7 +1036,7 @@ public class @PianoController : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""MIDI Device"",
-                    ""action"": ""New action"",
+                    ""action"": ""PianoAction"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -1047,7 +1047,7 @@ public class @PianoController : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""MIDI Device"",
-                    ""action"": ""New action"",
+                    ""action"": ""PianoAction"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -1058,7 +1058,7 @@ public class @PianoController : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""MIDI Device"",
-                    ""action"": ""New action"",
+                    ""action"": ""PianoAction"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -1069,7 +1069,7 @@ public class @PianoController : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""MIDI Device"",
-                    ""action"": ""New action"",
+                    ""action"": ""PianoAction"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -1080,7 +1080,7 @@ public class @PianoController : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""MIDI Device"",
-                    ""action"": ""New action"",
+                    ""action"": ""PianoAction"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -1091,7 +1091,7 @@ public class @PianoController : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""MIDI Device"",
-                    ""action"": ""New action"",
+                    ""action"": ""PianoAction"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -1102,7 +1102,7 @@ public class @PianoController : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""MIDI Device"",
-                    ""action"": ""New action"",
+                    ""action"": ""PianoAction"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -1113,7 +1113,7 @@ public class @PianoController : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""MIDI Device"",
-                    ""action"": ""New action"",
+                    ""action"": ""PianoAction"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -1124,7 +1124,7 @@ public class @PianoController : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""MIDI Device"",
-                    ""action"": ""New action"",
+                    ""action"": ""PianoAction"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -1135,7 +1135,7 @@ public class @PianoController : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""MIDI Device"",
-                    ""action"": ""New action"",
+                    ""action"": ""PianoAction"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -1146,7 +1146,7 @@ public class @PianoController : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""MIDI Device"",
-                    ""action"": ""New action"",
+                    ""action"": ""PianoAction"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -1157,7 +1157,7 @@ public class @PianoController : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""MIDI Device"",
-                    ""action"": ""New action"",
+                    ""action"": ""PianoAction"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -1168,7 +1168,7 @@ public class @PianoController : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""MIDI Device"",
-                    ""action"": ""New action"",
+                    ""action"": ""PianoAction"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -1179,7 +1179,7 @@ public class @PianoController : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""MIDI Device"",
-                    ""action"": ""New action"",
+                    ""action"": ""PianoAction"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -1190,7 +1190,7 @@ public class @PianoController : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""MIDI Device"",
-                    ""action"": ""New action"",
+                    ""action"": ""PianoAction"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -1201,7 +1201,7 @@ public class @PianoController : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""MIDI Device"",
-                    ""action"": ""New action"",
+                    ""action"": ""PianoAction"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -1212,7 +1212,7 @@ public class @PianoController : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""MIDI Device"",
-                    ""action"": ""New action"",
+                    ""action"": ""PianoAction"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -1223,7 +1223,7 @@ public class @PianoController : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""MIDI Device"",
-                    ""action"": ""New action"",
+                    ""action"": ""PianoAction"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -1234,7 +1234,7 @@ public class @PianoController : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""MIDI Device"",
-                    ""action"": ""New action"",
+                    ""action"": ""PianoAction"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -1245,7 +1245,7 @@ public class @PianoController : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""MIDI Device"",
-                    ""action"": ""New action"",
+                    ""action"": ""PianoAction"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -1256,7 +1256,7 @@ public class @PianoController : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""MIDI Device"",
-                    ""action"": ""New action"",
+                    ""action"": ""PianoAction"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -1267,7 +1267,7 @@ public class @PianoController : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""MIDI Device"",
-                    ""action"": ""New action"",
+                    ""action"": ""PianoAction"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -1278,7 +1278,7 @@ public class @PianoController : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""MIDI Device"",
-                    ""action"": ""New action"",
+                    ""action"": ""PianoAction"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -1289,7 +1289,7 @@ public class @PianoController : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""MIDI Device"",
-                    ""action"": ""New action"",
+                    ""action"": ""PianoAction"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -1300,7 +1300,7 @@ public class @PianoController : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""MIDI Device"",
-                    ""action"": ""New action"",
+                    ""action"": ""PianoAction"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -1311,7 +1311,7 @@ public class @PianoController : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""MIDI Device"",
-                    ""action"": ""New action"",
+                    ""action"": ""PianoAction"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -1322,7 +1322,7 @@ public class @PianoController : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""MIDI Device"",
-                    ""action"": ""New action"",
+                    ""action"": ""PianoAction"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -1333,7 +1333,7 @@ public class @PianoController : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""MIDI Device"",
-                    ""action"": ""New action"",
+                    ""action"": ""PianoAction"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -1344,7 +1344,7 @@ public class @PianoController : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""MIDI Device"",
-                    ""action"": ""New action"",
+                    ""action"": ""PianoAction"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -1355,7 +1355,7 @@ public class @PianoController : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""MIDI Device"",
-                    ""action"": ""New action"",
+                    ""action"": ""PianoAction"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -1366,7 +1366,7 @@ public class @PianoController : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""MIDI Device"",
-                    ""action"": ""New action"",
+                    ""action"": ""PianoAction"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -1377,7 +1377,7 @@ public class @PianoController : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""MIDI Device"",
-                    ""action"": ""New action"",
+                    ""action"": ""PianoAction"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -1388,7 +1388,7 @@ public class @PianoController : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""MIDI Device"",
-                    ""action"": ""New action"",
+                    ""action"": ""PianoAction"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -1399,7 +1399,7 @@ public class @PianoController : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""MIDI Device"",
-                    ""action"": ""New action"",
+                    ""action"": ""PianoAction"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -1410,7 +1410,7 @@ public class @PianoController : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""MIDI Device"",
-                    ""action"": ""New action"",
+                    ""action"": ""PianoAction"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -1421,7 +1421,7 @@ public class @PianoController : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""MIDI Device"",
-                    ""action"": ""New action"",
+                    ""action"": ""PianoAction"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -1432,7 +1432,7 @@ public class @PianoController : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""MIDI Device"",
-                    ""action"": ""New action"",
+                    ""action"": ""PianoAction"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -1443,7 +1443,513 @@ public class @PianoController : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""MIDI Device"",
-                    ""action"": ""New action"",
+                    ""action"": ""PianoAction"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
+        },
+        {
+            ""name"": ""UI"",
+            ""id"": ""9e189527-c2d1-4a8a-a37c-ede49adfab0e"",
+            ""actions"": [
+                {
+                    ""name"": ""Navigate"",
+                    ""type"": ""Value"",
+                    ""id"": ""f0227b08-de33-45bf-ae78-041707a44957"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""Submit"",
+                    ""type"": ""Button"",
+                    ""id"": ""8b04391f-b439-4837-aa7e-61d45fc9897b"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""Cancel"",
+                    ""type"": ""Button"",
+                    ""id"": ""59c37b13-b0c9-4303-888e-291c5bff4d4c"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""Point"",
+                    ""type"": ""PassThrough"",
+                    ""id"": ""7fc312bc-efbf-4f03-86b6-c397aed4e82b"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""Click"",
+                    ""type"": ""PassThrough"",
+                    ""id"": ""f29d6087-5f86-4542-bf9c-aa4ac2bdf675"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""ScrollWheel"",
+                    ""type"": ""PassThrough"",
+                    ""id"": ""074e163e-50b5-4f2a-b9ea-201a4db82f46"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""MiddleClick"",
+                    ""type"": ""PassThrough"",
+                    ""id"": ""bad02056-e33f-496e-b349-4c2bf4c58789"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""RightClick"",
+                    ""type"": ""PassThrough"",
+                    ""id"": ""0112e319-301f-426a-80d4-07b0c32da70f"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""TrackedDevicePosition"",
+                    ""type"": ""PassThrough"",
+                    ""id"": ""402138e5-e294-494e-b226-b3f4a7575690"",
+                    ""expectedControlType"": ""Vector3"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""TrackedDeviceOrientation"",
+                    ""type"": ""PassThrough"",
+                    ""id"": ""5890c607-2319-4a1e-b2fb-44d81e3f9e40"",
+                    ""expectedControlType"": ""Quaternion"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": ""Gamepad"",
+                    ""id"": ""c986c4b3-c97c-4a83-923f-ed11c05255f8"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Navigate"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""5eb56cd6-7495-40e0-9bfe-101afdb61ebf"",
+                    ""path"": ""<Gamepad>/leftStick/up"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""Navigate"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""cd9f06f9-c483-41f5-8722-a30cdcb983cc"",
+                    ""path"": ""<Gamepad>/rightStick/up"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""Navigate"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""67b79313-5c17-416f-acbd-723deee8698c"",
+                    ""path"": ""<Gamepad>/leftStick/down"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""Navigate"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""16177371-f46b-470a-ac16-054bfb0e6d25"",
+                    ""path"": ""<Gamepad>/rightStick/down"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""Navigate"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""60eb6779-8472-4879-ac73-414c2059f4ad"",
+                    ""path"": ""<Gamepad>/leftStick/left"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""Navigate"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""efda3798-5cd2-46b8-81e0-72921a53345b"",
+                    ""path"": ""<Gamepad>/rightStick/left"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""Navigate"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""5c374256-b219-4ae7-9ec1-818cebd3be30"",
+                    ""path"": ""<Gamepad>/leftStick/right"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""Navigate"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""961332da-a70f-47f1-85fb-e1161f1f4ac7"",
+                    ""path"": ""<Gamepad>/rightStick/right"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""Navigate"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""48f5c7cf-cfb2-48b0-bea1-54c80904d445"",
+                    ""path"": ""<Gamepad>/dpad"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""Navigate"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""Joystick"",
+                    ""id"": ""cb816311-8579-4409-9b8b-1140bb928e7f"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Navigate"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""caf8c2a7-8141-459c-af20-410960ae67f9"",
+                    ""path"": ""<Joystick>/stick/up"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Joystick"",
+                    ""action"": ""Navigate"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""94c6c185-2f31-4015-9cdb-2a4461981763"",
+                    ""path"": ""<Joystick>/stick/down"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Joystick"",
+                    ""action"": ""Navigate"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""f28067c5-e705-4978-8bb7-5331d56a0b26"",
+                    ""path"": ""<Joystick>/stick/left"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Joystick"",
+                    ""action"": ""Navigate"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""7251e948-86c0-4c8a-b0d1-cab0a175ffb6"",
+                    ""path"": ""<Joystick>/stick/right"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Joystick"",
+                    ""action"": ""Navigate"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Keyboard"",
+                    ""id"": ""d6a6bdee-b322-4a71-9d2d-18f2da66f04e"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Navigate"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""26df86b9-c0e7-4afd-93c9-7e9d036ade95"",
+                    ""path"": ""<Keyboard>/w"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""Navigate"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""7bdeeab1-928f-437b-8c04-c03b7729e986"",
+                    ""path"": ""<Keyboard>/upArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""Navigate"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""e5518a1e-c88f-412c-b8aa-7e6b13082ef1"",
+                    ""path"": ""<Keyboard>/s"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""Navigate"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""c2aafd84-e204-40b3-922e-8cf73a2f9495"",
+                    ""path"": ""<Keyboard>/downArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""Navigate"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""52427bb8-a2bd-4852-ad62-782b83695069"",
+                    ""path"": ""<Keyboard>/a"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""Navigate"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""21a0e533-e34f-434e-b6c4-ba55b4e629ca"",
+                    ""path"": ""<Keyboard>/leftArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""Navigate"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""05e23d3d-e324-4627-ba22-4c4f98ff7be4"",
+                    ""path"": ""<Keyboard>/d"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""Navigate"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""020f7ef0-0de1-4842-a1fb-db34eead75e8"",
+                    ""path"": ""<Keyboard>/rightArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""Navigate"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ef21686e-b057-447a-abd9-953ede784183"",
+                    ""path"": ""*/{Submit}"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Submit"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b186ce18-6a5a-4950-83da-29bf6f678243"",
+                    ""path"": ""*/{Cancel}"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Cancel"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""fb62bc5c-5cf3-4659-bca5-64c0128130be"",
+                    ""path"": ""<Mouse>/position"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""Point"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""4f971d47-b2cd-4d4c-97a9-253f85bd8b74"",
+                    ""path"": ""<Pen>/position"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""Point"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""18d616d1-27c3-4727-b392-7d43269bb0c7"",
+                    ""path"": ""<Touchscreen>/touch*/position"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Touch"",
+                    ""action"": ""Point"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""5a1c7f49-43e1-4d55-8a40-efee44b19bd2"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""Click"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""15e58173-e2fa-404a-9838-ae87594bd5ee"",
+                    ""path"": ""<Pen>/tip"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""Click"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""bd531097-c12e-4f4f-9fab-dfa5500da249"",
+                    ""path"": ""<Touchscreen>/touch*/press"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Touch"",
+                    ""action"": ""Click"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""dcbe8008-8ba6-412a-aaa6-fb6877ee1fb5"",
+                    ""path"": ""<XRController>/trigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""XR"",
+                    ""action"": ""Click"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""4a022512-1d1e-48ca-b394-5c632f27c083"",
+                    ""path"": ""<Mouse>/scroll"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""ScrollWheel"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""cbf0e5ce-cb75-4d14-9199-00270e1d6120"",
+                    ""path"": ""<Mouse>/middleButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""MiddleClick"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""86f246f4-08e0-4d12-a926-99d92d4d98ab"",
+                    ""path"": ""<Mouse>/rightButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""RightClick"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2f53925d-8796-471b-98c5-b4e0c133cf23"",
+                    ""path"": ""<XRController>/devicePosition"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""XR"",
+                    ""action"": ""TrackedDevicePosition"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""3c367257-eb9a-411a-a56d-42af04cfe1f7"",
+                    ""path"": ""<XRController>/deviceRotation"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""XR"",
+                    ""action"": ""TrackedDeviceOrientation"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -1461,12 +1967,29 @@ public class @PianoController : IInputActionCollection, IDisposable
                     ""isOR"": false
                 }
             ]
+        },
+        {
+            ""name"": ""Mouse"",
+            ""bindingGroup"": ""Mouse"",
+            ""devices"": []
         }
     ]
 }");
         // Piano
         m_Piano = asset.FindActionMap("Piano", throwIfNotFound: true);
-        m_Piano_Newaction = m_Piano.FindAction("New action", throwIfNotFound: true);
+        m_Piano_PianoAction = m_Piano.FindAction("PianoAction", throwIfNotFound: true);
+        // UI
+        m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
+        m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
+        m_UI_Submit = m_UI.FindAction("Submit", throwIfNotFound: true);
+        m_UI_Cancel = m_UI.FindAction("Cancel", throwIfNotFound: true);
+        m_UI_Point = m_UI.FindAction("Point", throwIfNotFound: true);
+        m_UI_Click = m_UI.FindAction("Click", throwIfNotFound: true);
+        m_UI_ScrollWheel = m_UI.FindAction("ScrollWheel", throwIfNotFound: true);
+        m_UI_MiddleClick = m_UI.FindAction("MiddleClick", throwIfNotFound: true);
+        m_UI_RightClick = m_UI.FindAction("RightClick", throwIfNotFound: true);
+        m_UI_TrackedDevicePosition = m_UI.FindAction("TrackedDevicePosition", throwIfNotFound: true);
+        m_UI_TrackedDeviceOrientation = m_UI.FindAction("TrackedDeviceOrientation", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -1516,12 +2039,12 @@ public class @PianoController : IInputActionCollection, IDisposable
     // Piano
     private readonly InputActionMap m_Piano;
     private IPianoActions m_PianoActionsCallbackInterface;
-    private readonly InputAction m_Piano_Newaction;
+    private readonly InputAction m_Piano_PianoAction;
     public struct PianoActions
     {
         private @PianoController m_Wrapper;
         public PianoActions(@PianoController wrapper) { m_Wrapper = wrapper; }
-        public InputAction @Newaction => m_Wrapper.m_Piano_Newaction;
+        public InputAction @PianoAction => m_Wrapper.m_Piano_PianoAction;
         public InputActionMap Get() { return m_Wrapper.m_Piano; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1531,20 +2054,125 @@ public class @PianoController : IInputActionCollection, IDisposable
         {
             if (m_Wrapper.m_PianoActionsCallbackInterface != null)
             {
-                @Newaction.started -= m_Wrapper.m_PianoActionsCallbackInterface.OnNewaction;
-                @Newaction.performed -= m_Wrapper.m_PianoActionsCallbackInterface.OnNewaction;
-                @Newaction.canceled -= m_Wrapper.m_PianoActionsCallbackInterface.OnNewaction;
+                @PianoAction.started -= m_Wrapper.m_PianoActionsCallbackInterface.OnPianoAction;
+                @PianoAction.performed -= m_Wrapper.m_PianoActionsCallbackInterface.OnPianoAction;
+                @PianoAction.canceled -= m_Wrapper.m_PianoActionsCallbackInterface.OnPianoAction;
             }
             m_Wrapper.m_PianoActionsCallbackInterface = instance;
             if (instance != null)
             {
-                @Newaction.started += instance.OnNewaction;
-                @Newaction.performed += instance.OnNewaction;
-                @Newaction.canceled += instance.OnNewaction;
+                @PianoAction.started += instance.OnPianoAction;
+                @PianoAction.performed += instance.OnPianoAction;
+                @PianoAction.canceled += instance.OnPianoAction;
             }
         }
     }
     public PianoActions @Piano => new PianoActions(this);
+
+    // UI
+    private readonly InputActionMap m_UI;
+    private IUIActions m_UIActionsCallbackInterface;
+    private readonly InputAction m_UI_Navigate;
+    private readonly InputAction m_UI_Submit;
+    private readonly InputAction m_UI_Cancel;
+    private readonly InputAction m_UI_Point;
+    private readonly InputAction m_UI_Click;
+    private readonly InputAction m_UI_ScrollWheel;
+    private readonly InputAction m_UI_MiddleClick;
+    private readonly InputAction m_UI_RightClick;
+    private readonly InputAction m_UI_TrackedDevicePosition;
+    private readonly InputAction m_UI_TrackedDeviceOrientation;
+    public struct UIActions
+    {
+        private @PianoController m_Wrapper;
+        public UIActions(@PianoController wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Navigate => m_Wrapper.m_UI_Navigate;
+        public InputAction @Submit => m_Wrapper.m_UI_Submit;
+        public InputAction @Cancel => m_Wrapper.m_UI_Cancel;
+        public InputAction @Point => m_Wrapper.m_UI_Point;
+        public InputAction @Click => m_Wrapper.m_UI_Click;
+        public InputAction @ScrollWheel => m_Wrapper.m_UI_ScrollWheel;
+        public InputAction @MiddleClick => m_Wrapper.m_UI_MiddleClick;
+        public InputAction @RightClick => m_Wrapper.m_UI_RightClick;
+        public InputAction @TrackedDevicePosition => m_Wrapper.m_UI_TrackedDevicePosition;
+        public InputAction @TrackedDeviceOrientation => m_Wrapper.m_UI_TrackedDeviceOrientation;
+        public InputActionMap Get() { return m_Wrapper.m_UI; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(UIActions set) { return set.Get(); }
+        public void SetCallbacks(IUIActions instance)
+        {
+            if (m_Wrapper.m_UIActionsCallbackInterface != null)
+            {
+                @Navigate.started -= m_Wrapper.m_UIActionsCallbackInterface.OnNavigate;
+                @Navigate.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnNavigate;
+                @Navigate.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnNavigate;
+                @Submit.started -= m_Wrapper.m_UIActionsCallbackInterface.OnSubmit;
+                @Submit.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnSubmit;
+                @Submit.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnSubmit;
+                @Cancel.started -= m_Wrapper.m_UIActionsCallbackInterface.OnCancel;
+                @Cancel.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnCancel;
+                @Cancel.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnCancel;
+                @Point.started -= m_Wrapper.m_UIActionsCallbackInterface.OnPoint;
+                @Point.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnPoint;
+                @Point.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnPoint;
+                @Click.started -= m_Wrapper.m_UIActionsCallbackInterface.OnClick;
+                @Click.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnClick;
+                @Click.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnClick;
+                @ScrollWheel.started -= m_Wrapper.m_UIActionsCallbackInterface.OnScrollWheel;
+                @ScrollWheel.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnScrollWheel;
+                @ScrollWheel.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnScrollWheel;
+                @MiddleClick.started -= m_Wrapper.m_UIActionsCallbackInterface.OnMiddleClick;
+                @MiddleClick.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnMiddleClick;
+                @MiddleClick.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnMiddleClick;
+                @RightClick.started -= m_Wrapper.m_UIActionsCallbackInterface.OnRightClick;
+                @RightClick.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnRightClick;
+                @RightClick.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnRightClick;
+                @TrackedDevicePosition.started -= m_Wrapper.m_UIActionsCallbackInterface.OnTrackedDevicePosition;
+                @TrackedDevicePosition.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnTrackedDevicePosition;
+                @TrackedDevicePosition.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnTrackedDevicePosition;
+                @TrackedDeviceOrientation.started -= m_Wrapper.m_UIActionsCallbackInterface.OnTrackedDeviceOrientation;
+                @TrackedDeviceOrientation.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnTrackedDeviceOrientation;
+                @TrackedDeviceOrientation.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnTrackedDeviceOrientation;
+            }
+            m_Wrapper.m_UIActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @Navigate.started += instance.OnNavigate;
+                @Navigate.performed += instance.OnNavigate;
+                @Navigate.canceled += instance.OnNavigate;
+                @Submit.started += instance.OnSubmit;
+                @Submit.performed += instance.OnSubmit;
+                @Submit.canceled += instance.OnSubmit;
+                @Cancel.started += instance.OnCancel;
+                @Cancel.performed += instance.OnCancel;
+                @Cancel.canceled += instance.OnCancel;
+                @Point.started += instance.OnPoint;
+                @Point.performed += instance.OnPoint;
+                @Point.canceled += instance.OnPoint;
+                @Click.started += instance.OnClick;
+                @Click.performed += instance.OnClick;
+                @Click.canceled += instance.OnClick;
+                @ScrollWheel.started += instance.OnScrollWheel;
+                @ScrollWheel.performed += instance.OnScrollWheel;
+                @ScrollWheel.canceled += instance.OnScrollWheel;
+                @MiddleClick.started += instance.OnMiddleClick;
+                @MiddleClick.performed += instance.OnMiddleClick;
+                @MiddleClick.canceled += instance.OnMiddleClick;
+                @RightClick.started += instance.OnRightClick;
+                @RightClick.performed += instance.OnRightClick;
+                @RightClick.canceled += instance.OnRightClick;
+                @TrackedDevicePosition.started += instance.OnTrackedDevicePosition;
+                @TrackedDevicePosition.performed += instance.OnTrackedDevicePosition;
+                @TrackedDevicePosition.canceled += instance.OnTrackedDevicePosition;
+                @TrackedDeviceOrientation.started += instance.OnTrackedDeviceOrientation;
+                @TrackedDeviceOrientation.performed += instance.OnTrackedDeviceOrientation;
+                @TrackedDeviceOrientation.canceled += instance.OnTrackedDeviceOrientation;
+            }
+        }
+    }
+    public UIActions @UI => new UIActions(this);
     private int m_MIDIDeviceSchemeIndex = -1;
     public InputControlScheme MIDIDeviceScheme
     {
@@ -1554,8 +2182,30 @@ public class @PianoController : IInputActionCollection, IDisposable
             return asset.controlSchemes[m_MIDIDeviceSchemeIndex];
         }
     }
+    private int m_MouseSchemeIndex = -1;
+    public InputControlScheme MouseScheme
+    {
+        get
+        {
+            if (m_MouseSchemeIndex == -1) m_MouseSchemeIndex = asset.FindControlSchemeIndex("Mouse");
+            return asset.controlSchemes[m_MouseSchemeIndex];
+        }
+    }
     public interface IPianoActions
     {
-        void OnNewaction(InputAction.CallbackContext context);
+        void OnPianoAction(InputAction.CallbackContext context);
+    }
+    public interface IUIActions
+    {
+        void OnNavigate(InputAction.CallbackContext context);
+        void OnSubmit(InputAction.CallbackContext context);
+        void OnCancel(InputAction.CallbackContext context);
+        void OnPoint(InputAction.CallbackContext context);
+        void OnClick(InputAction.CallbackContext context);
+        void OnScrollWheel(InputAction.CallbackContext context);
+        void OnMiddleClick(InputAction.CallbackContext context);
+        void OnRightClick(InputAction.CallbackContext context);
+        void OnTrackedDevicePosition(InputAction.CallbackContext context);
+        void OnTrackedDeviceOrientation(InputAction.CallbackContext context);
     }
 }
