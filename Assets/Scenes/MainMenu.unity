@@ -1099,7 +1099,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1064524075}
         m_TargetAssemblyTypeName: SongSelection, Assembly-CSharp
-        m_MethodName: SelectSong1
+        m_MethodName: SelectSong3
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1307,7 +1307,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1064524075}
         m_TargetAssemblyTypeName: SongSelection, Assembly-CSharp
-        m_MethodName: SelectSong1
+        m_MethodName: SelectSong4
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1891,7 +1891,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84c72fc5ee272fd47bfb46daf0ff6c73, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  selectedSong: 
+  selectedSong: 0
 --- !u!4 &368203422
 Transform:
   m_ObjectHideFlags: 0
@@ -3109,7 +3109,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1064524075}
         m_TargetAssemblyTypeName: SongSelection, Assembly-CSharp
-        m_MethodName: SelectSong1
+        m_MethodName: SelectSong5
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -5436,7 +5436,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5fef0752a24c7a42876677b13722b71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Song1Btn: {fileID: 0}
+  songInfo: {fileID: 368203421}
 --- !u!114 &1064524076
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5673,7 +5673,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1064524075}
         m_TargetAssemblyTypeName: SongSelection, Assembly-CSharp
-        m_MethodName: SelectSong1
+        m_MethodName: SelectSong6
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -8269,7 +8269,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1064524075}
         m_TargetAssemblyTypeName: SongSelection, Assembly-CSharp
-        m_MethodName: SelectSong1
+        m_MethodName: SelectSong2
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

@@ -5,7 +5,7 @@ using UnityEngine;
 public class SongInformation : MonoBehaviour
 {
 
-    public string selectedSong;
+    public int selectedSong;
 
     // Start is called before the first frame update
     void Start()
