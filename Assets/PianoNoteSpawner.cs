@@ -134,14 +134,14 @@ public class PianoNoteSpawner : MonoBehaviour
     {
         if (isSharp)
         {
-            GameObject spawnedNote = Instantiate(spawnNoteSharpObject, new Vector3(note.transform.position.x, note.transform.position.y + 8.55f, note.transform.position.z + 2), Quaternion.identity);
+            GameObject spawnedNote = Instantiate(spawnNoteSharpObject, new Vector3(note.transform.position.x, note.transform.position.y + 10f, note.transform.position.z + 2), Quaternion.identity);
             spawnedNote.GetComponentInChildren<TextMeshPro>().text = note.GetComponent<Note>().noteName;
             spawnedNote.GetComponentInChildren<TextMeshPro>().transform.localPosition = new Vector3(2.1f, -1, 0);
             spawnedNotes.Add(spawnedNote);
         }
         else
         {
-            GameObject spawnedNote = Instantiate(spawnNoteObject, new Vector3(note.transform.position.x, note.transform.position.y + 8.55f, note.transform.position.z + 2), Quaternion.identity);
+            GameObject spawnedNote = Instantiate(spawnNoteObject, new Vector3(note.transform.position.x, note.transform.position.y + 10f, note.transform.position.z + 2), Quaternion.identity);
             spawnedNote.GetComponentInChildren<TextMeshPro>().text = note.GetComponent<Note>().noteName;
             spawnedNote.GetComponentInChildren<TextMeshPro>().transform.localPosition = new Vector3(2.25f,-1 ,0);
             spawnedNotes.Add(spawnedNote);

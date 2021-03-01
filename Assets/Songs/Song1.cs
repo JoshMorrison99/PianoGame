@@ -5,41 +5,165 @@ using UnityEngine;
 public class Song1 : MonoBehaviour
 {
     PianoNoteSpawner spawner;
-
-    private float TicksPerSecond = 1.5f;
-
-    private float _t;
-    private int counter = 0;
-
-    void OnEnable()
-    {
-        _t = 0f;
-    }
+    public int numNotes = 63;
 
     private void Start()
     {
+        numNotes = 63;
+
         spawner = GameObject.Find("PianoKeyboardUI").GetComponent<PianoNoteSpawner>();
         Debug.Log(spawner);
+
+        StartCoroutine(BeginSong());
     }
 
-    // Update is called once per frame
-    void Update()
+    IEnumerator BeginSong()
     {
-        // Begin Song
-        float dur = 1f / this.TicksPerSecond;
-        _t += Time.deltaTime;
-        int cnt = 4;
-        while (_t > dur && cnt > 0)
-        {
-            counter++;
-            _t -= dur;
-            cnt--;
-            beginSong();
-        }
-    }
+        spawner.spawnNote(0, spawner.E3, false);
+        yield return new WaitForSeconds(0.5f);
+        spawner.spawnNote(0, spawner.E3, false);
+        yield return new WaitForSeconds(0.5f);
+        spawner.spawnNote(0, spawner.F3, false);
+        yield return new WaitForSeconds(0.5f);
 
-    void beginSong()
-    {
-        spawner.spawnNote(0, spawner.G6, false);
+        spawner.spawnNote(0, spawner.G3, false);
+        yield return new WaitForSeconds(0.5f);
+        spawner.spawnNote(0, spawner.G3, false);
+        yield return new WaitForSeconds(0.5f);
+        spawner.spawnNote(0, spawner.F3, false);
+        yield return new WaitForSeconds(0.5f);
+
+        spawner.spawnNote(0, spawner.E3, false);
+        yield return new WaitForSeconds(0.5f);
+        spawner.spawnNote(0, spawner.D3, false);
+        yield return new WaitForSeconds(0.5f);
+        spawner.spawnNote(0, spawner.C3, false);
+        yield return new WaitForSeconds(0.5f);
+
+        spawner.spawnNote(0, spawner.C3, false);
+        yield return new WaitForSeconds(0.5f);
+        spawner.spawnNote(0, spawner.D3, false);
+        yield return new WaitForSeconds(0.5f);
+        spawner.spawnNote(0, spawner.E3, false);
+        yield return new WaitForSeconds(0.5f);
+
+        spawner.spawnNote(0, spawner.E3, false);
+        yield return new WaitForSeconds(0.5f);
+        spawner.spawnNote(0, spawner.E3, false);
+        yield return new WaitForSeconds(0.5f);
+        spawner.spawnNote(0, spawner.D3, false);
+        yield return new WaitForSeconds(0.5f);
+
+        spawner.spawnNote(0, spawner.D3, false);
+        yield return new WaitForSeconds(0.5f);
+        spawner.spawnNote(0, spawner.E3, false);
+        yield return new WaitForSeconds(0.5f);
+        spawner.spawnNote(0, spawner.E3, false);
+        yield return new WaitForSeconds(0.5f);
+
+        spawner.spawnNote(0, spawner.F3, false);
+        yield return new WaitForSeconds(0.5f);
+        spawner.spawnNote(0, spawner.G3, false);
+        yield return new WaitForSeconds(0.5f);
+        spawner.spawnNote(0, spawner.G3, false);
+        yield return new WaitForSeconds(0.5f);
+
+        spawner.spawnNote(0, spawner.F3, false);
+        yield return new WaitForSeconds(0.5f);
+        spawner.spawnNote(0, spawner.E3, false);
+        yield return new WaitForSeconds(0.5f);
+        spawner.spawnNote(0, spawner.D3, false);
+        yield return new WaitForSeconds(0.5f);
+
+        spawner.spawnNote(0, spawner.C3, false);
+        yield return new WaitForSeconds(0.5f);
+        spawner.spawnNote(0, spawner.C3, false);
+        yield return new WaitForSeconds(0.5f);
+        spawner.spawnNote(0, spawner.D3, false);
+        yield return new WaitForSeconds(0.5f);
+
+        spawner.spawnNote(0, spawner.E3, false);
+        yield return new WaitForSeconds(0.5f);
+        spawner.spawnNote(0, spawner.D3, false);
+        yield return new WaitForSeconds(0.5f);
+        spawner.spawnNote(0, spawner.C3, false);
+        yield return new WaitForSeconds(0.5f);
+
+        spawner.spawnNote(0, spawner.C3, false);
+        yield return new WaitForSeconds(0.5f);
+        spawner.spawnNote(0, spawner.D3, false);
+        yield return new WaitForSeconds(0.5f);
+        spawner.spawnNote(0, spawner.D3, false);
+        yield return new WaitForSeconds(0.5f);
+
+        spawner.spawnNote(0, spawner.E3, false);
+        yield return new WaitForSeconds(0.5f);
+        spawner.spawnNote(0, spawner.C3, false);
+        yield return new WaitForSeconds(0.5f);
+        spawner.spawnNote(0, spawner.D3, false);
+        yield return new WaitForSeconds(0.5f);
+
+        spawner.spawnNote(0, spawner.E3, false);
+        yield return new WaitForSeconds(0.5f);
+        spawner.spawnNote(0, spawner.F3, false);
+        yield return new WaitForSeconds(0.5f);
+        spawner.spawnNote(0, spawner.E3, false);
+        yield return new WaitForSeconds(0.5f);
+
+        spawner.spawnNote(0, spawner.C3, false);
+        yield return new WaitForSeconds(0.5f);
+        spawner.spawnNote(0, spawner.D3, false);
+        yield return new WaitForSeconds(0.5f);
+        spawner.spawnNote(0, spawner.E3, false);
+        yield return new WaitForSeconds(0.5f);
+
+        spawner.spawnNote(0, spawner.F3, false);
+        yield return new WaitForSeconds(0.5f);
+        spawner.spawnNote(0, spawner.E3, false);
+        yield return new WaitForSeconds(0.5f);
+        spawner.spawnNote(0, spawner.D3, false);
+        yield return new WaitForSeconds(0.5f);
+
+        spawner.spawnNote(0, spawner.C3, false);
+        yield return new WaitForSeconds(0.5f);
+        spawner.spawnNote(0, spawner.D3, false);
+        yield return new WaitForSeconds(0.5f);
+        spawner.spawnNote(0, spawner.G2, false);
+        yield return new WaitForSeconds(0.5f);
+
+        spawner.spawnNote(0, spawner.E3, false);
+        yield return new WaitForSeconds(0.5f);
+        spawner.spawnNote(0, spawner.E3, false);
+        yield return new WaitForSeconds(0.5f);
+        spawner.spawnNote(0, spawner.F3, false);
+        yield return new WaitForSeconds(0.5f);
+
+        spawner.spawnNote(0, spawner.G3, false);
+        yield return new WaitForSeconds(0.5f);
+        spawner.spawnNote(0, spawner.G3, false);
+        yield return new WaitForSeconds(0.5f);
+        spawner.spawnNote(0, spawner.F3, false);
+        yield return new WaitForSeconds(0.5f);
+
+        spawner.spawnNote(0, spawner.E3, false);
+        yield return new WaitForSeconds(0.5f);
+        spawner.spawnNote(0, spawner.D3, false);
+        yield return new WaitForSeconds(0.5f);
+        spawner.spawnNote(0, spawner.C3, false);
+        yield return new WaitForSeconds(0.5f);
+
+        spawner.spawnNote(0, spawner.C3, false);
+        yield return new WaitForSeconds(0.5f);
+        spawner.spawnNote(0, spawner.D3, false);
+        yield return new WaitForSeconds(0.5f);
+        spawner.spawnNote(0, spawner.E3, false);
+        yield return new WaitForSeconds(0.5f);
+
+        spawner.spawnNote(0, spawner.D3, false);
+        yield return new WaitForSeconds(0.5f);
+        spawner.spawnNote(0, spawner.C3, false);
+        yield return new WaitForSeconds(0.5f);
+        spawner.spawnNote(0, spawner.C3, false);
+        yield return new WaitForSeconds(0.5f);
     }
 }

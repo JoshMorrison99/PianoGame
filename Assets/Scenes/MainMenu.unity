@@ -1518,7 +1518,7 @@ GameObject:
   - component: {fileID: 335245562}
   - component: {fileID: 335245561}
   m_Layer: 5
-  m_Name: Song1
+  m_Name: Song1_Ode_to_Joy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5049,7 +5049,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Song Author
+  m_text: Beethoven
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -6330,7 +6330,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -174.78, y: 44.2}
-  m_SizeDelta: {x: 200, y: 50}
+  m_SizeDelta: {x: 210.46, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1234246698
 MonoBehaviour:
@@ -6352,7 +6352,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Song Title
+  m_text: 'Ode To Joy
 
 '
   m_isRightToLeft: 0
