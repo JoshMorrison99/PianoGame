@@ -13,6 +13,15 @@ public class SongFinished : MonoBehaviour
     public Button replaySongBtn;
     public Button mainMenuBtn;
 
+    public PlayLogic playSongLogic;
+
+    public void UpdateText()
+    {
+        notesHitText.text = playSongLogic.numNotesHit + "/" + playSongLogic.numNotesTotal + " notes hit";
+        float percent = playSongLogic.numNotesHit / playSongLogic.numNotesTotal;
+        float percentTrunk = Mathf.Round(percent * 100f) / 100f;
+        percentageText.text = (percentTrunk * 100).ToString() + "%";
+    }
 
     public void mainMenuButtonClicked()
     {

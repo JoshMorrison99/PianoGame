@@ -176,5 +176,6 @@ public class Song1 : MonoBehaviour
     void EndOfSong()
     {
         UILogic.pauseMenuPanel.SetActive(true);
+        UILogic.UpdateFinishedSongText();
     }
 }

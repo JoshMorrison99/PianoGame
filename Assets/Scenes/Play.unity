@@ -18597,6 +18597,7 @@ MonoBehaviour:
   notesHitText: {fileID: 1288855203}
   replaySongBtn: {fileID: 977811914}
   mainMenuBtn: {fileID: 1890308076}
+  playSongLogic: {fileID: 1623551345}
 --- !u!1 &2032620531
 GameObject:
   m_ObjectHideFlags: 0

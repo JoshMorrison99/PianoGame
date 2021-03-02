@@ -8,6 +8,7 @@ public class PlayUILogic : MonoBehaviour
 {
 
     public PlayLogic playSongLogic;
+
     public GameObject pauseMenuPanel;
 
     public TextMeshProUGUI progressSong;
@@ -22,5 +23,10 @@ public class PlayUILogic : MonoBehaviour
     void Update()
     {
         progressSong.text = playSongLogic.numNotesHit + "/" + playSongLogic.numNotesTotal;
+    }
+
+    public void UpdateFinishedSongText()
+    {
+        pauseMenuPanel.GetComponent<SongFinished>().UpdateText();
     }
 }
