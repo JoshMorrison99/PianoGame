@@ -7,12 +7,15 @@ public class Song1 : MonoBehaviour
     PianoNoteSpawner spawner;
     public int numNotes = 63;
 
+    public PlayUILogic UILogic;
+
     private void Start()
     {
         numNotes = 63;
 
         spawner = GameObject.Find("PianoKeyboardUI").GetComponent<PianoNoteSpawner>();
-        Debug.Log(spawner);
+
+        UILogic = GameObject.Find("Canvas").GetComponent<PlayUILogic>();
 
         StartCoroutine(BeginSong());
     }
@@ -165,5 +168,13 @@ public class Song1 : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
         spawner.spawnNote(0, spawner.C3, false);
         yield return new WaitForSeconds(0.5f);
+
+        yield return new WaitForSeconds(5f);
+        EndOfSong();
+    }
+
+    void EndOfSong()
+    {
+        UILogic.pauseMenuPanel.SetActive(true);
     }
 }
