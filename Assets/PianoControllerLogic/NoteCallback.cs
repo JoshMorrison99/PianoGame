@@ -22,7 +22,7 @@ sealed class NoteCallback : MonoBehaviour
                 // object is only useful to specify the target note (note
                 // number, channel number, device name, etc.) Use the velocity
                 // argument as an input note velocity.
-                Debug.Log(string.Format(
+                /*Debug.Log(string.Format(
                     "Note On #{0} ({1}) vel:{2:0.00} ch:{3} dev:'{4}'",
                     note.noteNumber,
                     note.shortDisplayName,
@@ -39,7 +39,7 @@ sealed class NoteCallback : MonoBehaviour
                     note.shortDisplayName,
                     (note.device as Minis.MidiDevice)?.channel,
                     note.device.description.product
-                ));
+                ));*/
             };
         };
     }

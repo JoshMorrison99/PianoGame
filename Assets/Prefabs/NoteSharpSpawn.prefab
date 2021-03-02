@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 3726027505453001327}
   m_Layer: 7
   m_Name: NoteSharpSpawn
-  m_TagString: Untagged
+  m_TagString: Note
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

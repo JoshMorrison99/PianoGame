@@ -399,6 +399,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Logic: {fileID: 1623551345}
+  intersecting: 0
 --- !u!1001 &22584194
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -560,6 +561,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Logic: {fileID: 1623551345}
+  intersecting: 0
 --- !u!61 &27520186
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -995,6 +997,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Logic: {fileID: 1623551345}
+  intersecting: 0
 --- !u!1001 &121637349
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1271,6 +1274,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Logic: {fileID: 1623551345}
+  intersecting: 0
 --- !u!1 &171434019
 GameObject:
   m_ObjectHideFlags: 0
@@ -1370,6 +1374,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Logic: {fileID: 1623551345}
+  intersecting: 0
 --- !u!61 &171434023
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1783,6 +1788,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Logic: {fileID: 1623551345}
+  intersecting: 0
 --- !u!61 &239505390
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2542,6 +2548,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Logic: {fileID: 1623551345}
+  intersecting: 0
 --- !u!1 &331580848
 GameObject:
   m_ObjectHideFlags: 0
@@ -2681,6 +2688,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Logic: {fileID: 1623551345}
+  intersecting: 0
 --- !u!1001 &351921195
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2882,6 +2890,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Logic: {fileID: 1623551345}
+  intersecting: 0
 --- !u!1 &366425567
 GameObject:
   m_ObjectHideFlags: 0
@@ -3115,6 +3124,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Logic: {fileID: 1623551345}
+  intersecting: 0
 --- !u!61 &391910048
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3568,6 +3578,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Logic: {fileID: 1623551345}
+  intersecting: 0
 --- !u!1 &465952087
 GameObject:
   m_ObjectHideFlags: 0
@@ -3707,6 +3718,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Logic: {fileID: 1623551345}
+  intersecting: 0
 --- !u!1001 &476040517
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3908,6 +3920,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Logic: {fileID: 1623551345}
+  intersecting: 0
 --- !u!1 &492799221
 GameObject:
   m_ObjectHideFlags: 0
@@ -4047,6 +4060,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Logic: {fileID: 1623551345}
+  intersecting: 0
 --- !u!1 &492893225
 GameObject:
   m_ObjectHideFlags: 0
@@ -4596,6 +4610,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Logic: {fileID: 1623551345}
+  intersecting: 0
 --- !u!1001 &576476983
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5613,6 +5628,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Logic: {fileID: 1623551345}
+  intersecting: 0
 --- !u!61 &642676144
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -5929,6 +5945,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Logic: {fileID: 1623551345}
+  intersecting: 0
 --- !u!1 &686265714
 GameObject:
   m_ObjectHideFlags: 0
@@ -6068,6 +6085,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Logic: {fileID: 1623551345}
+  intersecting: 0
 --- !u!1001 &692045739
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6269,6 +6287,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Logic: {fileID: 1623551345}
+  intersecting: 0
 --- !u!1 &718227289
 GameObject:
   m_ObjectHideFlags: 0
@@ -6410,6 +6429,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Logic: {fileID: 1623551345}
+  intersecting: 0
 --- !u!61 &719317608
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -6814,7 +6834,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &788708484
 PrefabInstance:
@@ -7154,6 +7174,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Logic: {fileID: 1623551345}
+  intersecting: 0
 --- !u!1 &827454651
 GameObject:
   m_ObjectHideFlags: 0
@@ -7293,6 +7314,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Logic: {fileID: 1623551345}
+  intersecting: 0
 --- !u!1001 &831639895
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7752,6 +7774,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Logic: {fileID: 1623551345}
+  intersecting: 0
 --- !u!1001 &876600536
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7953,6 +7976,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Logic: {fileID: 1623551345}
+  intersecting: 0
 --- !u!1001 &906520119
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8189,6 +8213,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Logic: {fileID: 1623551345}
+  intersecting: 0
 --- !u!61 &926388122
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -8452,6 +8477,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Logic: {fileID: 1623551345}
+  intersecting: 0
 --- !u!61 &965252109
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -9176,6 +9202,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Logic: {fileID: 1623551345}
+  intersecting: 0
 --- !u!1 &1094638092
 GameObject:
   m_ObjectHideFlags: 0
@@ -9263,7 +9290,7 @@ Transform:
   - {fileID: 287338355}
   - {fileID: 718227290}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1094638095
 MonoBehaviour:
@@ -9555,6 +9582,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Logic: {fileID: 1623551345}
+  intersecting: 0
 --- !u!1 &1118356720
 GameObject:
   m_ObjectHideFlags: 0
@@ -9694,6 +9722,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Logic: {fileID: 1623551345}
+  intersecting: 0
 --- !u!1001 &1121567176
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9895,6 +9924,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Logic: {fileID: 1623551345}
+  intersecting: 0
 --- !u!1 &1139272591
 GameObject:
   m_ObjectHideFlags: 0
@@ -10034,6 +10064,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Logic: {fileID: 1623551345}
+  intersecting: 0
 --- !u!1001 &1149446729
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10718,6 +10749,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Logic: {fileID: 1623551345}
+  intersecting: 0
 --- !u!1 &1241665927
 GameObject:
   m_ObjectHideFlags: 0
@@ -11007,6 +11039,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Logic: {fileID: 1623551345}
+  intersecting: 0
 --- !u!1 &1288855201
 GameObject:
   m_ObjectHideFlags: 0
@@ -12005,6 +12038,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Logic: {fileID: 1623551345}
+  intersecting: 0
 --- !u!1001 &1420735793
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12617,6 +12651,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Logic: {fileID: 1623551345}
+  intersecting: 0
 --- !u!1 &1496597564
 GameObject:
   m_ObjectHideFlags: 0
@@ -12756,6 +12791,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Logic: {fileID: 1623551345}
+  intersecting: 0
 --- !u!1 &1523341309
 GameObject:
   m_ObjectHideFlags: 0
@@ -13271,7 +13307,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1643453990
 GameObject:
@@ -13412,6 +13448,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Logic: {fileID: 1623551345}
+  intersecting: 0
 --- !u!1 &1645780600
 GameObject:
   m_ObjectHideFlags: 0
@@ -13648,6 +13685,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Logic: {fileID: 1623551345}
+  intersecting: 0
 --- !u!61 &1668587362
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -13827,6 +13865,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Logic: {fileID: 1623551345}
+  intersecting: 0
 --- !u!1001 &1681904686
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14108,6 +14147,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Logic: {fileID: 1623551345}
+  intersecting: 0
 --- !u!1001 &1698275517
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14406,6 +14446,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Logic: {fileID: 1623551345}
+  intersecting: 0
 --- !u!61 &1706994689
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -14719,6 +14760,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Logic: {fileID: 1623551345}
+  intersecting: 0
 --- !u!1 &1726893745
 GameObject:
   m_ObjectHideFlags: 0
@@ -14995,6 +15037,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Logic: {fileID: 1623551345}
+  intersecting: 0
 --- !u!1 &1746261977
 GameObject:
   m_ObjectHideFlags: 0
@@ -15134,6 +15177,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Logic: {fileID: 1623551345}
+  intersecting: 0
 --- !u!1 &1750658413
 GameObject:
   m_ObjectHideFlags: 0
@@ -15273,6 +15317,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Logic: {fileID: 1623551345}
+  intersecting: 0
 --- !u!1 &1751722613
 GameObject:
   m_ObjectHideFlags: 0
@@ -16024,6 +16069,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Logic: {fileID: 1623551345}
+  intersecting: 0
 --- !u!1 &1840941832
 GameObject:
   m_ObjectHideFlags: 0
@@ -16238,6 +16284,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Logic: {fileID: 1623551345}
+  intersecting: 0
 --- !u!1001 &1874892402
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -16572,6 +16619,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Logic: {fileID: 1623551345}
+  intersecting: 0
 --- !u!1 &1898604745
 GameObject:
   m_ObjectHideFlags: 0
@@ -16711,6 +16759,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Logic: {fileID: 1623551345}
+  intersecting: 0
 --- !u!1 &1899111090
 GameObject:
   m_ObjectHideFlags: 0
@@ -16850,6 +16899,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Logic: {fileID: 1623551345}
+  intersecting: 0
 --- !u!1001 &1899381487
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -17113,6 +17163,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Logic: {fileID: 1623551345}
+  intersecting: 0
 --- !u!1 &1939199933
 GameObject:
   m_ObjectHideFlags: 0
@@ -17424,6 +17475,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Logic: {fileID: 1623551345}
+  intersecting: 0
 --- !u!61 &1953398179
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -17815,6 +17867,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Logic: {fileID: 1623551345}
+  intersecting: 0
 --- !u!1 &1980073370
 GameObject:
   m_ObjectHideFlags: 0
@@ -18029,6 +18082,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Logic: {fileID: 1623551345}
+  intersecting: 0
 --- !u!1 &2006499260
 GameObject:
   m_ObjectHideFlags: 0
@@ -18243,6 +18297,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Logic: {fileID: 1623551345}
+  intersecting: 0
 --- !u!1001 &2019005232
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -18444,6 +18499,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Logic: {fileID: 1623551345}
+  intersecting: 0
 --- !u!1 &2032058006
 GameObject:
   m_ObjectHideFlags: 0
@@ -19147,6 +19203,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Logic: {fileID: 1623551345}
+  intersecting: 0
 --- !u!61 &2095835340
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -19551,6 +19608,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Logic: {fileID: 1623551345}
+  intersecting: 0
 --- !u!1 &2124906767
 GameObject:
   m_ObjectHideFlags: 0
@@ -19690,6 +19748,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Logic: {fileID: 1623551345}
+  intersecting: 0
 --- !u!1 &2132255058
 GameObject:
   m_ObjectHideFlags: 0
@@ -19951,6 +20010,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Logic: {fileID: 1623551345}
+  intersecting: 0
 --- !u!1001 &346882478496780350
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -20022,6 +20082,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: NoteSpawn
       objectReference: {fileID: 0}
+    - target: {fileID: 346882478429002398, guid: 439cb41bf2cd06e49b0bd9d70902895b, type: 3}
+      propertyPath: m_TagString
+      value: Note
+      objectReference: {fileID: 0}
     - target: {fileID: 346882478429002399, guid: 439cb41bf2cd06e49b0bd9d70902895b, type: 3}
       propertyPath: m_Color.b
       value: 1
@@ -20036,63 +20100,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 439cb41bf2cd06e49b0bd9d70902895b, type: 3}
---- !u!1001 &1371345414932807874
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 9090035785748181988, guid: 909c92cdf892eb24a96a1b6810cde208, type: 3}
-      propertyPath: m_RootOrder
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 9090035785748181988, guid: 909c92cdf892eb24a96a1b6810cde208, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 9.08
-      objectReference: {fileID: 0}
-    - target: {fileID: 9090035785748181988, guid: 909c92cdf892eb24a96a1b6810cde208, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 1.38
-      objectReference: {fileID: 0}
-    - target: {fileID: 9090035785748181988, guid: 909c92cdf892eb24a96a1b6810cde208, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9090035785748181988, guid: 909c92cdf892eb24a96a1b6810cde208, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 9090035785748181988, guid: 909c92cdf892eb24a96a1b6810cde208, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9090035785748181988, guid: 909c92cdf892eb24a96a1b6810cde208, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9090035785748181988, guid: 909c92cdf892eb24a96a1b6810cde208, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9090035785748181988, guid: 909c92cdf892eb24a96a1b6810cde208, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9090035785748181988, guid: 909c92cdf892eb24a96a1b6810cde208, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9090035785748181988, guid: 909c92cdf892eb24a96a1b6810cde208, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9090035785748181990, guid: 909c92cdf892eb24a96a1b6810cde208, type: 3}
-      propertyPath: m_Name
-      value: NoteSpawnEOS
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 909c92cdf892eb24a96a1b6810cde208, type: 3}
 --- !u!1001 &2553089731277804500
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -20160,6 +20167,10 @@ PrefabInstance:
     - target: {fileID: 3726027505453001320, guid: b6b03bffe942d704f87b44dee3a8f1c6, type: 3}
       propertyPath: m_Name
       value: NoteSharpSpawn
+      objectReference: {fileID: 0}
+    - target: {fileID: 3726027505453001320, guid: b6b03bffe942d704f87b44dee3a8f1c6, type: 3}
+      propertyPath: m_TagString
+      value: Note
       objectReference: {fileID: 0}
     - target: {fileID: 3726027505453001326, guid: b6b03bffe942d704f87b44dee3a8f1c6, type: 3}
       propertyPath: m_RootOrder
