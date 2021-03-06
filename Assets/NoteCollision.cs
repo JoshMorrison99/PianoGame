@@ -10,7 +10,7 @@ public class NoteCollision : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (this.GetComponent<Note>().isPressed)
+        if (this.GetComponent<Note>().initialPress)
         {
             // Effects Spawn
             ParticleSystem emit = gameObject.GetComponentInChildren<ParticleSystem>();
@@ -19,6 +19,7 @@ public class NoteCollision : MonoBehaviour
             // Change color of note
             collision.gameObject.GetComponent<SpriteRenderer>().color = Color.blue;
 
+            Debug.Log("Intersecting? " + intersecting);
             if (intersecting)
             {
                 IncrementNotesHit();
@@ -30,11 +31,9 @@ public class NoteCollision : MonoBehaviour
 
     void IncrementNotesHit()
     {
-        if (GetComponent<Note>().isPressed)
-        {
             // Note successfully hit
             Logic.numNotesHit += 1;
-        }
+
         
     }
 
@@ -43,7 +42,6 @@ public class NoteCollision : MonoBehaviour
         Debug.Log(collision.gameObject.tag);
         if (collision.gameObject.tag == "Note")
         {
-            Debug.Log("true enter");
             intersecting = true;
             
         }
@@ -53,7 +51,6 @@ public class NoteCollision : MonoBehaviour
     {
         if (collision.gameObject.tag == "Note")
         {
-            Debug.Log("true exit");
             intersecting = false;
 
         }

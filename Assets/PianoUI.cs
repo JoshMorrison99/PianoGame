@@ -10,6 +10,7 @@ public class PianoUI : MonoBehaviour
     public GameObject[] PianoKeys;
     public List<GameObject> currentPressedNotes;
 
+
     void Start()
     {
         InputSystem.onDeviceChange += (device, change) =>
@@ -42,6 +43,7 @@ public class PianoUI : MonoBehaviour
 
                 // Activate the Note
                 each.GetComponent<Note>().isPressed = true;
+                each.GetComponent<Note>().initialPress = true;
             }
         }
     }
