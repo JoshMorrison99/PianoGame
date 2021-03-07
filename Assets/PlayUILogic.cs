@@ -17,6 +17,9 @@ public class PlayUILogic : MonoBehaviour
 
     public GameObject pauseManuPanel;
 
+    public GameObject debugPanel;
+    public TextMeshProUGUI BPMText;
+
     // Start is called before the first frame update
     void Start()
     {

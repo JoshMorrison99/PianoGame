@@ -7,7 +7,12 @@ using TMPro;
 public class PianoNoteSpawner : MonoBehaviour
 {
 
-    public GameObject spawnNoteObject;
+    public GameObject QuarterNote;
+    public GameObject HalfNote;
+    public GameObject Dotted_QuarterNote;
+    public GameObject EighthNote;
+    public GameObject WholeNote;
+
     public GameObject spawnNoteSharpObject;
 
     public PianoUI pianoListRef;
@@ -17,7 +22,7 @@ public class PianoNoteSpawner : MonoBehaviour
 
     const float NOTE_DESTROY_DEPTH = -10f;
 
-    public float noteSpeed = 0.0075f;
+    public float noteSpeed = 0;
 
     // Piano Notes
     public GameObject C2;
@@ -130,22 +135,75 @@ public class PianoNoteSpawner : MonoBehaviour
         }
     }
 
-    public void spawnNote(float noteDuration, GameObject note, bool isSharp)
+    public void spawnNote(string type, GameObject note, bool isSharp)
     {
-        if (isSharp)
+        if (type == "HalfNote")
         {
-            GameObject spawnedNote = Instantiate(spawnNoteSharpObject, new Vector3(note.transform.position.x, note.transform.position.y + 10f, note.transform.position.z + 2), Quaternion.identity);
-            spawnedNote.GetComponentInChildren<TextMeshPro>().text = note.GetComponent<Note>().noteName;
-            spawnedNote.GetComponentInChildren<TextMeshPro>().transform.localPosition = new Vector3(2.1f, -1, 0);
-            spawnedNotes.Add(spawnedNote);
-        }
-        else
+            if (isSharp)
+            {
+                GameObject spawnedNote = Instantiate(spawnNoteSharpObject, new Vector3(note.transform.position.x, note.transform.position.y + 10f, note.transform.position.z + 2), Quaternion.identity);
+                spawnedNote.GetComponentInChildren<TextMeshPro>().text = note.GetComponent<Note>().noteName;
+                spawnedNote.GetComponentInChildren<TextMeshPro>().transform.localPosition = new Vector3(2.1f, -1, 0);
+                spawnedNotes.Add(spawnedNote);
+            }
+            else
+            {
+                GameObject spawnedNote = Instantiate(HalfNote, new Vector3(note.transform.position.x, note.transform.position.y + 10f, note.transform.position.z + 2), Quaternion.identity);
+                spawnedNote.GetComponentInChildren<TextMeshPro>().text = note.GetComponent<Note>().noteName;
+                spawnedNote.GetComponentInChildren<TextMeshPro>().transform.localPosition = new Vector3(2.25f, -1, 0);
+                spawnedNotes.Add(spawnedNote);
+            }
+        } else if(type == "QuarterNote" || type == "DottedQuartedNote")
         {
-            GameObject spawnedNote = Instantiate(spawnNoteObject, new Vector3(note.transform.position.x, note.transform.position.y + 10f, note.transform.position.z + 2), Quaternion.identity);
-            spawnedNote.GetComponentInChildren<TextMeshPro>().text = note.GetComponent<Note>().noteName;
-            spawnedNote.GetComponentInChildren<TextMeshPro>().transform.localPosition = new Vector3(2.25f,-1 ,0);
-            spawnedNotes.Add(spawnedNote);
+            if (isSharp)
+            {
+                GameObject spawnedNote = Instantiate(spawnNoteSharpObject, new Vector3(note.transform.position.x, note.transform.position.y + 10f, note.transform.position.z + 2), Quaternion.identity);
+                spawnedNote.GetComponentInChildren<TextMeshPro>().text = note.GetComponent<Note>().noteName;
+                spawnedNote.GetComponentInChildren<TextMeshPro>().transform.localPosition = new Vector3(2.1f, -1, 0);
+                spawnedNotes.Add(spawnedNote);
+            }
+            else
+            {
+                GameObject spawnedNote = Instantiate(QuarterNote, new Vector3(note.transform.position.x, note.transform.position.y + 10f, note.transform.position.z + 2), Quaternion.identity);
+                spawnedNote.GetComponentInChildren<TextMeshPro>().text = note.GetComponent<Note>().noteName;
+                spawnedNote.GetComponentInChildren<TextMeshPro>().transform.localPosition = new Vector3(2.25f, -1, 0);
+                spawnedNotes.Add(spawnedNote);
+            }
+        }else if (type == "Whole")
+        {
+            if (isSharp)
+            {
+                GameObject spawnedNote = Instantiate(spawnNoteSharpObject, new Vector3(note.transform.position.x, note.transform.position.y + 10f, note.transform.position.z + 2), Quaternion.identity);
+                spawnedNote.GetComponentInChildren<TextMeshPro>().text = note.GetComponent<Note>().noteName;
+                spawnedNote.GetComponentInChildren<TextMeshPro>().transform.localPosition = new Vector3(2.1f, -1, 0);
+                spawnedNotes.Add(spawnedNote);
+            }
+            else
+            {
+                GameObject spawnedNote = Instantiate(WholeNote, new Vector3(note.transform.position.x, note.transform.position.y + 10f, note.transform.position.z + 2), Quaternion.identity);
+                spawnedNote.GetComponentInChildren<TextMeshPro>().text = note.GetComponent<Note>().noteName;
+                spawnedNote.GetComponentInChildren<TextMeshPro>().transform.localPosition = new Vector3(2.25f, -1, 0);
+                spawnedNotes.Add(spawnedNote);
+            }
         }
+        else if (type == "EighthNote")
+        {
+            if (isSharp)
+            {
+                GameObject spawnedNote = Instantiate(spawnNoteSharpObject, new Vector3(note.transform.position.x, note.transform.position.y + 10f, note.transform.position.z + 2), Quaternion.identity);
+                spawnedNote.GetComponentInChildren<TextMeshPro>().text = note.GetComponent<Note>().noteName;
+                spawnedNote.GetComponentInChildren<TextMeshPro>().transform.localPosition = new Vector3(2.1f, -1, 0);
+                spawnedNotes.Add(spawnedNote);
+            }
+            else
+            {
+                GameObject spawnedNote = Instantiate(EighthNote, new Vector3(note.transform.position.x, note.transform.position.y + 10f, note.transform.position.z + 2), Quaternion.identity);
+                spawnedNote.GetComponentInChildren<TextMeshPro>().text = note.GetComponent<Note>().noteName;
+                spawnedNote.GetComponentInChildren<TextMeshPro>().transform.localPosition = new Vector3(2.25f, -1, 0);
+                spawnedNotes.Add(spawnedNote);
+            }
+        }
+        
     }
 
     public void setupUI()
