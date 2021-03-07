@@ -9,14 +9,20 @@ public class PlayUILogic : MonoBehaviour
 
     public PlayLogic playSongLogic;
 
-    public GameObject pauseMenuPanel;
+    public GameObject songFinishedPanel;
 
     public TextMeshProUGUI progressSong;
+
+    public GameObject healperLines;
+
+    public GameObject pauseManuPanel;
 
     // Start is called before the first frame update
     void Start()
     {
-        pauseMenuPanel.SetActive(false);
+        healperLines.SetActive(true);
+        songFinishedPanel.SetActive(false);
+        pauseManuPanel.SetActive(false);
     }
 
     // Update is called once per frame
@@ -27,6 +33,12 @@ public class PlayUILogic : MonoBehaviour
 
     public void UpdateFinishedSongText()
     {
-        pauseMenuPanel.GetComponent<SongFinished>().UpdateText();
+        // set the song finished panel to active
+        songFinishedPanel.SetActive(true);
+
+        songFinishedPanel.GetComponent<SongFinished>().UpdateText();
+
+        // remove the helper lines from the UI
+        healperLines.SetActive(false);
     }
 }

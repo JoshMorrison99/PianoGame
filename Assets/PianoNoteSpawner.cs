@@ -17,7 +17,7 @@ public class PianoNoteSpawner : MonoBehaviour
 
     const float NOTE_DESTROY_DEPTH = -10f;
 
-    float noteSpeed = 0.0075f;
+    public float noteSpeed = 0.0075f;
 
     // Piano Notes
     public GameObject C2;
