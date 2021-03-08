@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class SongSelection : MonoBehaviour
 {
 
-    public SongInformation songInfo;
+    public PersistentData songInfo;
 
 
     // Update is called once per frame
@@ -20,7 +20,7 @@ public class SongSelection : MonoBehaviour
     public void SelectSong1()
     {
         Debug.Log("Pressed");
-        songInfo.GetComponent<SongInformation>().selectedSong = 1;
+        songInfo.GetComponent<PersistentData>().selectedSong = 1;
         SceneManager.LoadScene("Play");
     }
     public void SelectSong2()

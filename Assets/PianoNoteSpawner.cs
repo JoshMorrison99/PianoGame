@@ -153,7 +153,7 @@ public class PianoNoteSpawner : MonoBehaviour
                 spawnedNote.GetComponentInChildren<TextMeshPro>().transform.localPosition = new Vector3(2.25f, -1, 0);
                 spawnedNotes.Add(spawnedNote);
             }
-        } else if(type == "QuarterNote" || type == "DottedQuartedNote")
+        } else if(type == "QuarterNote")
         {
             if (isSharp)
             {
@@ -169,7 +169,7 @@ public class PianoNoteSpawner : MonoBehaviour
                 spawnedNote.GetComponentInChildren<TextMeshPro>().transform.localPosition = new Vector3(2.25f, -1, 0);
                 spawnedNotes.Add(spawnedNote);
             }
-        }else if (type == "Whole")
+        }else if (type == "DottedQuartedNote")
         {
             if (isSharp)
             {
@@ -180,7 +180,7 @@ public class PianoNoteSpawner : MonoBehaviour
             }
             else
             {
-                GameObject spawnedNote = Instantiate(WholeNote, new Vector3(note.transform.position.x, note.transform.position.y + 10f, note.transform.position.z + 2), Quaternion.identity);
+                GameObject spawnedNote = Instantiate(Dotted_QuarterNote, new Vector3(note.transform.position.x, note.transform.position.y + 10f, note.transform.position.z + 2), Quaternion.identity);
                 spawnedNote.GetComponentInChildren<TextMeshPro>().text = note.GetComponent<Note>().noteName;
                 spawnedNote.GetComponentInChildren<TextMeshPro>().transform.localPosition = new Vector3(2.25f, -1, 0);
                 spawnedNotes.Add(spawnedNote);

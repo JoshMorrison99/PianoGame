@@ -17,8 +17,7 @@ public class PlayUILogic : MonoBehaviour
 
     public GameObject pauseManuPanel;
 
-    public GameObject debugPanel;
-    public TextMeshProUGUI BPMText;
+    public PersistentData MyPersistentData;
 
     // Start is called before the first frame update
     void Start()
@@ -43,5 +42,8 @@ public class PlayUILogic : MonoBehaviour
 
         // remove the helper lines from the UI
         healperLines.SetActive(false);
+
+        // Save data
+        PersistentData.SaveJsonData(PersistentData.Instance);
     }
 }

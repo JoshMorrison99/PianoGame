@@ -41,7 +41,7 @@ public class Song1 : MonoBehaviour
         numNotes = 63;
 
         spawner = GameObject.Find("PianoKeyboardUI").GetComponent<PianoNoteSpawner>();
-        spawner.noteSpeed = 0.0075f;
+        spawner.noteSpeed = 0.0065f;
 
         UILogic = GameObject.Find("Canvas").GetComponent<PlayUILogic>();
 

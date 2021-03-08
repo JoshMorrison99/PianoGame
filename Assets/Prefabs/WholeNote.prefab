@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7938958812780892942}
   - component: {fileID: 7938958812780892937}
   m_Layer: 7
-  m_Name: NoteSpawn 1
+  m_Name: WholeNote
   m_TagString: Note
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -239,8 +239,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4280051183
-  m_fontColor: {r: 0.93725497, g: 0.39607847, b: 0.10980393, a: 1}
+    rgba: 4283918706
+  m_fontColor: {r: 0.44705886, g: 0.41176474, b: 0.34117648, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:

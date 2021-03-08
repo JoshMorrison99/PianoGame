@@ -5,7 +5,13 @@ using UnityEngine;
 public class NoteCollision : MonoBehaviour
 {
     public PlayLogic Logic;
+    public PersistentData MyPersistentData;
     public bool intersecting;
+
+    private void Start()
+    {
+        MyPersistentData = GameObject.Find("GameLogic").GetComponent<PersistentData>();
+    }
 
 
     private void OnTriggerStay2D(Collider2D collision)
@@ -31,8 +37,11 @@ public class NoteCollision : MonoBehaviour
 
     void IncrementNotesHit()
     {
-            // Note successfully hit
-            Logic.numNotesHit += 1;
+        // Note successfully hit
+        Logic.numNotesHit += 1;
+
+        // Increment exp
+        MyPersistentData.exp += 1;
 
         
     }

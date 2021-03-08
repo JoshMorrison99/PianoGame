@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 346882478429002394}
   - component: {fileID: 346882478429002397}
   m_Layer: 7
-  m_Name: Scale1
+  m_Name: HalfNote
   m_TagString: Note
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -28,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 346882478429002398}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -2}
-  m_LocalScale: {x: 0.45, y: 1, z: 1}
+  m_LocalScale: {x: 0.45, y: 1.25, z: 1}
   m_Children:
   - {fileID: 6132731412557662995}
   m_Father: {fileID: 0}
@@ -159,7 +159,7 @@ RectTransform:
   m_GameObject: {fileID: 1255466825352389976}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -1}
-  m_LocalScale: {x: 1, y: 0.5, z: 1}
+  m_LocalScale: {x: 1, y: 0.4, z: 1}
   m_Children: []
   m_Father: {fileID: 346882478429002396}
   m_RootOrder: 0
@@ -167,7 +167,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 2.25, y: -1.03}
-  m_SizeDelta: {x: 5, y: 4}
+  m_SizeDelta: {x: 5, y: 4.24}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!23 &6340462212685035272
 MeshRenderer:
@@ -239,8 +239,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4280051183
-  m_fontColor: {r: 0.93725497, g: 0.39607847, b: 0.10980393, a: 1}
+    rgba: 4283918706
+  m_fontColor: {r: 0.44705886, g: 0.41176474, b: 0.34117648, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
