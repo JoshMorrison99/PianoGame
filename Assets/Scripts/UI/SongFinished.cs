@@ -13,6 +13,7 @@ public class SongFinished : MonoBehaviour
     public Button replaySongBtn;
     public Button mainMenuBtn;
 
+
     public PlayLogic playSongLogic;
 
     public void UpdateText()
