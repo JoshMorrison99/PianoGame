@@ -17,11 +17,10 @@ public class PlayUILogic : MonoBehaviour
 
     public GameObject pauseManuPanel;
 
-    public PersistentData MyPersistentData;
-
     // Start is called before the first frame update
     void Start()
     {
+
         healperLines.SetActive(true);
         songFinishedPanel.SetActive(false);
         pauseManuPanel.SetActive(false);
@@ -44,6 +43,6 @@ public class PlayUILogic : MonoBehaviour
         healperLines.SetActive(false);
 
         // Save data
-        PersistentData.SaveJsonData(PersistentData.Instance);
+        PersistentData.SaveJsonData(PersistentData.data);
     }
 }

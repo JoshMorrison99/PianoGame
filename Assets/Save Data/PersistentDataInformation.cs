@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-public class SaveData
+public class PersistentDataInformation
 {
 
     // Persistent Player Information
@@ -30,6 +30,6 @@ public class SaveData
 
 public interface ISaveable
 {
-    void PopulateSaveData(SaveData a_SaveData);
-    void LoadFromSaveData(SaveData a_SaveData);
+    void PopulateSaveData(PersistentDataInformation a_SaveData);
+    void LoadFromSaveData(PersistentDataInformation a_SaveData);
 }

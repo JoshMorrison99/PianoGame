@@ -5,7 +5,6 @@ using UnityEngine;
 public class PlayLogic : MonoBehaviour
 {
 
-    public PersistentData MyPersistentData;
     public int songNumber;
     public float numNotesTotal;
     public float numNotesHit;
@@ -16,10 +15,8 @@ public class PlayLogic : MonoBehaviour
         numNotesTotal = 0;
         numNotesHit = 0;
 
-        MyPersistentData = GameObject.Find("GameLogic").GetComponent<PersistentData>();
-        
 
-        songNumber = MyPersistentData.selectedSong;
+        songNumber = PersistentData.data.selectedSong;
 
         if(songNumber == 1)
         {
