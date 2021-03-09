@@ -1892,6 +1892,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selectedSong: 0
+  level: 0
+  exp: 0
+  musicNotes: 0
+  username: 
+  songsComplete: 0
+  songsUnlocked: 0
+  song_Ode_To_Joy_Completion: 0
 --- !u!4 &368203422
 Transform:
   m_ObjectHideFlags: 0
