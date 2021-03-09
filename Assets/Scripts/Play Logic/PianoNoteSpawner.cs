@@ -15,7 +15,7 @@ public class PianoNoteSpawner : MonoBehaviour
 
     public GameObject spawnNoteSharpObject;
 
-    public PianoUI pianoListRef;
+    public PianoKeyPresses pianoListRef;
 
     public List<GameObject> spawnedNotes;
     public List<GameObject> garbageNotes;

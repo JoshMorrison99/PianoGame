@@ -9,19 +9,33 @@ public class PlayLogic : MonoBehaviour
     public float numNotesTotal;
     public float numNotesHit;
 
+    public GameObject piano;
+    public Song song;
+
+
+
+    float Song1_ScaleFactor_Piano = 1.5f;
+
     // Start is called before the first frame update
     void Start()
     {
-        numNotesTotal = 0;
+        numNotesTotal = song.numNotes;
         numNotesHit = 0;
 
-
+        // Setup song
         songNumber = PersistentData.data.selectedSong;
+        ScaleScene(songNumber);
 
-        if(songNumber == 1)
+    }
+
+    private void ScaleScene(int songNumber)
+    {
+        if (songNumber == 1)
         {
-            this.gameObject.AddComponent<Song1>();
-            numNotesTotal = gameObject.GetComponent<Song1>().numNotes;
+            // Scale Piano
+            piano.transform.localScale = new Vector3(piano.transform.localScale.x * Song1_ScaleFactor_Piano, piano.transform.localScale.y * Song1_ScaleFactor_Piano, 1f);
+            piano.transform.position = new Vector3(3.9f, 2.5f,0);
         }
+        
     }
 }

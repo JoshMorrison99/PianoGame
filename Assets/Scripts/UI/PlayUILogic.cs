@@ -29,6 +29,7 @@ public class PlayUILogic : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
         progressSong.text = playSongLogic.numNotesHit + "/" + playSongLogic.numNotesTotal;
     }
 

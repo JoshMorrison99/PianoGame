@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.InputSystem;
 using TMPro;
 
-public class PianoUI : MonoBehaviour
+public class PianoKeyPresses : MonoBehaviour
 {
     public GameObject[] PianoKeys;
     public List<GameObject> currentPressedNotes;
