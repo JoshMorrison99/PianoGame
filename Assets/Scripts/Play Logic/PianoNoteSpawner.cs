@@ -101,7 +101,7 @@ public class PianoNoteSpawner : MonoBehaviour
     
    
 
-    private void Update()
+    private void FixedUpdate()
     {
 
         for (int i = 0; i < spawnedNotes.Count; i++)
@@ -145,6 +145,12 @@ public class PianoNoteSpawner : MonoBehaviour
                 spawnedNote.GetComponentInChildren<TextMeshPro>().text = note.GetComponent<Note>().noteName;
                 spawnedNote.GetComponentInChildren<TextMeshPro>().transform.localPosition = new Vector3(2.1f, -1, 0);
                 spawnedNotes.Add(spawnedNote);
+
+                if (PersistentData.data.selectedSong == 1)
+                {
+                    // Scale Note Prefabs
+                    spawnedNote.transform.localScale = new Vector3(HalfNote.transform.localScale.x * 1.3f, HalfNote.transform.localScale.y * 1.3f, 0);
+                }
             }
             else
             {
@@ -152,6 +158,12 @@ public class PianoNoteSpawner : MonoBehaviour
                 spawnedNote.GetComponentInChildren<TextMeshPro>().text = note.GetComponent<Note>().noteName;
                 spawnedNote.GetComponentInChildren<TextMeshPro>().transform.localPosition = new Vector3(2.25f, -1, 0);
                 spawnedNotes.Add(spawnedNote);
+
+                if (PersistentData.data.selectedSong == 1)
+                {
+                    // Scale Note Prefabs
+                    spawnedNote.transform.localScale = new Vector3(HalfNote.transform.localScale.x * 1.3f, HalfNote.transform.localScale.y * 1.3f, 0);
+                }
             }
         } else if(type == "QuarterNote")
         {
@@ -161,6 +173,12 @@ public class PianoNoteSpawner : MonoBehaviour
                 spawnedNote.GetComponentInChildren<TextMeshPro>().text = note.GetComponent<Note>().noteName;
                 spawnedNote.GetComponentInChildren<TextMeshPro>().transform.localPosition = new Vector3(2.1f, -1, 0);
                 spawnedNotes.Add(spawnedNote);
+
+                if (PersistentData.data.selectedSong == 1)
+                {
+                    // Scale Note Prefabs
+                    spawnedNote.transform.localScale = new Vector3(QuarterNote.transform.localScale.x * 1.3f, QuarterNote.transform.localScale.y * 1.3f, 0);
+                }
             }
             else
             {
@@ -168,6 +186,12 @@ public class PianoNoteSpawner : MonoBehaviour
                 spawnedNote.GetComponentInChildren<TextMeshPro>().text = note.GetComponent<Note>().noteName;
                 spawnedNote.GetComponentInChildren<TextMeshPro>().transform.localPosition = new Vector3(2.25f, -1, 0);
                 spawnedNotes.Add(spawnedNote);
+
+                if (PersistentData.data.selectedSong == 1)
+                {
+                    // Scale Note Prefabs
+                    spawnedNote.transform.localScale = new Vector3(QuarterNote.transform.localScale.x * 1.3f, QuarterNote.transform.localScale.y * 1.3f, 0);
+                }
             }
         }else if (type == "DottedQuartedNote")
         {
@@ -177,6 +201,12 @@ public class PianoNoteSpawner : MonoBehaviour
                 spawnedNote.GetComponentInChildren<TextMeshPro>().text = note.GetComponent<Note>().noteName;
                 spawnedNote.GetComponentInChildren<TextMeshPro>().transform.localPosition = new Vector3(2.1f, -1, 0);
                 spawnedNotes.Add(spawnedNote);
+
+                if (PersistentData.data.selectedSong == 1)
+                {
+                    // Scale Note Prefabs
+                    spawnedNote.transform.localScale = new Vector3(Dotted_QuarterNote.transform.localScale.x * 1.3f, Dotted_QuarterNote.transform.localScale.y * 1.3f, 0);
+                }
             }
             else
             {
@@ -184,6 +214,12 @@ public class PianoNoteSpawner : MonoBehaviour
                 spawnedNote.GetComponentInChildren<TextMeshPro>().text = note.GetComponent<Note>().noteName;
                 spawnedNote.GetComponentInChildren<TextMeshPro>().transform.localPosition = new Vector3(2.25f, -1, 0);
                 spawnedNotes.Add(spawnedNote);
+
+                if (PersistentData.data.selectedSong == 1)
+                {
+                    // Scale Note Prefabs
+                    spawnedNote.transform.localScale = new Vector3(QuarterNote.transform.localScale.x * 1.3f, QuarterNote.transform.localScale.y * 1.3f, 0);
+                }
             }
         }
         else if (type == "EighthNote")
@@ -194,6 +230,12 @@ public class PianoNoteSpawner : MonoBehaviour
                 spawnedNote.GetComponentInChildren<TextMeshPro>().text = note.GetComponent<Note>().noteName;
                 spawnedNote.GetComponentInChildren<TextMeshPro>().transform.localPosition = new Vector3(2.1f, -1, 0);
                 spawnedNotes.Add(spawnedNote);
+
+                if (PersistentData.data.selectedSong == 1)
+                {
+                    // Scale Note Prefabs
+                    spawnedNote.transform.localScale = new Vector3(EighthNote.transform.localScale.x * 1.3f, EighthNote.transform.localScale.y * 1.3f, 0);
+                }
             }
             else
             {
@@ -201,6 +243,12 @@ public class PianoNoteSpawner : MonoBehaviour
                 spawnedNote.GetComponentInChildren<TextMeshPro>().text = note.GetComponent<Note>().noteName;
                 spawnedNote.GetComponentInChildren<TextMeshPro>().transform.localPosition = new Vector3(2.25f, -1, 0);
                 spawnedNotes.Add(spawnedNote);
+
+                if (PersistentData.data.selectedSong == 1)
+                {
+                    // Scale Note Prefabs
+                    spawnedNote.transform.localScale = new Vector3(EighthNote.transform.localScale.x * 1.3f, EighthNote.transform.localScale.y * 1.3f, 0);
+                }
             }
         }
         

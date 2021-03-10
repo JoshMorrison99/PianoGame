@@ -12208,6 +12208,7 @@ MonoBehaviour:
   progressSong: {fileID: 632527311}
   healperLines: {fileID: 279033360}
   pauseManuPanel: {fileID: 1478721619}
+  piano: {fileID: 1094638092}
 --- !u!1001 &1329208475
 PrefabInstance:
   m_ObjectHideFlags: 0

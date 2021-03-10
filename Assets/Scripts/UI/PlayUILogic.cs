@@ -17,6 +17,8 @@ public class PlayUILogic : MonoBehaviour
 
     public GameObject pauseManuPanel;
 
+    public GameObject piano;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -37,6 +39,8 @@ public class PlayUILogic : MonoBehaviour
     {
         // set the song finished panel to active
         songFinishedPanel.SetActive(true);
+
+        piano.SetActive(false);
 
         songFinishedPanel.GetComponent<SongFinished>().UpdateText();
 

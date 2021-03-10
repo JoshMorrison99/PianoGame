@@ -82,12 +82,6 @@ public class PlayLogic : MonoBehaviour
             C4_Label.transform.localPosition = new Vector3(305f, -520f, 0);
             C5_Label.transform.localPosition = new Vector3(881f, -520f, 0);
             C6_Label.transform.localPosition = new Vector3(1741f, -520f, 0);
-
-            // Scale Note Prefabs
-            QuarterNote.transform.localScale = new Vector3(QuarterNote.transform.localScale.x * 1.3f, QuarterNote.transform.localScale.y * 1.3f, 0);
-            HalfNote.transform.localScale = new Vector3(HalfNote.transform.localScale.x * 1.3f, HalfNote.transform.localScale.y * 1.3f, 0);
-            EighthNote.transform.localScale = new Vector3(EighthNote.transform.localScale.x * 1.3f, EighthNote.transform.localScale.y * 1.3f, 0);
-            Dotted_QuarterNote.transform.localScale = new Vector3(Dotted_QuarterNote.transform.localScale.x * 1.3f, Dotted_QuarterNote.transform.localScale.y * 1.3f, 0);
         }
         
     }
