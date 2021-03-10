@@ -25,6 +25,12 @@ public class PlayLogic : MonoBehaviour
     public GameObject C5_Label;
     public GameObject C6_Label;
 
+    public GameObject QuarterNote;
+    public GameObject HalfNote;
+    public GameObject EighthNote;
+    public GameObject WholeNote;
+    public GameObject Dotted_QuarterNote;
+
     public Song song;
 
 
@@ -37,8 +43,16 @@ public class PlayLogic : MonoBehaviour
         numNotesTotal = song.numNotes;
         numNotesHit = 0;
 
-        // Setup song
         songNumber = PersistentData.data.selectedSong;
+        // Add song
+        if (songNumber == 1)
+        {
+            this.gameObject.AddComponent<Song1>();
+            numNotesTotal = gameObject.GetComponent<Song1>().numNotes;
+        }
+
+        // Setup song
+        
         ScaleScene(songNumber);
 
     }
@@ -68,6 +82,12 @@ public class PlayLogic : MonoBehaviour
             C4_Label.transform.localPosition = new Vector3(305f, -520f, 0);
             C5_Label.transform.localPosition = new Vector3(881f, -520f, 0);
             C6_Label.transform.localPosition = new Vector3(1741f, -520f, 0);
+
+            // Scale Note Prefabs
+            QuarterNote.transform.localScale = new Vector3(QuarterNote.transform.localScale.x * 1.3f, QuarterNote.transform.localScale.y * 1.3f, 0);
+            HalfNote.transform.localScale = new Vector3(HalfNote.transform.localScale.x * 1.3f, HalfNote.transform.localScale.y * 1.3f, 0);
+            EighthNote.transform.localScale = new Vector3(EighthNote.transform.localScale.x * 1.3f, EighthNote.transform.localScale.y * 1.3f, 0);
+            Dotted_QuarterNote.transform.localScale = new Vector3(Dotted_QuarterNote.transform.localScale.x * 1.3f, Dotted_QuarterNote.transform.localScale.y * 1.3f, 0);
         }
         
     }

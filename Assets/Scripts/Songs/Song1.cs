@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Song1 : MonoBehaviour
 {
-    PianoNoteSpawner spawner;
+    public PianoNoteSpawner spawner;
 
     /*  Note Durations Explained
      *  BPM of Ode to Joy is 120 BPM
@@ -37,7 +37,9 @@ public class Song1 : MonoBehaviour
 
     private void Start()
     {
-        
+        spawner = GameObject.Find("PianoKeyboardUI").GetComponent<PianoNoteSpawner>();
+        spawner.noteSpeed = 0.0065f;
+
         numNotes = 63;
 
         UILogic = GameObject.Find("Canvas").GetComponent<PlayUILogic>();
