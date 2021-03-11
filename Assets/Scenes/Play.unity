@@ -9576,7 +9576,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!212 &1094638093
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -12209,6 +12209,8 @@ MonoBehaviour:
   healperLines: {fileID: 279033360}
   pauseManuPanel: {fileID: 1478721619}
   piano: {fileID: 1094638092}
+  pianoKeyLabels: {fileID: 1610287359}
+  songPercentage: 0
 --- !u!1001 &1329208475
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -20021,7 +20023,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2032058007
 RectTransform:
   m_ObjectHideFlags: 0

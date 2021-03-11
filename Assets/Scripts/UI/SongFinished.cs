@@ -13,15 +13,16 @@ public class SongFinished : MonoBehaviour
     public Button replaySongBtn;
     public Button mainMenuBtn;
 
-
+    public float percentTrunk;
     public PlayLogic playSongLogic;
 
     public void UpdateText()
     {
         notesHitText.text = playSongLogic.numNotesHit + "/" + playSongLogic.numNotesTotal + " notes hit";
         float percent = playSongLogic.numNotesHit / playSongLogic.numNotesTotal;
-        float percentTrunk = Mathf.Round(percent * 100f) / 100f;
+        percentTrunk = Mathf.Round(percent * 100f) / 100f;
         percentageText.text = (percentTrunk * 100).ToString() + "%";
+        updateUserScore();
     }
 
     public void mainMenuButtonClicked()
@@ -34,5 +35,14 @@ public class SongFinished : MonoBehaviour
         SceneManager.LoadScene("Play");
     }
 
+    void updateUserScore()
+    {
+        Debug.Log(percentTrunk*100);
+        Debug.Log(PersistentData.data.song_Ode_To_Joy_Completion);
+        if ((percentTrunk * 100) > PersistentData.data.song_Ode_To_Joy_Completion)
+        {
+            PersistentData.data.song_Ode_To_Joy_Completion = (percentTrunk * 100);
+        }
+    }
 
 }

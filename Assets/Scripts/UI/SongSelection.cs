@@ -3,12 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using TMPro;
 
 public class SongSelection : MonoBehaviour
 {
 
     public PersistentData songInfo;
 
+    public TextMeshProUGUI Ode_To_Joy_Percentage;
+
+    private void Start()
+    {
+        Ode_To_Joy_Percentage.text = PersistentData.data.song_Ode_To_Joy_Completion.ToString() + "%";
+    }
 
     // Update is called once per frame
     void Update()
