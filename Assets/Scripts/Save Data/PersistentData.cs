@@ -20,7 +20,7 @@ public class PersistentData : MonoBehaviour, ISaveable
     public int songsUnlocked;
 
     // Persistent Player Song Progress
-    public int song_Ode_To_Joy_Completion;
+    public float song_Ode_To_Joy_Completion;
 
     public static PersistentData data;
 

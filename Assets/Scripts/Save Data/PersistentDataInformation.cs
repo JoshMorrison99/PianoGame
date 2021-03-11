@@ -14,7 +14,7 @@ public class PersistentDataInformation
     public int m_songsUnlocked;
 
     // Persistent Player Song Progress
-    public int m_song_Ode_To_Joy_Completion;
+    public float m_song_Ode_To_Joy_Completion;
 
     
     public string ToJson()
