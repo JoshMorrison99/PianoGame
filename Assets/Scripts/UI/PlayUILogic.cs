@@ -21,11 +21,24 @@ public class PlayUILogic : MonoBehaviour
 
     public GameObject pianoKeyLabels;
 
+    public PianoNoteSpawner spawner;
+
+    public Button pauseBtn;
+
+    public bool isPaused;
+
+
     public int songPercentage;
 
     // Start is called before the first frame update
     void Start()
     {
+        isPaused = true;
+
+        pauseBtn.onClick.AddListener(PauseMenuPressed);
+
+        spawner = GameObject.Find("PianoKeyboardUI").GetComponent<PianoNoteSpawner>();
+
         pianoKeyLabels.SetActive(true);
         healperLines.SetActive(true);
         songFinishedPanel.SetActive(false);
@@ -53,6 +66,29 @@ public class PlayUILogic : MonoBehaviour
 
         // Save data
         PersistentData.SaveJsonData(PersistentData.data);
+    }
+
+    public void PauseMenuPressed()
+    {
+        Debug.Log("Button" + isPaused);
+        if (isPaused)
+        {
+            spawner.noteSpeed = PersistentData.data.songSpeed;
+            pauseManuPanel.SetActive(false);
+            isPaused = false;
+            PersistentData.data.isPaused = false;
+            Time.timeScale = 1;
+        }
+        else
+        {
+            spawner.noteSpeed = 0;
+            pauseManuPanel.SetActive(true);
+            isPaused = true;
+            PersistentData.data.isPaused = true;
+            Time.timeScale = 0.00001f;
+        }
+        
+       
     }
 
     

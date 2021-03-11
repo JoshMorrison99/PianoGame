@@ -5462,7 +5462,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1329073394}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
@@ -7064,7 +7064,7 @@ MonoBehaviour:
   m_ActionsAsset: {fileID: -944628639613478452, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
   m_PointAction: {fileID: 1054132383583890850, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
   m_MoveAction: {fileID: 3710738434707379630, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
-  m_SubmitAction: {fileID: 2064916234097673511, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  m_SubmitAction: {fileID: 0}
   m_CancelAction: {fileID: -1967631576421560919, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
   m_LeftClickAction: {fileID: 8056856818456041789, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
   m_MiddleClickAction: {fileID: 3279352641294131588, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
@@ -7810,7 +7810,7 @@ RectTransform:
   m_Children:
   - {fileID: 1599430578}
   m_Father: {fileID: 1329073394}
-  m_RootOrder: 4
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
@@ -12178,11 +12178,11 @@ RectTransform:
   - {fileID: 737760922}
   - {fileID: 279033361}
   - {fileID: 1980073371}
-  - {fileID: 857505576}
   - {fileID: 632527310}
   - {fileID: 2032058007}
   - {fileID: 1478721622}
   - {fileID: 1610287360}
+  - {fileID: 857505576}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -12210,6 +12210,9 @@ MonoBehaviour:
   pauseManuPanel: {fileID: 1478721619}
   piano: {fileID: 1094638092}
   pianoKeyLabels: {fileID: 1610287359}
+  spawner: {fileID: 0}
+  pauseBtn: {fileID: 857505577}
+  isPaused: 0
   songPercentage: 0
 --- !u!1001 &1329208475
 PrefabInstance:
@@ -13669,7 +13672,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1478721620
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13683,7 +13686,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.6509804, g: 0.6156863, b: 0.53333336, a: 1}
+  m_Color: {r: 0.6509804, g: 0.6156863, b: 0.53333336, a: 0.23921569}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -13721,7 +13724,7 @@ RectTransform:
   m_Children:
   - {fileID: 1161591860}
   m_Father: {fileID: 1329073394}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -14513,7 +14516,7 @@ RectTransform:
   - {fileID: 1144021907}
   - {fileID: 612195377}
   m_Father: {fileID: 1329073394}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -20041,7 +20044,7 @@ RectTransform:
   - {fileID: 977811913}
   - {fileID: 1890308075}
   m_Father: {fileID: 1329073394}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -20102,6 +20105,7 @@ MonoBehaviour:
   notesHitText: {fileID: 1288855203}
   replaySongBtn: {fileID: 977811914}
   mainMenuBtn: {fileID: 1890308076}
+  percentTrunk: 0
   playSongLogic: {fileID: 1623551345}
 --- !u!1 &2032620531
 GameObject:

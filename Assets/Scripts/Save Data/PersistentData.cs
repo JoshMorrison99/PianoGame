@@ -9,7 +9,10 @@ using System.IO;
 //[System.Serializable]
 public class PersistentData : MonoBehaviour, ISaveable
 {
+    //Temp Persistent Data
     public int selectedSong;
+    public float songSpeed;
+    public bool isPaused;
 
     // Persistent Player Information
     public int level;

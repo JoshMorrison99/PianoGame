@@ -39,6 +39,7 @@ public class Song1 : MonoBehaviour
     {
         spawner = GameObject.Find("PianoKeyboardUI").GetComponent<PianoNoteSpawner>();
         spawner.noteSpeed = 0.05f;
+        PersistentData.data.songSpeed = 0.05f;
 
         numNotes = 63;
 
@@ -50,162 +51,165 @@ public class Song1 : MonoBehaviour
     IEnumerator BeginSong()
     {
         // Bar 1
+        Debug.Log("Bar 1");
         spawner.spawnNote("QuarterNote", spawner.E3, false);
-        yield return new WaitForSecondsRealtime(QuarterNote);
+        yield return new WaitForSeconds(QuarterNote);
         spawner.spawnNote("QuarterNote", spawner.E3, false);
-        yield return new WaitForSecondsRealtime(QuarterNote);
+        yield return new WaitForSeconds(QuarterNote);
         spawner.spawnNote("QuarterNote", spawner.F3, false);
-        yield return new WaitForSecondsRealtime(QuarterNote);
+        yield return new WaitForSeconds(QuarterNote);
         spawner.spawnNote("QuarterNote", spawner.G3, false);
-        yield return new WaitForSecondsRealtime(QuarterNote);
+        yield return new WaitForSeconds(QuarterNote);
 
         // Bar 2
+        Debug.Log("Bar 2");
         spawner.spawnNote("QuarterNote", spawner.G3, false);
-        yield return new WaitForSecondsRealtime(QuarterNote);
+        yield return new WaitForSeconds(QuarterNote);
         spawner.spawnNote("QuarterNote", spawner.F3, false);
-        yield return new WaitForSecondsRealtime(QuarterNote);
+        yield return new WaitForSeconds(QuarterNote);
         spawner.spawnNote("QuarterNote", spawner.E3, false);
-        yield return new WaitForSecondsRealtime(QuarterNote);
+        yield return new WaitForSeconds(QuarterNote);
         spawner.spawnNote("QuarterNote", spawner.D3, false);
-        yield return new WaitForSecondsRealtime(QuarterNote);
+        yield return new WaitForSeconds(QuarterNote);
 
         // Bar 3
+        Debug.Log("Bar 3");
         spawner.spawnNote("QuarterNote", spawner.C3, false);
-        yield return new WaitForSecondsRealtime(QuarterNote);
+        yield return new WaitForSeconds(QuarterNote);
         spawner.spawnNote("QuarterNote", spawner.C3, false);
-        yield return new WaitForSecondsRealtime(QuarterNote);
+        yield return new WaitForSeconds(QuarterNote);
         spawner.spawnNote("QuarterNote", spawner.D3, false);
-        yield return new WaitForSecondsRealtime(QuarterNote);
+        yield return new WaitForSeconds(QuarterNote);
         spawner.spawnNote("QuarterNote", spawner.E3, false);
-        yield return new WaitForSecondsRealtime(QuarterNote);
+        yield return new WaitForSeconds(QuarterNote);
 
         // Bar 4
         spawner.spawnNote("DottedQuartedNote", spawner.E3, false);
-        yield return new WaitForSecondsRealtime(DottedQuartedNote);
+        yield return new WaitForSeconds(DottedQuartedNote);
         spawner.spawnNote("EighthNote", spawner.D3, false);
-        yield return new WaitForSecondsRealtime(EighthNote);
+        yield return new WaitForSeconds(EighthNote);
         spawner.spawnNote("HalfNote", spawner.D3, false);
-        yield return new WaitForSecondsRealtime(HalfNote);
+        yield return new WaitForSeconds(HalfNote);
 
         // Bar 5
         spawner.spawnNote("QuarterNote", spawner.E3, false);
-        yield return new WaitForSecondsRealtime(QuarterNote);
+        yield return new WaitForSeconds(QuarterNote);
         spawner.spawnNote("QuarterNote", spawner.E3, false);
-        yield return new WaitForSecondsRealtime(QuarterNote);
+        yield return new WaitForSeconds(QuarterNote);
         spawner.spawnNote("QuarterNote", spawner.F3, false);
-        yield return new WaitForSecondsRealtime(QuarterNote);
+        yield return new WaitForSeconds(QuarterNote);
         spawner.spawnNote("QuarterNote", spawner.G3, false);
-        yield return new WaitForSecondsRealtime(QuarterNote);
+        yield return new WaitForSeconds(QuarterNote);
 
         // Bar 6
         spawner.spawnNote("QuarterNote", spawner.G3, false);
-        yield return new WaitForSecondsRealtime(QuarterNote);
+        yield return new WaitForSeconds(QuarterNote);
         spawner.spawnNote("QuarterNote", spawner.F3, false);
-        yield return new WaitForSecondsRealtime(QuarterNote);
+        yield return new WaitForSeconds(QuarterNote);
         spawner.spawnNote("QuarterNote", spawner.E3, false);
-        yield return new WaitForSecondsRealtime(QuarterNote);
+        yield return new WaitForSeconds(QuarterNote);
         spawner.spawnNote("QuarterNote", spawner.D3, false);
-        yield return new WaitForSecondsRealtime(QuarterNote);
+        yield return new WaitForSeconds(QuarterNote);
 
         // Bar 7
         spawner.spawnNote("QuarterNote", spawner.C3, false);
-        yield return new WaitForSecondsRealtime(QuarterNote);
+        yield return new WaitForSeconds(QuarterNote);
         spawner.spawnNote("QuarterNote", spawner.C3, false);
-        yield return new WaitForSecondsRealtime(QuarterNote);
+        yield return new WaitForSeconds(QuarterNote);
         spawner.spawnNote("QuarterNote", spawner.D3, false);
-        yield return new WaitForSecondsRealtime(QuarterNote);
+        yield return new WaitForSeconds(QuarterNote);
         spawner.spawnNote("QuarterNote", spawner.E3, false);
-        yield return new WaitForSecondsRealtime(QuarterNote);
+        yield return new WaitForSeconds(QuarterNote);
 
         // Bar 8
         spawner.spawnNote("DottedQuartedNote", spawner.D3, false);
-        yield return new WaitForSecondsRealtime(DottedQuartedNote);
+        yield return new WaitForSeconds(DottedQuartedNote);
         spawner.spawnNote("EighthNote", spawner.C3, false);
-        yield return new WaitForSecondsRealtime(EighthNote);
+        yield return new WaitForSeconds(EighthNote);
         spawner.spawnNote("HalfNote", spawner.C3, false);
-        yield return new WaitForSecondsRealtime(HalfNote);
+        yield return new WaitForSeconds(HalfNote);
 
         // Bar 9
         spawner.spawnNote("QuarterNote", spawner.D3, false);
-        yield return new WaitForSecondsRealtime(QuarterNote);
+        yield return new WaitForSeconds(QuarterNote);
         spawner.spawnNote("QuarterNote", spawner.D3, false);
-        yield return new WaitForSecondsRealtime(QuarterNote);
+        yield return new WaitForSeconds(QuarterNote);
         spawner.spawnNote("QuarterNote", spawner.E3, false);
-        yield return new WaitForSecondsRealtime(QuarterNote);
+        yield return new WaitForSeconds(QuarterNote);
         spawner.spawnNote("QuarterNote", spawner.C3, false);
-        yield return new WaitForSecondsRealtime(QuarterNote);
+        yield return new WaitForSeconds(QuarterNote);
 
         // Bar 10
         spawner.spawnNote("QuarterNote", spawner.D3, false);
-        yield return new WaitForSecondsRealtime(QuarterNote);
+        yield return new WaitForSeconds(QuarterNote);
         spawner.spawnNote("EighthNote", spawner.E3, false);
-        yield return new WaitForSecondsRealtime(EighthNote);
+        yield return new WaitForSeconds(EighthNote);
         spawner.spawnNote("EighthNote", spawner.F3, false);
-        yield return new WaitForSecondsRealtime(EighthNote);
+        yield return new WaitForSeconds(EighthNote);
         spawner.spawnNote("QuarterNote", spawner.E3, false);
-        yield return new WaitForSecondsRealtime(QuarterNote);
+        yield return new WaitForSeconds(QuarterNote);
         spawner.spawnNote("QuarterNote", spawner.C3, false);
-        yield return new WaitForSecondsRealtime(QuarterNote);
+        yield return new WaitForSeconds(QuarterNote);
 
         // Bar 11
         spawner.spawnNote("QuarterNote", spawner.D3, false);
-        yield return new WaitForSecondsRealtime(QuarterNote);
+        yield return new WaitForSeconds(QuarterNote);
         spawner.spawnNote("EighthNote", spawner.E3, false);
-        yield return new WaitForSecondsRealtime(EighthNote);
+        yield return new WaitForSeconds(EighthNote);
         spawner.spawnNote("EighthNote", spawner.F3, false);
-        yield return new WaitForSecondsRealtime(EighthNote);
+        yield return new WaitForSeconds(EighthNote);
         spawner.spawnNote("QuarterNote", spawner.E3, false);
-        yield return new WaitForSecondsRealtime(QuarterNote);
+        yield return new WaitForSeconds(QuarterNote);
         spawner.spawnNote("QuarterNote", spawner.D3, false);
-        yield return new WaitForSecondsRealtime(QuarterNote);
+        yield return new WaitForSeconds(QuarterNote);
 
         // Bar 12
         spawner.spawnNote("QuarterNote", spawner.C3, false);
-        yield return new WaitForSecondsRealtime(QuarterNote);
+        yield return new WaitForSeconds(QuarterNote);
         spawner.spawnNote("QuarterNote", spawner.D3, false);
-        yield return new WaitForSecondsRealtime(QuarterNote);
+        yield return new WaitForSeconds(QuarterNote);
         spawner.spawnNote("HalfNote", spawner.G2, false);
-        yield return new WaitForSecondsRealtime(HalfNote);
+        yield return new WaitForSeconds(HalfNote);
 
         // Bar 13
         spawner.spawnNote("QuarterNote", spawner.E3, false);
-        yield return new WaitForSecondsRealtime(QuarterNote);
+        yield return new WaitForSeconds(QuarterNote);
         spawner.spawnNote("QuarterNote", spawner.E3, false);
-        yield return new WaitForSecondsRealtime(QuarterNote);
+        yield return new WaitForSeconds(QuarterNote);
         spawner.spawnNote("QuarterNote", spawner.F3, false);
-        yield return new WaitForSecondsRealtime(QuarterNote);
+        yield return new WaitForSeconds(QuarterNote);
         spawner.spawnNote("QuarterNote", spawner.G3, false);
-        yield return new WaitForSecondsRealtime(QuarterNote);
+        yield return new WaitForSeconds(QuarterNote);
 
         // Bar 14
         spawner.spawnNote("QuarterNote", spawner.G3, false);
-        yield return new WaitForSecondsRealtime(QuarterNote);
+        yield return new WaitForSeconds(QuarterNote);
         spawner.spawnNote("QuarterNote", spawner.F3, false);
-        yield return new WaitForSecondsRealtime(QuarterNote);
+        yield return new WaitForSeconds(QuarterNote);
         spawner.spawnNote("QuarterNote", spawner.E3, false);
-        yield return new WaitForSecondsRealtime(QuarterNote);
+        yield return new WaitForSeconds(QuarterNote);
         spawner.spawnNote("QuarterNote", spawner.D3, false);
-        yield return new WaitForSecondsRealtime(QuarterNote);
+        yield return new WaitForSeconds(QuarterNote);
 
         // Bar 15
         spawner.spawnNote("QuarterNote", spawner.C3, false);
-        yield return new WaitForSecondsRealtime(QuarterNote);
+        yield return new WaitForSeconds(QuarterNote);
         spawner.spawnNote("QuarterNote", spawner.C3, false);
-        yield return new WaitForSecondsRealtime(QuarterNote);
+        yield return new WaitForSeconds(QuarterNote);
         spawner.spawnNote("QuarterNote", spawner.D3, false);
-        yield return new WaitForSecondsRealtime(QuarterNote);
+        yield return new WaitForSeconds(QuarterNote);
         spawner.spawnNote("QuarterNote", spawner.E3, false);
-        yield return new WaitForSecondsRealtime(QuarterNote);
+        yield return new WaitForSeconds(QuarterNote);
 
         // Bar 16
         spawner.spawnNote("DottedQuartedNote", spawner.D3, false);
-        yield return new WaitForSecondsRealtime(DottedQuartedNote);
+        yield return new WaitForSeconds(DottedQuartedNote);
         spawner.spawnNote("EighthNote", spawner.C3, false);
-        yield return new WaitForSecondsRealtime(EighthNote);
+        yield return new WaitForSeconds(EighthNote);
         spawner.spawnNote("HalfNote", spawner.C3, false);
-        yield return new WaitForSecondsRealtime(HalfNote);
+        yield return new WaitForSeconds(HalfNote);
 
-        yield return new WaitForSecondsRealtime(5f);
+        yield return new WaitForSeconds(5f);
         EndOfSong();
     }
 
@@ -214,4 +218,7 @@ public class Song1 : MonoBehaviour
         UILogic.UpdateFinishedSongText();
     }
 
-}
+
+ }
+
+
