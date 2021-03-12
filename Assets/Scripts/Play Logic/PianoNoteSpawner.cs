@@ -11,6 +11,7 @@ public class PianoNoteSpawner : MonoBehaviour
     public GameObject HalfNote;
     public GameObject Dotted_QuarterNote;
     public GameObject EighthNote;
+    public GameObject SixteenthNote;
     public GameObject WholeNote;
 
     public GameObject spawnNoteSharpObject;
@@ -223,6 +224,34 @@ public class PianoNoteSpawner : MonoBehaviour
             }
         }
         else if (type == "EighthNote")
+        {
+            if (isSharp)
+            {
+                GameObject spawnedNote = Instantiate(spawnNoteSharpObject, new Vector3(note.transform.position.x, note.transform.position.y + 10f, note.transform.position.z + 2), Quaternion.identity);
+                spawnedNote.GetComponentInChildren<TextMeshPro>().text = note.GetComponent<Note>().noteName;
+                spawnedNote.GetComponentInChildren<TextMeshPro>().transform.localPosition = new Vector3(2.1f, -1, 0);
+                spawnedNotes.Add(spawnedNote);
+
+                if (PersistentData.data.selectedSong == 1)
+                {
+                    // Scale Note Prefabs
+                    spawnedNote.transform.localScale = new Vector3(EighthNote.transform.localScale.x * 1.3f, EighthNote.transform.localScale.y * 1.3f, 0);
+                }
+            }
+            else
+            {
+                GameObject spawnedNote = Instantiate(EighthNote, new Vector3(note.transform.position.x, note.transform.position.y + 10f, note.transform.position.z + 2), Quaternion.identity);
+                spawnedNote.GetComponentInChildren<TextMeshPro>().text = note.GetComponent<Note>().noteName;
+                spawnedNote.GetComponentInChildren<TextMeshPro>().transform.localPosition = new Vector3(2.25f, -1, 0);
+                spawnedNotes.Add(spawnedNote);
+
+                if (PersistentData.data.selectedSong == 1)
+                {
+                    // Scale Note Prefabs
+                    spawnedNote.transform.localScale = new Vector3(EighthNote.transform.localScale.x * 1.3f, EighthNote.transform.localScale.y * 1.3f, 0);
+                }
+            }
+        }else if (type == "SixteenthNote")
         {
             if (isSharp)
             {
