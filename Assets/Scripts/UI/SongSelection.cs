@@ -33,7 +33,7 @@ public class SongSelection : MonoBehaviour
     public void SelectSong2()
     {
         Debug.Log("Pressed");
-        songInfo.selectedSong = 2;
+        songInfo.GetComponent<PersistentData>().selectedSong = 2;
         SceneManager.LoadScene("Play");
     }
     public void SelectSong3()
