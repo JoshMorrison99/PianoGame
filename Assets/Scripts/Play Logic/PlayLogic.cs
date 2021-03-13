@@ -86,6 +86,25 @@ public class PlayLogic : MonoBehaviour
             C4_Label.transform.localPosition = new Vector3(305f, -520f, 0);
             C5_Label.transform.localPosition = new Vector3(881f, -520f, 0);
             C6_Label.transform.localPosition = new Vector3(1741f, -520f, 0);
+        }else if (songNumber == 2)
+        {
+            // Sacel top bar
+            pianoLine.transform.position = new Vector3(0, 271, 0);
+
+            // scale healper lines
+            HelperLine1.transform.localPosition = new Vector3(-526f, 271f, 0);
+            HelperLine2.transform.localPosition = new Vector3(-192f, 271f, 0);
+            HelperLine3.transform.localPosition = new Vector3(189f, 271f, 0);
+            HelperLine4.transform.localPosition = new Vector3(573f, 271f, 0);
+            HelperLine5.transform.localPosition = new Vector3(1440f, 271f, 0);
+            HelperLine6.transform.localPosition = new Vector3(1440f, 271f, 0);
+
+            // Scale helper keys
+            C2_Label.transform.localPosition = new Vector3(-860f, -520f, 0);
+            C3_Label.transform.localPosition = new Vector3(-477f, -520f, 0);
+            C4_Label.transform.localPosition = new Vector3(-92f, -520f, 0);
+            C5_Label.transform.localPosition = new Vector3(290f, -520f, 0);
+            C6_Label.transform.localPosition = new Vector3(674f, -520f, 0);
         }
         
     }
