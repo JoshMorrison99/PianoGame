@@ -85,7 +85,6 @@ public class PlayUILogic : MonoBehaviour
 
     public void PauseMenuPressed()
     {
-        Debug.Log("Button" + isPaused);
         if (isPaused)
         {
             spawner.noteSpeed = PersistentData.data.songSpeed;
@@ -93,6 +92,7 @@ public class PlayUILogic : MonoBehaviour
             isPaused = false;
             PersistentData.data.isPaused = false;
             Time.timeScale = 1;
+            Debug.Log("Button Setting to False");
         }
         else
         {
@@ -101,6 +101,7 @@ public class PlayUILogic : MonoBehaviour
             isPaused = true;
             PersistentData.data.isPaused = true;
             Time.timeScale = 0.00001f;
+            Debug.Log("Button Setting to True");
         }
         
        

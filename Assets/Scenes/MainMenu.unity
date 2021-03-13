@@ -14308,46 +14308,46 @@ MonoBehaviour:
     m_ActionName: Piano/PianoAction[/MidiDevice/note000,/MidiDevice/note001,/MidiDevice/note002,/MidiDevice/note003,/MidiDevice/note004,/MidiDevice/note005,/MidiDevice/note006,/MidiDevice/note007,/MidiDevice/note008,/MidiDevice/note009,/MidiDevice/note010,/MidiDevice/note011,/MidiDevice/note012,/MidiDevice/note013,/MidiDevice/note013,/MidiDevice/note014,/MidiDevice/note015,/MidiDevice/note016,/MidiDevice/note017,/MidiDevice/note018,/MidiDevice/note019,/MidiDevice/note020,/MidiDevice/note021,/MidiDevice/note022,/MidiDevice/note023,/MidiDevice/note024,/MidiDevice/note025,/MidiDevice/note026,/MidiDevice/note027,/MidiDevice/note028,/MidiDevice/note029,/MidiDevice/note030,/MidiDevice/note031,/MidiDevice/note032,/MidiDevice/note033,/MidiDevice/note034,/MidiDevice/note035,/MidiDevice/note036,/MidiDevice/note037,/MidiDevice/note038,/MidiDevice/note039,/MidiDevice/note040,/MidiDevice/note041,/MidiDevice/note042,/MidiDevice/note043,/MidiDevice/note044,/MidiDevice/note045,/MidiDevice/note046,/MidiDevice/note047,/MidiDevice/note048,/MidiDevice/note049,/MidiDevice/note050,/MidiDevice/note063,/MidiDevice/note052,/MidiDevice/note053,/MidiDevice/note054,/MidiDevice/note055,/MidiDevice/note056,/MidiDevice/note057,/MidiDevice/note058,/MidiDevice/note059,/MidiDevice/note060,/MidiDevice/note061,/MidiDevice/note062,/MidiDevice/note063,/MidiDevice/note064,/MidiDevice/note065,/MidiDevice/note066,/MidiDevice/note067,/MidiDevice/note068,/MidiDevice/note069,/MidiDevice/note070,/MidiDevice/note071,/MidiDevice/note072,/MidiDevice/note073,/MidiDevice/note074,/MidiDevice/note075,/MidiDevice/note076,/MidiDevice/note077,/MidiDevice/note078,/MidiDevice/note079,/MidiDevice/note080,/MidiDevice/note081,/MidiDevice/note082,/MidiDevice/note083,/MidiDevice/note084,/MidiDevice/note085,/MidiDevice/note086,/MidiDevice/note087,/MidiDevice/note088,/MidiDevice/note089,/MidiDevice/note090,/MidiDevice/note091,/MidiDevice/note092,/MidiDevice/note093,/MidiDevice/note094,/MidiDevice/note095,/MidiDevice/note096,/MidiDevice/note097,/MidiDevice/note098,/MidiDevice/note099,/MidiDevice/note100,/MidiDevice/note101,/MidiDevice/note102,/MidiDevice/note103,/MidiDevice/note104,/MidiDevice/note105,/MidiDevice/note106,/MidiDevice/note107,/MidiDevice/note108,/MidiDevice/note109,/MidiDevice/note110,/MidiDevice/note111,/MidiDevice/note112,/MidiDevice/note113,/MidiDevice/note114,/MidiDevice/note115,/MidiDevice/note116,/MidiDevice/note117,/MidiDevice/note118,/MidiDevice/note119,/MidiDevice/note120,/MidiDevice/note121,/MidiDevice/note122,/MidiDevice/note123,/MidiDevice/note124,/MidiDevice/note125,/MidiDevice/note126,/MidiDevice/note127]
   - m_PersistentCalls:
       m_Calls: []
-    m_ActionId: f0227b08-de33-45bf-ae78-041707a44957
+    m_ActionId: e7ff4da3-28e2-45b9-b0a7-09ed517d3f9e
     m_ActionName: UI/Navigate
   - m_PersistentCalls:
       m_Calls: []
-    m_ActionId: 8b04391f-b439-4837-aa7e-61d45fc9897b
+    m_ActionId: 78f42a68-12f7-4e88-b5e8-1b6e92edb762
     m_ActionName: UI/Submit
   - m_PersistentCalls:
       m_Calls: []
-    m_ActionId: 59c37b13-b0c9-4303-888e-291c5bff4d4c
+    m_ActionId: 408c6e3f-c09e-43e9-8ec7-0359d85a78fe
     m_ActionName: UI/Cancel
   - m_PersistentCalls:
       m_Calls: []
-    m_ActionId: 7fc312bc-efbf-4f03-86b6-c397aed4e82b
-    m_ActionName: UI/Point[/Mouse/position,/Touchscreen/touch0/position,/Touchscreen/touch1/position,/Touchscreen/touch2/position,/Touchscreen/touch3/position,/Touchscreen/touch4/position,/Touchscreen/touch5/position,/Touchscreen/touch6/position,/Touchscreen/touch7/position,/Touchscreen/touch8/position,/Touchscreen/touch9/position]
+    m_ActionId: 8478e59f-0d8e-46a3-81d5-7554ad2ff141
+    m_ActionName: UI/Point[/Mouse/position]
   - m_PersistentCalls:
       m_Calls: []
-    m_ActionId: f29d6087-5f86-4542-bf9c-aa4ac2bdf675
-    m_ActionName: UI/Click[/Mouse/leftButton,/Touchscreen/touch0/press,/Touchscreen/touch1/press,/Touchscreen/touch2/press,/Touchscreen/touch3/press,/Touchscreen/touch4/press,/Touchscreen/touch5/press,/Touchscreen/touch6/press,/Touchscreen/touch7/press,/Touchscreen/touch8/press,/Touchscreen/touch9/press]
+    m_ActionId: ccae6d24-168e-4195-b417-d6a04b6fc79c
+    m_ActionName: UI/Click[/Mouse/leftButton]
   - m_PersistentCalls:
       m_Calls: []
-    m_ActionId: 074e163e-50b5-4f2a-b9ea-201a4db82f46
+    m_ActionId: 2c41fdd5-3702-4995-ac37-ddae111ab84a
     m_ActionName: UI/ScrollWheel[/Mouse/scroll]
   - m_PersistentCalls:
       m_Calls: []
-    m_ActionId: bad02056-e33f-496e-b349-4c2bf4c58789
+    m_ActionId: 6d4f384c-8061-41e7-aca3-73e7b0ee697e
     m_ActionName: UI/MiddleClick[/Mouse/middleButton]
   - m_PersistentCalls:
       m_Calls: []
-    m_ActionId: 0112e319-301f-426a-80d4-07b0c32da70f
+    m_ActionId: eaed106c-bc66-49e6-b47f-ee9ee27318e5
     m_ActionName: UI/RightClick[/Mouse/rightButton]
   - m_PersistentCalls:
       m_Calls: []
-    m_ActionId: 402138e5-e294-494e-b226-b3f4a7575690
+    m_ActionId: 2cc5d38d-76c7-45e3-8432-d4aaf120965d
     m_ActionName: UI/TrackedDevicePosition
   - m_PersistentCalls:
       m_Calls: []
-    m_ActionId: 5890c607-2319-4a1e-b2fb-44d81e3f9e40
+    m_ActionId: 4eea98ab-03a3-4f0b-ab43-86226b4f2fcb
     m_ActionName: UI/TrackedDeviceOrientation
   m_NeverAutoSwitchControlSchemes: 0
-  m_DefaultControlScheme: Mouse
+  m_DefaultControlScheme: 
   m_DefaultActionMap: Piano
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 519420031}

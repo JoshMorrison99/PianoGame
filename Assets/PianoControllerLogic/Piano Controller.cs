@@ -1451,12 +1451,12 @@ public class @PianoController : IInputActionCollection, IDisposable
         },
         {
             ""name"": ""UI"",
-            ""id"": ""9e189527-c2d1-4a8a-a37c-ede49adfab0e"",
+            ""id"": ""957384f0-b14e-43aa-a7ec-e23001bba058"",
             ""actions"": [
                 {
                     ""name"": ""Navigate"",
                     ""type"": ""Value"",
-                    ""id"": ""f0227b08-de33-45bf-ae78-041707a44957"",
+                    ""id"": ""e7ff4da3-28e2-45b9-b0a7-09ed517d3f9e"",
                     ""expectedControlType"": ""Vector2"",
                     ""processors"": """",
                     ""interactions"": """"
@@ -1464,7 +1464,7 @@ public class @PianoController : IInputActionCollection, IDisposable
                 {
                     ""name"": ""Submit"",
                     ""type"": ""Button"",
-                    ""id"": ""8b04391f-b439-4837-aa7e-61d45fc9897b"",
+                    ""id"": ""78f42a68-12f7-4e88-b5e8-1b6e92edb762"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
@@ -1472,7 +1472,7 @@ public class @PianoController : IInputActionCollection, IDisposable
                 {
                     ""name"": ""Cancel"",
                     ""type"": ""Button"",
-                    ""id"": ""59c37b13-b0c9-4303-888e-291c5bff4d4c"",
+                    ""id"": ""408c6e3f-c09e-43e9-8ec7-0359d85a78fe"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
@@ -1480,7 +1480,7 @@ public class @PianoController : IInputActionCollection, IDisposable
                 {
                     ""name"": ""Point"",
                     ""type"": ""PassThrough"",
-                    ""id"": ""7fc312bc-efbf-4f03-86b6-c397aed4e82b"",
+                    ""id"": ""8478e59f-0d8e-46a3-81d5-7554ad2ff141"",
                     ""expectedControlType"": ""Vector2"",
                     ""processors"": """",
                     ""interactions"": """"
@@ -1488,7 +1488,7 @@ public class @PianoController : IInputActionCollection, IDisposable
                 {
                     ""name"": ""Click"",
                     ""type"": ""PassThrough"",
-                    ""id"": ""f29d6087-5f86-4542-bf9c-aa4ac2bdf675"",
+                    ""id"": ""ccae6d24-168e-4195-b417-d6a04b6fc79c"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
@@ -1496,7 +1496,7 @@ public class @PianoController : IInputActionCollection, IDisposable
                 {
                     ""name"": ""ScrollWheel"",
                     ""type"": ""PassThrough"",
-                    ""id"": ""074e163e-50b5-4f2a-b9ea-201a4db82f46"",
+                    ""id"": ""2c41fdd5-3702-4995-ac37-ddae111ab84a"",
                     ""expectedControlType"": ""Vector2"",
                     ""processors"": """",
                     ""interactions"": """"
@@ -1504,7 +1504,7 @@ public class @PianoController : IInputActionCollection, IDisposable
                 {
                     ""name"": ""MiddleClick"",
                     ""type"": ""PassThrough"",
-                    ""id"": ""bad02056-e33f-496e-b349-4c2bf4c58789"",
+                    ""id"": ""6d4f384c-8061-41e7-aca3-73e7b0ee697e"",
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """"
@@ -1512,7 +1512,7 @@ public class @PianoController : IInputActionCollection, IDisposable
                 {
                     ""name"": ""RightClick"",
                     ""type"": ""PassThrough"",
-                    ""id"": ""0112e319-301f-426a-80d4-07b0c32da70f"",
+                    ""id"": ""eaed106c-bc66-49e6-b47f-ee9ee27318e5"",
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """"
@@ -1520,7 +1520,7 @@ public class @PianoController : IInputActionCollection, IDisposable
                 {
                     ""name"": ""TrackedDevicePosition"",
                     ""type"": ""PassThrough"",
-                    ""id"": ""402138e5-e294-494e-b226-b3f4a7575690"",
+                    ""id"": ""2cc5d38d-76c7-45e3-8432-d4aaf120965d"",
                     ""expectedControlType"": ""Vector3"",
                     ""processors"": """",
                     ""interactions"": """"
@@ -1528,7 +1528,7 @@ public class @PianoController : IInputActionCollection, IDisposable
                 {
                     ""name"": ""TrackedDeviceOrientation"",
                     ""type"": ""PassThrough"",
-                    ""id"": ""5890c607-2319-4a1e-b2fb-44d81e3f9e40"",
+                    ""id"": ""4eea98ab-03a3-4f0b-ab43-86226b4f2fcb"",
                     ""expectedControlType"": ""Quaternion"",
                     ""processors"": """",
                     ""interactions"": """"
@@ -1537,7 +1537,7 @@ public class @PianoController : IInputActionCollection, IDisposable
             ""bindings"": [
                 {
                     ""name"": ""Gamepad"",
-                    ""id"": ""c986c4b3-c97c-4a83-923f-ed11c05255f8"",
+                    ""id"": ""553b130f-571a-4f62-926b-d3ce1d42280d"",
                     ""path"": ""2DVector"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -1548,7 +1548,7 @@ public class @PianoController : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": ""up"",
-                    ""id"": ""5eb56cd6-7495-40e0-9bfe-101afdb61ebf"",
+                    ""id"": ""5b301816-1e98-4595-93b1-954c60102480"",
                     ""path"": ""<Gamepad>/leftStick/up"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -1559,7 +1559,7 @@ public class @PianoController : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": ""up"",
-                    ""id"": ""cd9f06f9-c483-41f5-8722-a30cdcb983cc"",
+                    ""id"": ""df43ed98-cd91-477d-b019-87513d009904"",
                     ""path"": ""<Gamepad>/rightStick/up"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -1570,7 +1570,7 @@ public class @PianoController : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": ""down"",
-                    ""id"": ""67b79313-5c17-416f-acbd-723deee8698c"",
+                    ""id"": ""f23f196d-fef6-47f2-b2f9-84e0d349b5c7"",
                     ""path"": ""<Gamepad>/leftStick/down"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -1581,7 +1581,7 @@ public class @PianoController : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": ""down"",
-                    ""id"": ""16177371-f46b-470a-ac16-054bfb0e6d25"",
+                    ""id"": ""8a3c464a-22d7-4b5f-a9f4-84338fdee951"",
                     ""path"": ""<Gamepad>/rightStick/down"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -1592,7 +1592,7 @@ public class @PianoController : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": ""left"",
-                    ""id"": ""60eb6779-8472-4879-ac73-414c2059f4ad"",
+                    ""id"": ""5f6ec40e-6381-421e-b106-5f85507a19fe"",
                     ""path"": ""<Gamepad>/leftStick/left"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -1603,7 +1603,7 @@ public class @PianoController : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": ""left"",
-                    ""id"": ""efda3798-5cd2-46b8-81e0-72921a53345b"",
+                    ""id"": ""06dc48e8-e302-4f0d-b5fa-f86edab5fd18"",
                     ""path"": ""<Gamepad>/rightStick/left"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -1614,7 +1614,7 @@ public class @PianoController : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": ""right"",
-                    ""id"": ""5c374256-b219-4ae7-9ec1-818cebd3be30"",
+                    ""id"": ""9517b273-1031-4dd3-8be1-37dcb33bb68e"",
                     ""path"": ""<Gamepad>/leftStick/right"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -1625,7 +1625,7 @@ public class @PianoController : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": ""right"",
-                    ""id"": ""961332da-a70f-47f1-85fb-e1161f1f4ac7"",
+                    ""id"": ""ab67f40c-06f6-43ab-9f8b-b9b569b73e61"",
                     ""path"": ""<Gamepad>/rightStick/right"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -1636,7 +1636,7 @@ public class @PianoController : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""48f5c7cf-cfb2-48b0-bea1-54c80904d445"",
+                    ""id"": ""233969f1-118a-4be1-81a6-4b40192ab418"",
                     ""path"": ""<Gamepad>/dpad"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -1647,7 +1647,7 @@ public class @PianoController : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": ""Joystick"",
-                    ""id"": ""cb816311-8579-4409-9b8b-1140bb928e7f"",
+                    ""id"": ""4df2993a-2117-40be-bcc6-6df2675d7487"",
                     ""path"": ""2DVector"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -1658,7 +1658,7 @@ public class @PianoController : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": ""up"",
-                    ""id"": ""caf8c2a7-8141-459c-af20-410960ae67f9"",
+                    ""id"": ""e1728891-b68a-4173-988f-a210398da071"",
                     ""path"": ""<Joystick>/stick/up"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -1669,7 +1669,7 @@ public class @PianoController : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": ""down"",
-                    ""id"": ""94c6c185-2f31-4015-9cdb-2a4461981763"",
+                    ""id"": ""d82da35d-8b0e-42d1-9e60-dce2c6694bc8"",
                     ""path"": ""<Joystick>/stick/down"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -1680,7 +1680,7 @@ public class @PianoController : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": ""left"",
-                    ""id"": ""f28067c5-e705-4978-8bb7-5331d56a0b26"",
+                    ""id"": ""745eaa99-c454-4bf2-82c4-15b607e122ad"",
                     ""path"": ""<Joystick>/stick/left"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -1691,7 +1691,7 @@ public class @PianoController : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": ""right"",
-                    ""id"": ""7251e948-86c0-4c8a-b0d1-cab0a175ffb6"",
+                    ""id"": ""e86efa5d-dbc2-4900-b40e-a9c9d810e46d"",
                     ""path"": ""<Joystick>/stick/right"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -1702,7 +1702,7 @@ public class @PianoController : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": ""Keyboard"",
-                    ""id"": ""d6a6bdee-b322-4a71-9d2d-18f2da66f04e"",
+                    ""id"": ""775e581a-9ec1-4285-b1d0-10eddb86d6c4"",
                     ""path"": ""2DVector"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -1713,7 +1713,7 @@ public class @PianoController : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": ""up"",
-                    ""id"": ""26df86b9-c0e7-4afd-93c9-7e9d036ade95"",
+                    ""id"": ""fa1adb2c-69ff-403d-9192-2cbcd7d24e06"",
                     ""path"": ""<Keyboard>/w"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -1724,7 +1724,7 @@ public class @PianoController : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": ""up"",
-                    ""id"": ""7bdeeab1-928f-437b-8c04-c03b7729e986"",
+                    ""id"": ""9156f3e0-ee6a-4a35-a01f-d5481d8692e2"",
                     ""path"": ""<Keyboard>/upArrow"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -1735,7 +1735,7 @@ public class @PianoController : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": ""down"",
-                    ""id"": ""e5518a1e-c88f-412c-b8aa-7e6b13082ef1"",
+                    ""id"": ""bb3f5808-e670-44c6-9c67-f969dead99d8"",
                     ""path"": ""<Keyboard>/s"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -1746,7 +1746,7 @@ public class @PianoController : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": ""down"",
-                    ""id"": ""c2aafd84-e204-40b3-922e-8cf73a2f9495"",
+                    ""id"": ""e1a7b1be-e713-45ba-a2da-813f03aa4cf6"",
                     ""path"": ""<Keyboard>/downArrow"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -1757,7 +1757,7 @@ public class @PianoController : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": ""left"",
-                    ""id"": ""52427bb8-a2bd-4852-ad62-782b83695069"",
+                    ""id"": ""35365deb-ff40-461d-93d7-38e7bb7841fd"",
                     ""path"": ""<Keyboard>/a"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -1768,7 +1768,7 @@ public class @PianoController : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": ""left"",
-                    ""id"": ""21a0e533-e34f-434e-b6c4-ba55b4e629ca"",
+                    ""id"": ""400ade91-3c16-4b32-b0da-2c32629faa5e"",
                     ""path"": ""<Keyboard>/leftArrow"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -1779,7 +1779,7 @@ public class @PianoController : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": ""right"",
-                    ""id"": ""05e23d3d-e324-4627-ba22-4c4f98ff7be4"",
+                    ""id"": ""30bfbc61-54e5-4230-be1c-5b7fb4b95dd3"",
                     ""path"": ""<Keyboard>/d"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -1790,7 +1790,7 @@ public class @PianoController : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": ""right"",
-                    ""id"": ""020f7ef0-0de1-4842-a1fb-db34eead75e8"",
+                    ""id"": ""4db015a9-7af7-4b86-b8d1-3557547fd6c5"",
                     ""path"": ""<Keyboard>/rightArrow"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -1801,7 +1801,7 @@ public class @PianoController : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""ef21686e-b057-447a-abd9-953ede784183"",
+                    ""id"": ""61160068-7384-42b1-ad37-1a6694f66bf3"",
                     ""path"": ""*/{Submit}"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -1812,7 +1812,7 @@ public class @PianoController : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""b186ce18-6a5a-4950-83da-29bf6f678243"",
+                    ""id"": ""9d8399a2-b05d-4f26-8377-d20f1d57d510"",
                     ""path"": ""*/{Cancel}"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -1823,7 +1823,7 @@ public class @PianoController : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""fb62bc5c-5cf3-4659-bca5-64c0128130be"",
+                    ""id"": ""9b7ebe05-6197-451f-bceb-799360d9b0b0"",
                     ""path"": ""<Mouse>/position"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -1834,7 +1834,7 @@ public class @PianoController : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""4f971d47-b2cd-4d4c-97a9-253f85bd8b74"",
+                    ""id"": ""b949ebf0-8db6-4134-bbcc-2c872361a317"",
                     ""path"": ""<Pen>/position"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -1845,7 +1845,7 @@ public class @PianoController : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""18d616d1-27c3-4727-b392-7d43269bb0c7"",
+                    ""id"": ""4b6316bc-14ea-4e68-9846-91c64abf6ef2"",
                     ""path"": ""<Touchscreen>/touch*/position"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -1856,18 +1856,18 @@ public class @PianoController : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""5a1c7f49-43e1-4d55-8a40-efee44b19bd2"",
+                    ""id"": ""8df5e5f9-eda7-46e1-9a1c-338d5d7c5866"",
                     ""path"": ""<Mouse>/leftButton"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": "";Keyboard&Mouse"",
+                    ""groups"": ""Keyboard&Mouse"",
                     ""action"": ""Click"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
                 {
                     ""name"": """",
-                    ""id"": ""15e58173-e2fa-404a-9838-ae87594bd5ee"",
+                    ""id"": ""a3963e63-e448-458f-b592-5fa42bea55ab"",
                     ""path"": ""<Pen>/tip"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -1878,7 +1878,7 @@ public class @PianoController : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""bd531097-c12e-4f4f-9fab-dfa5500da249"",
+                    ""id"": ""2a9cb0f1-4f8d-4286-961a-8091ca2e4c18"",
                     ""path"": ""<Touchscreen>/touch*/press"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -1889,7 +1889,7 @@ public class @PianoController : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""dcbe8008-8ba6-412a-aaa6-fb6877ee1fb5"",
+                    ""id"": ""af046c86-a454-4bb3-8e28-8a9b9e4732fd"",
                     ""path"": ""<XRController>/trigger"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -1900,7 +1900,7 @@ public class @PianoController : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""4a022512-1d1e-48ca-b394-5c632f27c083"",
+                    ""id"": ""1fcb65b1-eab1-4f30-90ae-782026be3abc"",
                     ""path"": ""<Mouse>/scroll"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -1911,7 +1911,7 @@ public class @PianoController : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""cbf0e5ce-cb75-4d14-9199-00270e1d6120"",
+                    ""id"": ""544b39b3-8aea-472e-8854-d56b80c1e3d8"",
                     ""path"": ""<Mouse>/middleButton"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -1922,7 +1922,7 @@ public class @PianoController : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""86f246f4-08e0-4d12-a926-99d92d4d98ab"",
+                    ""id"": ""d6520f13-1332-461c-8ac1-df05d8a473c4"",
                     ""path"": ""<Mouse>/rightButton"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -1933,7 +1933,7 @@ public class @PianoController : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""2f53925d-8796-471b-98c5-b4e0c133cf23"",
+                    ""id"": ""c99d3576-da3f-424e-97f4-c5e50927614d"",
                     ""path"": ""<XRController>/devicePosition"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -1944,7 +1944,7 @@ public class @PianoController : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""3c367257-eb9a-411a-a56d-42af04cfe1f7"",
+                    ""id"": ""89ba81b8-dfcc-4989-b05d-94fae2ab7a47"",
                     ""path"": ""<XRController>/deviceRotation"",
                     ""interactions"": """",
                     ""processors"": """",
