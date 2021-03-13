@@ -268,7 +268,7 @@ public class PianoNoteSpawner : MonoBehaviour
             }
             else
             {
-                GameObject spawnedNote = Instantiate(EighthNote, new Vector3(note.transform.position.x, note.transform.position.y + 10f, note.transform.position.z + 2), Quaternion.identity);
+                GameObject spawnedNote = Instantiate(SixteenthNote, new Vector3(note.transform.position.x, note.transform.position.y + 10f, note.transform.position.z + 2), Quaternion.identity);
                 spawnedNote.GetComponentInChildren<TextMeshPro>().text = note.GetComponent<Note>().noteName;
                 spawnedNote.GetComponentInChildren<TextMeshPro>().transform.localPosition = new Vector3(2.25f, -1, 0);
                 spawnedNotes.Add(spawnedNote);
@@ -276,7 +276,7 @@ public class PianoNoteSpawner : MonoBehaviour
                 if (PersistentData.data.selectedSong == 1)
                 {
                     // Scale Note Prefabs
-                    spawnedNote.transform.localScale = new Vector3(EighthNote.transform.localScale.x * 1.3f, EighthNote.transform.localScale.y * 1.3f, 0);
+                    spawnedNote.transform.localScale = new Vector3(SixteenthNote.transform.localScale.x * 1.3f, SixteenthNote.transform.localScale.y * 1.3f, 0);
                 }
             }
         }

@@ -11,10 +11,13 @@ public class SongSelection : MonoBehaviour
     public PersistentData songInfo;
 
     public TextMeshProUGUI Ode_To_Joy_Percentage;
+    public TextMeshProUGUI See_you_Again_Percentage;
 
     private void Start()
     {
         Ode_To_Joy_Percentage.text = PersistentData.data.song_Ode_To_Joy_Completion.ToString() + "%";
+        See_you_Again_Percentage.text = PersistentData.data.song_See_you_Again_Completion.ToString() + "%";
+
     }
 
     // Update is called once per frame

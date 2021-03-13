@@ -24,6 +24,7 @@ public class PersistentData : MonoBehaviour, ISaveable
 
     // Persistent Player Song Progress
     public float song_Ode_To_Joy_Completion;
+    public float song_See_you_Again_Completion;
 
     public static PersistentData data;
 
@@ -89,6 +90,7 @@ public class PersistentData : MonoBehaviour, ISaveable
 
         // Player Song Progress
         a_SaveData.m_song_Ode_To_Joy_Completion = song_Ode_To_Joy_Completion;
+        a_SaveData.m_song_See_you_Again_Completion = song_See_you_Again_Completion;
     }
 
     public void LoadFromSaveData(PersistentDataInformation a_SaveData)
@@ -104,6 +106,7 @@ public class PersistentData : MonoBehaviour, ISaveable
 
         // Player Song Progress
         song_Ode_To_Joy_Completion = a_SaveData.m_song_Ode_To_Joy_Completion;
+        song_See_you_Again_Completion = a_SaveData.m_song_See_you_Again_Completion;
     }
 }
 

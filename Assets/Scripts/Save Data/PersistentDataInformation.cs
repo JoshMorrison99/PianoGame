@@ -15,8 +15,9 @@ public class PersistentDataInformation
 
     // Persistent Player Song Progress
     public float m_song_Ode_To_Joy_Completion;
+    public float m_song_See_you_Again_Completion;
 
-    
+
     public string ToJson()
     {
         return JsonUtility.ToJson(this);
