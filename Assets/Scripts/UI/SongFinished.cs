@@ -37,12 +37,12 @@ public class SongFinished : MonoBehaviour
 
     void updateUserScore()
     {
-        if ((percentTrunk * 100) > PersistentData.data.song_Ode_To_Joy_Completion)
+        if ((percentTrunk * 100) > PersistentData.data.song_Ode_To_Joy_Completion && PersistentData.data.selectedSong == 1)
         {
             PersistentData.data.song_Ode_To_Joy_Completion = (percentTrunk * 100);
         }
 
-        if ((percentTrunk * 100) > PersistentData.data.song_See_you_Again_Completion)
+        if ((percentTrunk * 100) > PersistentData.data.song_See_you_Again_Completion && PersistentData.data.selectedSong == 2)
         {
             PersistentData.data.song_See_you_Again_Completion = (percentTrunk * 100);
         }
