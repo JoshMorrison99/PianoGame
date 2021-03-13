@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class PlayUILogic : MonoBehaviour
 {
@@ -16,6 +17,10 @@ public class PlayUILogic : MonoBehaviour
     public GameObject healperLines;
 
     public GameObject pauseManuPanel;
+    public Button pauseMainMenuButton;
+    public Button pauseReplayButton;
+    public Button pauseSettingsButton;
+    public Button pauseResumeButton;
 
     public GameObject piano;
 
@@ -25,6 +30,8 @@ public class PlayUILogic : MonoBehaviour
 
     public Button pauseBtn;
 
+    public GameObject settingsPanel;
+
     public bool isPaused;
 
 
@@ -33,9 +40,14 @@ public class PlayUILogic : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        
         isPaused = true;
 
         pauseBtn.onClick.AddListener(PauseMenuPressed);
+        pauseMainMenuButton.onClick.AddListener(PauseMainMenuClicked);
+        pauseReplayButton.onClick.AddListener(PauseReplayClicked);
+        pauseSettingsButton.onClick.AddListener(PauseSettingsClicked);
+        pauseResumeButton.onClick.AddListener(PauseMenuPressed);
 
         spawner = GameObject.Find("PianoKeyboardUI").GetComponent<PianoNoteSpawner>();
 
@@ -43,6 +55,9 @@ public class PlayUILogic : MonoBehaviour
         healperLines.SetActive(true);
         songFinishedPanel.SetActive(false);
         pauseManuPanel.SetActive(false);
+        settingsPanel.SetActive(false);
+
+        PauseMenuPressed();
     }
 
     // Update is called once per frame
@@ -91,5 +106,21 @@ public class PlayUILogic : MonoBehaviour
        
     }
 
-    
+    public void PauseMainMenuClicked()
+    {
+        SceneManager.LoadScene("MainMenu");
+    }
+
+    public void PauseReplayClicked()
+    {
+        SceneManager.LoadScene("Play");
+    }
+
+    public void PauseSettingsClicked()
+    {
+        piano.SetActive(false);
+        settingsPanel.SetActive(true);
+    }
+
+
 }

@@ -35,15 +35,8 @@ public class PersistentData : MonoBehaviour, ISaveable
 
     private void Awake()
     {
-        if (data == null)
-        {
-            DontDestroyOnLoad(gameObject);
-            data = this;
-        }
-        else if (data != this)
-        {
-            Destroy(gameObject);
-        }
+        DontDestroyOnLoad(gameObject);
+        data = this;
     }
 
     private void OnApplicationQuit()
