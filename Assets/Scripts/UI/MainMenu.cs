@@ -9,6 +9,9 @@ public class MainMenu : MonoBehaviour
     public Button playBtn;
     public Button settingsBtn;
 
+	public GameObject SongSelectionPanel;
+	public GameObject SettingsMenuPanel;
+
 	void Start()
 	{
 		Button btn = playBtn.GetComponent<Button>();
@@ -18,6 +21,11 @@ public class MainMenu : MonoBehaviour
 	void TaskOnClick()
 	{
 		Debug.Log("You have clicked the button!");
+	}
+
+	public void showMainMenu()
+    {
+		SongSelectionPanel.SetActive(false);
 	}
 
 }
