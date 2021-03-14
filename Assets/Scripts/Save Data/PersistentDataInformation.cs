@@ -17,6 +17,23 @@ public class PersistentDataInformation
     public float m_song_Ode_To_Joy_Completion;
     public float m_song_See_you_Again_Completion;
 
+    // Song List
+    public List<SongData> m_SongList = new List<SongData>();
+
+    [System.Serializable]
+    public struct SongData
+    {
+        public int m_songID;
+        public string m_SongTitle;
+        public string m_SongAuthor;
+        public int m_highScore;
+        public int m_plays;
+        public int m_stars;
+        public int m_totalNote;
+        public int m_notesHit;
+        public int m_songCompletionPercentage;
+        public string _Difficulty;
+    }
 
     public string ToJson()
     {

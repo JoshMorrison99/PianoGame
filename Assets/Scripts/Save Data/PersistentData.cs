@@ -1,4 +1,4 @@
-using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using System.Runtime.Serialization.Formatters.Binary;
 using System;
@@ -25,6 +25,9 @@ public class PersistentData : MonoBehaviour, ISaveable
     // Persistent Player Song Progress
     public float song_Ode_To_Joy_Completion;
     public float song_See_you_Again_Completion;
+
+    // Persistent Song Information
+    public List<SongInfo> _SongList = new List<SongInfo>();
 
     public static PersistentData data;
 
@@ -84,6 +87,12 @@ public class PersistentData : MonoBehaviour, ISaveable
         // Player Song Progress
         a_SaveData.m_song_Ode_To_Joy_Completion = song_Ode_To_Joy_Completion;
         a_SaveData.m_song_See_you_Again_Completion = song_See_you_Again_Completion;
+
+        // Song Information
+        foreach (SongInfo song in _SongList)
+        {
+            song.PopulateSaveData(a_SaveData);
+        }
     }
 
     public void LoadFromSaveData(PersistentDataInformation a_SaveData)
@@ -100,6 +109,12 @@ public class PersistentData : MonoBehaviour, ISaveable
         // Player Song Progress
         song_Ode_To_Joy_Completion = a_SaveData.m_song_Ode_To_Joy_Completion;
         song_See_you_Again_Completion = a_SaveData.m_song_See_you_Again_Completion;
+
+        // Song Information
+        foreach (SongInfo song in _SongList)
+        {
+            song.LoadFromSaveData(a_SaveData);
+        }
     }
 }
 
