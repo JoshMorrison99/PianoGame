@@ -21,6 +21,7 @@ public class PersistentData : MonoBehaviour, ISaveable
     public string username;
     public int songsComplete;
     public int songsUnlocked;
+    public int money;
 
     // Persistent Player Song Progress
     public float song_Ode_To_Joy_Completion;
@@ -83,6 +84,7 @@ public class PersistentData : MonoBehaviour, ISaveable
         a_SaveData.m_songsComplete = songsComplete;
         a_SaveData.m_songsUnlocked = songsUnlocked;
         a_SaveData.m_username = username;
+        a_SaveData.m_money = money;
 
         // Player Song Progress
         a_SaveData.m_song_Ode_To_Joy_Completion = song_Ode_To_Joy_Completion;
@@ -105,6 +107,7 @@ public class PersistentData : MonoBehaviour, ISaveable
         songsComplete = a_SaveData.m_songsComplete;
         songsUnlocked = a_SaveData.m_songsUnlocked;
         username = a_SaveData.m_username;
+        money = a_SaveData.m_money;
 
         // Player Song Progress
         song_Ode_To_Joy_Completion = a_SaveData.m_song_Ode_To_Joy_Completion;

@@ -23,9 +23,16 @@ public class SongSelection : MonoBehaviour
     public TextMeshProUGUI NotesHit_Text;
     public TextMeshProUGUI Difficulty_Text;
 
+    public TextMeshProUGUI playerLevelUI;
+    public TextMeshProUGUI playerMoneyUI;
+
 
     private void Start()
     {
+        // Player persistent data UI
+        playerLevelUI.text = PersistentData.data.level.ToString();
+        playerMoneyUI.text = PersistentData.data.money.ToString();
+
         Ode_To_Joy_Percentage.text = PersistentData.data.song_Ode_To_Joy_Completion.ToString() + "%";
         //See_you_Again_Percentage.text = PersistentData.data.song_See_you_Again_Completion.ToString() + "%";
 
@@ -37,45 +44,6 @@ public class SongSelection : MonoBehaviour
 
     }
 
-
-/*    public void SelectSong1()
-    {
-        Debug.Log("Pressed");
-        songInfo.GetComponent<PersistentData>().selectedSong = 1;
-        SceneManager.LoadScene("Play");
-    }
-    public void SelectSong2()
-    {
-        Debug.Log("Pressed");
-        songInfo.GetComponent<PersistentData>().selectedSong = 2;
-        SceneManager.LoadScene("Play");
-    }
-    public void SelectSong3()
-    {
-        Debug.Log("Pressed");
-        songInfo.selectedSong = 3;
-        SceneManager.LoadScene("Play");
-    }
-    public void SelectSong4()
-    {
-        Debug.Log("Pressed");
-        songInfo.selectedSong = 4;
-        SceneManager.LoadScene("Play");
-    }
-
-    public void SelectSong5()
-    {
-        Debug.Log("Pressed");
-        songInfo.selectedSong = 5;
-        SceneManager.LoadScene("Play");
-    }
-
-    public void SelectSong6()
-    {
-        Debug.Log("Pressed");
-        songInfo.selectedSong = 6;
-        SceneManager.LoadScene("Play");
-    }*/
 
     public void onClickSongSelection(Button button)
     {
