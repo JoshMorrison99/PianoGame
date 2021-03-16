@@ -32,7 +32,7 @@ public class PersistentDataInformation
         public int m_stars;
         public int m_totalNote;
         public int m_notesHit;
-        public int m_songCompletionPercentage;
+        public float m_songCompletionPercentage;
         public string _Difficulty;
     }
 

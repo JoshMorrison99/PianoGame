@@ -12,7 +12,7 @@ public class SongInfo : MonoBehaviour, ISaveable
     public int _stars;
     public int _totalNote;
     public int _notesHit;
-    public int _songCompletionPercentage;
+    public float _songCompletionPercentage;
     public string _Difficulty;
 
     public void LoadFromSaveData(PersistentDataInformation a_SaveData)

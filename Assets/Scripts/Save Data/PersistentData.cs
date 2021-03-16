@@ -43,10 +43,10 @@ public class PersistentData : MonoBehaviour, ISaveable
         data = this;
     }
 
-    private void OnApplicationQuit()
+/*    private void OnApplicationQuit()
     {
         SaveJsonData(this);
-    }
+    }*/
 
     // -------------------
     // Saving and Loading

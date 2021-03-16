@@ -36,12 +36,29 @@ public class SongSelection : MonoBehaviour
         Ode_To_Joy_Percentage.text = PersistentData.data.song_Ode_To_Joy_Completion.ToString() + "%";
         //See_you_Again_Percentage.text = PersistentData.data.song_See_you_Again_Completion.ToString() + "%";
 
+        updatePercentageUI();
+
     }
 
     // Update is called once per frame
     void Update()
     {
 
+    }
+
+    public void updatePercentageUI()
+    {
+        ContentSizeFitter content = this.GetComponentInChildren<ContentSizeFitter>();
+        int loopIndex = 0;
+        foreach (Transform child in content.transform)
+        {
+            Debug.Log(child.gameObject);
+            Transform percentageText = child.gameObject.transform.Find("Percentage");
+            Debug.Log(PersistentData.data._SongList[loopIndex]._songCompletionPercentage);
+            Debug.Log(loopIndex);
+            percentageText.gameObject.GetComponentInChildren<TextMeshProUGUI>().text = PersistentData.data._SongList[loopIndex]._songCompletionPercentage.ToString() + "%";
+            loopIndex += 1;
+        }
     }
 
 
