@@ -6,26 +6,29 @@ using UnityEngine.UI;
 
 public class MainMenu : MonoBehaviour
 {
-    public Button playBtn;
-    public Button settingsBtn;
+    public Button songSelectionBtn;
+	public Button lessonsBtn;
+	public Button settingsBtn;
+	public Button accountBtn;
 
 	public GameObject SongSelectionPanel;
 	public GameObject SettingsMenuPanel;
 
 	void Start()
 	{
-		Button btn = playBtn.GetComponent<Button>();
-		btn.onClick.AddListener(TaskOnClick);
-	}
-
-	void TaskOnClick()
-	{
-		Debug.Log("You have clicked the button!");
+		Button btn = songSelectionBtn.GetComponent<Button>();
+		btn.onClick.AddListener(songSelectionClicked);
 	}
 
 	public void showMainMenu()
     {
 		SongSelectionPanel.SetActive(false);
 	}
+
+	public void songSelectionClicked()
+    {
+		SongSelectionPanel.SetActive(true);
+	}
+
 
 }
