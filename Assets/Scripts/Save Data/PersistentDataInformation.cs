@@ -29,7 +29,7 @@ public class PersistentDataInformation
         public string m_SongAuthor;
         public int m_highScore;
         public int m_plays;
-        public int m_stars;
+        public string  m_stars;
         public int m_totalNote;
         public int m_notesHit;
         public float m_songCompletionPercentage;

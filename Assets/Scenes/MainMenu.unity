@@ -5126,7 +5126,7 @@ MonoBehaviour:
   _SongAuthor: Beethoven
   _highScore: 0
   _plays: 0
-  _stars: 0
+  _stars: 
   _totalNote: 63
   _notesHit: 0
   _songCompletionPercentage: 0
@@ -31597,7 +31597,7 @@ MonoBehaviour:
   _SongAuthor: Wiz Khalifa
   _highScore: 0
   _plays: 0
-  _stars: 0
+  _stars: 
   _totalNote: 296
   _notesHit: 0
   _songCompletionPercentage: 0

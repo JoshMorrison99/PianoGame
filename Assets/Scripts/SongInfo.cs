@@ -9,7 +9,7 @@ public class SongInfo : MonoBehaviour, ISaveable
     public string _SongAuthor;
     public int _highScore;
     public int _plays;
-    public int _stars;
+    public string _stars;
     public int _totalNote;
     public int _notesHit;
     public float _songCompletionPercentage;

@@ -37,21 +37,33 @@ public class SongFinished : MonoBehaviour
 
     void updateUserScore()
     {
-        /*if ((percentTrunk * 100) > PersistentData.data.song_Ode_To_Joy_Completion && PersistentData.data.selectedSong == 1)
-        {
-            PersistentData.data.song_Ode_To_Joy_Completion = (percentTrunk * 100);
-
-            
-        }
-
-        if ((percentTrunk * 100) > PersistentData.data.song_See_you_Again_Completion && PersistentData.data.selectedSong == 2)
-        {
-            PersistentData.data.song_See_you_Again_Completion = (percentTrunk * 100);
-        }*/
 
         if ((percentTrunk * 100) > PersistentData.data._SongList[PersistentData.data.selectedSong - 1]._songCompletionPercentage)
         {
             PersistentData.data._SongList[PersistentData.data.selectedSong - 1]._songCompletionPercentage = (percentTrunk * 100);
+            PersistentData.data._SongList[PersistentData.data.selectedSong - 1]._notesHit = (int) playSongLogic.numNotesHit;
+
+            calculateStars();
+        }
+    }
+
+    void calculateStars()
+    {
+        if ((percentTrunk * 100) < 25)
+        {
+            PersistentData.data._SongList[PersistentData.data.selectedSong - 1]._stars = "*";
+        }else if ((percentTrunk * 100) > 25 && (percentTrunk * 100) < 50)
+        {
+            PersistentData.data._SongList[PersistentData.data.selectedSong - 1]._stars = "* *";
+        }else if ((percentTrunk * 100) > 50 && (percentTrunk * 100) < 75)
+        {
+            PersistentData.data._SongList[PersistentData.data.selectedSong - 1]._stars = "* * *";
+        }else if ((percentTrunk * 100) > 75 && (percentTrunk * 100) < 95)
+        {
+            PersistentData.data._SongList[PersistentData.data.selectedSong - 1]._stars = "* * * *";
+        }else if ((percentTrunk * 100) > 95)
+        {
+            PersistentData.data._SongList[PersistentData.data.selectedSong - 1]._stars = "* * * * *";
         }
     }
 
