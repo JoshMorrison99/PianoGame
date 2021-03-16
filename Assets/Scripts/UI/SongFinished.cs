@@ -12,6 +12,7 @@ public class SongFinished : MonoBehaviour
     public TextMeshProUGUI notesHitText;
     public Button replaySongBtn;
     public Button mainMenuBtn;
+    
 
     public float percentTrunk;
     public PlayLogic playSongLogic;

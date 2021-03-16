@@ -34,6 +34,8 @@ public class PlayUILogic : MonoBehaviour
 
     public bool isPaused;
 
+    public GameObject pianoBackground;
+
 
     public int songPercentage;
 
@@ -43,6 +45,7 @@ public class PlayUILogic : MonoBehaviour
         
         isPaused = true;
 
+        
         pauseBtn.onClick.AddListener(PauseMenuPressed);
         pauseMainMenuButton.onClick.AddListener(PauseMainMenuClicked);
         pauseReplayButton.onClick.AddListener(PauseReplayClicked);
@@ -51,11 +54,13 @@ public class PlayUILogic : MonoBehaviour
 
         spawner = GameObject.Find("PianoKeyboardUI").GetComponent<PianoNoteSpawner>();
 
+        pianoBackground.SetActive(true);
         pianoKeyLabels.SetActive(true);
         healperLines.SetActive(true);
         songFinishedPanel.SetActive(false);
         pauseManuPanel.SetActive(false);
         settingsPanel.SetActive(false);
+        pauseBtn.gameObject.SetActive(true);
 
         PauseMenuPressed();
     }
@@ -68,6 +73,9 @@ public class PlayUILogic : MonoBehaviour
 
     public void UpdateFinishedSongText()
     {
+        pauseBtn.gameObject.SetActive(false);
+        pianoBackground.SetActive(false);
+
         // set the song finished panel to active
         songFinishedPanel.SetActive(true);
 
