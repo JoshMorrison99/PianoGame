@@ -17,7 +17,7 @@ public class NoteCollision : MonoBehaviour
             emit.Play();
 
             // Change color of note
-            collision.gameObject.GetComponent<SpriteRenderer>().color = Color.blue;
+            //collision.gameObject.GetComponent<SpriteRenderer>().color = Color.blue;
 
             Debug.Log("Intersecting? " + intersecting);
             if (intersecting)
