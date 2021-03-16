@@ -89,7 +89,7 @@ public class PlayLogic : MonoBehaviour
         }else if (songNumber == 2)
         {
             // Sacel top bar
-            pianoLine.transform.position = new Vector3(0, 271, 0);
+            pianoLine.transform.position = new Vector3(0, 280, 0);
 
             // scale healper lines
             HelperLine1.transform.localPosition = new Vector3(-526f, 271f, 0);

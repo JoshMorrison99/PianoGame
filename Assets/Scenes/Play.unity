@@ -792,7 +792,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   songInfo: {fileID: 0}
   Ode_To_Joy_Percentage: {fileID: 0}
-  See_you_Again_Percentage: {fileID: 0}
+  SongTitle: {fileID: 0}
+  SongAuthor: {fileID: 0}
+  HighScore_Text: {fileID: 0}
+  Plays_Text: {fileID: 0}
+  Stars_Text: {fileID: 0}
+  NotesHit_Text: {fileID: 0}
+  Difficulty_Text: {fileID: 0}
+  playerLevelUI: {fileID: 0}
+  playerMoneyUI: {fileID: 0}
 --- !u!114 &29034909
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5977,7 +5985,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   songInfo: {fileID: 0}
   Ode_To_Joy_Percentage: {fileID: 0}
-  See_you_Again_Percentage: {fileID: 0}
+  SongTitle: {fileID: 0}
+  SongAuthor: {fileID: 0}
+  HighScore_Text: {fileID: 0}
+  Plays_Text: {fileID: 0}
+  Stars_Text: {fileID: 0}
+  NotesHit_Text: {fileID: 0}
+  Difficulty_Text: {fileID: 0}
+  playerLevelUI: {fileID: 0}
+  playerMoneyUI: {fileID: 0}
 --- !u!114 &351737602
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7684,7 +7700,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 189.4, y: 271.29}
-  m_SizeDelta: {x: 3, y: 1080}
+  m_SizeDelta: {x: 2, y: 1080}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &470070234
 MonoBehaviour:
@@ -7699,7 +7715,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.6666667, g: 0.63529414, b: 0.56078434, a: 0.56078434}
+  m_Color: {r: 0.7169812, g: 0.7169812, b: 0.7169812, a: 0.13725491}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -10567,8 +10583,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4288327863
-  m_fontColor: {r: 0.7176471, g: 0.6901961, b: 0.6039216, a: 1}
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -11461,7 +11477,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   songInfo: {fileID: 0}
   Ode_To_Joy_Percentage: {fileID: 0}
-  See_you_Again_Percentage: {fileID: 0}
+  SongTitle: {fileID: 0}
+  SongAuthor: {fileID: 0}
+  HighScore_Text: {fileID: 0}
+  Plays_Text: {fileID: 0}
+  Stars_Text: {fileID: 0}
+  NotesHit_Text: {fileID: 0}
+  Difficulty_Text: {fileID: 0}
+  playerLevelUI: {fileID: 0}
+  playerMoneyUI: {fileID: 0}
 --- !u!114 &674443060
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15043,7 +15067,7 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 0.19607843}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
@@ -15079,14 +15103,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.69411767, g: 0.6509804, b: 0.57254905, a: 1}
+  m_Color: {r: 0.7735849, g: 0.7735849, b: 0.7735849, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
+  m_Sprite: {fileID: 0}
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -16077,7 +16101,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -576.2, y: 271.29}
-  m_SizeDelta: {x: 3, y: 1080}
+  m_SizeDelta: {x: 2, y: 1080}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &907845379
 MonoBehaviour:
@@ -16092,7 +16116,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.6666667, g: 0.63529414, b: 0.56078434, a: 0.56078434}
+  m_Color: {r: 0.7169812, g: 0.7169812, b: 0.7169812, a: 0.13725491}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -22396,7 +22420,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 1057, y: 7.9}
-  m_SizeDelta: {x: 3, y: 1080}
+  m_SizeDelta: {x: 2, y: 1080}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1221372312
 MonoBehaviour:
@@ -22411,7 +22435,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.6666667, g: 0.63529414, b: 0.56078434, a: 0.56078434}
+  m_Color: {r: 0.7169812, g: 0.7169812, b: 0.7169812, a: 0.13725491}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -23247,7 +23271,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -192.1, y: 271.29}
-  m_SizeDelta: {x: 3, y: 1080}
+  m_SizeDelta: {x: 2, y: 1080}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1287188428
 MonoBehaviour:
@@ -23262,7 +23286,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.6666667, g: 0.63529414, b: 0.56078434, a: 0.56078434}
+  m_Color: {r: 0.7169812, g: 0.7169812, b: 0.7169812, a: 0.13725491}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -25207,7 +25231,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 1032.7, y: 7.9}
-  m_SizeDelta: {x: 3, y: 1080}
+  m_SizeDelta: {x: 2, y: 1080}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1383766291
 MonoBehaviour:
@@ -25222,7 +25246,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.6666667, g: 0.63529414, b: 0.56078434, a: 0.56078434}
+  m_Color: {r: 0.7169812, g: 0.7169812, b: 0.7169812, a: 0.13725491}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -26711,7 +26735,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1478721620
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -28422,8 +28446,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4282931554
-  m_fontColor: {r: 0.38431376, g: 0.34901962, b: 0.28235295, a: 1}
+    rgba: 4278190080
+  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -28446,7 +28470,7 @@ MonoBehaviour:
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 1
+  m_fontStyle: 0
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
@@ -28707,7 +28731,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   songInfo: {fileID: 0}
   Ode_To_Joy_Percentage: {fileID: 0}
-  See_you_Again_Percentage: {fileID: 0}
+  SongTitle: {fileID: 0}
+  SongAuthor: {fileID: 0}
+  HighScore_Text: {fileID: 0}
+  Plays_Text: {fileID: 0}
+  Stars_Text: {fileID: 0}
+  NotesHit_Text: {fileID: 0}
+  Difficulty_Text: {fileID: 0}
+  playerLevelUI: {fileID: 0}
+  playerMoneyUI: {fileID: 0}
 --- !u!114 &1623352583
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -33533,7 +33565,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 573, y: 271.29}
-  m_SizeDelta: {x: 3, y: 1080}
+  m_SizeDelta: {x: 2, y: 1080}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1802491406
 MonoBehaviour:
@@ -33548,7 +33580,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.6666667, g: 0.63529414, b: 0.56078434, a: 0.56078434}
+  m_Color: {r: 0.7169812, g: 0.7169812, b: 0.7169812, a: 0.13725491}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -34041,7 +34073,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   songInfo: {fileID: 0}
   Ode_To_Joy_Percentage: {fileID: 0}
-  See_you_Again_Percentage: {fileID: 0}
+  SongTitle: {fileID: 0}
+  SongAuthor: {fileID: 0}
+  HighScore_Text: {fileID: 0}
+  Plays_Text: {fileID: 0}
+  Stars_Text: {fileID: 0}
+  NotesHit_Text: {fileID: 0}
+  Difficulty_Text: {fileID: 0}
+  playerLevelUI: {fileID: 0}
+  playerMoneyUI: {fileID: 0}
 --- !u!114 &1824424404
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -38058,8 +38098,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 0, y: 271}
-  m_SizeDelta: {x: 2041.5, y: 5}
+  m_AnchoredPosition: {x: 0, y: 280}
+  m_SizeDelta: {x: 2041.5, y: 10}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1980073372
 MonoBehaviour:
@@ -38074,7 +38114,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -39407,7 +39447,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.14509805, g: 0.14901961, b: 0.18823531, a: 1}
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 1}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
