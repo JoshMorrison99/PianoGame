@@ -99,6 +99,7 @@ public class PersistentData : MonoBehaviour, ISaveable
 
     public void LoadFromSaveData(PersistentDataInformation a_SaveData)
     {
+        Debug.Log("LoadFromSaveData");
 
         // Player Info
         level = a_SaveData.m_level;
@@ -116,6 +117,7 @@ public class PersistentData : MonoBehaviour, ISaveable
         // Song Information
         foreach (SongInfo song in _SongList)
         {
+            Debug.Log("song.LoadFromSaveData: " + song);
             song.LoadFromSaveData(a_SaveData);
         }
     }

@@ -61,6 +61,7 @@ public class SongSelection : MonoBehaviour
     public void onClickPlay()
     {
         songInfo.selectedSong = index + 1;
+        PersistentData.data._SongList[index]._plays += 1;
         SceneManager.LoadScene("Play");
     }
 

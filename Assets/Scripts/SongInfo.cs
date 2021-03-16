@@ -50,6 +50,8 @@ public class SongInfo : MonoBehaviour, ISaveable
         mySongData.m_notesHit = _notesHit;
         mySongData.m_songCompletionPercentage = _songCompletionPercentage;
         mySongData._Difficulty = _Difficulty;
+
+        a_SaveData.m_SongList.Add(mySongData);
     }
 
     
