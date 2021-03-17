@@ -11,6 +11,7 @@ public class PersistentData : MonoBehaviour, ISaveable
 {
     //Temp Persistent Data
     public int selectedSong;
+    public int currentScore;
     public float songSpeed;
     public bool isPaused;
 

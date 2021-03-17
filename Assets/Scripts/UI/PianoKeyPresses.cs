@@ -43,7 +43,8 @@ public class PianoKeyPresses : MonoBehaviour
 
                 // Activate the Note
                 each.GetComponent<Note>().isPressed = true;
-                each.GetComponent<Note>().initialPress = true;
+                //each.GetComponent<Note>().initialPress = true;
+                each.GetComponent<Note>().concurrentPress = true;
             }
         }
     }
@@ -66,6 +67,7 @@ public class PianoKeyPresses : MonoBehaviour
 
                 // Deactivate the Note
                 each.GetComponent<Note>().isPressed = false;
+                each.GetComponent<Note>().concurrentPress = false;
             }
         }
     }

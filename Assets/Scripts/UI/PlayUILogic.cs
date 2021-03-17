@@ -36,6 +36,8 @@ public class PlayUILogic : MonoBehaviour
 
     public GameObject pianoBackground;
 
+    public TextMeshProUGUI scoreText;
+
 
     public int songPercentage;
 
@@ -69,6 +71,8 @@ public class PlayUILogic : MonoBehaviour
     void Update()
     {
         progressSong.text = playSongLogic.numNotesHit + "/" + playSongLogic.numNotesTotal;
+
+        scoreText.text = PersistentData.data.currentScore.ToString();
     }
 
     public void UpdateFinishedSongText()

@@ -5,12 +5,26 @@ using UnityEngine;
 public class NoteCollision : MonoBehaviour
 {
     public PlayLogic Logic;
-    public bool intersecting;
+
+    public detectorScript detector;
+
+    private void Start()
+    {
+        detector = gameObject.GetComponentInChildren<detectorScript>();
+    }
+
+    private void Update()
+    {
+        if (this.GetComponent<Note>().isPressed && detector.overlapping == false)
+        {
+            this.GetComponent<Note>().concurrentPress = false;
+        }
+    }
 
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (this.GetComponent<Note>().initialPress)
+        if (this.GetComponent<Note>().concurrentPress)
         {
             // Effects Spawn
             ParticleSystem emit = gameObject.GetComponentInChildren<ParticleSystem>();
@@ -19,18 +33,24 @@ public class NoteCollision : MonoBehaviour
             // Change color of note
             //collision.gameObject.GetComponent<SpriteRenderer>().color = Color.blue;
 
-            Debug.Log("Intersecting? " + intersecting);
-            if (intersecting)
+            if (detector.intersecting)
             {
                 IncrementNotesHit();
-                intersecting = false;
+                detector.intersecting = false;
             }
         }
-        
+
+        if (this.GetComponent<Note>().isPressed && detector.overlapping && this.GetComponent<Note>().concurrentPress)
+        {
+            // Increment score
+            PersistentData.data.currentScore += 1;
+        }
+
     }
 
     void IncrementNotesHit()
     {
+       
         // Note successfully hit
         Logic.numNotesHit += 1;
 
@@ -38,24 +58,5 @@ public class NoteCollision : MonoBehaviour
         PersistentData.data.exp += 1;
 
         
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        Debug.Log(collision.gameObject.tag);
-        if (collision.gameObject.tag == "Note")
-        {
-            intersecting = true;
-            
-        }
-    }
-
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        if (collision.gameObject.tag == "Note")
-        {
-            intersecting = false;
-
-        }
     }
 }
