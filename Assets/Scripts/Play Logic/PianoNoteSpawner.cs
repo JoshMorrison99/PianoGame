@@ -23,6 +23,8 @@ public class PianoNoteSpawner : MonoBehaviour
 
     const float NOTE_DESTROY_DEPTH = -10f;
 
+    const float SEE_YOU_AGAIN_NOTESCALE = 2f;
+
     public float noteSpeed = 0;
 
     // Piano Notes
@@ -151,6 +153,9 @@ public class PianoNoteSpawner : MonoBehaviour
                 {
                     // Scale Note Prefabs
                     spawnedNote.transform.localScale = new Vector3(HalfNote.transform.localScale.x * 1.3f, HalfNote.transform.localScale.y * 1.3f, 0);
+                }else if (PersistentData.data.selectedSong == 2)
+                {
+                    spawnedNote.transform.localScale = new Vector3(HalfNote.transform.localScale.x, HalfNote.transform.localScale.y * SEE_YOU_AGAIN_NOTESCALE, 0);
                 }
             }
             else
@@ -164,6 +169,10 @@ public class PianoNoteSpawner : MonoBehaviour
                 {
                     // Scale Note Prefabs
                     spawnedNote.transform.localScale = new Vector3(HalfNote.transform.localScale.x * 1.3f, HalfNote.transform.localScale.y * 1.3f, 0);
+                }
+                else if (PersistentData.data.selectedSong == 2)
+                {
+                    spawnedNote.transform.localScale = new Vector3(HalfNote.transform.localScale.x, HalfNote.transform.localScale.y * SEE_YOU_AGAIN_NOTESCALE, 0);
                 }
             }
         } else if(type == "QuarterNote")
@@ -180,6 +189,10 @@ public class PianoNoteSpawner : MonoBehaviour
                     // Scale Note Prefabs
                     spawnedNote.transform.localScale = new Vector3(QuarterNote.transform.localScale.x * 1.3f, QuarterNote.transform.localScale.y * 1.3f, 0);
                 }
+                else if (PersistentData.data.selectedSong == 2)
+                {
+                    spawnedNote.transform.localScale = new Vector3(QuarterNote.transform.localScale.x, QuarterNote.transform.localScale.y * SEE_YOU_AGAIN_NOTESCALE, 0);
+                }
             }
             else
             {
@@ -192,6 +205,10 @@ public class PianoNoteSpawner : MonoBehaviour
                 {
                     // Scale Note Prefabs
                     spawnedNote.transform.localScale = new Vector3(QuarterNote.transform.localScale.x * 1.3f, QuarterNote.transform.localScale.y * 1.3f, 0);
+                }
+                else if (PersistentData.data.selectedSong == 2)
+                {
+                    spawnedNote.transform.localScale = new Vector3(QuarterNote.transform.localScale.x, QuarterNote.transform.localScale.y * SEE_YOU_AGAIN_NOTESCALE, 0);
                 }
             }
         }else if (type == "DottedQuartedNote")
@@ -208,6 +225,10 @@ public class PianoNoteSpawner : MonoBehaviour
                     // Scale Note Prefabs
                     spawnedNote.transform.localScale = new Vector3(Dotted_QuarterNote.transform.localScale.x * 1.3f, Dotted_QuarterNote.transform.localScale.y * 1.3f, 0);
                 }
+                else if (PersistentData.data.selectedSong == 2)
+                {
+                    spawnedNote.transform.localScale = new Vector3(Dotted_QuarterNote.transform.localScale.x, Dotted_QuarterNote.transform.localScale.y * SEE_YOU_AGAIN_NOTESCALE, 0);
+                }
             }
             else
             {
@@ -220,6 +241,10 @@ public class PianoNoteSpawner : MonoBehaviour
                 {
                     // Scale Note Prefabs
                     spawnedNote.transform.localScale = new Vector3(QuarterNote.transform.localScale.x * 1.3f, QuarterNote.transform.localScale.y * 1.3f, 0);
+                }
+                else if (PersistentData.data.selectedSong == 2)
+                {
+                    spawnedNote.transform.localScale = new Vector3(Dotted_QuarterNote.transform.localScale.x, Dotted_QuarterNote.transform.localScale.y * SEE_YOU_AGAIN_NOTESCALE, 0);
                 }
             }
         }
@@ -237,6 +262,10 @@ public class PianoNoteSpawner : MonoBehaviour
                     // Scale Note Prefabs
                     spawnedNote.transform.localScale = new Vector3(EighthNote.transform.localScale.x * 1.3f, EighthNote.transform.localScale.y * 1.3f, 0);
                 }
+                else if (PersistentData.data.selectedSong == 2)
+                {
+                    spawnedNote.transform.localScale = new Vector3(EighthNote.transform.localScale.x, EighthNote.transform.localScale.y * SEE_YOU_AGAIN_NOTESCALE, 0);
+                }
             }
             else
             {
@@ -249,6 +278,10 @@ public class PianoNoteSpawner : MonoBehaviour
                 {
                     // Scale Note Prefabs
                     spawnedNote.transform.localScale = new Vector3(EighthNote.transform.localScale.x * 1.3f, EighthNote.transform.localScale.y * 1.3f, 0);
+                }
+                else if (PersistentData.data.selectedSong == 2)
+                {
+                    spawnedNote.transform.localScale = new Vector3(EighthNote.transform.localScale.x, EighthNote.transform.localScale.y * SEE_YOU_AGAIN_NOTESCALE, 0);
                 }
             }
         }else if (type == "SixteenthNote")
@@ -263,7 +296,11 @@ public class PianoNoteSpawner : MonoBehaviour
                 if (PersistentData.data.selectedSong == 1)
                 {
                     // Scale Note Prefabs
-                    spawnedNote.transform.localScale = new Vector3(EighthNote.transform.localScale.x * 1.3f, EighthNote.transform.localScale.y * 1.3f, 0);
+                    spawnedNote.transform.localScale = new Vector3(SixteenthNote.transform.localScale.x * 1.3f, SixteenthNote.transform.localScale.y * 1.3f, 0);
+                }
+                else if (PersistentData.data.selectedSong == 2)
+                {
+                    spawnedNote.transform.localScale = new Vector3(SixteenthNote.transform.localScale.x, SixteenthNote.transform.localScale.y * SEE_YOU_AGAIN_NOTESCALE, 0);
                 }
             }
             else
@@ -277,6 +314,10 @@ public class PianoNoteSpawner : MonoBehaviour
                 {
                     // Scale Note Prefabs
                     spawnedNote.transform.localScale = new Vector3(SixteenthNote.transform.localScale.x * 1.3f, SixteenthNote.transform.localScale.y * 1.3f, 0);
+                }
+                else if (PersistentData.data.selectedSong == 2)
+                {
+                    spawnedNote.transform.localScale = new Vector3(SixteenthNote.transform.localScale.x, SixteenthNote.transform.localScale.y * SEE_YOU_AGAIN_NOTESCALE, 0);
                 }
             }
         }
