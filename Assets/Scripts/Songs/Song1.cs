@@ -50,7 +50,7 @@ public class Song1 : MonoBehaviour
 
     IEnumerator BeginSong()
     {
-        // Bar 1
+        /*// Bar 1
         Debug.Log("Bar 1");
         spawner.spawnNote("QuarterNote", spawner.E3, false);
         yield return new WaitForSeconds(QuarterNote);
@@ -208,7 +208,7 @@ public class Song1 : MonoBehaviour
         yield return new WaitForSeconds(EighthNote);
         spawner.spawnNote("HalfNote", spawner.C3, false);
         yield return new WaitForSeconds(HalfNote);
-
+*/
         yield return new WaitForSeconds(5f);
         EndOfSong();
     }

@@ -40,7 +40,7 @@ public class Song2_See_you_Again : MonoBehaviour
 
     IEnumerator BeginSong()
     {
-        // Bar 1
+       /* // Bar 1
         spawner.spawnNote("EighthNote", spawner.C5, false);
         yield return new WaitForSeconds(EighthNote);
         spawner.spawnNote("EighthNote", spawner.G5, false);
@@ -769,7 +769,7 @@ public class Song2_See_you_Again : MonoBehaviour
         yield return new WaitForSeconds(SixteenthNote);
         spawner.spawnNote("SixteenthNote", spawner.G5, false);
         yield return new WaitForSeconds(SixteenthNote);
-        //296
+        //296*/
 
 
 

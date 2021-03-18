@@ -6,7 +6,7 @@ using TMPro;
 
 public class PianoNoteSpawner : MonoBehaviour
 {
-    // Notes
+    /*// Notes
     public GameObject QuarterNote;
     public GameObject HalfNote;
     public GameObject Dotted_QuarterNote;
@@ -20,7 +20,10 @@ public class PianoNoteSpawner : MonoBehaviour
     public GameObject QuarterDottedSharp;
     public GameObject WholeSharp;
     public GameObject SixteenthSharp;
-    public GameObject EighthSharp;
+    public GameObject EighthSharp;*/
+
+    public GameObject SharpNote;
+    public GameObject Note;
 
     public PianoKeyPresses pianoListRef;
 
@@ -144,9 +147,42 @@ public class PianoNoteSpawner : MonoBehaviour
         }
     }
 
-    public void spawnNote(string type, GameObject note, bool isSharp)
+    public void ScaleNotes(GameObject spawnedNote)
     {
-        if (type == "HalfNote")
+        if (PersistentData.data.selectedSong == 1)
+        {
+            // Scale Note Prefabs
+            spawnedNote.transform.localScale = new Vector3(spawnedNote.transform.localScale.x * 1.3f, spawnedNote.transform.localScale.y * 1.3f, 0);
+        }
+        else if (PersistentData.data.selectedSong == 2)
+        {
+            spawnedNote.transform.localScale = new Vector3(spawnedNote.transform.localScale.x, spawnedNote.transform.localScale.y * SEE_YOU_AGAIN_NOTESCALE, 0);
+        }
+    }
+
+    public void spawnNote(GameObject position, bool isSharp, float duration)
+    {
+
+
+        if (isSharp)
+        {
+            GameObject spawnedNote = Instantiate(SharpNote, new Vector3(position.transform.position.x, position.transform.position.y + 10f, position.transform.position.z), Quaternion.identity);
+            spawnedNote.transform.localScale = new Vector3(spawnedNote.transform.localScale.x, spawnedNote.transform.localScale.y * duration, 0);
+            //ScaleNotes(spawnedNote, SharpNote);
+            spawnedNotes.Add(spawnedNote);
+        }
+        else
+        {
+            GameObject spawnedNote = Instantiate(Note, new Vector3(position.transform.position.x, position.transform.position.y + 10f, position.transform.position.z), Quaternion.identity);
+            //ScaleNotes(spawnedNote, SharpNote);
+            spawnedNote.transform.localScale = new Vector3(spawnedNote.transform.localScale.x, spawnedNote.transform.localScale.y * duration, 0);
+            spawnedNotes.Add(spawnedNote);
+        }
+
+
+
+
+        /*if (type == "HalfNote")
         {
             if (isSharp)
             {
@@ -326,8 +362,8 @@ public class PianoNoteSpawner : MonoBehaviour
                     spawnedNote.transform.localScale = new Vector3(SixteenthNote.transform.localScale.x, SixteenthNote.transform.localScale.y * SEE_YOU_AGAIN_NOTESCALE, 0);
                 }
             }
-        }
-        
+        }*/
+
     }
 
     public void setupUI()

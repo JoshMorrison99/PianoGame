@@ -31,7 +31,7 @@ public class PlayLogic : MonoBehaviour
     public GameObject WholeNote;
     public GameObject Dotted_QuarterNote;
 
-    public Song song;
+    //public Song song;
 
 
 
@@ -40,7 +40,7 @@ public class PlayLogic : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        numNotesTotal = song.numNotes;
+        //numNotesTotal = song.numNotes;
         numNotesHit = 0;
 
         songNumber = PersistentData.data.selectedSong;
