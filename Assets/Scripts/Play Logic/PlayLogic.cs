@@ -53,6 +53,10 @@ public class PlayLogic : MonoBehaviour
         {
             this.gameObject.AddComponent<Song2_See_you_Again>();
             numNotesTotal = gameObject.GetComponent<Song2_See_you_Again>().numNotes;
+        }else if (songNumber == 3)
+        {
+            this.gameObject.AddComponent<Song3_A_Thousand_Years>();
+            numNotesTotal = gameObject.GetComponent<Song3_A_Thousand_Years>().numNotes;
         }
 
         // Setup song

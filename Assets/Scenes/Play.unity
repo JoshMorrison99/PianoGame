@@ -23853,7 +23853,12 @@ MonoBehaviour:
   EighthNote: {fileID: 5215012835623897455, guid: 521721aa44a67bd4c9b666fe76a75ce0, type: 3}
   SixteenthNote: {fileID: 6486145405982697381, guid: 2f11d8787be83c94cb1c906b41cceac6, type: 3}
   WholeNote: {fileID: 7938958812780892938, guid: 866fcd9a38acd9b4fb3cdebc8f8e17a3, type: 3}
-  spawnNoteSharpObject: {fileID: 3726027505453001320, guid: b6b03bffe942d704f87b44dee3a8f1c6, type: 3}
+  QuarterSharp: {fileID: 7229695031639130140, guid: 9910197722b66ff4bbcb7e55109f12f2, type: 3}
+  HalfSharp: {fileID: 2157991623785487088, guid: 8b72735ee72cbbb4ba7835d50a4563a2, type: 3}
+  QuarterDottedSharp: {fileID: 1986964224739390429, guid: 94483372481dbe84b9d029309302f3ec, type: 3}
+  WholeSharp: {fileID: 3726027505453001320, guid: b6b03bffe942d704f87b44dee3a8f1c6, type: 3}
+  SixteenthSharp: {fileID: 4245798194363239915, guid: 0af2f4a477257ad45a5ee7d705c4bebf, type: 3}
+  EighthSharp: {fileID: 2721324498586517928, guid: 32a58c0eca82dde4ea072f41cb8686c3, type: 3}
   pianoListRef: {fileID: 1094638095}
   spawnedNotes: []
   garbageNotes: []
