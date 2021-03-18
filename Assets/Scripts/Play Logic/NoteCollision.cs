@@ -15,16 +15,16 @@ public class NoteCollision : MonoBehaviour
 
     private void Update()
     {
-        if (this.GetComponent<Note>().isPressed && detector.overlapping == false)
+        if (this.GetComponent<Note_Mine>().isPressed && detector.overlapping == false)
         {
-            this.GetComponent<Note>().concurrentPress = false;
+            this.GetComponent<Note_Mine>().concurrentPress = false;
         }
     }
 
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (this.GetComponent<Note>().concurrentPress)
+        if (this.GetComponent<Note_Mine>().concurrentPress)
         {
             // Effects Spawn
             ParticleSystem emit = gameObject.GetComponentInChildren<ParticleSystem>();
@@ -40,7 +40,7 @@ public class NoteCollision : MonoBehaviour
             }
         }
 
-        if (this.GetComponent<Note>().isPressed && detector.overlapping && this.GetComponent<Note>().concurrentPress)
+        if (this.GetComponent<Note_Mine>().isPressed && detector.overlapping && this.GetComponent<Note_Mine>().concurrentPress)
         {
             // Increment score
             PersistentData.data.currentScore += 1;

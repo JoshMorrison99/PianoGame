@@ -46,7 +46,7 @@ public class Song3_A_Thousand_Years : MonoBehaviour
     IEnumerator BeginSong()
     {
 
-        // Bar 1
+       /* // Bar 1
         spawner.spawnNote(spawner.D5, false, DOTTED_QUARTER - SUB);                                                 // Treble
         spawner.spawnNote(spawner.F4, false, DOTTED_QUARTER - SUB);                                                 // Bass
         spawner.spawnNote(spawner.As3, true, DOTTED_QUARTER + DOTTED_QUARTER + DOTTED_QUARTER - SUB);               // Bass
@@ -125,7 +125,7 @@ public class Song3_A_Thousand_Years : MonoBehaviour
         spawner.spawnNote(spawner.F4, false, EIGHTH - SUB);                                                 // Treble
         yield return new WaitForSeconds(EIGHTH);
 
-
+*/
 
         yield return new WaitForSeconds(10f);
         EndOfSong();

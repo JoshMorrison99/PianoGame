@@ -42,9 +42,9 @@ public class PianoKeyPresses : MonoBehaviour
                 each.GetComponent<SpriteRenderer>().color = Color.red;
 
                 // Activate the Note
-                each.GetComponent<Note>().isPressed = true;
+                each.GetComponent<Note_Mine>().isPressed = true;
                 //each.GetComponent<Note>().initialPress = true;
-                each.GetComponent<Note>().concurrentPress = true;
+                each.GetComponent<Note_Mine>().concurrentPress = true;
             }
         }
     }
@@ -66,8 +66,8 @@ public class PianoKeyPresses : MonoBehaviour
                 }
 
                 // Deactivate the Note
-                each.GetComponent<Note>().isPressed = false;
-                each.GetComponent<Note>().concurrentPress = false;
+                each.GetComponent<Note_Mine>().isPressed = false;
+                each.GetComponent<Note_Mine>().concurrentPress = false;
             }
         }
     }
