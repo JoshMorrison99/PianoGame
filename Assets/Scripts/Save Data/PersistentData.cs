@@ -3,6 +3,8 @@ using UnityEngine;
 using System.Runtime.Serialization.Formatters.Binary;
 using System;
 using System.IO;
+using Melanchall.DryWetMidi.Devices;
+using Melanchall.DryWetMidi.Core;
 //Gets all the data into one class and one constructor
 //From Brackeys Save and Load System in Unity
 
@@ -14,6 +16,7 @@ public class PersistentData : MonoBehaviour, ISaveable
     public int currentScore;
     public float songSpeed;
     public bool isPaused;
+    public MidiFile myMidi;
 
     // Persistent Player Information
     public int level;

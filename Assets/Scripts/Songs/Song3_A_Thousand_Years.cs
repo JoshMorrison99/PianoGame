@@ -40,7 +40,7 @@ public class Song3_A_Thousand_Years : MonoBehaviour
 
         UILogic = GameObject.Find("Canvas").GetComponent<PlayUILogic>();
 
-        StartCoroutine(BeginSong());
+        //StartCoroutine(BeginSong());
     }
 
     IEnumerator BeginSong()

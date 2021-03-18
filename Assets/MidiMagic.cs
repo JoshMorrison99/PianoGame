@@ -27,8 +27,13 @@ public class MidiMagic : MonoBehaviour
             CreateTickGeneratorCallback = () => null
         }) ;
 
-        
+
         //_playback.NotesPlaybackFinished += Test;   // Subscribing to playback event
+
+        // Change midi length the english AKA metric
+        PersistentData.data.myMidi = midiFile;
+        
+
         _playback.NotesPlaybackFinished += spawner.spawnNote;
         _playback.InterruptNotesOnStop = true;
         StartCoroutine(StartMusic());
