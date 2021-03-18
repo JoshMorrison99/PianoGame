@@ -30,7 +30,7 @@ public class PianoNoteSpawner : MonoBehaviour
     public List<GameObject> spawnedNotes;
     public List<GameObject> garbageNotes;
 
-    const float NOTE_DESTROY_DEPTH = -10f;
+    const float NOTE_DESTROY_DEPTH = -30f;
 
     const float SEE_YOU_AGAIN_NOTESCALE = 2f;
 
@@ -166,7 +166,7 @@ public class PianoNoteSpawner : MonoBehaviour
 
         if (isSharp)
         {
-            GameObject spawnedNote = Instantiate(SharpNote, new Vector3(position.transform.position.x, position.transform.position.y + 10f, position.transform.position.z), Quaternion.identity);
+            GameObject spawnedNote = Instantiate(SharpNote, new Vector3(position.transform.position.x, position.transform.position.y + 9.55f, position.transform.position.z), Quaternion.identity);
             spawnedNote.transform.localScale = new Vector3(spawnedNote.transform.localScale.x, spawnedNote.transform.localScale.y * duration, 0);
             //ScaleNotes(spawnedNote, SharpNote);
             spawnedNotes.Add(spawnedNote);
