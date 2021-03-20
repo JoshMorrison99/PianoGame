@@ -7,4 +7,5 @@ public class Note_Falling : MonoBehaviour
 
     public int uid;
     public string noteName;
+    public bool isHit = false;
 }

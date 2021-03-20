@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class detectorScript : MonoBehaviour
 {
@@ -10,14 +11,75 @@ public class detectorScript : MonoBehaviour
 
     public PlayLogic Logic;
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    public PianoKeyPresses PianoKeysObject;
+    public List<GameObject> currentOverlappedNotes;
+
+
+    void Start()
     {
+        PianoKeysObject = GameObject.Find("PianoKeyboardUI").GetComponent<PianoKeyPresses>();
+
+        InputSystem.onDeviceChange += (device, change) =>
+        {
+            if (change != InputDeviceChange.Added) return;
+
+            var midiDevice = device as Minis.MidiDevice;
+            if (midiDevice == null) return;
+
+
+
+            midiDevice.onWillNoteOn += (note, velocity) => {
+                PianoKeyPressedUI(note.shortDisplayName);
+            };
+
+            midiDevice.onWillNoteOff += (note) => {
+                PianoKeyLiftedUI(note.shortDisplayName);
+            };
+        };
+    }
+
+    void PianoKeyPressedUI(string notePressed)
+    {
+        foreach (GameObject each in PianoKeysObject.PianoKeys)
+        {
+            if (each.name == notePressed)
+            {
+
+                foreach (GameObject each2 in currentOverlappedNotes)
+                {
+                    if (each.GetComponent<Note_Mine>().noteName == each2.GetComponent<Note_Falling>().noteName && each2.GetComponent<Note_Falling>().isHit == false)
+                    {
+                        each2.GetComponent<Note_Falling>().isHit = true;
+                        IncrementNotesHit();
+                    }
+                }
+
+            }
+        }
+    }
+
+    void PianoKeyLiftedUI(string notePressed)
+    {
+        foreach (GameObject each in PianoKeysObject.PianoKeys)
+        {
+            if (each.name == notePressed)
+            {
+                
+
+
+            }
+        }
+    }
+
+        private void OnTriggerEnter2D(Collider2D collision)
+    {
+
+        
 
         if (collision.gameObject.tag == "Note")
         {
-            overlapScore = true;
             overlapNote = true;
-            initalId = collision.GetComponentInParent<Note_Falling>().uid;
+            currentOverlappedNotes.Add(collision.GetComponentInParent<Note_Falling>().gameObject);
         }
     }
 
@@ -25,61 +87,20 @@ public class detectorScript : MonoBehaviour
     {
         if (collision.gameObject.tag == "Note")
         {
-            overlapScore = false;
             overlapNote = false;
-            this.GetComponentInParent<Note_Mine>().initialPress = false; // Stops the user from being able to hit a note correctly and then continuously hit additional notes by holding down the key
+            currentOverlappedNotes.Remove(collision.GetComponentInParent<Note_Falling>().gameObject);
         }
     }
 
-    private void Update()
-    {
-        if (this.GetComponentInParent<Note_Mine>().isPressed && this.overlapScore == false) // Stops the user from holding down the key to hit all the notes
-        {
-            this.GetComponentInParent<Note_Mine>().initialPress = false;
-        }
-    }
-
-    private void OnTriggerStay2D(Collider2D collision)
-    {
-        if (this.GetComponentInParent<Note_Mine>().initialPress) // Make it so it only updates 1 point
-        {
-            if (this.GetComponentInParent<Note_Mine>().noteName == collision.GetComponentInParent<Note_Falling>().noteName) // makes it so the user cannot hit a note correctly and then hold down the note to hit additional notes and stops the user from being able to hit 2 notes at a time becasue of overlapping UI such as A and A#. Since they are so close together, the user could hit A and also hit A#. This stops that from happeninng by making sure the note names are the same.
-            {
-
-                if (overlapNote)
-                {
-                    IncrementNotesHit();
-                    //this.GetComponentInParent<Note_Mine>().initialPress = false;
-                }
-
-                if (overlapScore)
-                {
-                    // Increment score
-                    Logic.currentScore += 1;
-                }
-            }
-           
-        }
-
-
-
-        
-
-
-    }
+    
     void IncrementNotesHit()
     {
-
-
-
 
         // Note successfully hit
         Logic.numNotesHit += 1;
 
         // Increment exp
         PersistentData.data.exp += 1;
-
-        this.overlapNote = false;
 
     }
 }
