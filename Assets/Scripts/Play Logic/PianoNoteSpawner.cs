@@ -165,22 +165,22 @@ public class PianoNoteSpawner : MonoBehaviour
 
     public void spawnNote(object sender, NotesEventArgs notesArgs)
     {
-        
+        Debug.Log("-----------------EXECUTE---------------- - ");
         var notesList = notesArgs.Notes;
-
-        Debug.Log(notesList);
+        foreach (Note item in notesList)
+        {
+            Debug.Log(item.ToString());
+        }
+            Debug.Log("-----------------FINISHED---------------- - ");
         foreach (Note item in notesList)
         {
             string noteName = item.ToString();
-
+            
             long ticks = 0;
             TempoMap tempoMap = PersistentData.data.myMidi.GetTempoMap();
             MetricTimeSpan metricLength = item.LengthAs<MetricTimeSpan>(tempoMap);
 
             float duration = ((float)metricLength.Milliseconds) / 1000;
-
-
-            Debug.Log( ((float) metricLength.Milliseconds) / 1000);
 
 
             if (noteName == "C2")

@@ -44,6 +44,7 @@ public class MidiMagic : MonoBehaviour
 
     public void ActivateMidi(string Midi_path)
     {
+        
         var midiFile = MidiFile.Read(Midi_path);
         _outputDevice = OutputDevice.GetById(0);
 
@@ -57,9 +58,8 @@ public class MidiMagic : MonoBehaviour
 
         // Change midi length the english AKA metric
         PersistentData.data.myMidi = midiFile;
-
-
-        _playback.NotesPlaybackFinished += spawner.spawnNote;
+        _playback.NotesPlaybackStarted += spawner.spawnNote;
+       
         _playback.InterruptNotesOnStop = true;
         StartCoroutine(StartMusic());
     }
