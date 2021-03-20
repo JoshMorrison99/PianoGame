@@ -14,6 +14,8 @@ public class detectorScript : MonoBehaviour
     public PianoKeyPresses PianoKeysObject;
     public List<GameObject> currentOverlappedNotes;
 
+    public bool isPressed;
+
 
     void Start()
     {
@@ -51,11 +53,33 @@ public class detectorScript : MonoBehaviour
                     {
                         each2.GetComponent<Note_Falling>().isHit = true;
                         IncrementNotesHit();
+                    }else if (each.GetComponent<Note_Mine>().noteName == each2.GetComponent<Note_Falling>().noteName)
+                    {
+                        each.GetComponent<Note_Mine>().initialPress = true;
+                        isPressed = each.GetComponent<Note_Mine>().initialPress = true;
+                        StartCoroutine(ScoreIncrementer());
                     }
                 }
 
             }
         }
+    }
+
+    private IEnumerator ScoreIncrementer()
+    {
+        
+        while (isPressed)
+        {
+
+            Logic.currentScore += 1;
+
+            yield return null;
+
+        }
+
+        yield return null;
+
+
     }
 
     void PianoKeyLiftedUI(string notePressed)
@@ -64,9 +88,9 @@ public class detectorScript : MonoBehaviour
         {
             if (each.name == notePressed)
             {
-                
 
-
+                each.GetComponent<Note_Mine>().initialPress = false;
+                isPressed = each.GetComponent<Note_Mine>().initialPress = false;
             }
         }
     }
@@ -88,6 +112,7 @@ public class detectorScript : MonoBehaviour
         if (collision.gameObject.tag == "Note")
         {
             overlapNote = false;
+            isPressed = false;
             currentOverlappedNotes.Remove(collision.GetComponentInParent<Note_Falling>().gameObject);
         }
     }
