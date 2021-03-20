@@ -11,36 +11,9 @@ public class MidiMagic : MonoBehaviour
     public PianoNoteSpawner spawner;
 
 
-    private Playback _playback;
-    private OutputDevice _outputDevice;
+    public Playback _playback;
+    public OutputDevice _outputDevice;
 
-    private event Action enentClone;
-
-    // Start is called before the first frame update
-    /*void Awake()
-    {
-        var midiFile = MidiFile.Read("./Assets/MidiFiles/John Legend - All of Me.mid");
-        _outputDevice = OutputDevice.GetById(0);
-
-        _playback = midiFile.GetPlayback(_outputDevice, new MidiClockSettings
-        {
-            CreateTickGeneratorCallback = () => null
-        }) ;
-
-
-        //_playback.NotesPlaybackFinished += Test;   // Subscribing to playback event
-
-        // Change midi length the english AKA metric
-        PersistentData.data.myMidi = midiFile;
-        
-
-        _playback.NotesPlaybackFinished += spawner.spawnNote;
-        _playback.InterruptNotesOnStop = true;
-        StartCoroutine(StartMusic());
-
-        
-
-    }*/
 
     public void ActivateMidi(string Midi_path)
     {
@@ -54,40 +27,41 @@ public class MidiMagic : MonoBehaviour
         });
 
 
-        //_playback.NotesPlaybackFinished += Test;   // Subscribing to playback event
-
         // Change midi length the english AKA metric
         PersistentData.data.myMidi = midiFile;
+        PersistentData.data.myPlayback = _playback;
         _playback.NotesPlaybackStarted += spawner.spawnNote;
        
         _playback.InterruptNotesOnStop = true;
+        ResumePlayback();
+    }
+
+
+    public void ResumePlayback()
+    {
         StartCoroutine(StartMusic());
     }
 
-    private void Test(object sender, NotesEventArgs notesArgs)
-    {
-        var notesList = notesArgs.Notes;
-        foreach (Note item in notesList)
-        {
-            Debug.Log(item);
-            //spawner.spawnNote(item.ToString(), 0.3f);
-        }
-    }
+
     private IEnumerator StartMusic()
     {
         _playback.Start();
-        while (_playback.IsRunning)
+        while (_playback.IsRunning || PersistentData.data.isPaused)
         {
-            _playback.TickClock();
+            
+            // Debug.Log("ACTIVE");
+            if ( PersistentData.data.isPaused == false)
+            {
+                _playback.TickClock();
+            }
+            
             yield return null;
 
         }
-        _playback.Dispose();
-    }
+    
+        //_playback.Dispose();
+       
 
-    private void Update()
-    {
-        
     }
 
 }

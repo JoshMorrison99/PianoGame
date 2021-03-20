@@ -60,14 +60,17 @@ public class PlayLogic : MonoBehaviour
         if (songNumber == 1)
         {
             myMidi.ActivateMidi("./Assets/MidiFiles/John Legend - All of Me.mid");
-        }else if (songNumber == 2)
+        }
+        else if (songNumber == 2)
         {
             myMidi.ActivateMidi("./Assets/MidiFiles/Passenger - Let Her Go.mid");
         }
         else if (songNumber == 3)
         {
             myMidi.ActivateMidi("./Assets/MidiFiles/GreenDay-Wake-Me-Up-When-September-ends.mid"); 
-        }else if(songNumber == 4){
+        }
+        else if(songNumber == 4)
+        {
             myMidi.ActivateMidi("./Assets/MidiFiles/Frozen - Let It Go.mid");
         }
 

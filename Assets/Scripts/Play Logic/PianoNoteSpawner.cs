@@ -165,13 +165,8 @@ public class PianoNoteSpawner : MonoBehaviour
 
     public void spawnNote(object sender, NotesEventArgs notesArgs)
     {
-        Debug.Log("-----------------EXECUTE---------------- - ");
         var notesList = notesArgs.Notes;
-        foreach (Note item in notesList)
-        {
-            Debug.Log(item.ToString());
-        }
-            Debug.Log("-----------------FINISHED---------------- - ");
+
         foreach (Note item in notesList)
         {
             string noteName = item.ToString();

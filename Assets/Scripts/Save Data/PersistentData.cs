@@ -16,7 +16,9 @@ public class PersistentData : MonoBehaviour, ISaveable
     public int currentScore;
     public float songSpeed;
     public bool isPaused;
+    public bool isPlaying;
     public MidiFile myMidi;
+    public Playback myPlayback;
 
     // Persistent Player Information
     public int level;

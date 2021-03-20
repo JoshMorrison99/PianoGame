@@ -10,6 +10,8 @@ public class PlayUILogic : MonoBehaviour
 
     public PlayLogic playSongLogic;
 
+    public MidiMagic midi;
+
     public GameObject songFinishedPanel;
 
     public TextMeshProUGUI progressSong;
@@ -45,7 +47,7 @@ public class PlayUILogic : MonoBehaviour
     void Start()
     {
         
-        isPaused = true;
+        isPaused = false;
 
         
         pauseBtn.onClick.AddListener(PauseMenuPressed);
@@ -64,7 +66,7 @@ public class PlayUILogic : MonoBehaviour
         settingsPanel.SetActive(false);
         pauseBtn.gameObject.SetActive(true);
 
-        PauseMenuPressed();
+        //PauseMenuPressed();
     }
 
     // Update is called once per frame
@@ -102,6 +104,7 @@ public class PlayUILogic : MonoBehaviour
             spawner.noteSpeed = PersistentData.data.songSpeed;
             pauseManuPanel.SetActive(false);
             isPaused = false;
+            midi.ResumePlayback();
             PersistentData.data.isPaused = false;
             Time.timeScale = 1;
             Debug.Log("Button Setting to False");
@@ -111,6 +114,7 @@ public class PlayUILogic : MonoBehaviour
             spawner.noteSpeed = 0;
             pauseManuPanel.SetActive(true);
             isPaused = true;
+            midi._playback.Stop();
             PersistentData.data.isPaused = true;
             Time.timeScale = 0.00001f;
             Debug.Log("Button Setting to True");

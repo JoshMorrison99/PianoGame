@@ -29262,6 +29262,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playSongLogic: {fileID: 1623551345}
+  midi: {fileID: 583643342}
   songFinishedPanel: {fileID: 2032058006}
   progressSong: {fileID: 632527311}
   healperLines: {fileID: 279033360}
