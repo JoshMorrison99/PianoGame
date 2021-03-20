@@ -8,7 +8,7 @@ using UnityEngine.SceneManagement;
 public class PlayUILogic : MonoBehaviour
 {
 
-    public PlayLogic playSongLogic;
+    public PlayLogic Logic;
 
     public MidiMagic midi;
 
@@ -46,7 +46,7 @@ public class PlayUILogic : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
         isPaused = false;
 
         
@@ -72,9 +72,9 @@ public class PlayUILogic : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        progressSong.text = playSongLogic.numNotesHit + "/" + playSongLogic.numNotesTotal;
+        progressSong.text = Logic.numNotesHit + "/" + Logic.numNotesTotal;
 
-        scoreText.text = PersistentData.data.currentScore.ToString();
+        scoreText.text = Logic.currentScore.ToString();
     }
 
     public void UpdateFinishedSongText()
@@ -88,13 +88,12 @@ public class PlayUILogic : MonoBehaviour
         piano.SetActive(false);
         pianoKeyLabels.SetActive(false);
 
-        songFinishedPanel.GetComponent<SongFinished>().UpdateText();
-
         // remove the helper lines from the UI
         healperLines.SetActive(false);
 
-        // Save data
-        PersistentData.SaveJsonData(PersistentData.data);
+        songFinishedPanel.GetComponent<SongFinished>().UpdateText();
+
+        
     }
 
     public void PauseMenuPressed()

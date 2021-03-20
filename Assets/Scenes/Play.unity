@@ -11469,6 +11469,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawner: {fileID: 1094638096}
+  UILogic: {fileID: 1329073395}
 --- !u!4 &583643343
 Transform:
   m_ObjectHideFlags: 0
@@ -29261,7 +29262,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3fb957f86712ce64fb8f862950017d5b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playSongLogic: {fileID: 1623551345}
+  Logic: {fileID: 1623551345}
   midi: {fileID: 583643342}
   songFinishedPanel: {fileID: 2032058006}
   progressSong: {fileID: 632527311}
@@ -35010,6 +35011,7 @@ MonoBehaviour:
   songNumber: 0
   numNotesTotal: 0
   numNotesHit: 0
+  currentScore: 0
   myMidi: {fileID: 583643342}
   spawner: {fileID: 1094638096}
   UILogic: {fileID: 1329073395}
@@ -46802,7 +46804,7 @@ MonoBehaviour:
   replaySongBtn: {fileID: 977811914}
   mainMenuBtn: {fileID: 1890308076}
   percentTrunk: 0
-  playSongLogic: {fileID: 1623551345}
+  Logic: {fileID: 1623551345}
 --- !u!1 &2032620531
 GameObject:
   m_ObjectHideFlags: 0

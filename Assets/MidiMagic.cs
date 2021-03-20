@@ -9,16 +9,18 @@ public class MidiMagic : MonoBehaviour
 {
 
     public PianoNoteSpawner spawner;
+    public PlayUILogic UILogic;
 
 
     public Playback _playback;
     public OutputDevice _outputDevice;
+    public MidiFile midiFile;
 
 
     public void ActivateMidi(string Midi_path)
     {
         
-        var midiFile = MidiFile.Read(Midi_path);
+        midiFile = MidiFile.Read(Midi_path);
         _outputDevice = OutputDevice.GetById(0);
 
         _playback = midiFile.GetPlayback(_outputDevice, new MidiClockSettings
@@ -26,6 +28,7 @@ public class MidiMagic : MonoBehaviour
             CreateTickGeneratorCallback = () => null
         });
 
+        Debug.Log("TOTAL NOTES: " + midiFile.GetNotes().Count);
 
         // Change midi length the english AKA metric
         PersistentData.data.myMidi = midiFile;
@@ -58,8 +61,15 @@ public class MidiMagic : MonoBehaviour
             yield return null;
 
         }
-    
-        //_playback.Dispose();
+
+        Debug.Log("ENDED");
+
+        yield return new WaitForSeconds(6f);
+
+        UILogic.UpdateFinishedSongText();
+
+
+        _playback.Dispose();
        
 
     }

@@ -43,7 +43,7 @@ public class NoteCollision : MonoBehaviour
         if (this.GetComponent<Note_Mine>().isPressed && detector.overlapping && this.GetComponent<Note_Mine>().concurrentPress)
         {
             // Increment score
-            PersistentData.data.currentScore += 1;
+            Logic.currentScore += 1;
         }
 
     }

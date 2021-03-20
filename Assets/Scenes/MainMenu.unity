@@ -4463,7 +4463,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -38.9}
+  m_AnchoredPosition: {x: 0, y: -65}
   m_SizeDelta: {x: 500, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &295989877
@@ -5292,12 +5292,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _songID: 1
-  _SongTitle: Ode To Joy
-  _SongAuthor: Beethoven
+  _SongTitle: All of Me
+  _SongAuthor: John Legend
   _highScore: 0
   _plays: 0
   _stars: 
-  _totalNote: 63
+  _totalNote: 1414
   _notesHit: 0
   _songCompletionPercentage: 0
   _Difficulty: Beginner
@@ -10717,8 +10717,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 242.4, y: 94.28}
-  m_SizeDelta: {x: 75.5, y: 50}
+  m_AnchoredPosition: {x: 127.6, y: 94.28}
+  m_SizeDelta: {x: 300, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &674598720
 MonoBehaviour:
@@ -15875,12 +15875,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _songID: 3
-  _SongTitle: A Thousand Years
-  _SongAuthor: Christina Perri
+  _SongTitle: Wake Me Up When September Ends
+  _SongAuthor: Green Day
   _highScore: 0
   _plays: 0
   _stars: 
-  _totalNote: 10
+  _totalNote: 1534
   _notesHit: 0
   _songCompletionPercentage: 0
   _Difficulty: Beginner
@@ -29668,7 +29668,7 @@ MonoBehaviour:
   _highScore: 0
   _plays: 0
   _stars: 
-  _totalNote: 10
+  _totalNote: 310
   _notesHit: 0
   _songCompletionPercentage: 0
   _Difficulty: Beginner
@@ -32960,12 +32960,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _songID: 2
-  _SongTitle: See You Again
-  _SongAuthor: Wiz Khalifa
+  _SongTitle: Let Her Go
+  _SongAuthor: Passenger
   _highScore: 0
   _plays: 0
   _stars: 
-  _totalNote: 296
+  _totalNote: 1170
   _notesHit: 0
   _songCompletionPercentage: 0
   _Difficulty: Expert

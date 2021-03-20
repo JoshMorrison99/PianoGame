@@ -13,10 +13,9 @@ public class PersistentData : MonoBehaviour, ISaveable
 {
     //Temp Persistent Data
     public int selectedSong;
-    public int currentScore;
     public float songSpeed;
     public bool isPaused;
-    public bool isPlaying;
+
     public MidiFile myMidi;
     public Playback myPlayback;
 
@@ -40,7 +39,9 @@ public class PersistentData : MonoBehaviour, ISaveable
 
     private void Start()
     {
-        LoadJsonData(this);
+        LoadJsonData(this);            
+
+        //SaveJsonData(this);             // During development Activate this function first to reset the song list
     }
 
     private void Awake()

@@ -1,3 +1,4 @@
+using Melanchall.DryWetMidi.Interaction;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,6 +9,8 @@ public class PlayLogic : MonoBehaviour
     public int songNumber;
     public float numNotesTotal;
     public float numNotesHit;
+
+    public int currentScore;
 
     public MidiMagic myMidi;
     public PianoNoteSpawner spawner;
@@ -37,13 +40,13 @@ public class PlayLogic : MonoBehaviour
 
     //public Song song;
 
-
-
     float Song1_ScaleFactor_Piano = 1.5f;
 
     // Start is called before the first frame update
     void Start()
     {
+
+        currentScore = 0;
 
         spawner = GameObject.Find("PianoKeyboardUI").GetComponent<PianoNoteSpawner>();
         spawner.noteSpeed = 0.05f;
@@ -52,7 +55,6 @@ public class PlayLogic : MonoBehaviour
         UILogic = GameObject.Find("Canvas").GetComponent<PlayUILogic>();
 
 
-        //numNotesTotal = song.numNotes;
         numNotesHit = 0;
 
         songNumber = PersistentData.data.selectedSong;
@@ -60,6 +62,7 @@ public class PlayLogic : MonoBehaviour
         if (songNumber == 1)
         {
             myMidi.ActivateMidi("./Assets/MidiFiles/John Legend - All of Me.mid");
+           
         }
         else if (songNumber == 2)
         {
@@ -74,8 +77,10 @@ public class PlayLogic : MonoBehaviour
             myMidi.ActivateMidi("./Assets/MidiFiles/Frozen - Let It Go.mid");
         }
 
+        numNotesTotal = myMidi.midiFile.GetNotes().Count;
+
         // Setup song
-        
+
         ScaleScene(songNumber);
 
     }

@@ -15,15 +15,15 @@ public class SongFinished : MonoBehaviour
     
 
     public float percentTrunk;
-    public PlayLogic playSongLogic;
+    public PlayLogic Logic;
 
     public void UpdateText()
     {
-        notesHitText.text = playSongLogic.numNotesHit + "/" + playSongLogic.numNotesTotal + " notes hit";
-        float percent = playSongLogic.numNotesHit / playSongLogic.numNotesTotal;
+        notesHitText.text = Logic.numNotesHit + "/" + Logic.numNotesTotal + " notes hit";
+        float percent = Logic.numNotesHit / Logic.numNotesTotal;
         percentTrunk = Mathf.Round(percent * 100f) / 100f;
         percentageText.text = (percentTrunk * 100).ToString() + "%";
-        updateUserScore();
+        UpdateUserScore();
     }
 
     public void mainMenuButtonClicked()
@@ -36,19 +36,29 @@ public class SongFinished : MonoBehaviour
         SceneManager.LoadScene("Play");
     }
 
-    void updateUserScore()
+    void UpdateUserScore()
+    {
+        updatePercentage();
+        UpdateStars();
+        UpdateHighScore();
+        UpdateNotesHit();
+        UpdatePlays();
+
+        // Save data
+        PersistentData.SaveJsonData(PersistentData.data);
+    }
+
+    void updatePercentage()
     {
 
         if ((percentTrunk * 100) > PersistentData.data._SongList[PersistentData.data.selectedSong - 1]._songCompletionPercentage)
         {
             PersistentData.data._SongList[PersistentData.data.selectedSong - 1]._songCompletionPercentage = (percentTrunk * 100);
-            PersistentData.data._SongList[PersistentData.data.selectedSong - 1]._notesHit = (int) playSongLogic.numNotesHit;
-
-            calculateStars();
+            
         }
     }
 
-    void calculateStars()
+    void UpdateStars()
     {
         if ((percentTrunk * 100) < 25)
         {
@@ -66,6 +76,28 @@ public class SongFinished : MonoBehaviour
         {
             PersistentData.data._SongList[PersistentData.data.selectedSong - 1]._stars = "* * * * *";
         }
+    }
+
+    void UpdateHighScore()
+    {
+        if (Logic.currentScore > PersistentData.data._SongList[PersistentData.data.selectedSong - 1]._highScore)
+        {
+            PersistentData.data._SongList[PersistentData.data.selectedSong - 1]._highScore = Logic.currentScore;
+
+        }
+    }
+
+    void UpdateNotesHit()
+    {
+        if (Logic.numNotesHit > PersistentData.data._SongList[PersistentData.data.selectedSong - 1]._notesHit)
+        {
+            PersistentData.data._SongList[PersistentData.data.selectedSong - 1]._notesHit = (int)Logic.numNotesHit;
+        }
+    }
+
+    void UpdatePlays()
+    {
+        PersistentData.data._SongList[PersistentData.data.selectedSong - 1]._plays += 1;
     }
 
 }

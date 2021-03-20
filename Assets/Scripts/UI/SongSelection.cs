@@ -33,16 +33,7 @@ public class SongSelection : MonoBehaviour
         playerLevelUI.text = PersistentData.data.level.ToString();
         playerMoneyUI.text = PersistentData.data.money.ToString();
 
-        Ode_To_Joy_Percentage.text = PersistentData.data.song_Ode_To_Joy_Completion.ToString() + "%";
-        //See_you_Again_Percentage.text = PersistentData.data.song_See_you_Again_Completion.ToString() + "%";
-
         updatePercentageUI();
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
 
     }
 
@@ -78,7 +69,6 @@ public class SongSelection : MonoBehaviour
     public void onClickPlay()
     {
         songInfo.selectedSong = index + 1;
-        PersistentData.data._SongList[index]._plays += 1;
         SceneManager.LoadScene("Play");
     }
 
