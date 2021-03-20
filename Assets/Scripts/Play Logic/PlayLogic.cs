@@ -67,6 +67,8 @@ public class PlayLogic : MonoBehaviour
         else if (songNumber == 3)
         {
             myMidi.ActivateMidi("./Assets/MidiFiles/GreenDay-Wake-Me-Up-When-September-ends.mid"); 
+        }else if(songNumber == 4){
+            myMidi.ActivateMidi("./Assets/MidiFiles/Frozen - Let It Go.mid");
         }
 
         // Setup song
