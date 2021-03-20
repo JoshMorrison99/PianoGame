@@ -35009,6 +35009,9 @@ MonoBehaviour:
   songNumber: 0
   numNotesTotal: 0
   numNotesHit: 0
+  myMidi: {fileID: 583643342}
+  spawner: {fileID: 1094638096}
+  UILogic: {fileID: 1329073395}
   piano: {fileID: 1094638092}
   pianoLine: {fileID: 1980073370}
   HelperLine1: {fileID: 907845377}

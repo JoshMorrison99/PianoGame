@@ -17,9 +17,9 @@ public class MidiMagic : MonoBehaviour
     private event Action enentClone;
 
     // Start is called before the first frame update
-    void Awake()
+    /*void Awake()
     {
-        var midiFile = MidiFile.Read("./Assets/MidiFiles/AlanWalker-Faded.mid");
+        var midiFile = MidiFile.Read("./Assets/MidiFiles/John Legend - All of Me.mid");
         _outputDevice = OutputDevice.GetById(0);
 
         _playback = midiFile.GetPlayback(_outputDevice, new MidiClockSettings
@@ -40,6 +40,28 @@ public class MidiMagic : MonoBehaviour
 
         
 
+    }*/
+
+    public void ActivateMidi(string Midi_path)
+    {
+        var midiFile = MidiFile.Read(Midi_path);
+        _outputDevice = OutputDevice.GetById(0);
+
+        _playback = midiFile.GetPlayback(_outputDevice, new MidiClockSettings
+        {
+            CreateTickGeneratorCallback = () => null
+        });
+
+
+        //_playback.NotesPlaybackFinished += Test;   // Subscribing to playback event
+
+        // Change midi length the english AKA metric
+        PersistentData.data.myMidi = midiFile;
+
+
+        _playback.NotesPlaybackFinished += spawner.spawnNote;
+        _playback.InterruptNotesOnStop = true;
+        StartCoroutine(StartMusic());
     }
 
     private void Test(object sender, NotesEventArgs notesArgs)

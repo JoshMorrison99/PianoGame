@@ -9,6 +9,10 @@ public class PlayLogic : MonoBehaviour
     public float numNotesTotal;
     public float numNotesHit;
 
+    public MidiMagic myMidi;
+    public PianoNoteSpawner spawner;
+    public PlayUILogic UILogic;
+
     public GameObject piano;
     public GameObject pianoLine;
 
@@ -40,6 +44,14 @@ public class PlayLogic : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+
+        spawner = GameObject.Find("PianoKeyboardUI").GetComponent<PianoNoteSpawner>();
+        spawner.noteSpeed = 0.05f;
+        PersistentData.data.songSpeed = 0.05f;
+
+        UILogic = GameObject.Find("Canvas").GetComponent<PlayUILogic>();
+
+
         //numNotesTotal = song.numNotes;
         numNotesHit = 0;
 
@@ -47,16 +59,14 @@ public class PlayLogic : MonoBehaviour
         // Add song
         if (songNumber == 1)
         {
-            this.gameObject.AddComponent<Song1>();
-            numNotesTotal = gameObject.GetComponent<Song1>().numNotes;
+            myMidi.ActivateMidi("./Assets/MidiFiles/John Legend - All of Me.mid");
         }else if (songNumber == 2)
         {
-            this.gameObject.AddComponent<Song2_See_you_Again>();
-            numNotesTotal = gameObject.GetComponent<Song2_See_you_Again>().numNotes;
-        }else if (songNumber == 3)
+            myMidi.ActivateMidi("./Assets/MidiFiles/Passenger - Let Her Go.mid");
+        }
+        else if (songNumber == 3)
         {
-            this.gameObject.AddComponent<Song3_A_Thousand_Years>();
-            numNotesTotal = gameObject.GetComponent<Song3_A_Thousand_Years>().numNotes;
+            myMidi.ActivateMidi("./Assets/MidiFiles/GreenDay-Wake-Me-Up-When-September-ends.mid"); 
         }
 
         // Setup song
