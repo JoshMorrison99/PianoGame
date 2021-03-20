@@ -15,8 +15,8 @@ public class Note_Mine : MonoBehaviour
     }
 
     public bool isPressed = false;
-    //public bool initialPress = false;
-    public bool concurrentPress = false;
+    public bool initialPress = false;
+    public int initalPressID;
     public string noteName;
 
 /*    IEnumerator ExecuteAfterTime(float time)

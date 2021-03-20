@@ -104,12 +104,14 @@ public class PianoNoteSpawner : MonoBehaviour
     public GameObject Gs6;
     public GameObject As6;
 
+    int uid;
 
     float noteHeight = 10f;
     float noteSharpHeight = 9.55f;
 
     private void Start()
     {
+        uid = 0;
         setupUI();
     }
 
@@ -182,362 +184,484 @@ public class PianoNoteSpawner : MonoBehaviour
             {
                 GameObject spawnedNote = Instantiate(Note, new Vector3(C2.transform.position.x, C2.transform.position.y + noteHeight, C2.transform.position.z), Quaternion.identity);
                 spawnedNote.transform.localScale = new Vector3(spawnedNote.transform.localScale.x, spawnedNote.transform.localScale.y * duration, 0);
+                spawnedNote.GetComponent<Note_Falling>().uid = uid + 1;
+                spawnedNote.GetComponent<Note_Falling>().noteName = noteName;
                 spawnedNotes.Add(spawnedNote);
             }
             else if (noteName == "C#2")
             {
                 GameObject spawnedNote = Instantiate(SharpNote, new Vector3(Cs2.transform.position.x, C2.transform.position.y + noteSharpHeight, Cs2.transform.position.z), Quaternion.identity);
                 spawnedNote.transform.localScale = new Vector3(spawnedNote.transform.localScale.x, spawnedNote.transform.localScale.y * duration, 0);
+                spawnedNote.GetComponent<Note_Falling>().uid = uid + 1;
+                spawnedNote.GetComponent<Note_Falling>().noteName = noteName;
                 spawnedNotes.Add(spawnedNote);
             }
             else if (noteName == "D2")
             {
                 GameObject spawnedNote = Instantiate(Note, new Vector3(D2.transform.position.x, D2.transform.position.y + noteHeight, D2.transform.position.z), Quaternion.identity);
                 spawnedNote.transform.localScale = new Vector3(spawnedNote.transform.localScale.x, spawnedNote.transform.localScale.y * duration, 0);
+                spawnedNote.GetComponent<Note_Falling>().uid = uid + 1;
+                spawnedNote.GetComponent<Note_Falling>().noteName = noteName;
                 spawnedNotes.Add(spawnedNote);
             }
             else if (noteName == "D#2")
             {
                 GameObject spawnedNote = Instantiate(SharpNote, new Vector3(Ds2.transform.position.x, Ds2.transform.position.y + noteSharpHeight, Ds2.transform.position.z), Quaternion.identity);
                 spawnedNote.transform.localScale = new Vector3(spawnedNote.transform.localScale.x, spawnedNote.transform.localScale.y * duration, 0);
+                spawnedNote.GetComponent<Note_Falling>().uid = uid + 1;
+                spawnedNote.GetComponent<Note_Falling>().noteName = noteName;
                 spawnedNotes.Add(spawnedNote);
             }
             else if (noteName == "E2")
             {
                 GameObject spawnedNote = Instantiate(Note, new Vector3(E2.transform.position.x, E2.transform.position.y + noteHeight, E2.transform.position.z), Quaternion.identity);
                 spawnedNote.transform.localScale = new Vector3(spawnedNote.transform.localScale.x, spawnedNote.transform.localScale.y * duration, 0);
+                spawnedNote.GetComponent<Note_Falling>().uid = uid + 1;
+                spawnedNote.GetComponent<Note_Falling>().noteName = noteName;
                 spawnedNotes.Add(spawnedNote);
             }
             else if (noteName == "F2")
             {
                 GameObject spawnedNote = Instantiate(Note, new Vector3(F2.transform.position.x, F2.transform.position.y + noteHeight, F2.transform.position.z), Quaternion.identity);
                 spawnedNote.transform.localScale = new Vector3(spawnedNote.transform.localScale.x, spawnedNote.transform.localScale.y * duration, 0);
+                spawnedNote.GetComponent<Note_Falling>().uid = uid + 1;
+                spawnedNote.GetComponent<Note_Falling>().noteName = noteName;
                 spawnedNotes.Add(spawnedNote);
             }
             else if (noteName == "F#2")
             {
                 GameObject spawnedNote = Instantiate(SharpNote, new Vector3(Fs2.transform.position.x, Fs2.transform.position.y + noteSharpHeight, Fs2.transform.position.z), Quaternion.identity);
                 spawnedNote.transform.localScale = new Vector3(spawnedNote.transform.localScale.x, spawnedNote.transform.localScale.y * duration, 0);
+                spawnedNote.GetComponent<Note_Falling>().uid = uid + 1;
+                spawnedNote.GetComponent<Note_Falling>().noteName = noteName;
                 spawnedNotes.Add(spawnedNote);
             }
             else if (noteName == "G2")
             {
                 GameObject spawnedNote = Instantiate(Note, new Vector3(G2.transform.position.x, G2.transform.position.y + noteHeight, G2.transform.position.z), Quaternion.identity);
                 spawnedNote.transform.localScale = new Vector3(spawnedNote.transform.localScale.x, spawnedNote.transform.localScale.y * duration, 0);
+                spawnedNote.GetComponent<Note_Falling>().uid = uid + 1;
+                spawnedNote.GetComponent<Note_Falling>().noteName = noteName;
                 spawnedNotes.Add(spawnedNote);
             }
             else if (noteName == "G#2")
             {
                 GameObject spawnedNote = Instantiate(SharpNote, new Vector3(Gs2.transform.position.x, Gs2.transform.position.y + noteSharpHeight, Gs2.transform.position.z), Quaternion.identity);
                 spawnedNote.transform.localScale = new Vector3(spawnedNote.transform.localScale.x, spawnedNote.transform.localScale.y * duration, 0);
+                spawnedNote.GetComponent<Note_Falling>().uid = uid + 1;
+                spawnedNote.GetComponent<Note_Falling>().noteName = noteName;
                 spawnedNotes.Add(spawnedNote);
             }
             else if (noteName == "A2")
             {
                 GameObject spawnedNote = Instantiate(Note, new Vector3(A2.transform.position.x, A2.transform.position.y + noteHeight, A2.transform.position.z), Quaternion.identity);
                 spawnedNote.transform.localScale = new Vector3(spawnedNote.transform.localScale.x, spawnedNote.transform.localScale.y * duration, 0);
+                spawnedNote.GetComponent<Note_Falling>().uid = uid + 1;
+                spawnedNote.GetComponent<Note_Falling>().noteName = noteName;
                 spawnedNotes.Add(spawnedNote);
             }
             else if (noteName == "A#2")
             {
                 GameObject spawnedNote = Instantiate(SharpNote, new Vector3(As2.transform.position.x, As2.transform.position.y + noteSharpHeight, As2.transform.position.z), Quaternion.identity);
                 spawnedNote.transform.localScale = new Vector3(spawnedNote.transform.localScale.x, spawnedNote.transform.localScale.y * duration, 0);
+                spawnedNote.GetComponent<Note_Falling>().uid = uid + 1;
+                spawnedNote.GetComponent<Note_Falling>().noteName = noteName;
                 spawnedNotes.Add(spawnedNote);
             }
             else if (noteName == "B2")
             {
                 GameObject spawnedNote = Instantiate(Note, new Vector3(B2.transform.position.x, B2.transform.position.y + noteHeight, B2.transform.position.z), Quaternion.identity);
                 spawnedNote.transform.localScale = new Vector3(spawnedNote.transform.localScale.x, spawnedNote.transform.localScale.y * duration, 0);
+                spawnedNote.GetComponent<Note_Falling>().uid = uid + 1;
+                spawnedNote.GetComponent<Note_Falling>().noteName = noteName;
                 spawnedNotes.Add(spawnedNote);
             }
             else if (noteName == "C3")
             {
                 GameObject spawnedNote = Instantiate(Note, new Vector3(C2.transform.position.x, C2.transform.position.y + noteHeight, C2.transform.position.z), Quaternion.identity);
                 spawnedNote.transform.localScale = new Vector3(spawnedNote.transform.localScale.x, spawnedNote.transform.localScale.y * duration, 0);
+                spawnedNote.GetComponent<Note_Falling>().uid = uid + 1;
+                spawnedNote.GetComponent<Note_Falling>().noteName = noteName;
                 spawnedNotes.Add(spawnedNote);
             }
             else if (noteName == "C#3")
             {
                 GameObject spawnedNote = Instantiate(SharpNote, new Vector3(Cs3.transform.position.x, Cs3.transform.position.y + noteSharpHeight, Cs3.transform.position.z), Quaternion.identity);
                 spawnedNote.transform.localScale = new Vector3(spawnedNote.transform.localScale.x, spawnedNote.transform.localScale.y * duration, 0);
+                spawnedNote.GetComponent<Note_Falling>().uid = uid + 1;
+                spawnedNote.GetComponent<Note_Falling>().noteName = noteName;
                 spawnedNotes.Add(spawnedNote);
             }
             else if (noteName == "D3")
             {
                 GameObject spawnedNote = Instantiate(Note, new Vector3(D3.transform.position.x, D3.transform.position.y + noteHeight, D3.transform.position.z), Quaternion.identity);
                 spawnedNote.transform.localScale = new Vector3(spawnedNote.transform.localScale.x, spawnedNote.transform.localScale.y * duration, 0);
+                spawnedNote.GetComponent<Note_Falling>().uid = uid + 1;
+                spawnedNote.GetComponent<Note_Falling>().noteName = noteName;
                 spawnedNotes.Add(spawnedNote);
             }
             else if (noteName == "D#3")
             {
                 GameObject spawnedNote = Instantiate(SharpNote, new Vector3(Ds3.transform.position.x, Ds3.transform.position.y + noteSharpHeight, Ds3.transform.position.z), Quaternion.identity);
                 spawnedNote.transform.localScale = new Vector3(spawnedNote.transform.localScale.x, spawnedNote.transform.localScale.y * duration, 0);
+                spawnedNote.GetComponent<Note_Falling>().uid = uid + 1;
+                spawnedNote.GetComponent<Note_Falling>().noteName = noteName;
                 spawnedNotes.Add(spawnedNote);
             }
             else if (noteName == "E3")
             {
                 GameObject spawnedNote = Instantiate(Note, new Vector3(E3.transform.position.x, E3.transform.position.y + noteHeight, E3.transform.position.z), Quaternion.identity);
                 spawnedNote.transform.localScale = new Vector3(spawnedNote.transform.localScale.x, spawnedNote.transform.localScale.y * duration, 0);
+                spawnedNote.GetComponent<Note_Falling>().uid = uid + 1;
+                spawnedNote.GetComponent<Note_Falling>().noteName = noteName;
                 spawnedNotes.Add(spawnedNote);
             }
             else if (noteName == "F3")
             {
                 GameObject spawnedNote = Instantiate(Note, new Vector3(F3.transform.position.x, F3.transform.position.y + noteHeight, F3.transform.position.z), Quaternion.identity);
                 spawnedNote.transform.localScale = new Vector3(spawnedNote.transform.localScale.x, spawnedNote.transform.localScale.y * duration, 0);
+                spawnedNote.GetComponent<Note_Falling>().uid = uid + 1;
+                spawnedNote.GetComponent<Note_Falling>().noteName = noteName;
                 spawnedNotes.Add(spawnedNote);
             }
             else if (noteName == "F#3")
             {
                 GameObject spawnedNote = Instantiate(SharpNote, new Vector3(Fs3.transform.position.x, Fs3.transform.position.y + noteSharpHeight, Fs3.transform.position.z), Quaternion.identity);
                 spawnedNote.transform.localScale = new Vector3(spawnedNote.transform.localScale.x, spawnedNote.transform.localScale.y * duration, 0);
+                spawnedNote.GetComponent<Note_Falling>().uid = uid + 1;
+                spawnedNote.GetComponent<Note_Falling>().noteName = noteName;
                 spawnedNotes.Add(spawnedNote);
             }
             else if (noteName == "G3")
             {
                 GameObject spawnedNote = Instantiate(Note, new Vector3(G3.transform.position.x, G3.transform.position.y + noteHeight, G3.transform.position.z), Quaternion.identity);
                 spawnedNote.transform.localScale = new Vector3(spawnedNote.transform.localScale.x, spawnedNote.transform.localScale.y * duration, 0);
+                spawnedNote.GetComponent<Note_Falling>().uid = uid + 1;
+                spawnedNote.GetComponent<Note_Falling>().noteName = noteName;
                 spawnedNotes.Add(spawnedNote);
             }
             else if (noteName == "G#3")
             {
                 GameObject spawnedNote = Instantiate(SharpNote, new Vector3(Gs3.transform.position.x, Gs3.transform.position.y + noteSharpHeight, Gs3.transform.position.z), Quaternion.identity);
                 spawnedNote.transform.localScale = new Vector3(spawnedNote.transform.localScale.x, spawnedNote.transform.localScale.y * duration, 0);
+                spawnedNote.GetComponent<Note_Falling>().uid = uid + 1;
+                spawnedNote.GetComponent<Note_Falling>().noteName = noteName;
                 spawnedNotes.Add(spawnedNote);
             }
             else if (noteName == "A3")
             {
                 GameObject spawnedNote = Instantiate(Note, new Vector3(A3.transform.position.x, A3.transform.position.y + noteHeight, A3.transform.position.z), Quaternion.identity);
                 spawnedNote.transform.localScale = new Vector3(spawnedNote.transform.localScale.x, spawnedNote.transform.localScale.y * duration, 0);
+                spawnedNote.GetComponent<Note_Falling>().uid = uid + 1;
+                spawnedNote.GetComponent<Note_Falling>().noteName = noteName;
                 spawnedNotes.Add(spawnedNote);
             }
             else if (noteName == "A#3")
             {
                 GameObject spawnedNote = Instantiate(SharpNote, new Vector3(As3.transform.position.x, As3.transform.position.y + noteSharpHeight, As3.transform.position.z), Quaternion.identity);
                 spawnedNote.transform.localScale = new Vector3(spawnedNote.transform.localScale.x, spawnedNote.transform.localScale.y * duration, 0);
+                spawnedNote.GetComponent<Note_Falling>().uid = uid + 1;
+                spawnedNote.GetComponent<Note_Falling>().noteName = noteName;
                 spawnedNotes.Add(spawnedNote);
             }
             else if (noteName == "B3")
             {
                 GameObject spawnedNote = Instantiate(Note, new Vector3(B3.transform.position.x, B3.transform.position.y + noteHeight, B3.transform.position.z), Quaternion.identity);
                 spawnedNote.transform.localScale = new Vector3(spawnedNote.transform.localScale.x, spawnedNote.transform.localScale.y * duration, 0);
+                spawnedNote.GetComponent<Note_Falling>().uid = uid + 1;
+                spawnedNote.GetComponent<Note_Falling>().noteName = noteName;
                 spawnedNotes.Add(spawnedNote);
             }
             else if (noteName == "C4")
             {
                 GameObject spawnedNote = Instantiate(Note, new Vector3(C4.transform.position.x, C4.transform.position.y + noteHeight, C4.transform.position.z), Quaternion.identity);
                 spawnedNote.transform.localScale = new Vector3(spawnedNote.transform.localScale.x, spawnedNote.transform.localScale.y * duration, 0);
+                spawnedNote.GetComponent<Note_Falling>().uid = uid + 1;
+                spawnedNote.GetComponent<Note_Falling>().noteName = noteName;
                 spawnedNotes.Add(spawnedNote);
             }
             else if (noteName == "C#4")
             {
                 GameObject spawnedNote = Instantiate(SharpNote, new Vector3(Cs4.transform.position.x, C4.transform.position.y + noteSharpHeight, Cs4.transform.position.z), Quaternion.identity);
                 spawnedNote.transform.localScale = new Vector3(spawnedNote.transform.localScale.x, spawnedNote.transform.localScale.y * duration, 0);
+                spawnedNote.GetComponent<Note_Falling>().uid = uid + 1;
+                spawnedNote.GetComponent<Note_Falling>().noteName = noteName;
                 spawnedNotes.Add(spawnedNote);
             }
             else if (noteName == "D4")
             {
                 GameObject spawnedNote = Instantiate(Note, new Vector3(D4.transform.position.x, D4.transform.position.y + noteHeight, D4.transform.position.z), Quaternion.identity);
                 spawnedNote.transform.localScale = new Vector3(spawnedNote.transform.localScale.x, spawnedNote.transform.localScale.y * duration, 0);
+                spawnedNote.GetComponent<Note_Falling>().uid = uid + 1;
+                spawnedNote.GetComponent<Note_Falling>().noteName = noteName;
                 spawnedNotes.Add(spawnedNote);
             }
             else if (noteName == "D#4")
             {
                 GameObject spawnedNote = Instantiate(SharpNote, new Vector3(Ds4.transform.position.x, Ds4.transform.position.y + noteSharpHeight, Ds4.transform.position.z), Quaternion.identity);
                 spawnedNote.transform.localScale = new Vector3(spawnedNote.transform.localScale.x, spawnedNote.transform.localScale.y * duration, 0);
+                spawnedNote.GetComponent<Note_Falling>().uid = uid + 1;
+                spawnedNote.GetComponent<Note_Falling>().noteName = noteName;
                 spawnedNotes.Add(spawnedNote);
             }
             else if (noteName == "E4")
             {
                 GameObject spawnedNote = Instantiate(Note, new Vector3(E4.transform.position.x, E4.transform.position.y + noteHeight, E4.transform.position.z), Quaternion.identity);
                 spawnedNote.transform.localScale = new Vector3(spawnedNote.transform.localScale.x, spawnedNote.transform.localScale.y * duration, 0);
+                spawnedNote.GetComponent<Note_Falling>().uid = uid + 1;
+                spawnedNote.GetComponent<Note_Falling>().noteName = noteName;
                 spawnedNotes.Add(spawnedNote);
             }
             else if (noteName == "F4")
             {
                 GameObject spawnedNote = Instantiate(Note, new Vector3(F4.transform.position.x, F4.transform.position.y + noteHeight, F4.transform.position.z), Quaternion.identity);
                 spawnedNote.transform.localScale = new Vector3(spawnedNote.transform.localScale.x, spawnedNote.transform.localScale.y * duration, 0);
+                spawnedNote.GetComponent<Note_Falling>().uid = uid + 1;
+                spawnedNote.GetComponent<Note_Falling>().noteName = noteName;
                 spawnedNotes.Add(spawnedNote);
             }
             else if (noteName == "F#4")
             {
                 GameObject spawnedNote = Instantiate(SharpNote, new Vector3(Fs4.transform.position.x, Fs4.transform.position.y + noteSharpHeight, Fs4.transform.position.z), Quaternion.identity);
                 spawnedNote.transform.localScale = new Vector3(spawnedNote.transform.localScale.x, spawnedNote.transform.localScale.y * duration, 0);
+                spawnedNote.GetComponent<Note_Falling>().uid = uid + 1;
+                spawnedNote.GetComponent<Note_Falling>().noteName = noteName;
                 spawnedNotes.Add(spawnedNote);
             }
             else if (noteName == "G4")
             {
                 GameObject spawnedNote = Instantiate(Note, new Vector3(G4.transform.position.x, G4.transform.position.y + noteHeight, G4.transform.position.z), Quaternion.identity);
                 spawnedNote.transform.localScale = new Vector3(spawnedNote.transform.localScale.x, spawnedNote.transform.localScale.y * duration, 0);
+                spawnedNote.GetComponent<Note_Falling>().uid = uid + 1;
+                spawnedNote.GetComponent<Note_Falling>().noteName = noteName;
                 spawnedNotes.Add(spawnedNote);
             }
             else if (noteName == "G#4")
             {
                 GameObject spawnedNote = Instantiate(SharpNote, new Vector3(Gs4.transform.position.x, Gs4.transform.position.y + noteSharpHeight, Gs4.transform.position.z), Quaternion.identity);
                 spawnedNote.transform.localScale = new Vector3(spawnedNote.transform.localScale.x, spawnedNote.transform.localScale.y * duration, 0);
+                spawnedNote.GetComponent<Note_Falling>().uid = uid + 1;
+                spawnedNote.GetComponent<Note_Falling>().noteName = noteName;
                 spawnedNotes.Add(spawnedNote);
             }
             else if (noteName == "A4")
             {
                 GameObject spawnedNote = Instantiate(Note, new Vector3(A4.transform.position.x, A4.transform.position.y + noteHeight, A4.transform.position.z), Quaternion.identity);
                 spawnedNote.transform.localScale = new Vector3(spawnedNote.transform.localScale.x, spawnedNote.transform.localScale.y * duration, 0);
+                spawnedNote.GetComponent<Note_Falling>().uid = uid + 1;
+                spawnedNote.GetComponent<Note_Falling>().noteName = noteName;
                 spawnedNotes.Add(spawnedNote);
             }
             else if (noteName == "A#4")
             {
                 GameObject spawnedNote = Instantiate(SharpNote, new Vector3(As4.transform.position.x, As4.transform.position.y + noteSharpHeight, As4.transform.position.z), Quaternion.identity);
                 spawnedNote.transform.localScale = new Vector3(spawnedNote.transform.localScale.x, spawnedNote.transform.localScale.y * duration, 0);
+                spawnedNote.GetComponent<Note_Falling>().uid = uid + 1;
+                spawnedNote.GetComponent<Note_Falling>().noteName = noteName;
                 spawnedNotes.Add(spawnedNote);
             }
             else if (noteName == "B4")
             {
                 GameObject spawnedNote = Instantiate(Note, new Vector3(B4.transform.position.x, B4.transform.position.y + noteHeight, B4.transform.position.z), Quaternion.identity);
                 spawnedNote.transform.localScale = new Vector3(spawnedNote.transform.localScale.x, spawnedNote.transform.localScale.y * duration, 0);
+                spawnedNote.GetComponent<Note_Falling>().uid = uid + 1;
+                spawnedNote.GetComponent<Note_Falling>().noteName = noteName;
                 spawnedNotes.Add(spawnedNote);
             }
             else if (noteName == "C5")
             {
                 GameObject spawnedNote = Instantiate(Note, new Vector3(C5.transform.position.x, C5.transform.position.y + noteHeight, C5.transform.position.z), Quaternion.identity);
                 spawnedNote.transform.localScale = new Vector3(spawnedNote.transform.localScale.x, spawnedNote.transform.localScale.y * duration, 0);
+                spawnedNote.GetComponent<Note_Falling>().uid = uid + 1;
+                spawnedNote.GetComponent<Note_Falling>().noteName = noteName;
                 spawnedNotes.Add(spawnedNote);
             }
             else if (noteName == "C#5")
             {
                 GameObject spawnedNote = Instantiate(SharpNote, new Vector3(Cs5.transform.position.x, Cs5.transform.position.y + noteSharpHeight, Cs5.transform.position.z), Quaternion.identity);
                 spawnedNote.transform.localScale = new Vector3(spawnedNote.transform.localScale.x, spawnedNote.transform.localScale.y * duration, 0);
+                spawnedNote.GetComponent<Note_Falling>().uid = uid + 1;
+                spawnedNote.GetComponent<Note_Falling>().noteName = noteName;
                 spawnedNotes.Add(spawnedNote);
             }
             else if (noteName == "D5")
             {
                 GameObject spawnedNote = Instantiate(Note, new Vector3(D5.transform.position.x, D5.transform.position.y + noteHeight, D5.transform.position.z), Quaternion.identity);
                 spawnedNote.transform.localScale = new Vector3(spawnedNote.transform.localScale.x, spawnedNote.transform.localScale.y * duration, 0);
+                spawnedNote.GetComponent<Note_Falling>().uid = uid + 1;
+                spawnedNote.GetComponent<Note_Falling>().noteName = noteName;
                 spawnedNotes.Add(spawnedNote);
             }
             else if (noteName == "D#5")
             {
                 GameObject spawnedNote = Instantiate(SharpNote, new Vector3(Ds5.transform.position.x, Ds5.transform.position.y + noteSharpHeight, Ds5.transform.position.z), Quaternion.identity);
                 spawnedNote.transform.localScale = new Vector3(spawnedNote.transform.localScale.x, spawnedNote.transform.localScale.y * duration, 0);
+                spawnedNote.GetComponent<Note_Falling>().uid = uid + 1;
+                spawnedNote.GetComponent<Note_Falling>().noteName = noteName;
                 spawnedNotes.Add(spawnedNote);
             }
             else if (noteName == "E5")
             {
                 GameObject spawnedNote = Instantiate(Note, new Vector3(E5.transform.position.x, E5.transform.position.y + noteHeight, E5.transform.position.z), Quaternion.identity);
                 spawnedNote.transform.localScale = new Vector3(spawnedNote.transform.localScale.x, spawnedNote.transform.localScale.y * duration, 0);
+                spawnedNote.GetComponent<Note_Falling>().uid = uid + 1;
+                spawnedNote.GetComponent<Note_Falling>().noteName = noteName;
                 spawnedNotes.Add(spawnedNote);
             }
             else if (noteName == "F5")
             {
                 GameObject spawnedNote = Instantiate(Note, new Vector3(F5.transform.position.x, F5.transform.position.y + noteHeight, F5.transform.position.z), Quaternion.identity);
                 spawnedNote.transform.localScale = new Vector3(spawnedNote.transform.localScale.x, spawnedNote.transform.localScale.y * duration, 0);
+                spawnedNote.GetComponent<Note_Falling>().uid = uid + 1;
+                spawnedNote.GetComponent<Note_Falling>().noteName = noteName;
                 spawnedNotes.Add(spawnedNote);
             }
             else if (noteName == "F#5")
             {
                 GameObject spawnedNote = Instantiate(SharpNote, new Vector3(Fs5.transform.position.x, Fs5.transform.position.y + noteSharpHeight, Fs5.transform.position.z), Quaternion.identity);
                 spawnedNote.transform.localScale = new Vector3(spawnedNote.transform.localScale.x, spawnedNote.transform.localScale.y * duration, 0);
+                spawnedNote.GetComponent<Note_Falling>().uid = uid + 1;
+                spawnedNote.GetComponent<Note_Falling>().noteName = noteName;
                 spawnedNotes.Add(spawnedNote);
             }
             else if (noteName == "G5")
             {
                 GameObject spawnedNote = Instantiate(Note, new Vector3(G5.transform.position.x, G5.transform.position.y + noteHeight, G5.transform.position.z), Quaternion.identity);
                 spawnedNote.transform.localScale = new Vector3(spawnedNote.transform.localScale.x, spawnedNote.transform.localScale.y * duration, 0);
+                spawnedNote.GetComponent<Note_Falling>().uid = uid + 1;
+                spawnedNote.GetComponent<Note_Falling>().noteName = noteName;
                 spawnedNotes.Add(spawnedNote);
             }
             else if (noteName == "G#5")
             {
                 GameObject spawnedNote = Instantiate(SharpNote, new Vector3(Gs5.transform.position.x, Gs5.transform.position.y + noteSharpHeight, Gs5.transform.position.z), Quaternion.identity);
                 spawnedNote.transform.localScale = new Vector3(spawnedNote.transform.localScale.x, spawnedNote.transform.localScale.y * duration, 0);
+                spawnedNote.GetComponent<Note_Falling>().uid = uid + 1;
+                spawnedNote.GetComponent<Note_Falling>().noteName = noteName;
                 spawnedNotes.Add(spawnedNote);
             }
             else if (noteName == "A5")
             {
                 GameObject spawnedNote = Instantiate(Note, new Vector3(A5.transform.position.x, A5.transform.position.y + noteHeight, A5.transform.position.z), Quaternion.identity);
                 spawnedNote.transform.localScale = new Vector3(spawnedNote.transform.localScale.x, spawnedNote.transform.localScale.y * duration, 0);
+                spawnedNote.GetComponent<Note_Falling>().uid = uid + 1;
+                spawnedNote.GetComponent<Note_Falling>().noteName = noteName;
                 spawnedNotes.Add(spawnedNote);
             }
             else if (noteName == "A#5")
             {
                 GameObject spawnedNote = Instantiate(SharpNote, new Vector3(As5.transform.position.x, As5.transform.position.y + noteSharpHeight, As5.transform.position.z), Quaternion.identity);
                 spawnedNote.transform.localScale = new Vector3(spawnedNote.transform.localScale.x, spawnedNote.transform.localScale.y * duration, 0);
+                spawnedNote.GetComponent<Note_Falling>().uid = uid + 1;
+                spawnedNote.GetComponent<Note_Falling>().noteName = noteName;
                 spawnedNotes.Add(spawnedNote);
             }
             else if (noteName == "B5")
             {
                 GameObject spawnedNote = Instantiate(Note, new Vector3(B5.transform.position.x, B5.transform.position.y + noteHeight, B5.transform.position.z), Quaternion.identity);
                 spawnedNote.transform.localScale = new Vector3(spawnedNote.transform.localScale.x, spawnedNote.transform.localScale.y * duration, 0);
+                spawnedNote.GetComponent<Note_Falling>().uid = uid + 1;
+                spawnedNote.GetComponent<Note_Falling>().noteName = noteName;
                 spawnedNotes.Add(spawnedNote);
             }
             else if (noteName == "C6")
             {
                 GameObject spawnedNote = Instantiate(Note, new Vector3(C6.transform.position.x, C6.transform.position.y + noteHeight, C6.transform.position.z), Quaternion.identity);
                 spawnedNote.transform.localScale = new Vector3(spawnedNote.transform.localScale.x, spawnedNote.transform.localScale.y * duration, 0);
+                spawnedNote.GetComponent<Note_Falling>().uid = uid + 1;
+                spawnedNote.GetComponent<Note_Falling>().noteName = noteName;
                 spawnedNotes.Add(spawnedNote);
             }
             else if (noteName == "C#6")
             {
                 GameObject spawnedNote = Instantiate(SharpNote, new Vector3(Cs6.transform.position.x, Cs6.transform.position.y + noteSharpHeight, Cs6.transform.position.z), Quaternion.identity);
                 spawnedNote.transform.localScale = new Vector3(spawnedNote.transform.localScale.x, spawnedNote.transform.localScale.y * duration, 0);
+                spawnedNote.GetComponent<Note_Falling>().uid = uid + 1;
+                spawnedNote.GetComponent<Note_Falling>().noteName = noteName;
                 spawnedNotes.Add(spawnedNote);
             }
             else if (noteName == "D6")
             {
                 GameObject spawnedNote = Instantiate(Note, new Vector3(D6.transform.position.x, D6.transform.position.y + noteHeight, D6.transform.position.z), Quaternion.identity);
                 spawnedNote.transform.localScale = new Vector3(spawnedNote.transform.localScale.x, spawnedNote.transform.localScale.y * duration, 0);
+                spawnedNote.GetComponent<Note_Falling>().uid = uid + 1;
+                spawnedNote.GetComponent<Note_Falling>().noteName = noteName;
                 spawnedNotes.Add(spawnedNote);
             }
             else if (noteName == "D#6")
             {
                 GameObject spawnedNote = Instantiate(SharpNote, new Vector3(Ds6.transform.position.x, Ds6.transform.position.y + noteSharpHeight, Ds6.transform.position.z), Quaternion.identity);
                 spawnedNote.transform.localScale = new Vector3(spawnedNote.transform.localScale.x, spawnedNote.transform.localScale.y * duration, 0);
+                spawnedNote.GetComponent<Note_Falling>().uid = uid + 1;
+                spawnedNote.GetComponent<Note_Falling>().noteName = noteName;
                 spawnedNotes.Add(spawnedNote);
             }
             else if (noteName == "E6")
             {
                 GameObject spawnedNote = Instantiate(Note, new Vector3(E6.transform.position.x, E6.transform.position.y + noteHeight, E6.transform.position.z), Quaternion.identity);
                 spawnedNote.transform.localScale = new Vector3(spawnedNote.transform.localScale.x, spawnedNote.transform.localScale.y * duration, 0);
+                spawnedNote.GetComponent<Note_Falling>().uid = uid + 1;
+                spawnedNote.GetComponent<Note_Falling>().noteName = noteName;
                 spawnedNotes.Add(spawnedNote);
             }
             else if (noteName == "F6")
             {
                 GameObject spawnedNote = Instantiate(Note, new Vector3(F6.transform.position.x, F6.transform.position.y + noteHeight, F6.transform.position.z), Quaternion.identity);
                 spawnedNote.transform.localScale = new Vector3(spawnedNote.transform.localScale.x, spawnedNote.transform.localScale.y * duration, 0);
+                spawnedNote.GetComponent<Note_Falling>().uid = uid + 1;
+                spawnedNote.GetComponent<Note_Falling>().noteName = noteName;
                 spawnedNotes.Add(spawnedNote);
             }
             else if (noteName == "F#6")
             {
                 GameObject spawnedNote = Instantiate(SharpNote, new Vector3(Fs6.transform.position.x, Fs6.transform.position.y + noteSharpHeight, Fs6.transform.position.z), Quaternion.identity);
                 spawnedNote.transform.localScale = new Vector3(spawnedNote.transform.localScale.x, spawnedNote.transform.localScale.y * duration, 0);
+                spawnedNote.GetComponent<Note_Falling>().uid = uid + 1;
+                spawnedNote.GetComponent<Note_Falling>().noteName = noteName;
                 spawnedNotes.Add(spawnedNote);
             }
             else if (noteName == "G6")
             {
                 GameObject spawnedNote = Instantiate(Note, new Vector3(G6.transform.position.x, G6.transform.position.y + noteHeight, G6.transform.position.z), Quaternion.identity);
                 spawnedNote.transform.localScale = new Vector3(spawnedNote.transform.localScale.x, spawnedNote.transform.localScale.y * duration, 0);
+                spawnedNote.GetComponent<Note_Falling>().uid = uid + 1;
+                spawnedNote.GetComponent<Note_Falling>().noteName = noteName;
                 spawnedNotes.Add(spawnedNote);
             }
             else if (noteName == "G#6")
             {
                 GameObject spawnedNote = Instantiate(SharpNote, new Vector3(Gs6.transform.position.x, Gs6.transform.position.y + noteSharpHeight, Gs6.transform.position.z), Quaternion.identity);
                 spawnedNote.transform.localScale = new Vector3(spawnedNote.transform.localScale.x, spawnedNote.transform.localScale.y * duration, 0);
+                spawnedNote.GetComponent<Note_Falling>().uid = uid + 1;
+                spawnedNote.GetComponent<Note_Falling>().noteName = noteName;
                 spawnedNotes.Add(spawnedNote);
             }
             else if (noteName == "A6")
             {
                 GameObject spawnedNote = Instantiate(Note, new Vector3(A6.transform.position.x, A6.transform.position.y + noteHeight, A6.transform.position.z), Quaternion.identity);
                 spawnedNote.transform.localScale = new Vector3(spawnedNote.transform.localScale.x, spawnedNote.transform.localScale.y * duration, 0);
+                spawnedNote.GetComponent<Note_Falling>().uid = uid + 1;
+                spawnedNote.GetComponent<Note_Falling>().noteName = noteName;
                 spawnedNotes.Add(spawnedNote);
             }
             else if (noteName == "A#6")
             {
                 GameObject spawnedNote = Instantiate(SharpNote, new Vector3(As6.transform.position.x, As6.transform.position.y + noteSharpHeight, As6.transform.position.z), Quaternion.identity);
                 spawnedNote.transform.localScale = new Vector3(spawnedNote.transform.localScale.x, spawnedNote.transform.localScale.y * duration, 0);
+                spawnedNote.GetComponent<Note_Falling>().uid = uid + 1;
+                spawnedNote.GetComponent<Note_Falling>().noteName = noteName;
                 spawnedNotes.Add(spawnedNote);
             }
             else if (noteName == "B6")
             {
                 GameObject spawnedNote = Instantiate(Note, new Vector3(B6.transform.position.x, B6.transform.position.y + noteHeight, B6.transform.position.z), Quaternion.identity);
                 spawnedNote.transform.localScale = new Vector3(spawnedNote.transform.localScale.x, spawnedNote.transform.localScale.y * duration, 0);
+                spawnedNote.GetComponent<Note_Falling>().uid = uid + 1;
+                spawnedNote.GetComponent<Note_Falling>().noteName = noteName;
                 spawnedNotes.Add(spawnedNote);
             }
+
+            uid += 1;
         }
 
 
@@ -747,132 +871,132 @@ public class PianoNoteSpawner : MonoBehaviour
     {
         // Octave 2
         C2 = pianoListRef.PianoKeys[0];
-        C2.GetComponent<Note_Mine>().noteName = "C";
+        C2.GetComponent<Note_Mine>().noteName = "C2";
         D2 = pianoListRef.PianoKeys[1];
-        D2.GetComponent<Note_Mine>().noteName = "D";
+        D2.GetComponent<Note_Mine>().noteName = "D2";
         E2 = pianoListRef.PianoKeys[2];
-        E2.GetComponent<Note_Mine>().noteName = "E";
+        E2.GetComponent<Note_Mine>().noteName = "E2";
         F2 = pianoListRef.PianoKeys[3];
-        F2.GetComponent<Note_Mine>().noteName = "F";
+        F2.GetComponent<Note_Mine>().noteName = "F2";
         G2 = pianoListRef.PianoKeys[4];
-        G2.GetComponent<Note_Mine>().noteName = "G";
+        G2.GetComponent<Note_Mine>().noteName = "G2";
         A2 = pianoListRef.PianoKeys[5];
-        A2.GetComponent<Note_Mine>().noteName = "A";
+        A2.GetComponent<Note_Mine>().noteName = "A2";
         B2 = pianoListRef.PianoKeys[6];
-        B2.GetComponent<Note_Mine>().noteName = "B";
+        B2.GetComponent<Note_Mine>().noteName = "B2";
         Cs2 = pianoListRef.PianoKeys[7];
-        Cs2.GetComponent<Note_Mine>().noteName = "C#";
+        Cs2.GetComponent<Note_Mine>().noteName = "C#2";
         Ds2 = pianoListRef.PianoKeys[8];
-        Ds2.GetComponent<Note_Mine>().noteName = "D#";
+        Ds2.GetComponent<Note_Mine>().noteName = "D#2";
         Fs2 = pianoListRef.PianoKeys[9];
-        Fs2.GetComponent<Note_Mine>().noteName = "F#";
+        Fs2.GetComponent<Note_Mine>().noteName = "F#2";
         Gs2 = pianoListRef.PianoKeys[10];
-        Gs2.GetComponent<Note_Mine>().noteName = "G#";
+        Gs2.GetComponent<Note_Mine>().noteName = "G#2";
         As2 = pianoListRef.PianoKeys[11];
-        As2.GetComponent<Note_Mine>().noteName = "A#";
+        As2.GetComponent<Note_Mine>().noteName = "A#2";
 
         // Octave 3
         C3 = pianoListRef.PianoKeys[12];
-        C3.GetComponent<Note_Mine>().noteName = "C";
+        C3.GetComponent<Note_Mine>().noteName = "C3";
         D3 = pianoListRef.PianoKeys[13];
-        D3.GetComponent<Note_Mine>().noteName = "D";
+        D3.GetComponent<Note_Mine>().noteName = "D3";
         E3 = pianoListRef.PianoKeys[14];
-        E3.GetComponent<Note_Mine>().noteName = "E";
+        E3.GetComponent<Note_Mine>().noteName = "E3";
         F3 = pianoListRef.PianoKeys[15];
-        F3.GetComponent<Note_Mine>().noteName = "F";
+        F3.GetComponent<Note_Mine>().noteName = "F3";
         G3 = pianoListRef.PianoKeys[16];
-        G3.GetComponent<Note_Mine>().noteName = "G";
+        G3.GetComponent<Note_Mine>().noteName = "G3";
         A3 = pianoListRef.PianoKeys[17];
-        A3.GetComponent<Note_Mine>().noteName = "A";
+        A3.GetComponent<Note_Mine>().noteName = "A3";
         B3 = pianoListRef.PianoKeys[18];
-        B3.GetComponent<Note_Mine>().noteName = "B";
+        B3.GetComponent<Note_Mine>().noteName = "B3";
         Cs3 = pianoListRef.PianoKeys[19];
-        Cs3.GetComponent<Note_Mine>().noteName = "C#";
+        Cs3.GetComponent<Note_Mine>().noteName = "C#3";
         Ds3 = pianoListRef.PianoKeys[20];
-        Ds3.GetComponent<Note_Mine>().noteName = "D#";
+        Ds3.GetComponent<Note_Mine>().noteName = "D#3";
         Fs3 = pianoListRef.PianoKeys[21];
-        Fs3.GetComponent<Note_Mine>().noteName = "F#";
+        Fs3.GetComponent<Note_Mine>().noteName = "F#3";
         Gs3 = pianoListRef.PianoKeys[22];
-        Gs3.GetComponent<Note_Mine>().noteName = "G#";
+        Gs3.GetComponent<Note_Mine>().noteName = "G#3";
         As3 = pianoListRef.PianoKeys[23];
-        As3.GetComponent<Note_Mine>().noteName = "A#";
+        As3.GetComponent<Note_Mine>().noteName = "A#3";
 
         // Octave 4
         C4 = pianoListRef.PianoKeys[24];
-        C4.GetComponent<Note_Mine>().noteName = "C";
+        C4.GetComponent<Note_Mine>().noteName = "C4";
         D4 = pianoListRef.PianoKeys[25];
-        D4.GetComponent<Note_Mine>().noteName = "D";
+        D4.GetComponent<Note_Mine>().noteName = "D4";
         E4 = pianoListRef.PianoKeys[26];
-        E4.GetComponent<Note_Mine>().noteName = "E";
+        E4.GetComponent<Note_Mine>().noteName = "E4";
         F4 = pianoListRef.PianoKeys[27];
-        F4.GetComponent<Note_Mine>().noteName = "F";
+        F4.GetComponent<Note_Mine>().noteName = "F4";
         G4 = pianoListRef.PianoKeys[28];
-        G4.GetComponent<Note_Mine>().noteName = "G";
+        G4.GetComponent<Note_Mine>().noteName = "G4";
         A4 = pianoListRef.PianoKeys[29];
-        A4.GetComponent<Note_Mine>().noteName = "A";
+        A4.GetComponent<Note_Mine>().noteName = "A4";
         B4 = pianoListRef.PianoKeys[30];
-        B4.GetComponent<Note_Mine>().noteName = "B";
+        B4.GetComponent<Note_Mine>().noteName = "B4";
         Cs4 = pianoListRef.PianoKeys[31];
-        Cs4.GetComponent<Note_Mine>().noteName = "C#";
+        Cs4.GetComponent<Note_Mine>().noteName = "C#4";
         Ds4 = pianoListRef.PianoKeys[32];
-        Ds4.GetComponent<Note_Mine>().noteName = "D#";
+        Ds4.GetComponent<Note_Mine>().noteName = "D#4";
         Fs4 = pianoListRef.PianoKeys[33];
-        Fs4.GetComponent<Note_Mine>().noteName = "F#";
+        Fs4.GetComponent<Note_Mine>().noteName = "F#4";
         Gs4 = pianoListRef.PianoKeys[34];
-        Gs4.GetComponent<Note_Mine>().noteName = "G#";
+        Gs4.GetComponent<Note_Mine>().noteName = "G#4";
         As4 = pianoListRef.PianoKeys[35];
-        As4.GetComponent<Note_Mine>().noteName = "A#";
+        As4.GetComponent<Note_Mine>().noteName = "A#4";
 
         // Octave 5
         C5 = pianoListRef.PianoKeys[36];
-        C5.GetComponent<Note_Mine>().noteName = "C";
+        C5.GetComponent<Note_Mine>().noteName = "C5";
         D5 = pianoListRef.PianoKeys[37];
-        D5.GetComponent<Note_Mine>().noteName = "D";
+        D5.GetComponent<Note_Mine>().noteName = "D5";
         E5 = pianoListRef.PianoKeys[38];
-        E5.GetComponent<Note_Mine>().noteName = "E";
+        E5.GetComponent<Note_Mine>().noteName = "E5";
         F5 = pianoListRef.PianoKeys[39];
-        F5.GetComponent<Note_Mine>().noteName = "F";
+        F5.GetComponent<Note_Mine>().noteName = "F5";
         G5 = pianoListRef.PianoKeys[40];
-        G5.GetComponent<Note_Mine>().noteName = "G";
+        G5.GetComponent<Note_Mine>().noteName = "G5";
         A5 = pianoListRef.PianoKeys[41];
-        A5.GetComponent<Note_Mine>().noteName = "A";
+        A5.GetComponent<Note_Mine>().noteName = "A5";
         B5 = pianoListRef.PianoKeys[42];
-        B5.GetComponent<Note_Mine>().noteName = "B";
+        B5.GetComponent<Note_Mine>().noteName = "B5";
         Cs5 = pianoListRef.PianoKeys[43];
-        Cs5.GetComponent<Note_Mine>().noteName = "C#";
+        Cs5.GetComponent<Note_Mine>().noteName = "C#5";
         Ds5 = pianoListRef.PianoKeys[44];
-        Ds5.GetComponent<Note_Mine>().noteName = "D#";
+        Ds5.GetComponent<Note_Mine>().noteName = "D#5";
         Fs5 = pianoListRef.PianoKeys[45];
-        Fs5.GetComponent<Note_Mine>().noteName = "F#";
+        Fs5.GetComponent<Note_Mine>().noteName = "F#5";
         Gs5 = pianoListRef.PianoKeys[46];
-        Gs5.GetComponent<Note_Mine>().noteName = "G#";
+        Gs5.GetComponent<Note_Mine>().noteName = "G#5";
         As5 = pianoListRef.PianoKeys[47];
-        As5.GetComponent<Note_Mine>().noteName = "A#";
+        As5.GetComponent<Note_Mine>().noteName = "A#5";
 
         // Octave 6
         C6 = pianoListRef.PianoKeys[48];
-        C6.GetComponent<Note_Mine>().noteName = "C";
+        C6.GetComponent<Note_Mine>().noteName = "C6";
         D6 = pianoListRef.PianoKeys[49];
-        D6.GetComponent<Note_Mine>().noteName = "D";
+        D6.GetComponent<Note_Mine>().noteName = "D6";
         E6 = pianoListRef.PianoKeys[50];
-        E6.GetComponent<Note_Mine>().noteName = "E";
+        E6.GetComponent<Note_Mine>().noteName = "E6";
         F6 = pianoListRef.PianoKeys[51];
-        F6.GetComponent<Note_Mine>().noteName = "F";
+        F6.GetComponent<Note_Mine>().noteName = "F6";
         G6 = pianoListRef.PianoKeys[52];
-        G6.GetComponent<Note_Mine>().noteName = "G";
+        G6.GetComponent<Note_Mine>().noteName = "G6";
         A6 = pianoListRef.PianoKeys[53];
-        A6.GetComponent<Note_Mine>().noteName = "A";
+        A6.GetComponent<Note_Mine>().noteName = "A6";
         B6 = pianoListRef.PianoKeys[54];
-        B6.GetComponent<Note_Mine>().noteName = "B";
+        B6.GetComponent<Note_Mine>().noteName = "B6";
         Cs6 = pianoListRef.PianoKeys[55];
-        Cs6.GetComponent<Note_Mine>().noteName = "C#";
+        Cs6.GetComponent<Note_Mine>().noteName = "C#6";
         Ds6 = pianoListRef.PianoKeys[56];
-        Ds6.GetComponent<Note_Mine>().noteName = "D#";
+        Ds6.GetComponent<Note_Mine>().noteName = "D#6";
         Fs6 = pianoListRef.PianoKeys[57];
-        Fs6.GetComponent<Note_Mine>().noteName = "F#";
+        Fs6.GetComponent<Note_Mine>().noteName = "F#6";
         Gs6 = pianoListRef.PianoKeys[58];
-        Gs6.GetComponent<Note_Mine>().noteName = "G#";
+        Gs6.GetComponent<Note_Mine>().noteName = "G#6";
         As6 = pianoListRef.PianoKeys[59];
-        As6.GetComponent<Note_Mine>().noteName = "A#";
+        As6.GetComponent<Note_Mine>().noteName = "A#6";
     }
 }

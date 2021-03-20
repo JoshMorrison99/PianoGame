@@ -38,13 +38,15 @@ public class PianoKeyPresses : MonoBehaviour
         {
             if (each.name == notePressed)
             {
+                // Activate the Note
+                each.GetComponent<Note_Mine>().isPressed = true;
+                each.GetComponent<Note_Mine>().initialPress = true;
+
                 currentPressedNotes.Add(each);
                 each.GetComponent<SpriteRenderer>().color = Color.red;
 
-                // Activate the Note
-                each.GetComponent<Note_Mine>().isPressed = true;
-                //each.GetComponent<Note>().initialPress = true;
-                each.GetComponent<Note_Mine>().concurrentPress = true;
+                
+
             }
         }
     }
@@ -55,6 +57,10 @@ public class PianoKeyPresses : MonoBehaviour
         {
             if (each.name == notePressed)
             {
+                // Deactivate the Note
+                each.GetComponent<Note_Mine>().isPressed = false;
+                each.GetComponent<Note_Mine>().initialPress = false;
+
                 currentPressedNotes.Remove(each);
                 if (notePressed.Contains("#"))
                 {
@@ -65,9 +71,7 @@ public class PianoKeyPresses : MonoBehaviour
                     each.GetComponent<SpriteRenderer>().color = Color.white;
                 }
 
-                // Deactivate the Note
-                each.GetComponent<Note_Mine>().isPressed = false;
-                each.GetComponent<Note_Mine>().concurrentPress = false;
+                
             }
         }
     }

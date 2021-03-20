@@ -10,9 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 6502018358438618828}
   - component: {fileID: 3963016895333675342}
+  - component: {fileID: -8098775217287253445}
   m_Layer: 0
   m_Name: NoteSharp
-  m_TagString: Untagged
+  m_TagString: Note
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -83,6 +84,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &-8098775217287253445
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6651485447471313367}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d204aba5d14ebd44b18fc8e7fed3df2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &816356718701830065
 PrefabInstance:
   m_ObjectHideFlags: 0

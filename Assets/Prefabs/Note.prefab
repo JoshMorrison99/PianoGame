@@ -10,9 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 6269557313827323859}
   - component: {fileID: 4306928647602726993}
+  - component: {fileID: -103409990877253022}
   m_Layer: 0
   m_Name: Note
-  m_TagString: Untagged
+  m_TagString: Note
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -83,6 +84,19 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &-103409990877253022
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5869576602154264776}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d204aba5d14ebd44b18fc8e7fed3df2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  uid: 0
 --- !u!1001 &463437605448812206
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -165,6 +179,10 @@ PrefabInstance:
     - target: {fileID: 7623965341483069158, guid: f56d58803da423f49809e6dcec0d2ca3, type: 3}
       propertyPath: m_Name
       value: NoteChild
+      objectReference: {fileID: 0}
+    - target: {fileID: 7623965341483069158, guid: f56d58803da423f49809e6dcec0d2ca3, type: 3}
+      propertyPath: m_TagString
+      value: Note
       objectReference: {fileID: 0}
     - target: {fileID: 7623965341483069159, guid: f56d58803da423f49809e6dcec0d2ca3, type: 3}
       propertyPath: m_Sprite
