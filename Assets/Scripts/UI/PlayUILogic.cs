@@ -46,17 +46,20 @@ public class PlayUILogic : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        spawner = GameObject.Find("PianoKeyboardUI").GetComponent<PianoNoteSpawner>();
 
         isPaused = false;
+        ActivateGame();
 
-        
+
+
         pauseBtn.onClick.AddListener(PauseMenuPressed);
         pauseMainMenuButton.onClick.AddListener(PauseMainMenuClicked);
         pauseReplayButton.onClick.AddListener(PauseReplayClicked);
         pauseSettingsButton.onClick.AddListener(PauseSettingsClicked);
         pauseResumeButton.onClick.AddListener(PauseMenuPressed);
 
-        spawner = GameObject.Find("PianoKeyboardUI").GetComponent<PianoNoteSpawner>();
+        
 
         pianoBackground.SetActive(true);
         pianoKeyLabels.SetActive(true);
@@ -122,14 +125,29 @@ public class PlayUILogic : MonoBehaviour
        
     }
 
+    void ActivateGame()
+    {
+        spawner.noteSpeed = PersistentData.data.songSpeed;
+        pauseManuPanel.SetActive(false);
+        isPaused = false;
+        //midi.ResumePlayback();
+        PersistentData.data.isPaused = false;
+        Time.timeScale = 1;
+        Debug.Log("Button Setting to False");
+    }
+
     public void PauseMainMenuClicked()
     {
+        midi.ReplaySong();
         SceneManager.LoadScene("MainMenu");
+        Debug.Log("REPLAY");
     }
 
     public void PauseReplayClicked()
     {
+        midi.ReplaySong();
         SceneManager.LoadScene("Play");
+        
     }
 
     public void PauseSettingsClicked()

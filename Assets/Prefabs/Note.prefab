@@ -97,6 +97,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   uid: 0
+  noteName: 
+  isHit: 0
 --- !u!1001 &463437605448812206
 PrefabInstance:
   m_ObjectHideFlags: 0

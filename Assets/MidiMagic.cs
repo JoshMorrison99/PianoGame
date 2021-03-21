@@ -74,4 +74,11 @@ public class MidiMagic : MonoBehaviour
 
     }
 
+    public void ReplaySong()
+    {
+        Debug.Log("Dispose Playback");
+        _playback.Dispose();
+        _outputDevice.Dispose();
+    }
+
 }

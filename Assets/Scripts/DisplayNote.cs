@@ -26,7 +26,7 @@ public class DisplayNote : MonoBehaviour
             };
 
             midiDevice.onWillNoteOff += (note) => {
-                displayNoteText.text = " ";
+                //displayNoteText.text = " ";
             };
         };
     }

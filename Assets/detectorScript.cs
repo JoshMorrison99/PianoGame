@@ -19,6 +19,7 @@ public class detectorScript : MonoBehaviour
 
     void Start()
     {
+        
         PianoKeysObject = GameObject.Find("PianoKeyboardUI").GetComponent<PianoKeyPresses>();
 
         InputSystem.onDeviceChange += (device, change) =>

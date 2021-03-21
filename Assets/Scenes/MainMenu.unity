@@ -5764,7 +5764,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selectedSong: 0
-  currentScore: 0
   songSpeed: 0
   isPaused: 0
   level: 0
@@ -5907,6 +5906,49 @@ RectTransform:
   m_AnchoredPosition: {x: -179.5, y: 167.29999}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &383260416
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 383260417}
+  - component: {fileID: 383260418}
+  m_Layer: 0
+  m_Name: DeviceFinder
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &383260417
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 383260416}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.3931274, y: -1.982452, z: -3.8051035}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &383260418
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 383260416}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3f09b59aee64ca4c8968329c41ad990, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &397753439
 GameObject:
   m_ObjectHideFlags: 0
@@ -16444,10 +16486,6 @@ MonoBehaviour:
   m_ActionEvents:
   - m_PersistentCalls:
       m_Calls: []
-    m_ActionId: 49abdaf8-b8b4-4b07-95d8-67e48c883ece
-    m_ActionName: Piano/PianoAction[/MidiDevice/note000,/MidiDevice/note001,/MidiDevice/note002,/MidiDevice/note003,/MidiDevice/note004,/MidiDevice/note005,/MidiDevice/note006,/MidiDevice/note007,/MidiDevice/note008,/MidiDevice/note009,/MidiDevice/note010,/MidiDevice/note011,/MidiDevice/note012,/MidiDevice/note013,/MidiDevice/note013,/MidiDevice/note014,/MidiDevice/note015,/MidiDevice/note016,/MidiDevice/note017,/MidiDevice/note018,/MidiDevice/note019,/MidiDevice/note020,/MidiDevice/note021,/MidiDevice/note022,/MidiDevice/note023,/MidiDevice/note024,/MidiDevice/note025,/MidiDevice/note026,/MidiDevice/note027,/MidiDevice/note028,/MidiDevice/note029,/MidiDevice/note030,/MidiDevice/note031,/MidiDevice/note032,/MidiDevice/note033,/MidiDevice/note034,/MidiDevice/note035,/MidiDevice/note036,/MidiDevice/note037,/MidiDevice/note038,/MidiDevice/note039,/MidiDevice/note040,/MidiDevice/note041,/MidiDevice/note042,/MidiDevice/note043,/MidiDevice/note044,/MidiDevice/note045,/MidiDevice/note046,/MidiDevice/note047,/MidiDevice/note048,/MidiDevice/note049,/MidiDevice/note050,/MidiDevice/note063,/MidiDevice/note052,/MidiDevice/note053,/MidiDevice/note054,/MidiDevice/note055,/MidiDevice/note056,/MidiDevice/note057,/MidiDevice/note058,/MidiDevice/note059,/MidiDevice/note060,/MidiDevice/note061,/MidiDevice/note062,/MidiDevice/note063,/MidiDevice/note064,/MidiDevice/note065,/MidiDevice/note066,/MidiDevice/note067,/MidiDevice/note068,/MidiDevice/note069,/MidiDevice/note070,/MidiDevice/note071,/MidiDevice/note072,/MidiDevice/note073,/MidiDevice/note074,/MidiDevice/note075,/MidiDevice/note076,/MidiDevice/note077,/MidiDevice/note078,/MidiDevice/note079,/MidiDevice/note080,/MidiDevice/note081,/MidiDevice/note082,/MidiDevice/note083,/MidiDevice/note084,/MidiDevice/note085,/MidiDevice/note086,/MidiDevice/note087,/MidiDevice/note088,/MidiDevice/note089,/MidiDevice/note090,/MidiDevice/note091,/MidiDevice/note092,/MidiDevice/note093,/MidiDevice/note094,/MidiDevice/note095,/MidiDevice/note096,/MidiDevice/note097,/MidiDevice/note098,/MidiDevice/note099,/MidiDevice/note100,/MidiDevice/note101,/MidiDevice/note102,/MidiDevice/note103,/MidiDevice/note104,/MidiDevice/note105,/MidiDevice/note106,/MidiDevice/note107,/MidiDevice/note108,/MidiDevice/note109,/MidiDevice/note110,/MidiDevice/note111,/MidiDevice/note112,/MidiDevice/note113,/MidiDevice/note114,/MidiDevice/note115,/MidiDevice/note116,/MidiDevice/note117,/MidiDevice/note118,/MidiDevice/note119,/MidiDevice/note120,/MidiDevice/note121,/MidiDevice/note122,/MidiDevice/note123,/MidiDevice/note124,/MidiDevice/note125,/MidiDevice/note126,/MidiDevice/note127]
-  - m_PersistentCalls:
-      m_Calls: []
     m_ActionId: e7ff4da3-28e2-45b9-b0a7-09ed517d3f9e
     m_ActionName: UI/Navigate
   - m_PersistentCalls:
@@ -16486,9 +16524,13 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 4eea98ab-03a3-4f0b-ab43-86226b4f2fcb
     m_ActionName: UI/TrackedDeviceOrientation
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 4f98c893-56ae-4c7a-9934-dc27313d1a20
+    m_ActionName: Piano/PianoAction[/MidiDevice/note000,/MidiDevice/note001,/MidiDevice/note002,/MidiDevice/note003,/MidiDevice/note004,/MidiDevice/note005,/MidiDevice/note006,/MidiDevice/note007,/MidiDevice/note008,/MidiDevice/note009,/MidiDevice/note010,/MidiDevice/note011,/MidiDevice/note012,/MidiDevice/note013,/MidiDevice/note013,/MidiDevice/note014,/MidiDevice/note015,/MidiDevice/note016,/MidiDevice/note017,/MidiDevice/note018,/MidiDevice/note019,/MidiDevice/note020,/MidiDevice/note021,/MidiDevice/note022,/MidiDevice/note023,/MidiDevice/note024,/MidiDevice/note025,/MidiDevice/note026,/MidiDevice/note027,/MidiDevice/note028,/MidiDevice/note029,/MidiDevice/note030,/MidiDevice/note031,/MidiDevice/note032,/MidiDevice/note033,/MidiDevice/note034,/MidiDevice/note035,/MidiDevice/note036,/MidiDevice/note037,/MidiDevice/note038,/MidiDevice/note039,/MidiDevice/note040,/MidiDevice/note041,/MidiDevice/note042,/MidiDevice/note043,/MidiDevice/note044,/MidiDevice/note045,/MidiDevice/note046,/MidiDevice/note047,/MidiDevice/note048,/MidiDevice/note049,/MidiDevice/note050,/MidiDevice/note063,/MidiDevice/note052,/MidiDevice/note053,/MidiDevice/note054,/MidiDevice/note055,/MidiDevice/note056,/MidiDevice/note057,/MidiDevice/note058,/MidiDevice/note059,/MidiDevice/note060,/MidiDevice/note061,/MidiDevice/note062,/MidiDevice/note063,/MidiDevice/note064,/MidiDevice/note065,/MidiDevice/note066,/MidiDevice/note067,/MidiDevice/note068,/MidiDevice/note069,/MidiDevice/note070,/MidiDevice/note071,/MidiDevice/note072,/MidiDevice/note073,/MidiDevice/note074,/MidiDevice/note075,/MidiDevice/note076,/MidiDevice/note077,/MidiDevice/note078,/MidiDevice/note079,/MidiDevice/note080,/MidiDevice/note081,/MidiDevice/note082,/MidiDevice/note083,/MidiDevice/note084,/MidiDevice/note085,/MidiDevice/note086,/MidiDevice/note087,/MidiDevice/note088,/MidiDevice/note089,/MidiDevice/note090,/MidiDevice/note091,/MidiDevice/note092,/MidiDevice/note093,/MidiDevice/note094,/MidiDevice/note095,/MidiDevice/note096,/MidiDevice/note097,/MidiDevice/note098,/MidiDevice/note099,/MidiDevice/note100,/MidiDevice/note101,/MidiDevice/note102,/MidiDevice/note103,/MidiDevice/note104,/MidiDevice/note105,/MidiDevice/note106,/MidiDevice/note107,/MidiDevice/note108,/MidiDevice/note109,/MidiDevice/note110,/MidiDevice/note111,/MidiDevice/note112,/MidiDevice/note113,/MidiDevice/note114,/MidiDevice/note115,/MidiDevice/note116,/MidiDevice/note117,/MidiDevice/note118,/MidiDevice/note119,/MidiDevice/note120,/MidiDevice/note121,/MidiDevice/note122,/MidiDevice/note123,/MidiDevice/note124,/MidiDevice/note125,/MidiDevice/note126,/MidiDevice/note127]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
-  m_DefaultActionMap: Piano
+  m_DefaultActionMap: 957384f0-b14e-43aa-a7ec-e23001bba058
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 519420031}
 --- !u!4 &1008043836

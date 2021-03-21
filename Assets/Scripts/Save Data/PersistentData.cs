@@ -5,6 +5,7 @@ using System;
 using System.IO;
 using Melanchall.DryWetMidi.Devices;
 using Melanchall.DryWetMidi.Core;
+using UnityEngine.UI;
 //Gets all the data into one class and one constructor
 //From Brackeys Save and Load System in Unity
 
@@ -39,15 +40,45 @@ public class PersistentData : MonoBehaviour, ISaveable
 
     private void Start()
     {
-        LoadJsonData(this);            
+        ReInitializeData();
 
         //SaveJsonData(this);             // During development Activate this function first to reset the song list
     }
 
+    public void ReInitializeData()
+    {
+        _SongList.Clear();
+
+        LoadJsonData(this);
+
+        GameObject Content = GameObject.Find("Content");
+
+        int ContentChildren = Content.transform.childCount;
+
+        Debug.Log(ContentChildren);
+
+        for (int i = 0; i < ContentChildren; i++)
+        {
+            _SongList.Add(Content.transform.GetChild(i).GetComponent<SongInfo>());
+            Debug.Log(Content.transform.GetChild(i).GetComponent<SongInfo>());
+        }
+    }
+
     private void Awake()
     {
-        DontDestroyOnLoad(gameObject);
-        data = this;
+        
+        //data = this;
+
+        if (data != null && data != this)
+        {
+            Destroy(this.gameObject);
+        }
+        else
+        {
+            data = this;
+            Debug.Log("Firsdt");
+            DontDestroyOnLoad(gameObject);
+        }
     }
 
 /*    private void OnApplicationQuit()

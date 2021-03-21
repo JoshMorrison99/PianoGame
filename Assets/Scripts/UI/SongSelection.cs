@@ -8,7 +8,7 @@ using TMPro;
 public class SongSelection : MonoBehaviour
 {
 
-    public PersistentData songInfo;
+    //public PersistentData songInfo;
     private int index;
 
     public TextMeshProUGUI Ode_To_Joy_Percentage;
@@ -33,9 +33,13 @@ public class SongSelection : MonoBehaviour
         playerLevelUI.text = PersistentData.data.level.ToString();
         playerMoneyUI.text = PersistentData.data.money.ToString();
 
+        PersistentData.data.ReInitializeData();
         updatePercentageUI();
+        
 
     }
+
+    
 
     public void updatePercentageUI()
     {
@@ -43,14 +47,17 @@ public class SongSelection : MonoBehaviour
         int loopIndex = 0;
         foreach (Transform child in content.transform)
         {
-            Debug.Log(child.gameObject);
+            //Debug.Log(child.gameObject);
             Transform percentageText = child.gameObject.transform.Find("Percentage");
-            Debug.Log(PersistentData.data._SongList[loopIndex]._songCompletionPercentage);
-            Debug.Log(loopIndex);
+            //Debug.Log(PersistentData.data._SongList[loopIndex]._songCompletionPercentage);
+            //Debug.Log(loopIndex);
+            Debug.Log(PersistentData.data._SongList);
             percentageText.gameObject.GetComponentInChildren<TextMeshProUGUI>().text = PersistentData.data._SongList[loopIndex]._songCompletionPercentage.ToString() + "%";
             loopIndex += 1;
         }
     }
+
+    
 
 
     public void onClickSongSelection(Button button)
@@ -68,7 +75,7 @@ public class SongSelection : MonoBehaviour
 
     public void onClickPlay()
     {
-        songInfo.selectedSong = index + 1;
+        PersistentData.data.selectedSong = index + 1;
         SceneManager.LoadScene("Play");
     }
 
