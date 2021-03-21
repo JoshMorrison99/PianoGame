@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class detectorScript : MonoBehaviour
 {
@@ -9,7 +10,7 @@ public class detectorScript : MonoBehaviour
     public bool overlapNote = false;
     public int initalId;
 
-    Minis.MidiDevice midiDevice;
+    public Minis.MidiDevice midiDevice;
 
     public PlayLogic Logic;
 
@@ -24,20 +25,35 @@ public class detectorScript : MonoBehaviour
         
         PianoKeysObject = GameObject.Find("PianoKeyboardUI").GetComponent<PianoKeyPresses>();
 
-        foreach (var each in InputSystem.devices)
+            foreach (var each in InputSystem.devices)
         {
             if (each.displayName != "Mouse")
             {
                 midiDevice = each as Minis.MidiDevice;
                 Debug.Log("FOUND:" + midiDevice);
+                if (midiDevice == null) return;
 
-                midiDevice.onWillNoteOn += (note, velocity) => {
-                    PianoKeyPressedUI(note.shortDisplayName);
-                };
 
-                midiDevice.onWillNoteOff += (note) => {
-                    PianoKeyLiftedUI(note.shortDisplayName);
-                };
+                
+                    
+                    Debug.Log("CURRENT: " + SceneManager.GetActiveScene().name);
+                    midiDevice.onWillNoteOn += (note, velocity) =>
+                    {
+                        if (SceneManager.GetActiveScene().name == "Play")
+                        {
+                            PianoKeyPressedUI(note.shortDisplayName);
+                        }
+                    };
+
+                    midiDevice.onWillNoteOff += (note) =>
+                    {
+                        if (SceneManager.GetActiveScene().name == "Play")
+                        {
+                            PianoKeyLiftedUI(note.shortDisplayName);
+                        }
+                    };
+                
+                
             }
 
         }
@@ -49,22 +65,32 @@ public class detectorScript : MonoBehaviour
             midiDevice = device as Minis.MidiDevice;
             if (midiDevice == null) return;
 
+            
+                midiDevice.onWillNoteOn += (note, velocity) => {
+                    if (SceneManager.GetActiveScene().name == "Play")
+                    {
+                        PianoKeyPressedUI(note.shortDisplayName);
+                    }
+                };
 
+                midiDevice.onWillNoteOff += (note) => {
+                    if (SceneManager.GetActiveScene().name == "Play")
+                    {
+                        PianoKeyLiftedUI(note.shortDisplayName);
+                    }
+                };
+            
 
-            midiDevice.onWillNoteOn += (note, velocity) => {
-                PianoKeyPressedUI(note.shortDisplayName);
-            };
-
-            midiDevice.onWillNoteOff += (note) => {
-                PianoKeyLiftedUI(note.shortDisplayName);
-            };
+            
         };
     }
 
     void PianoKeyPressedUI(string notePressed)
     {
+
         foreach (GameObject each in PianoKeysObject.PianoKeys)
         {
+            if (each == null) return ;
             if (each.name == notePressed)
             {
 
@@ -107,6 +133,7 @@ public class detectorScript : MonoBehaviour
     {
         foreach (GameObject each in PianoKeysObject.PianoKeys)
         {
+            if (each == null) { return; }
             if (each.name == notePressed)
             {
 

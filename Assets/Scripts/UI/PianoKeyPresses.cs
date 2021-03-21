@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.InputSystem;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class PianoKeyPresses : MonoBehaviour
 {
@@ -49,6 +50,22 @@ public class PianoKeyPresses : MonoBehaviour
         };
     }*/
 
+    private void Awake()
+    {
+        setupPianoKeys();
+    }
+
+    void setupPianoKeys()
+    {
+        int index = 0;
+        foreach (Note_Mine each in this.GetComponentsInChildren<Note_Mine>())
+        {
+            PianoKeys[index] = each.gameObject;
+            Debug.Log(PianoKeys[index]);
+            index += 1;
+        }
+    }
+
     void Start()
     {
 
@@ -62,11 +79,17 @@ public class PianoKeyPresses : MonoBehaviour
                 Debug.Log("FOUND:" + midiDevice);
 
                 midiDevice.onWillNoteOn += (note, velocity) => {
-                    PianoKeyPressedUI(note.shortDisplayName);
+                    if (SceneManager.GetActiveScene().name == "Play")
+                    {
+                        PianoKeyPressedUI(note.shortDisplayName);
+                    }
                 };
 
                 midiDevice.onWillNoteOff += (note) => {
-                    PianoKeyLiftedUI(note.shortDisplayName);
+                    if (SceneManager.GetActiveScene().name == "Play")
+                    {
+                        PianoKeyLiftedUI(note.shortDisplayName);
+                    }
                 };
             }
 
@@ -82,11 +105,17 @@ public class PianoKeyPresses : MonoBehaviour
             
 
             midiDevice.onWillNoteOn += (note, velocity) => {
-                PianoKeyPressedUI(note.shortDisplayName);
+                if (SceneManager.GetActiveScene().name == "Play")
+                {
+                    PianoKeyPressedUI(note.shortDisplayName);
+                }
             };
 
             midiDevice.onWillNoteOff += (note) => {
-                PianoKeyLiftedUI(note.shortDisplayName);
+                if (SceneManager.GetActiveScene().name == "Play")
+                {
+                    PianoKeyLiftedUI(note.shortDisplayName);
+                }
             };
         };
 
@@ -97,6 +126,7 @@ public class PianoKeyPresses : MonoBehaviour
     {
         foreach (GameObject each in PianoKeys)
         {
+            if (each == null) { return; }
             if (each.name == notePressed)
             {
                 // Activate the Note
@@ -116,6 +146,7 @@ public class PianoKeyPresses : MonoBehaviour
     {
         foreach (GameObject each in PianoKeys)
         {
+            if (each == null) { return; }
             if (each.name == notePressed)
             {
                 // Deactivate the Note

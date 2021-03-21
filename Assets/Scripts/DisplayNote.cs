@@ -5,6 +5,7 @@ using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Layouts;
 using System;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class DisplayNote : MonoBehaviour
 {
@@ -23,7 +24,10 @@ public class DisplayNote : MonoBehaviour
                 Debug.Log("FOUND:" + midiDevice);
 
                 midiDevice.onWillNoteOn += (note, velocity) => {
-                    displayNoteText.text = note.shortDisplayName;
+                    if (SceneManager.GetActiveScene().name == "Play")
+                    {
+                        displayNoteText.text = note.shortDisplayName;
+                    }
                 };
 
                 midiDevice.onWillNoteOff += (note) => {
@@ -41,7 +45,10 @@ public class DisplayNote : MonoBehaviour
             if (midiDevice == null) return;
 
             midiDevice.onWillNoteOn += (note, velocity) => {
-                displayNoteText.text = note.shortDisplayName;
+                if (SceneManager.GetActiveScene().name == "Play")
+                {
+                    displayNoteText.text = note.shortDisplayName;
+                }
             };
 
             midiDevice.onWillNoteOff += (note) => {
