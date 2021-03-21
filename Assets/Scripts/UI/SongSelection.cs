@@ -51,7 +51,7 @@ public class SongSelection : MonoBehaviour
             Transform percentageText = child.gameObject.transform.Find("Percentage");
             //Debug.Log(PersistentData.data._SongList[loopIndex]._songCompletionPercentage);
             //Debug.Log(loopIndex);
-            Debug.Log(PersistentData.data._SongList);
+            //Debug.Log(PersistentData.data._SongList);
             percentageText.gameObject.GetComponentInChildren<TextMeshProUGUI>().text = PersistentData.data._SongList[loopIndex]._songCompletionPercentage.ToString() + "%";
             loopIndex += 1;
         }

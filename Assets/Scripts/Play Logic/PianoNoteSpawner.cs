@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using TMPro;
 using Melanchall.DryWetMidi.Interaction;
 using Melanchall.DryWetMidi.Devices;
+using UnityEngine.InputSystem;
 
 public class PianoNoteSpawner : MonoBehaviour
 {
@@ -113,6 +114,7 @@ public class PianoNoteSpawner : MonoBehaviour
     {
         uid = 0;
         setupUI();
+
     }
 
     

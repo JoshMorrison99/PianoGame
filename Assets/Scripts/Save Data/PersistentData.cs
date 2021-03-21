@@ -55,12 +55,12 @@ public class PersistentData : MonoBehaviour, ISaveable
 
         int ContentChildren = Content.transform.childCount;
 
-        Debug.Log(ContentChildren);
+       // Debug.Log(ContentChildren);
 
         for (int i = 0; i < ContentChildren; i++)
         {
             _SongList.Add(Content.transform.GetChild(i).GetComponent<SongInfo>());
-            Debug.Log(Content.transform.GetChild(i).GetComponent<SongInfo>());
+            //Debug.Log(Content.transform.GetChild(i).GetComponent<SongInfo>());
         }
     }
 
@@ -76,7 +76,7 @@ public class PersistentData : MonoBehaviour, ISaveable
         else
         {
             data = this;
-            Debug.Log("Firsdt");
+            //Debug.Log("Firsdt");
             DontDestroyOnLoad(gameObject);
         }
     }

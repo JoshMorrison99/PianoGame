@@ -9,6 +9,8 @@ public class detectorScript : MonoBehaviour
     public bool overlapNote = false;
     public int initalId;
 
+    Minis.MidiDevice midiDevice;
+
     public PlayLogic Logic;
 
     public PianoKeyPresses PianoKeysObject;
@@ -22,11 +24,29 @@ public class detectorScript : MonoBehaviour
         
         PianoKeysObject = GameObject.Find("PianoKeyboardUI").GetComponent<PianoKeyPresses>();
 
+        foreach (var each in InputSystem.devices)
+        {
+            if (each.displayName != "Mouse")
+            {
+                midiDevice = each as Minis.MidiDevice;
+                Debug.Log("FOUND:" + midiDevice);
+
+                midiDevice.onWillNoteOn += (note, velocity) => {
+                    PianoKeyPressedUI(note.shortDisplayName);
+                };
+
+                midiDevice.onWillNoteOff += (note) => {
+                    PianoKeyLiftedUI(note.shortDisplayName);
+                };
+            }
+
+        }
+
         InputSystem.onDeviceChange += (device, change) =>
         {
             if (change != InputDeviceChange.Added) return;
 
-            var midiDevice = device as Minis.MidiDevice;
+            midiDevice = device as Minis.MidiDevice;
             if (midiDevice == null) return;
 
 

@@ -25,18 +25,35 @@ public class DeviceFinder : MonoBehaviour
 
     void Start()
     {
+
+
+        InputSystem.EnableDevice(Mouse.current);
         
-
-        Debug.Log(InputSystem.devices);
-
-
-        InputSystem.onDeviceChange += (device, change) =>
+        /*InputSystem.onDeviceChange +=
+        (device, change) =>
         {
-            var midiDevice = device as Minis.MidiDevice;
-            if (midiDevice == null) return;
+            switch (change)
+            {
+                case InputDeviceChange.Added:
+                    // New Device.
+                    Debug.Log("Device Added: " + device);
+                    //InputSystem.DisableDevice(device);
+                    break;
+                case InputDeviceChange.Disconnected:
+                    // Device got unplugged.
+                    break;
+                case InputDeviceChange.Reconnected:
+                    // Plugged back in.
+                    break;
+                case InputDeviceChange.Removed:
+                    // Remove from Input System entirely; by default, Devices stay in the system once discovered.
+                    break;
+                default:
+                    // See InputDeviceChange reference for other event types.
+                    break;
+            }
+        };*/
 
-            Debug.Log(string.Format("{0} ({1}) {2}",
-                device.description.product, midiDevice.channel, change));
-        };
+
     }
 }

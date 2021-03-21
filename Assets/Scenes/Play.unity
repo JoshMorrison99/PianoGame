@@ -794,7 +794,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5fef0752a24c7a42876677b13722b71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  songInfo: {fileID: 0}
   Ode_To_Joy_Percentage: {fileID: 0}
   SongTitle: {fileID: 0}
   SongAuthor: {fileID: 0}
@@ -7179,7 +7178,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5fef0752a24c7a42876677b13722b71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  songInfo: {fileID: 0}
   Ode_To_Joy_Percentage: {fileID: 0}
   SongTitle: {fileID: 0}
   SongAuthor: {fileID: 0}
@@ -14022,7 +14020,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5fef0752a24c7a42876677b13722b71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  songInfo: {fileID: 0}
   Ode_To_Joy_Percentage: {fileID: 0}
   SongTitle: {fileID: 0}
   SongAuthor: {fileID: 0}
@@ -30258,11 +30255,13 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1364987623}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 52e098161c1f2104cb2f7c273883af74, type: 3}
+  m_Script: {fileID: 11500000, guid: 040e33a297943cc40be98ccce71c06fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _productName: CASIO USB-MIDI
+  _channel: 0
 --- !u!114 &1364987625
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -30272,11 +30271,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1364987623}
   m_Enabled: 0
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7565ab2637895694ab9d785032f9ff1e, type: 3}
+  m_Script: {fileID: 11500000, guid: e979e8178de5dd2428f419636df4a703, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _channel: -1
-  _productName: 
 --- !u!114 &1364987626
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -35149,7 +35146,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5fef0752a24c7a42876677b13722b71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  songInfo: {fileID: 0}
   Ode_To_Joy_Percentage: {fileID: 0}
   SongTitle: {fileID: 0}
   SongAuthor: {fileID: 0}
@@ -41286,7 +41282,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5fef0752a24c7a42876677b13722b71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  songInfo: {fileID: 0}
   Ode_To_Joy_Percentage: {fileID: 0}
   SongTitle: {fileID: 0}
   SongAuthor: {fileID: 0}
