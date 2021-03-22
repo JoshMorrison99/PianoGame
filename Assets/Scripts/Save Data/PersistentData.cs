@@ -49,19 +49,21 @@ public class PersistentData : MonoBehaviour, ISaveable
     {
         _SongList.Clear();
 
-        LoadJsonData(this);
+        
 
         GameObject Content = GameObject.Find("Content");
 
         int ContentChildren = Content.transform.childCount;
 
-       // Debug.Log(ContentChildren);
+        Debug.Log(ContentChildren);
 
         for (int i = 0; i < ContentChildren; i++)
         {
             _SongList.Add(Content.transform.GetChild(i).GetComponent<SongInfo>());
             //Debug.Log(Content.transform.GetChild(i).GetComponent<SongInfo>());
         }
+
+        LoadJsonData(this);
     }
 
     private void Awake()
@@ -153,6 +155,7 @@ public class PersistentData : MonoBehaviour, ISaveable
         song_See_you_Again_Completion = a_SaveData.m_song_See_you_Again_Completion;
 
         // Song Information
+        Debug.Log("Song List Count: " + _SongList.Count);
         foreach (SongInfo song in _SongList)
         {
             Debug.Log("song.LoadFromSaveData: " + song);
