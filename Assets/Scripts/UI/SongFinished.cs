@@ -48,6 +48,8 @@ public class SongFinished : MonoBehaviour
         UpdateNotesHit();
         UpdatePlays();
 
+        LevelUp();
+
         // Save data
         PersistentData.SaveJsonData(PersistentData.data);
     }
@@ -102,6 +104,23 @@ public class SongFinished : MonoBehaviour
     void UpdatePlays()
     {
         PersistentData.data._SongList[PersistentData.data.selectedSong - 1]._plays += 1;
+    }
+
+    int ReturnXPNeededToLevelUp(int level)
+    {
+        return (int) Mathf.Round((10 * (Mathf.Pow(level, 3))) / 5);
+    }
+
+    public void LevelUp()
+    {
+        while (PersistentData.data.exp > ReturnXPNeededToLevelUp(PersistentData.data.level))
+        {
+            Debug.Log(PersistentData.data.exp);
+            Debug.Log(ReturnXPNeededToLevelUp(PersistentData.data.level));
+            PersistentData.data.exp = PersistentData.data.exp - ReturnXPNeededToLevelUp(PersistentData.data.level); 
+            PersistentData.data.level += 1;
+        }
+        
     }
 
 }
