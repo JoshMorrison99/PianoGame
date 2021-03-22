@@ -120,7 +120,6 @@ public class SongFinished : MonoBehaviour
             PersistentData.data.exp = PersistentData.data.exp - ReturnXPNeededToLevelUp(PersistentData.data.level); 
             PersistentData.data.level += 1;
         }
-        
     }
 
 }
