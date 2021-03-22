@@ -30,6 +30,7 @@ public class MainMenu : MonoBehaviour
 		btn.onClick.AddListener(songSelectionClicked);
 
 		EXPSlideSetup();
+		MoneyTextSetup();
 	}
 
 	public void showMainMenu()
@@ -53,6 +54,12 @@ public class MainMenu : MonoBehaviour
 	int ReturnXPNeededToLevelUp(int level)
 	{
 		return (int)Mathf.Round((10 * (Mathf.Pow(level, 3))) / 5);
+	}
+
+	private void MoneyTextSetup()
+    {
+		playerMoneyUI.text = PersistentData.data.money.ToString();
+
 	}
 
 

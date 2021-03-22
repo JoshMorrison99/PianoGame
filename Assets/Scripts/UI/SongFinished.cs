@@ -49,6 +49,7 @@ public class SongFinished : MonoBehaviour
         UpdatePlays();
 
         LevelUp();
+        UpdateUserMoney();
 
         // Save data
         PersistentData.SaveJsonData(PersistentData.data);
@@ -121,5 +122,10 @@ public class SongFinished : MonoBehaviour
             PersistentData.data.level += 1;
         }
     }
+
+    public void UpdateUserMoney()
+    {
+        PersistentData.data.money += (int) Logic.numNotesHit;
+    } 
 
 }
