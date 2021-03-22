@@ -47122,6 +47122,7 @@ MonoBehaviour:
   notesHitText: {fileID: 1288855203}
   replaySongBtn: {fileID: 977811914}
   mainMenuBtn: {fileID: 1890308076}
+  midi: {fileID: 583643342}
   percentTrunk: 0
   Logic: {fileID: 1623551345}
 --- !u!1 &2032620531

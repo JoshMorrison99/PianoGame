@@ -29,11 +29,13 @@ public class SongSelection : MonoBehaviour
 
     private void Start()
     {
+        PersistentData.data.ReInitializeData();
+
         // Player persistent data UI
         playerLevelUI.text = PersistentData.data.level.ToString();
         playerMoneyUI.text = PersistentData.data.money.ToString();
 
-        PersistentData.data.ReInitializeData();
+        
         updatePercentageUI();
         
 

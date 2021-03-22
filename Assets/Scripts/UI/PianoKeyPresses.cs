@@ -61,7 +61,7 @@ public class PianoKeyPresses : MonoBehaviour
         foreach (Note_Mine each in this.GetComponentsInChildren<Note_Mine>())
         {
             PianoKeys[index] = each.gameObject;
-            Debug.Log(PianoKeys[index]);
+
             index += 1;
         }
     }

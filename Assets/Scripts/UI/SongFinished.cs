@@ -12,6 +12,8 @@ public class SongFinished : MonoBehaviour
     public TextMeshProUGUI notesHitText;
     public Button replaySongBtn;
     public Button mainMenuBtn;
+
+    public MidiMagic midi;
     
 
     public float percentTrunk;
@@ -28,11 +30,13 @@ public class SongFinished : MonoBehaviour
 
     public void mainMenuButtonClicked()
     {
+        midi.ReplaySong();
         SceneManager.LoadScene("MainMenu");
     }
 
     public void replayButtonClicked()
     {
+        midi.ReplaySong();
         SceneManager.LoadScene("Play");
     }
 
