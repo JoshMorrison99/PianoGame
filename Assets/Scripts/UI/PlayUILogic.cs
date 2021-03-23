@@ -41,6 +41,9 @@ public class PlayUILogic : MonoBehaviour
 
     public TextMeshProUGUI scoreText;
 
+    public Toggle pianoLabelToggle;
+    public Toggle noteLabelToggle;
+
 
     public int songPercentage;
 
@@ -155,6 +158,18 @@ public class PlayUILogic : MonoBehaviour
     {
         piano.SetActive(false);
         settingsPanel.SetActive(true);
+    }
+
+    public void TogglePianoLabels()
+    {
+        if (pianoLabelToggle.isOn)
+        {
+            pianoKeyLabels.SetActive(true);
+        }
+        else
+        {
+            pianoKeyLabels.SetActive(false);
+        }
     }
 
 
