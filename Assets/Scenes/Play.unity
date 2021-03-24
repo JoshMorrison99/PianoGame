@@ -29881,8 +29881,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 001f9e32c58039a4987d9aa3760a262c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SharpNote: {fileID: 6651485447471313367, guid: 7d5ac641aa9a90b4d967aca018fd6c80, type: 3}
-  Note: {fileID: 5869576602154264776, guid: b1a9cbf17f0bda14b9746b1539d0964e, type: 3}
+  SharpNote: {fileID: 832847288344303280, guid: 662ab4a2bafcfbb489b14161f12784fc, type: 3}
+  Note: {fileID: 5427637444596897990, guid: 1fcfd642b5991354a95002369f267c58, type: 3}
   pianoListRef: {fileID: 1094638095}
   spawnedNotes: []
   garbageNotes: []
