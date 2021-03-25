@@ -181,7 +181,7 @@ public class PianoNoteSpawner : MonoBehaviour
             TempoMap tempoMap = PersistentData.data.myMidi.GetTempoMap();
             MetricTimeSpan metricLength = item.LengthAs<MetricTimeSpan>(tempoMap);
 
-            float duration = ((float)metricLength.Milliseconds) / 1000;
+            float duration = (float)metricLength.Seconds + ((float)metricLength.Milliseconds) / 1000;
 
 
             Debug.Log(duration);
