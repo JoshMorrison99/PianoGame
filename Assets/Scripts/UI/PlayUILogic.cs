@@ -98,6 +98,10 @@ public class PlayUILogic : MonoBehaviour
         // remove the helper lines from the UI
         healperLines.SetActive(false);
 
+        // Remove toggles
+        pianoLabelToggle.gameObject.SetActive(false);
+        noteLabelToggle.gameObject.SetActive(false);
+
         songFinishedPanel.GetComponent<SongFinished>().UpdateText();
 
         

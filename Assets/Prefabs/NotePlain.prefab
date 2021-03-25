@@ -324,6 +324,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: -5177388603050735206, guid: e3d0023a5c473244f9c73f2309c2f85f, type: 3}
     - target: {fileID: 8044469202920761417, guid: b1a9cbf17f0bda14b9746b1539d0964e, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8044469202920761417, guid: b1a9cbf17f0bda14b9746b1539d0964e, type: 3}
       propertyPath: m_DrawMode
       value: 1
       objectReference: {fileID: 0}
