@@ -24825,7 +24825,19 @@ MonoBehaviour:
   m_Group: {fileID: 0}
   onValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1329073395}
+        m_TargetAssemblyTypeName: PlayUILogic, Assembly-CSharp
+        m_MethodName: ToggleNoteLabels
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_IsOn: 1
 --- !u!1001 &906520119
 PrefabInstance:
@@ -29886,6 +29898,7 @@ MonoBehaviour:
   pianoListRef: {fileID: 1094638095}
   spawnedNotes: []
   garbageNotes: []
+  isNoteLabelled: 0
   noteSpeed: 0
   C2: {fileID: 0}
   D2: {fileID: 0}

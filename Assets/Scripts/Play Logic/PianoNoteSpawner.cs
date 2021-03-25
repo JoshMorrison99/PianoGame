@@ -37,7 +37,9 @@ public class PianoNoteSpawner : MonoBehaviour
 
     const float SEE_YOU_AGAIN_NOTESCALE = 2f;
 
-    const float NOTE_SCALE = 2.4f; 
+    const float NOTE_SCALE = 2.4f;
+
+    public bool isNoteLabelled = true;
 
     public float noteSpeed = 0;
 
@@ -191,7 +193,7 @@ public class PianoNoteSpawner : MonoBehaviour
                 //spawnedNote.transform.GetChild(0).localScale = new Vector3(spawnedNote.transform.GetChild(0).localScale.x, spawnedNote.transform.GetChild(0).localScale.y * duration, 0);
                 spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
                 spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
-                spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "C";
+                spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = isNoteLabelled ? spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "C" : spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = ""; 
                 spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
                 spawnedNote.transform.position = new Vector3(spawnedNote.transform.position.x, spawnedNote.transform.position.y + (NOTE_SCALE * duration / 2), 0);
                 spawnedNotes.Add(spawnedNote);
@@ -202,7 +204,7 @@ public class PianoNoteSpawner : MonoBehaviour
                 //spawnedNote.transform.GetChild(0).localScale = new Vector3(spawnedNote.transform.GetChild(0).localScale.x, spawnedNote.transform.GetChild(0).localScale.y * duration, 0);
                 spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
                 spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
-                spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "C#";
+                spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = isNoteLabelled ? spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "C#" : spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "";
                 spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
                 spawnedNote.transform.position = new Vector3(spawnedNote.transform.position.x, spawnedNote.transform.position.y + (NOTE_SCALE * duration / 2), 0);
                 spawnedNotes.Add(spawnedNote);
@@ -213,7 +215,7 @@ public class PianoNoteSpawner : MonoBehaviour
                 //spawnedNote.transform.GetChild(0).localScale = new Vector3(spawnedNote.transform.GetChild(0).localScale.x, spawnedNote.transform.GetChild(0).localScale.y * duration, 0);
                 spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
                 spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
-                spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "D";
+                spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = isNoteLabelled ? spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "D" : spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "";
                 spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
                 spawnedNote.transform.position = new Vector3(spawnedNote.transform.position.x, spawnedNote.transform.position.y + (NOTE_SCALE * duration / 2), 0);
                 spawnedNotes.Add(spawnedNote);
@@ -224,7 +226,7 @@ public class PianoNoteSpawner : MonoBehaviour
                 //spawnedNote.transform.GetChild(0).localScale = new Vector3(spawnedNote.transform.GetChild(0).localScale.x, spawnedNote.transform.GetChild(0).localScale.y * duration, 0);
                 spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
                 spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
-                spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "D#";
+                spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = isNoteLabelled ? spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "D#" : spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "";
                 spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
                 spawnedNote.transform.position = new Vector3(spawnedNote.transform.position.x, spawnedNote.transform.position.y + (NOTE_SCALE * duration / 2), 0);
                 spawnedNotes.Add(spawnedNote);
@@ -235,7 +237,7 @@ public class PianoNoteSpawner : MonoBehaviour
                 //spawnedNote.transform.GetChild(0).localScale = new Vector3(spawnedNote.transform.GetChild(0).localScale.x, spawnedNote.transform.GetChild(0).localScale.y * duration, 0);
                 spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
                 spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
-                spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "E";
+                spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = isNoteLabelled ? spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "E" : spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "";
                 spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
                 spawnedNote.transform.position = new Vector3(spawnedNote.transform.position.x, spawnedNote.transform.position.y + (NOTE_SCALE * duration / 2), 0);
                 spawnedNotes.Add(spawnedNote);
@@ -246,7 +248,7 @@ public class PianoNoteSpawner : MonoBehaviour
                 //spawnedNote.transform.GetChild(0).localScale = new Vector3(spawnedNote.transform.GetChild(0).localScale.x, spawnedNote.transform.GetChild(0).localScale.y * duration, 0);
                 spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
                 spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
-                spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "F";
+                spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = isNoteLabelled ? spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "F" : spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "";
                 spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
                 spawnedNote.transform.position = new Vector3(spawnedNote.transform.position.x, spawnedNote.transform.position.y + (NOTE_SCALE * duration / 2), 0);
                 spawnedNotes.Add(spawnedNote);
@@ -257,7 +259,7 @@ public class PianoNoteSpawner : MonoBehaviour
                 //spawnedNote.transform.GetChild(0).localScale = new Vector3(spawnedNote.transform.GetChild(0).localScale.x, spawnedNote.transform.GetChild(0).localScale.y * duration, 0);
                 spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
                 spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
-                spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "F#";
+                spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = isNoteLabelled ? spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "F#" : spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "";
                 spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
                 spawnedNote.transform.position = new Vector3(spawnedNote.transform.position.x, spawnedNote.transform.position.y + (NOTE_SCALE * duration / 2), 0);
                 spawnedNotes.Add(spawnedNote);
@@ -268,7 +270,7 @@ public class PianoNoteSpawner : MonoBehaviour
                 //spawnedNote.transform.GetChild(0).localScale = new Vector3(spawnedNote.transform.GetChild(0).localScale.x, spawnedNote.transform.GetChild(0).localScale.y * duration, 0);
                 spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
                 spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
-                spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "G";
+                spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = isNoteLabelled ? spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "G" : spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "";
                 spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
                 spawnedNote.transform.position = new Vector3(spawnedNote.transform.position.x, spawnedNote.transform.position.y + (NOTE_SCALE * duration / 2), 0);
                 spawnedNotes.Add(spawnedNote);
@@ -279,7 +281,7 @@ public class PianoNoteSpawner : MonoBehaviour
                 //spawnedNote.transform.GetChild(0).localScale = new Vector3(spawnedNote.transform.GetChild(0).localScale.x, spawnedNote.transform.GetChild(0).localScale.y * duration, 0);
                 spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
                 spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
-                spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "G#";
+                spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = isNoteLabelled ? spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "G#" : spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "";
                 spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
                 spawnedNote.transform.position = new Vector3(spawnedNote.transform.position.x, spawnedNote.transform.position.y + (NOTE_SCALE * duration / 2), 0);
                 spawnedNotes.Add(spawnedNote);
@@ -290,7 +292,7 @@ public class PianoNoteSpawner : MonoBehaviour
                 //spawnedNote.transform.GetChild(0).localScale = new Vector3(spawnedNote.transform.GetChild(0).localScale.x, spawnedNote.transform.GetChild(0).localScale.y * duration, 0);
                 spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
                 spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
-                spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "A";
+                spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = isNoteLabelled ? spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "A" : spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "";
                 spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
                 spawnedNote.transform.position = new Vector3(spawnedNote.transform.position.x, spawnedNote.transform.position.y + (NOTE_SCALE * duration / 2), 0);
                 spawnedNotes.Add(spawnedNote);
@@ -301,7 +303,7 @@ public class PianoNoteSpawner : MonoBehaviour
                 //spawnedNote.transform.GetChild(0).localScale = new Vector3(spawnedNote.transform.GetChild(0).localScale.x, spawnedNote.transform.GetChild(0).localScale.y * duration, 0);
                 spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
                 spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
-                spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "A#";
+                spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = isNoteLabelled ? spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "A#" : spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "";
                 spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
                 spawnedNote.transform.position = new Vector3(spawnedNote.transform.position.x, spawnedNote.transform.position.y + (NOTE_SCALE * duration / 2), 0);
                 spawnedNotes.Add(spawnedNote);
@@ -312,7 +314,7 @@ public class PianoNoteSpawner : MonoBehaviour
                // spawnedNote.transform.GetChild(0).localScale = new Vector3(spawnedNote.transform.GetChild(0).localScale.x, spawnedNote.transform.GetChild(0).localScale.y * duration, 0);
                 spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
                 spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
-                spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "B";
+                spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = isNoteLabelled ? spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "B" : spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "";
                 spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
                 spawnedNote.transform.position = new Vector3(spawnedNote.transform.position.x, spawnedNote.transform.position.y + (NOTE_SCALE * duration / 2), 0);
                 spawnedNotes.Add(spawnedNote);
@@ -323,7 +325,7 @@ public class PianoNoteSpawner : MonoBehaviour
                 //spawnedNote.transform.GetChild(0).localScale = new Vector3(spawnedNote.transform.GetChild(0).localScale.x, spawnedNote.transform.GetChild(0).localScale.y * duration, 0);
                 spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
                 spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
-                spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "C";
+                spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = isNoteLabelled ? spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "C" : spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "";
                 spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
                 spawnedNote.transform.position = new Vector3(spawnedNote.transform.position.x, spawnedNote.transform.position.y + (NOTE_SCALE * duration / 2), 0);
                 spawnedNotes.Add(spawnedNote);
@@ -334,7 +336,7 @@ public class PianoNoteSpawner : MonoBehaviour
                 //spawnedNote.transform.GetChild(0).localScale = new Vector3(spawnedNote.transform.GetChild(0).localScale.x, spawnedNote.transform.GetChild(0).localScale.y * duration, 0);
                 spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
                 spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
-                spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "C#";
+                spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = isNoteLabelled ? spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "C#" : spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "";
                 spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
                 spawnedNote.transform.position = new Vector3(spawnedNote.transform.position.x, spawnedNote.transform.position.y + (NOTE_SCALE * duration / 2), 0);
                 spawnedNotes.Add(spawnedNote);
@@ -345,7 +347,7 @@ public class PianoNoteSpawner : MonoBehaviour
                 //spawnedNote.transform.GetChild(0).localScale = new Vector3(spawnedNote.transform.GetChild(0).localScale.x, spawnedNote.transform.GetChild(0).localScale.y * duration, 0);
                 spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
                 spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
-                spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "D";
+                spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = isNoteLabelled ? spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "D" : spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "";
                 spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
                 spawnedNote.transform.position = new Vector3(spawnedNote.transform.position.x, spawnedNote.transform.position.y + (NOTE_SCALE * duration / 2), 0);
                 spawnedNotes.Add(spawnedNote);
@@ -356,7 +358,7 @@ public class PianoNoteSpawner : MonoBehaviour
                 //spawnedNote.transform.GetChild(0).localScale = new Vector3(spawnedNote.transform.GetChild(0).localScale.x, spawnedNote.transform.GetChild(0).localScale.y * duration, 0);
                 spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
                 spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
-                spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "D#";
+                spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = isNoteLabelled ? spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "D#" : spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "";
                 spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
                 spawnedNote.transform.position = new Vector3(spawnedNote.transform.position.x, spawnedNote.transform.position.y + (NOTE_SCALE * duration / 2), 0);
                 spawnedNotes.Add(spawnedNote);
@@ -367,7 +369,7 @@ public class PianoNoteSpawner : MonoBehaviour
                 //spawnedNote.transform.GetChild(0).localScale = new Vector3(spawnedNote.transform.GetChild(0).localScale.x, spawnedNote.transform.GetChild(0).localScale.y * duration, 0);
                 spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
                 spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
-                spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "E";
+                spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = isNoteLabelled ? spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "E" : spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "";
                 spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
                 spawnedNote.transform.position = new Vector3(spawnedNote.transform.position.x, spawnedNote.transform.position.y + (NOTE_SCALE * duration / 2), 0);
                 spawnedNotes.Add(spawnedNote);
@@ -378,7 +380,7 @@ public class PianoNoteSpawner : MonoBehaviour
                 //spawnedNote.transform.GetChild(0).localScale = new Vector3(spawnedNote.transform.GetChild(0).localScale.x, spawnedNote.transform.GetChild(0).localScale.y * duration, 0);
                 spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
                 spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
-                spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "F";
+                spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = isNoteLabelled ? spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "F" : spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "";
                 spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
                 spawnedNote.transform.position = new Vector3(spawnedNote.transform.position.x, spawnedNote.transform.position.y + (NOTE_SCALE * duration / 2), 0);
                 spawnedNotes.Add(spawnedNote);
@@ -389,7 +391,7 @@ public class PianoNoteSpawner : MonoBehaviour
                 //spawnedNote.transform.GetChild(0).localScale = new Vector3(spawnedNote.transform.GetChild(0).localScale.x, spawnedNote.transform.GetChild(0).localScale.y * duration, 0);
                 spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
                 spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
-                spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "F#";
+                spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = isNoteLabelled ? spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "F#" : spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "";
                 spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
                 spawnedNote.transform.position = new Vector3(spawnedNote.transform.position.x, spawnedNote.transform.position.y + (NOTE_SCALE * duration / 2), 0);
                 spawnedNotes.Add(spawnedNote);
@@ -400,7 +402,7 @@ public class PianoNoteSpawner : MonoBehaviour
                 //spawnedNote.transform.GetChild(0).localScale = new Vector3(spawnedNote.transform.GetChild(0).localScale.x, spawnedNote.transform.GetChild(0).localScale.y * duration, 0);
                 spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
                 spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
-                spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "G";
+                spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = isNoteLabelled ? spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "G" : spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "";
                 spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
                 spawnedNote.transform.position = new Vector3(spawnedNote.transform.position.x, spawnedNote.transform.position.y + (NOTE_SCALE * duration / 2), 0);
                 spawnedNotes.Add(spawnedNote);
@@ -411,7 +413,7 @@ public class PianoNoteSpawner : MonoBehaviour
                 //spawnedNote.transform.GetChild(0).localScale = new Vector3(spawnedNote.transform.GetChild(0).localScale.x, spawnedNote.transform.GetChild(0).localScale.y * duration, 0);
                 spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
                 spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
-                spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "G#";
+                spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = isNoteLabelled ? spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "G#" : spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "";
                 spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
                 spawnedNote.transform.position = new Vector3(spawnedNote.transform.position.x, spawnedNote.transform.position.y + (NOTE_SCALE * duration / 2), 0);
                 spawnedNotes.Add(spawnedNote);
@@ -422,7 +424,7 @@ public class PianoNoteSpawner : MonoBehaviour
                 //spawnedNote.transform.GetChild(0).localScale = new Vector3(spawnedNote.transform.GetChild(0).localScale.x, spawnedNote.transform.GetChild(0).localScale.y * duration, 0);
                 spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
                 spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
-                spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "A";
+                spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = isNoteLabelled ? spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "A" : spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "";
                 spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
                 spawnedNote.transform.position = new Vector3(spawnedNote.transform.position.x, spawnedNote.transform.position.y + (NOTE_SCALE * duration / 2), 0);
                 spawnedNotes.Add(spawnedNote);
@@ -433,7 +435,7 @@ public class PianoNoteSpawner : MonoBehaviour
                 //spawnedNote.transform.GetChild(0).localScale = new Vector3(spawnedNote.transform.GetChild(0).localScale.x, spawnedNote.transform.GetChild(0).localScale.y * duration, 0);
                 spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
                 spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
-                spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "A#";
+                spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = isNoteLabelled ? spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "A#" : spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "";
                 spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
                 spawnedNote.transform.position = new Vector3(spawnedNote.transform.position.x, spawnedNote.transform.position.y + (NOTE_SCALE * duration / 2), 0);
                 spawnedNotes.Add(spawnedNote);
@@ -444,7 +446,7 @@ public class PianoNoteSpawner : MonoBehaviour
                 //spawnedNote.transform.GetChild(0).localScale = new Vector3(spawnedNote.transform.GetChild(0).localScale.x, spawnedNote.transform.GetChild(0).localScale.y * duration, 0);
                 spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
                 spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
-                spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "B";
+                spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = isNoteLabelled ? spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "B" : spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "";
                 spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
                 spawnedNote.transform.position = new Vector3(spawnedNote.transform.position.x, spawnedNote.transform.position.y + (NOTE_SCALE * duration / 2), 0);
                 spawnedNotes.Add(spawnedNote);
@@ -455,7 +457,7 @@ public class PianoNoteSpawner : MonoBehaviour
                 //spawnedNote.transform.GetChild(0).localScale = new Vector3(spawnedNote.transform.GetChild(0).localScale.x, spawnedNote.transform.GetChild(0).localScale.y * duration, 0);
                 spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
                 spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
-                spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "C";
+                spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = isNoteLabelled ? spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "C" : spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "";
                 spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
                 spawnedNote.transform.position = new Vector3(spawnedNote.transform.position.x, spawnedNote.transform.position.y + (NOTE_SCALE * duration / 2), 0);
                 spawnedNotes.Add(spawnedNote);
@@ -466,7 +468,7 @@ public class PianoNoteSpawner : MonoBehaviour
                 //spawnedNote.transform.GetChild(0).localScale = new Vector3(spawnedNote.transform.GetChild(0).localScale.x, spawnedNote.transform.GetChild(0).localScale.y * duration, 0);
                 spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
                 spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
-                spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "C#";
+                spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = isNoteLabelled ? spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "C#" : spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "";
                 spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
                 spawnedNote.transform.position = new Vector3(spawnedNote.transform.position.x, spawnedNote.transform.position.y + (NOTE_SCALE * duration / 2), 0);
                 spawnedNotes.Add(spawnedNote);
@@ -477,7 +479,7 @@ public class PianoNoteSpawner : MonoBehaviour
                 //spawnedNote.transform.GetChild(0).localScale = new Vector3(spawnedNote.transform.GetChild(0).localScale.x, spawnedNote.transform.GetChild(0).localScale.y * duration, 0);
                 spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
                 spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
-                spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "D";
+                spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = isNoteLabelled ? spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "D" : spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "";
                 spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
                 spawnedNote.transform.position = new Vector3(spawnedNote.transform.position.x, spawnedNote.transform.position.y + (NOTE_SCALE * duration / 2), 0);
                 spawnedNotes.Add(spawnedNote);
@@ -488,7 +490,7 @@ public class PianoNoteSpawner : MonoBehaviour
                 //spawnedNote.transform.GetChild(0).localScale = new Vector3(spawnedNote.transform.GetChild(0).localScale.x, spawnedNote.transform.GetChild(0).localScale.y * duration, 0);
                 spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
                 spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
-                spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "D#";
+                spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = isNoteLabelled ? spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "D#" : spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "";
                 spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
                 spawnedNote.transform.position = new Vector3(spawnedNote.transform.position.x, spawnedNote.transform.position.y + (NOTE_SCALE * duration / 2), 0);
                 spawnedNotes.Add(spawnedNote);
@@ -499,7 +501,7 @@ public class PianoNoteSpawner : MonoBehaviour
                 //spawnedNote.transform.GetChild(0).localScale = new Vector3(spawnedNote.transform.GetChild(0).localScale.x, spawnedNote.transform.GetChild(0).localScale.y * duration, 0);
                 spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
                 spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
-                spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "E";
+                spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = isNoteLabelled ? spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "E" : spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "";
                 spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
                 spawnedNote.transform.position = new Vector3(spawnedNote.transform.position.x, spawnedNote.transform.position.y + (NOTE_SCALE * duration / 2), 0);
                 spawnedNotes.Add(spawnedNote);
@@ -510,7 +512,7 @@ public class PianoNoteSpawner : MonoBehaviour
                 //spawnedNote.transform.GetChild(0).localScale = new Vector3(spawnedNote.transform.GetChild(0).localScale.x, spawnedNote.transform.GetChild(0).localScale.y * duration, 0);
                 spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
                 spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
-                spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "F";
+                spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = isNoteLabelled ? spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "F" : spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "";
                 spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
                 spawnedNote.transform.position = new Vector3(spawnedNote.transform.position.x, spawnedNote.transform.position.y + (NOTE_SCALE * duration / 2), 0);
                 spawnedNotes.Add(spawnedNote);
@@ -521,7 +523,7 @@ public class PianoNoteSpawner : MonoBehaviour
                 //spawnedNote.transform.GetChild(0).localScale = new Vector3(spawnedNote.transform.GetChild(0).localScale.x, spawnedNote.transform.GetChild(0).localScale.y * duration, 0);
                 spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
                 spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
-                spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "F#";
+                spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = isNoteLabelled ? spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "F#" : spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "";
                 spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
                 spawnedNote.transform.position = new Vector3(spawnedNote.transform.position.x, spawnedNote.transform.position.y + (NOTE_SCALE * duration / 2), 0);
                 spawnedNotes.Add(spawnedNote);
@@ -532,7 +534,7 @@ public class PianoNoteSpawner : MonoBehaviour
                 //spawnedNote.transform.GetChild(0).localScale = new Vector3(spawnedNote.transform.GetChild(0).localScale.x, spawnedNote.transform.GetChild(0).localScale.y * duration, 0);
                 spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
                 spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
-                spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "G";
+                spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = isNoteLabelled ? spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "G" : spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "";
                 spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
                 spawnedNote.transform.position = new Vector3(spawnedNote.transform.position.x, spawnedNote.transform.position.y + (NOTE_SCALE * duration / 2), 0);
                 spawnedNotes.Add(spawnedNote);
@@ -543,7 +545,7 @@ public class PianoNoteSpawner : MonoBehaviour
                 //spawnedNote.transform.GetChild(0).localScale = new Vector3(spawnedNote.transform.GetChild(0).localScale.x, spawnedNote.transform.GetChild(0).localScale.y * duration, 0);
                 spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
                 spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
-                spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "G#";
+                spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = isNoteLabelled ? spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "G#" : spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "";
                 spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
                 spawnedNote.transform.position = new Vector3(spawnedNote.transform.position.x, spawnedNote.transform.position.y + (NOTE_SCALE * duration / 2), 0);
                 spawnedNotes.Add(spawnedNote);
@@ -554,7 +556,7 @@ public class PianoNoteSpawner : MonoBehaviour
                 //spawnedNote.transform.GetChild(0).localScale = new Vector3(spawnedNote.transform.GetChild(0).localScale.x, spawnedNote.transform.GetChild(0).localScale.y * duration, 0);
                 spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
                 spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
-                spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "A";
+                spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = isNoteLabelled ? spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "A" : spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "";
                 spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
                 spawnedNote.transform.position = new Vector3(spawnedNote.transform.position.x, spawnedNote.transform.position.y + (NOTE_SCALE * duration / 2), 0);
                 spawnedNotes.Add(spawnedNote);
@@ -565,7 +567,7 @@ public class PianoNoteSpawner : MonoBehaviour
                 //spawnedNote.transform.GetChild(0).localScale = new Vector3(spawnedNote.transform.GetChild(0).localScale.x, spawnedNote.transform.GetChild(0).localScale.y * duration, 0);
                 spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
                 spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
-                spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "A#";
+                spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = isNoteLabelled ? spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "A#" : spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "";
                 spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
                 spawnedNote.transform.position = new Vector3(spawnedNote.transform.position.x, spawnedNote.transform.position.y + (NOTE_SCALE * duration / 2), 0);
                 spawnedNotes.Add(spawnedNote);
@@ -576,7 +578,7 @@ public class PianoNoteSpawner : MonoBehaviour
                 //spawnedNote.transform.GetChild(0).localScale = new Vector3(spawnedNote.transform.GetChild(0).localScale.x, spawnedNote.transform.GetChild(0).localScale.y * duration, 0);
                 spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
                 spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
-                spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "B";
+                spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = isNoteLabelled ? spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "B" : spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "";
                 spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
                 spawnedNote.transform.position = new Vector3(spawnedNote.transform.position.x, spawnedNote.transform.position.y + (NOTE_SCALE * duration / 2), 0);
                 spawnedNotes.Add(spawnedNote);
@@ -587,7 +589,7 @@ public class PianoNoteSpawner : MonoBehaviour
                 //spawnedNote.transform.GetChild(0).localScale = new Vector3(spawnedNote.transform.GetChild(0).localScale.x, spawnedNote.transform.GetChild(0).localScale.y * duration, 0);
                 spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
                 spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
-                spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "C";
+                spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = isNoteLabelled ? spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "C" : spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "";
                 spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
                 spawnedNote.transform.position = new Vector3(spawnedNote.transform.position.x, spawnedNote.transform.position.y + (NOTE_SCALE * duration / 2), 0);
                 spawnedNotes.Add(spawnedNote);
@@ -598,7 +600,7 @@ public class PianoNoteSpawner : MonoBehaviour
                 //spawnedNote.transform.GetChild(0).localScale = new Vector3(spawnedNote.transform.GetChild(0).localScale.x, spawnedNote.transform.GetChild(0).localScale.y * duration, 0);
                 spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
                 spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
-                spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "C#";
+                spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = isNoteLabelled ? spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "C#" : spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "";
                 spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
                 spawnedNote.transform.position = new Vector3(spawnedNote.transform.position.x, spawnedNote.transform.position.y + (NOTE_SCALE * duration / 2), 0);
                 spawnedNotes.Add(spawnedNote);
@@ -609,7 +611,7 @@ public class PianoNoteSpawner : MonoBehaviour
                 //spawnedNote.transform.GetChild(0).localScale = new Vector3(spawnedNote.transform.GetChild(0).localScale.x, spawnedNote.transform.GetChild(0).localScale.y * duration, 0);
                 spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
                 spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
-                spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "D";
+                spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = isNoteLabelled ? spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "D" : spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "";
                 spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
                 spawnedNote.transform.position = new Vector3(spawnedNote.transform.position.x, spawnedNote.transform.position.y + (NOTE_SCALE * duration / 2), 0);
                 spawnedNotes.Add(spawnedNote);
@@ -620,7 +622,7 @@ public class PianoNoteSpawner : MonoBehaviour
                 //spawnedNote.transform.GetChild(0).localScale = new Vector3(spawnedNote.transform.GetChild(0).localScale.x, spawnedNote.transform.GetChild(0).localScale.y * duration, 0);
                 spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
                 spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
-                spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "D#";
+                spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = isNoteLabelled ? spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "D#" : spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "";
                 spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
                 spawnedNote.transform.position = new Vector3(spawnedNote.transform.position.x, spawnedNote.transform.position.y + (NOTE_SCALE * duration / 2), 0);
                 spawnedNotes.Add(spawnedNote);
@@ -631,7 +633,7 @@ public class PianoNoteSpawner : MonoBehaviour
                 //spawnedNote.transform.GetChild(0).localScale = new Vector3(spawnedNote.transform.GetChild(0).localScale.x, spawnedNote.transform.GetChild(0).localScale.y * duration, 0);
                 spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
                 spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
-                spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "E";
+                spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = isNoteLabelled ? spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "E" : spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "";
                 spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
                 spawnedNote.transform.position = new Vector3(spawnedNote.transform.position.x, spawnedNote.transform.position.y + (NOTE_SCALE * duration / 2), 0);
                 spawnedNotes.Add(spawnedNote);
@@ -642,7 +644,7 @@ public class PianoNoteSpawner : MonoBehaviour
                 //spawnedNote.transform.GetChild(0).localScale = new Vector3(spawnedNote.transform.GetChild(0).localScale.x, spawnedNote.transform.GetChild(0).localScale.y * duration, 0);
                 spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
                 spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
-                spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "F";
+                spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = isNoteLabelled ? spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "F" : spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "";
                 spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
                 spawnedNote.transform.position = new Vector3(spawnedNote.transform.position.x, spawnedNote.transform.position.y + (NOTE_SCALE * duration / 2), 0);
                 spawnedNotes.Add(spawnedNote);
@@ -653,7 +655,7 @@ public class PianoNoteSpawner : MonoBehaviour
                 //spawnedNote.transform.GetChild(0).localScale = new Vector3(spawnedNote.transform.GetChild(0).localScale.x, spawnedNote.transform.GetChild(0).localScale.y * duration, 0);
                 spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
                 spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
-                spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "F#";
+                spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = isNoteLabelled ? spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "F#" : spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "";
                 spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
                 spawnedNote.transform.position = new Vector3(spawnedNote.transform.position.x, spawnedNote.transform.position.y + (NOTE_SCALE * duration / 2), 0);
                 spawnedNotes.Add(spawnedNote);
@@ -664,7 +666,7 @@ public class PianoNoteSpawner : MonoBehaviour
                 //spawnedNote.transform.GetChild(0).localScale = new Vector3(spawnedNote.transform.GetChild(0).localScale.x, spawnedNote.transform.GetChild(0).localScale.y * duration, 0);
                 spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
                 spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
-                spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "G";
+                spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = isNoteLabelled ? spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "G" : spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "";
                 spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
                 spawnedNote.transform.position = new Vector3(spawnedNote.transform.position.x, spawnedNote.transform.position.y + (NOTE_SCALE * duration / 2), 0);
                 spawnedNotes.Add(spawnedNote);
@@ -675,7 +677,7 @@ public class PianoNoteSpawner : MonoBehaviour
                 //spawnedNote.transform.GetChild(0).localScale = new Vector3(spawnedNote.transform.GetChild(0).localScale.x, spawnedNote.transform.GetChild(0).localScale.y * duration, 0);
                 spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
                 spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
-                spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "G#";
+                spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = isNoteLabelled ? spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "G#" : spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "";
                 spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
                 spawnedNote.transform.position = new Vector3(spawnedNote.transform.position.x, spawnedNote.transform.position.y + (NOTE_SCALE * duration / 2), 0);
                 spawnedNotes.Add(spawnedNote);
@@ -686,7 +688,7 @@ public class PianoNoteSpawner : MonoBehaviour
                 //spawnedNote.transform.GetChild(0).localScale = new Vector3(spawnedNote.transform.GetChild(0).localScale.x, spawnedNote.transform.GetChild(0).localScale.y * duration, 0);
                 spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
                 spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
-                spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "A";
+                spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = isNoteLabelled ? spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "A" : spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "";
                 spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
                 spawnedNote.transform.position = new Vector3(spawnedNote.transform.position.x, spawnedNote.transform.position.y + (NOTE_SCALE * duration / 2), 0);
                 spawnedNotes.Add(spawnedNote);
@@ -697,7 +699,7 @@ public class PianoNoteSpawner : MonoBehaviour
                 //spawnedNote.transform.GetChild(0).localScale = new Vector3(spawnedNote.transform.GetChild(0).localScale.x, spawnedNote.transform.GetChild(0).localScale.y * duration, 0);
                 spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
                 spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
-                spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "A#";
+                spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = isNoteLabelled ? spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "A#" : spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "";
                 spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
                 spawnedNote.transform.position = new Vector3(spawnedNote.transform.position.x, spawnedNote.transform.position.y + (NOTE_SCALE * duration / 2), 0);
                 spawnedNotes.Add(spawnedNote);
@@ -708,7 +710,7 @@ public class PianoNoteSpawner : MonoBehaviour
                 //spawnedNote.transform.GetChild(0).localScale = new Vector3(spawnedNote.transform.GetChild(0).localScale.x, spawnedNote.transform.GetChild(0).localScale.y * duration, 0);
                 spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
                 spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
-                spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "B";
+                spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = isNoteLabelled ? spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "B" : spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "";
                 spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
                 spawnedNote.transform.position = new Vector3(spawnedNote.transform.position.x, spawnedNote.transform.position.y + (NOTE_SCALE * duration / 2), 0);
                 spawnedNotes.Add(spawnedNote);
@@ -719,7 +721,7 @@ public class PianoNoteSpawner : MonoBehaviour
                 //spawnedNote.transform.GetChild(0).localScale = new Vector3(spawnedNote.transform.GetChild(0).localScale.x, spawnedNote.transform.GetChild(0).localScale.y * duration, 0);
                 spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
                 spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
-                spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "C";
+                spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = isNoteLabelled ? spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "C" : spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "";
                 spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
                 spawnedNote.transform.position = new Vector3(spawnedNote.transform.position.x, spawnedNote.transform.position.y + (NOTE_SCALE * duration / 2), 0);
                 spawnedNotes.Add(spawnedNote);
@@ -730,7 +732,7 @@ public class PianoNoteSpawner : MonoBehaviour
                 //spawnedNote.transform.GetChild(0).localScale = new Vector3(spawnedNote.transform.GetChild(0).localScale.x, spawnedNote.transform.GetChild(0).localScale.y * duration, 0);
                 spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
                 spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
-                spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "C#";
+                spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = isNoteLabelled ? spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "C#" : spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "";
                 spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
                 spawnedNote.transform.position = new Vector3(spawnedNote.transform.position.x, spawnedNote.transform.position.y + (NOTE_SCALE * duration / 2), 0);
                 spawnedNotes.Add(spawnedNote);
@@ -741,7 +743,7 @@ public class PianoNoteSpawner : MonoBehaviour
                 //spawnedNote.transform.GetChild(0).localScale = new Vector3(spawnedNote.transform.GetChild(0).localScale.x, spawnedNote.transform.GetChild(0).localScale.y * duration, 0);
                 spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
                 spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
-                spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "D";
+                spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = isNoteLabelled ? spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "D" : spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "";
                 spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
                 spawnedNote.transform.position = new Vector3(spawnedNote.transform.position.x, spawnedNote.transform.position.y + (NOTE_SCALE * duration / 2), 0);
                 spawnedNotes.Add(spawnedNote);
@@ -752,7 +754,7 @@ public class PianoNoteSpawner : MonoBehaviour
                 //spawnedNote.transform.GetChild(0).localScale = new Vector3(spawnedNote.transform.GetChild(0).localScale.x, spawnedNote.transform.GetChild(0).localScale.y * duration, 0);
                 spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
                 spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
-                spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "D#";
+                spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = isNoteLabelled ? spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "D#" : spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "";
                 spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
                 spawnedNote.transform.position = new Vector3(spawnedNote.transform.position.x, spawnedNote.transform.position.y + (NOTE_SCALE * duration / 2), 0);
                 spawnedNotes.Add(spawnedNote);
@@ -763,7 +765,7 @@ public class PianoNoteSpawner : MonoBehaviour
                 //spawnedNote.transform.GetChild(0).localScale = new Vector3(spawnedNote.transform.GetChild(0).localScale.x, spawnedNote.transform.GetChild(0).localScale.y * duration, 0);
                 spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
                 spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
-                spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "E";
+                spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = isNoteLabelled ? spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "E#" : spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "";
                 spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
                 spawnedNote.transform.position = new Vector3(spawnedNote.transform.position.x, spawnedNote.transform.position.y + (NOTE_SCALE * duration / 2), 0);
                 spawnedNotes.Add(spawnedNote);
@@ -774,7 +776,7 @@ public class PianoNoteSpawner : MonoBehaviour
                 //spawnedNote.transform.GetChild(0).localScale = new Vector3(spawnedNote.transform.GetChild(0).localScale.x, spawnedNote.transform.GetChild(0).localScale.y * duration, 0);
                 spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
                 spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
-                spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "F";
+                spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = isNoteLabelled ? spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "F" : spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "";
                 spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
                 spawnedNote.transform.position = new Vector3(spawnedNote.transform.position.x, spawnedNote.transform.position.y + (NOTE_SCALE * duration / 2), 0);
                 spawnedNotes.Add(spawnedNote);
@@ -785,7 +787,7 @@ public class PianoNoteSpawner : MonoBehaviour
                 //spawnedNote.transform.GetChild(0).localScale = new Vector3(spawnedNote.transform.GetChild(0).localScale.x, spawnedNote.transform.GetChild(0).localScale.y * duration, 0);
                 spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
                 spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
-                spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "F#";
+                spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = isNoteLabelled ? spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "F#" : spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "";
                 spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
                 spawnedNote.transform.position = new Vector3(spawnedNote.transform.position.x, spawnedNote.transform.position.y + (NOTE_SCALE * duration / 2), 0);
                 spawnedNotes.Add(spawnedNote);
@@ -796,7 +798,7 @@ public class PianoNoteSpawner : MonoBehaviour
                 //spawnedNote.transform.GetChild(0).localScale = new Vector3(spawnedNote.transform.GetChild(0).localScale.x, spawnedNote.transform.GetChild(0).localScale.y * duration, 0);
                 spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
                 spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
-                spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "G";
+                spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = isNoteLabelled ? spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "G" : spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "";
                 spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
                 spawnedNote.transform.position = new Vector3(spawnedNote.transform.position.x, spawnedNote.transform.position.y + (NOTE_SCALE * duration / 2), 0);
                 spawnedNotes.Add(spawnedNote);
@@ -807,7 +809,7 @@ public class PianoNoteSpawner : MonoBehaviour
                 //spawnedNote.transform.GetChild(0).localScale = new Vector3(spawnedNote.transform.GetChild(0).localScale.x, spawnedNote.transform.GetChild(0).localScale.y * duration, 0);
                 spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
                 spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
-                spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "G#";
+                spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = isNoteLabelled ? spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "G#" : spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "";
                 spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
                 spawnedNote.transform.position = new Vector3(spawnedNote.transform.position.x, spawnedNote.transform.position.y + (NOTE_SCALE * duration / 2), 0);
                 spawnedNotes.Add(spawnedNote);
@@ -818,7 +820,7 @@ public class PianoNoteSpawner : MonoBehaviour
                 //spawnedNote.transform.GetChild(0).localScale = new Vector3(spawnedNote.transform.GetChild(0).localScale.x, spawnedNote.transform.GetChild(0).localScale.y * duration, 0);
                 spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
                 spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
-                spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "A";
+                spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = isNoteLabelled ? spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "A" : spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "";
                 spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
                 spawnedNote.transform.position = new Vector3(spawnedNote.transform.position.x, spawnedNote.transform.position.y + (NOTE_SCALE * duration / 2), 0);
                 spawnedNotes.Add(spawnedNote);
@@ -829,7 +831,7 @@ public class PianoNoteSpawner : MonoBehaviour
                 //spawnedNote.transform.GetChild(0).localScale = new Vector3(spawnedNote.transform.GetChild(0).localScale.x, spawnedNote.transform.GetChild(0).localScale.y * duration, 0);
                 spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
                 spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
-                spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "A#";
+                spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = isNoteLabelled ? spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "A#" : spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "";
                 spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
                 spawnedNote.transform.position = new Vector3(spawnedNote.transform.position.x, spawnedNote.transform.position.y + (NOTE_SCALE * duration / 2), 0);
                 spawnedNotes.Add(spawnedNote);
@@ -840,7 +842,7 @@ public class PianoNoteSpawner : MonoBehaviour
                 //spawnedNote.transform.GetChild(0).localScale = new Vector3(spawnedNote.transform.GetChild(0).localScale.x, spawnedNote.transform.GetChild(0).localScale.y * duration, 0);
                 spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
                 spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
-                spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "B";
+                spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = isNoteLabelled ? spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "B" : spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "";
                 spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
                 spawnedNote.transform.position = new Vector3(spawnedNote.transform.position.x, spawnedNote.transform.position.y + (NOTE_SCALE * duration / 2), 0);
                 spawnedNotes.Add(spawnedNote);

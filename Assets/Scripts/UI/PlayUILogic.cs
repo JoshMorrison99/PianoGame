@@ -54,7 +54,7 @@ public class PlayUILogic : MonoBehaviour
 
         isPaused = false;
         ActivateGame();
-
+        spawner.isNoteLabelled = true;
 
 
         pauseBtn.onClick.AddListener(PauseMenuPressed);
@@ -169,6 +169,18 @@ public class PlayUILogic : MonoBehaviour
         else
         {
             pianoKeyLabels.SetActive(false);
+        }
+    }
+
+    public void ToggleNoteLabels()
+    {
+        if (noteLabelToggle.isOn)
+        {
+            spawner.isNoteLabelled = true;
+        }
+        else
+        {
+            spawner.isNoteLabelled = false;
         }
     }
 
