@@ -100,7 +100,9 @@ public class detectorScript : MonoBehaviour
                     {
                         each2.GetComponent<Note_Falling>().isHit = true;
                         IncrementNotesHit();
-                    }else if (each.GetComponent<Note_Mine>().noteName == each2.GetComponent<Note_Falling>().noteName)
+                        noteHitVFX(each);
+                    }
+                    else if (each.GetComponent<Note_Mine>().noteName == each2.GetComponent<Note_Falling>().noteName)
                     {
                         each.GetComponent<Note_Mine>().initialPress = true;
                         isPressed = each.GetComponent<Note_Mine>().initialPress = true;
@@ -110,6 +112,11 @@ public class detectorScript : MonoBehaviour
 
             }
         }
+    }
+
+    public void noteHitVFX(GameObject key)
+    {
+        //key.GetComponentInChildren<ParticleSystem>().Play();             IF YOU WERE TO SOMEHOW FIND A WAY TO MAKE THE PARTICLE SYSTEM NOT DISTRACTING TO THE USER, THIS IS WHERE YOU IMPLEMENT IT...
     }
 
     private IEnumerator ScoreIncrementer()

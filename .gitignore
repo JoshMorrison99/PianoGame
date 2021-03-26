@@ -43,6 +43,10 @@ ExportedObj/
 *.opendb
 *.VC.db
 
+# My own packages
+/Assets/Particlecollection_Free\ samples/
+/Assets/Particlecollection_Free\ samples.meta
+
 # Unity3D generated meta files
 *.pidb.meta
 *.pdb.meta
