@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-
+using UnityEditor;
+using System.IO;
 
 public class MainMenu : MonoBehaviour
 {
@@ -26,6 +27,8 @@ public class MainMenu : MonoBehaviour
 	public TextMeshProUGUI MainMenu_playerLevelUI;
 	public TextMeshProUGUI MainMenu_playerMoneyUI;
 	public Slider MainMenu_playerExpSliderUI;
+
+	public string path;
 
 
 
@@ -99,5 +102,13 @@ public class MainMenu : MonoBehaviour
 		SettingsMenuPanel.SetActive(false);
     }
 
+	public void ImportSongButtonClicked()
+    {
+		path = EditorUtility.OpenFilePanel("user imported midi", "", "mid");
+		string ResourcesPath = "Assets/MidiFiles/UserMidiFiles";
+
+		FileUtil.CopyFileOrDirectory(path, ResourcesPath + "/song");
+
+	}
 
 }
