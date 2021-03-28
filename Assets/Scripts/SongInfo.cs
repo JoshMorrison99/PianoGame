@@ -19,6 +19,7 @@ public class SongInfo : MonoBehaviour, ISaveable
     {
         foreach (PersistentDataInformation.SongData mySongData in a_SaveData.m_SongList)
         {
+            Debug.Log("=-=-=-=-==-=--=-=-=--=" + mySongData.m_SongTitle);
             if (mySongData.m_songID == _songID)
             {
                 _SongTitle = mySongData.m_SongTitle;
@@ -51,6 +52,7 @@ public class SongInfo : MonoBehaviour, ISaveable
         mySongData.m_songCompletionPercentage = _songCompletionPercentage;
         mySongData._Difficulty = _Difficulty;
 
+        Debug.Log("Adding: " + mySongData.m_SongTitle);
         a_SaveData.m_SongList.Add(mySongData);
     }
 

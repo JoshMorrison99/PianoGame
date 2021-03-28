@@ -17,10 +17,6 @@ public class PersistentDataInformation
     // Persistent Player Song Import Data
     public int m_songImportIndex;
 
-    // Persistent Player Song Progress
-    public float m_song_Ode_To_Joy_Completion;
-    public float m_song_See_you_Again_Completion;
-
     // Song List
     public List<SongData> m_SongList = new List<SongData>();
 

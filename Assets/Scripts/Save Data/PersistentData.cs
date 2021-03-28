@@ -43,6 +43,8 @@ public class PersistentData : MonoBehaviour, ISaveable
     // Persistent Song Information
     public List<SongInfo> _SongList = new List<SongInfo>();
 
+
+
     public static PersistentData data;
 
     private void Start()
@@ -142,9 +144,7 @@ public class PersistentData : MonoBehaviour, ISaveable
 
         a_SaveData.m_songImportIndex = songImportIndex;
 
-        // Player Song Progress
-        a_SaveData.m_song_Ode_To_Joy_Completion = song_Ode_To_Joy_Completion;
-        a_SaveData.m_song_See_you_Again_Completion = song_See_you_Again_Completion;
+        
 
         // Song Information
         foreach (SongInfo song in _SongList)
@@ -152,6 +152,7 @@ public class PersistentData : MonoBehaviour, ISaveable
             Debug.Log("song.LoadFromSaveData: " + song);
             song.PopulateSaveData(a_SaveData);
         }
+
     }
 
     public void LoadFromSaveData(PersistentDataInformation a_SaveData)
@@ -168,10 +169,6 @@ public class PersistentData : MonoBehaviour, ISaveable
         money = a_SaveData.m_money;
 
         songImportIndex = a_SaveData.m_songImportIndex;
-
-        // Player Song Progress
-        song_Ode_To_Joy_Completion = a_SaveData.m_song_Ode_To_Joy_Completion;
-        song_See_you_Again_Completion = a_SaveData.m_song_See_you_Again_Completion;
 
         // Song Information
         Debug.Log("Song List Count: " + _SongList.Count);
