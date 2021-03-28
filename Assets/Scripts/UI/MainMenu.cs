@@ -112,6 +112,11 @@ public class MainMenu : MonoBehaviour
     {
 		path = EditorUtility.OpenFilePanel("user imported midi", "", "mid");
 
+        if (path == "")
+        {
+			return;
+        }
+
 		// Check if file is a midi file
         if (Path.GetExtension(path) != ".mid")
         {
