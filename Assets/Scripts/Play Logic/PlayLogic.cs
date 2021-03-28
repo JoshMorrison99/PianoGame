@@ -76,12 +76,16 @@ public class PlayLogic : MonoBehaviour
         {
             myMidi.ActivateMidi("./Assets/MidiFiles/Frozen - Let It Go.mid");
         }
+        else
+        {
+            myMidi.ActivateMidi("./Assets/MidiFiles/UserMidiFiles/" + PersistentData.data.userSongSelected);
+        }
 
         numNotesTotal = myMidi.midiFile.GetNotes().Count;
 
         // Setup song
 
-        ScaleScene(songNumber);
+        //ScaleScene(songNumber);
 
     }
 

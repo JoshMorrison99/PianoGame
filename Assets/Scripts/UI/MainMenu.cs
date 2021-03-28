@@ -14,6 +14,7 @@ public class MainMenu : MonoBehaviour
 	public Button settingsBtn;
 	public Button accountBtn;
 
+
 	public GameObject SongSelectionPanel;
 	public GameObject SettingsMenuPanel;
 
@@ -30,6 +31,8 @@ public class MainMenu : MonoBehaviour
 	public Slider MainMenu_playerExpSliderUI;
 
 	public GameObject SongImportErrorMessagePanel;
+
+	public SongSelection songSelectionClass;
 
 	public string path;
 
@@ -155,6 +158,9 @@ public class MainMenu : MonoBehaviour
 				SongImportErrorMessagePanel.GetComponent<Image>().color = Color.green;
 				SongImportErrorMessagePanel.GetComponentInChildren<TextMeshProUGUI>().text = "Success: Song imported";
 				StartCoroutine(SpawnErrorMessage());
+
+				songSelectionClass.ImportUserSong(fileName);
+
 			}
 
 			

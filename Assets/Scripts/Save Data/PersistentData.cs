@@ -20,6 +20,8 @@ public class PersistentData : MonoBehaviour, ISaveable
     public MidiFile myMidi;
     public Playback myPlayback;
 
+    public string userSongSelected;
+
 
     // Persistent Player Information
     public int level;
@@ -29,6 +31,9 @@ public class PersistentData : MonoBehaviour, ISaveable
     public int songsComplete;
     public int songsUnlocked;
     public int money;
+
+    // Persistent Player Song Import Data
+    public int songImportIndex;
 
 
     // Persistent Player Song Progress
@@ -128,6 +133,8 @@ public class PersistentData : MonoBehaviour, ISaveable
         a_SaveData.m_username = username;
         a_SaveData.m_money = money;
 
+        a_SaveData.m_songImportIndex = songImportIndex;
+
         // Player Song Progress
         a_SaveData.m_song_Ode_To_Joy_Completion = song_Ode_To_Joy_Completion;
         a_SaveData.m_song_See_you_Again_Completion = song_See_you_Again_Completion;
@@ -151,6 +158,8 @@ public class PersistentData : MonoBehaviour, ISaveable
         songsUnlocked = a_SaveData.m_songsUnlocked;
         username = a_SaveData.m_username;
         money = a_SaveData.m_money;
+
+        songImportIndex = a_SaveData.m_songImportIndex;
 
         // Player Song Progress
         song_Ode_To_Joy_Completion = a_SaveData.m_song_Ode_To_Joy_Completion;

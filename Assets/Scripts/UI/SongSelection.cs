@@ -29,6 +29,8 @@ public class SongSelection : MonoBehaviour
 
     public List<Button> myButtonSongs;
 
+    public GameObject songObjectTemplate;
+
 
     private void Start()
     {
@@ -85,7 +87,37 @@ public class SongSelection : MonoBehaviour
     public void onClickPlay()
     {
         PersistentData.data.selectedSong = index + 1;
+        PersistentData.data.userSongSelected = PersistentData.data._SongList[index]._SongTitle;
         SceneManager.LoadScene("Play");
+    }
+
+    public void ImportUserSong(string songName)
+    {
+        GameObject userSongCollection = GameObject.Find("Content");
+
+        GameObject songObjectTemplateUser = Instantiate(songObjectTemplate);
+
+        PersistentData.data.songImportIndex = 0; // USE THIS HERE WHILE DEBUGGING
+
+        songObjectTemplateUser.GetComponent<SongInfo>()._songID = 5 + PersistentData.data.songImportIndex;
+        songObjectTemplateUser.GetComponent<SongInfo>()._SongTitle = songName;
+        songObjectTemplateUser.GetComponent<SongInfo>()._SongAuthor = "user";
+
+        PersistentData.data.songImportIndex += 1;
+
+        // Save data
+        PersistentData.SaveJsonData(PersistentData.data);
+
+        songObjectTemplateUser.transform.parent = userSongCollection.transform;
+        songObjectTemplateUser.transform.localScale = new Vector3(1,1,1);
+        songObjectTemplateUser.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = songName;
+        songObjectTemplateUser.transform.GetChild(2).GetComponent<TextMeshProUGUI>().text = "user";
+
+        PersistentData.data._SongList.Add(songObjectTemplateUser.GetComponent<SongInfo>());
+
+
+
+        
     }
 
 }

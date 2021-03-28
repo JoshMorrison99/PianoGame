@@ -3988,6 +3988,7 @@ MonoBehaviour:
   songsComplete: 0
   songsUnlocked: 0
   money: 0
+  songImportIndex: 0
   song_Ode_To_Joy_Completion: 0
   song_See_you_Again_Completion: 0
   _SongList:
@@ -10869,6 +10870,7 @@ MonoBehaviour:
   playerLevelUI: {fileID: 259761439}
   playerMoneyUI: {fileID: 1715173115}
   myButtonSongs: []
+  songObjectTemplate: {fileID: 335245559}
 --- !u!114 &1064524076
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11544,6 +11546,8 @@ MonoBehaviour:
   MainMenu_playerLevelUI: {fileID: 1417577619}
   MainMenu_playerMoneyUI: {fileID: 1496982972}
   MainMenu_playerExpSliderUI: {fileID: 2074087535}
+  SongImportErrorMessagePanel: {fileID: 1615148162}
+  songSelectionClass: {fileID: 1064524075}
   path: 
 --- !u!1 &1117881050
 GameObject:
