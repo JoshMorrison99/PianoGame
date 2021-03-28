@@ -54,7 +54,6 @@ public class PlayUILogic : MonoBehaviour
 
         isPaused = false;
         ActivateGame();
-        spawner.isNoteLabelled = true;
 
 
         pauseBtn.onClick.AddListener(PauseMenuPressed);
@@ -63,10 +62,9 @@ public class PlayUILogic : MonoBehaviour
         pauseSettingsButton.onClick.AddListener(PauseSettingsClicked);
         pauseResumeButton.onClick.AddListener(PauseMenuPressed);
 
-        
+        InitSettings();
 
         pianoBackground.SetActive(true);
-        pianoKeyLabels.SetActive(true);
         healperLines.SetActive(true);
         songFinishedPanel.SetActive(false);
         pauseManuPanel.SetActive(false);
@@ -82,6 +80,31 @@ public class PlayUILogic : MonoBehaviour
         progressSong.text = Logic.numNotesHit + "/" + Logic.numNotesTotal;
 
         scoreText.text = Logic.currentScore.ToString();
+    }
+
+    public void InitSettings()
+    {
+        if (PlayerPrefs.GetInt("isPianoLabelled") == 1)
+        {
+            pianoLabelToggle.isOn = true;
+            
+        }
+        else
+        {
+            pianoLabelToggle.isOn = false;
+            
+        }
+
+        if (PlayerPrefs.GetInt("isNoteLabelled") == 1)
+        {
+            noteLabelToggle.isOn = true;
+            spawner.isNoteLabelled = true;
+        }
+        else
+        {
+            noteLabelToggle.isOn = false;
+            spawner.isNoteLabelled = false;
+        }
     }
 
     public void UpdateFinishedSongText()
@@ -169,10 +192,12 @@ public class PlayUILogic : MonoBehaviour
         if (pianoLabelToggle.isOn)
         {
             pianoKeyLabels.SetActive(true);
+            PlayerPrefs.SetInt("isPianoLabelled", 1);
         }
         else
         {
             pianoKeyLabels.SetActive(false);
+            PlayerPrefs.SetInt("isPianoLabelled", 0);
         }
     }
 
@@ -181,10 +206,12 @@ public class PlayUILogic : MonoBehaviour
         if (noteLabelToggle.isOn)
         {
             spawner.isNoteLabelled = true;
+            PlayerPrefs.SetInt("isNoteLabelled", 1);
         }
         else
         {
             spawner.isNoteLabelled = false;
+            PlayerPrefs.SetInt("isNoteLabelled", 0);
         }
     }
 

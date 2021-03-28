@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.EventSystems;
 
 public class SongSelection : MonoBehaviour
 {
@@ -26,10 +27,16 @@ public class SongSelection : MonoBehaviour
     public TextMeshProUGUI playerLevelUI;
     public TextMeshProUGUI playerMoneyUI;
 
+    public List<Button> myButtonSongs;
+
 
     private void Start()
     {
         PersistentData.data.ReInitializeData();
+
+        GameObject buttonHolder = GameObject.Find("Content");
+        Button firstBtn = buttonHolder.transform.GetChild(0).GetComponent<Button>();
+        firstBtn.onClick.Invoke();
 
         // Player persistent data UI
         playerLevelUI.text = PersistentData.data.level.ToString();
@@ -59,7 +66,7 @@ public class SongSelection : MonoBehaviour
         }
     }
 
-    
+
 
 
     public void onClickSongSelection(Button button)
