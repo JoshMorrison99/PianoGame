@@ -47,13 +47,18 @@ public class PersistentData : MonoBehaviour, ISaveable
 
     private void Start()
     {
-        ReInitializeData();
+        songImportIndex = 0;
+        LoadJsonData(this);
+
+        //ReInitializeData();
 
         //SaveJsonData(this);             // During development Activate this function first to reset the song list
     }
 
     public void ReInitializeData()
     {
+        Debug.Log("===========================================================" + _SongList.Count);
+
         _SongList.Clear();
 
         
@@ -69,6 +74,8 @@ public class PersistentData : MonoBehaviour, ISaveable
             _SongList.Add(Content.transform.GetChild(i).GetComponent<SongInfo>());
             //Debug.Log(Content.transform.GetChild(i).GetComponent<SongInfo>());
         }
+
+
 
         LoadJsonData(this);
     }
@@ -142,6 +149,7 @@ public class PersistentData : MonoBehaviour, ISaveable
         // Song Information
         foreach (SongInfo song in _SongList)
         {
+            Debug.Log("song.LoadFromSaveData: " + song);
             song.PopulateSaveData(a_SaveData);
         }
     }

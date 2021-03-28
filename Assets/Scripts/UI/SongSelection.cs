@@ -34,7 +34,11 @@ public class SongSelection : MonoBehaviour
 
     private void Start()
     {
-        PersistentData.data.ReInitializeData();
+        //PersistentData.data.ReInitializeData();
+        Debug.Log("===========================================================" + PersistentData.data._SongList.Count);
+        //PersistentData.LoadJsonData(PersistentData.data);
+
+        createSongsFromTemplate();
 
         GameObject buttonHolder = GameObject.Find("Content");
         Button firstBtn = buttonHolder.transform.GetChild(0).GetComponent<Button>();
@@ -50,6 +54,40 @@ public class SongSelection : MonoBehaviour
 
     }
 
+
+    public void createSongsFromTemplate()
+    {
+
+        GameObject SongHolder = GameObject.Find("Content");
+
+        // Remove all children
+        foreach (Transform child in SongHolder.transform)
+        {
+            Destroy(child.gameObject);
+        }
+
+
+
+        foreach (SongInfo each in PersistentData.data._SongList)
+        {
+            GameObject newSong = Instantiate(songObjectTemplate);
+            newSong.GetComponent<SongInfo>()._SongTitle = each._SongTitle;
+            newSong.GetComponent<SongInfo>()._SongAuthor = each._SongAuthor;
+            newSong.GetComponent<SongInfo>()._plays = each._plays;
+            newSong.GetComponent<SongInfo>()._notesHit = each._notesHit;
+            newSong.GetComponent<SongInfo>()._highScore = each._highScore;
+            newSong.GetComponent<SongInfo>()._Difficulty = each._Difficulty;
+            newSong.GetComponent<SongInfo>()._stars = each._stars;
+            newSong.GetComponent<SongInfo>()._songID = PersistentData.data.songImportIndex;
+
+            PersistentData.data.songImportIndex += 1;
+
+            newSong.transform.SetParent(SongHolder.transform);
+
+            newSong.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = each._SongTitle;
+            newSong.transform.GetChild(2).GetComponent<TextMeshProUGUI>().text = each._SongAuthor;
+        }
+    }
     
 
     public void updatePercentageUI()
@@ -93,31 +131,30 @@ public class SongSelection : MonoBehaviour
 
     public void ImportUserSong(string songName)
     {
-        GameObject userSongCollection = GameObject.Find("Content");
 
         GameObject songObjectTemplateUser = Instantiate(songObjectTemplate);
 
-        PersistentData.data.songImportIndex = 0; // USE THIS HERE WHILE DEBUGGING
-
-        songObjectTemplateUser.GetComponent<SongInfo>()._songID = 5 + PersistentData.data.songImportIndex;
+        songObjectTemplateUser.GetComponent<SongInfo>()._songID = PersistentData.data.songImportIndex;
         songObjectTemplateUser.GetComponent<SongInfo>()._SongTitle = songName;
         songObjectTemplateUser.GetComponent<SongInfo>()._SongAuthor = "user";
 
         PersistentData.data.songImportIndex += 1;
 
-        // Save data
-        PersistentData.SaveJsonData(PersistentData.data);
-
-        songObjectTemplateUser.transform.parent = userSongCollection.transform;
         songObjectTemplateUser.transform.localScale = new Vector3(1,1,1);
         songObjectTemplateUser.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = songName;
         songObjectTemplateUser.transform.GetChild(2).GetComponent<TextMeshProUGUI>().text = "user";
 
+        GameObject songCollection = GameObject.Find("Songs");
+        songObjectTemplateUser.transform.SetParent(songCollection.transform);
+
         PersistentData.data._SongList.Add(songObjectTemplateUser.GetComponent<SongInfo>());
 
 
+        // Save data
+        PersistentData.SaveJsonData(PersistentData.data);
 
-        
+        createSongsFromTemplate();
+
     }
 
 }
