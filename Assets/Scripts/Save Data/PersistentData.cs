@@ -17,6 +17,8 @@ public class PersistentData : MonoBehaviour, ISaveable
     public float songSpeed;
     public bool isPaused;
 
+    public GameObject templateSong;
+
     public MidiFile myMidi;
     public Playback myPlayback;
 
@@ -170,13 +172,36 @@ public class PersistentData : MonoBehaviour, ISaveable
 
         songImportIndex = a_SaveData.m_songImportIndex;
 
+
+        _SongList.Clear();
+
+        GameObject SongHolder = GameObject.Find("Songs");
+
         // Song Information
-        Debug.Log("Song List Count: " + _SongList.Count);
+        Debug.Log(a_SaveData.m_SongList.Count);
+        for(int i = 0; i < a_SaveData.m_SongList.Count; i++)
+        {
+            GameObject newSong = Instantiate(templateSong);
+            newSong.GetComponent<SongInfo>()._SongTitle = a_SaveData.m_SongList[i].m_SongTitle;
+            newSong.GetComponent<SongInfo>()._SongAuthor = a_SaveData.m_SongList[i].m_SongAuthor;
+            newSong.GetComponent<SongInfo>()._plays = a_SaveData.m_SongList[i].m_plays;
+            newSong.GetComponent<SongInfo>()._notesHit = a_SaveData.m_SongList[i].m_notesHit;
+            newSong.GetComponent<SongInfo>()._highScore = a_SaveData.m_SongList[i].m_highScore;
+            newSong.GetComponent<SongInfo>()._Difficulty = a_SaveData.m_SongList[i]._Difficulty;
+            newSong.GetComponent<SongInfo>()._songID = a_SaveData.m_SongList[i].m_songID;
+            newSong.GetComponent<SongInfo>()._stars = a_SaveData.m_SongList[i].m_stars;
+            newSong.GetComponent<SongInfo>()._totalNote = a_SaveData.m_SongList[i].m_totalNote;
+            _SongList.Add(newSong.GetComponent<SongInfo>());
+
+            newSong.transform.SetParent(SongHolder.transform);
+        }
+
+        /*Debug.Log("Song List Count: " + _SongList.Count);
         foreach (SongInfo song in _SongList)
         {
             Debug.Log("song.LoadFromSaveData: " + song);
             song.LoadFromSaveData(a_SaveData);
-        }
+        }*/
     }
 }
 

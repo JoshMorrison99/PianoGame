@@ -3736,6 +3736,7 @@ MonoBehaviour:
   selectedSong: 0
   songSpeed: 0
   isPaused: 0
+  templateSong: {fileID: 335245559}
   userSongSelected: 
   level: 0
   exp: 0
