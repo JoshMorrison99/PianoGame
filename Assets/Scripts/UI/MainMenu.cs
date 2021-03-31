@@ -78,6 +78,12 @@ public class MainMenu : MonoBehaviour
 
 	}
 
+	public void HelpImportSongBtnClicked()
+    {
+		string website = "http://localhost:3000/tutorial";
+		Application.OpenURL(website);
+    }
+
 	private void PlayerStatsLoad()
     {
 		// Player persistent data UI
