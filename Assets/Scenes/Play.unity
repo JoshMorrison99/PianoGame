@@ -927,6 +927,8 @@ MonoBehaviour:
   Difficulty_Text: {fileID: 0}
   playerLevelUI: {fileID: 0}
   playerMoneyUI: {fileID: 0}
+  myButtonSongs: []
+  songObjectTemplate: {fileID: 0}
 --- !u!114 &29034909
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9152,6 +9154,8 @@ MonoBehaviour:
   Difficulty_Text: {fileID: 0}
   playerLevelUI: {fileID: 0}
   playerMoneyUI: {fileID: 0}
+  myButtonSongs: []
+  songObjectTemplate: {fileID: 0}
 --- !u!114 &351737602
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18236,6 +18240,8 @@ MonoBehaviour:
   Difficulty_Text: {fileID: 0}
   playerLevelUI: {fileID: 0}
   playerMoneyUI: {fileID: 0}
+  myButtonSongs: []
+  songObjectTemplate: {fileID: 0}
 --- !u!114 &674443060
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -43541,6 +43547,8 @@ MonoBehaviour:
   Difficulty_Text: {fileID: 0}
   playerLevelUI: {fileID: 0}
   playerMoneyUI: {fileID: 0}
+  myButtonSongs: []
+  songObjectTemplate: {fileID: 0}
 --- !u!114 &1623352583
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -51573,6 +51581,8 @@ MonoBehaviour:
   Difficulty_Text: {fileID: 0}
   playerLevelUI: {fileID: 0}
   playerMoneyUI: {fileID: 0}
+  myButtonSongs: []
+  songObjectTemplate: {fileID: 0}
 --- !u!114 &1824424404
 MonoBehaviour:
   m_ObjectHideFlags: 0
