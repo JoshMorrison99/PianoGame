@@ -136,7 +136,9 @@ public class PianoKeyPresses : MonoBehaviour
                 currentPressedNotes.Add(each);
                 each.GetComponent<SpriteRenderer>().color = Color.red;
 
-                
+                // turn on the note light
+                each.transform.GetChild(2).gameObject.SetActive(true);
+
 
             }
         }
@@ -163,10 +165,13 @@ public class PianoKeyPresses : MonoBehaviour
                     each.GetComponent<SpriteRenderer>().color = Color.white;
                 }
 
-                
+                // turn off the note light
+                each.transform.GetChild(2).gameObject.SetActive(false);
+
+
             }
         }
     }
 
 
-}
+        }
