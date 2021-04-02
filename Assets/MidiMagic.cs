@@ -30,6 +30,9 @@ public class MidiMagic : MonoBehaviour
 
         Debug.Log("TOTAL NOTES: " + midiFile.GetNotes().Count);
 
+        
+
+
         // Change midi length the english AKA metric
         PersistentData.data.myMidi = midiFile;
         PersistentData.data.myPlayback = _playback;
@@ -37,6 +40,11 @@ public class MidiMagic : MonoBehaviour
        
         _playback.InterruptNotesOnStop = true;
         ResumePlayback();
+    }
+
+    public void ChangeMidiPlaybackSpeed(float speed)
+    {
+        _playback.Speed = speed;
     }
 
 

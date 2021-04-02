@@ -44,12 +44,17 @@ public class PlayUILogic : MonoBehaviour
     public Toggle pianoLabelToggle;
     public Toggle noteLabelToggle;
 
+    public Slider SongSpeedSlider;
+
 
     public int songPercentage;
 
     // Start is called before the first frame update
     void Start()
     {
+
+        SongSpeedSlider.value = 1;
+
         spawner = GameObject.Find("PianoKeyboardUI").GetComponent<PianoNoteSpawner>();
 
         isPaused = false;
@@ -128,6 +133,13 @@ public class PlayUILogic : MonoBehaviour
         songFinishedPanel.GetComponent<SongFinished>().UpdateText();
 
         
+    }
+
+    public void SongSpeedSliderChangedValue()
+    {
+        float newSongSpeed = SongSpeedSlider.value;
+        Debug.Log(newSongSpeed);
+        midi.ChangeMidiPlaybackSpeed(newSongSpeed);
     }
 
     public void PauseMenuPressed()
