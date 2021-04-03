@@ -209,6 +209,13 @@ public class Settings : MonoBehaviour
         SaveSettings();
     }
 
+   
+    public void VolumeSliderChangedValue()
+    {
+        float volumeValue = volumeSlider.value;
+        PlayerPrefs.SetFloat(volume_Pref, volumeValue);
+    }
+
     public void ResetButtonPressed()
     {
         if (isInputPanelOn)
