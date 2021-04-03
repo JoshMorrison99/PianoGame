@@ -45,6 +45,7 @@ public class PlayUILogic : MonoBehaviour
     public Toggle noteLabelToggle;
 
     public Slider SongSpeedSlider;
+    public Slider SongVolumeSlider;
 
 
     public int songPercentage;
@@ -53,7 +54,7 @@ public class PlayUILogic : MonoBehaviour
     void Start()
     {
 
-        SongSpeedSlider.value = 1;
+        
 
         spawner = GameObject.Find("PianoKeyboardUI").GetComponent<PianoNoteSpawner>();
 
@@ -75,6 +76,7 @@ public class PlayUILogic : MonoBehaviour
         pauseManuPanel.SetActive(false);
         settingsPanel.SetActive(false);
         pauseBtn.gameObject.SetActive(true);
+
 
         //PauseMenuPressed();
     }
@@ -138,8 +140,15 @@ public class PlayUILogic : MonoBehaviour
     public void SongSpeedSliderChangedValue()
     {
         float newSongSpeed = SongSpeedSlider.value;
-        Debug.Log(newSongSpeed);
+        //Debug.Log(newSongSpeed);
         midi.ChangeMidiPlaybackSpeed(newSongSpeed);
+    }
+
+    public void SongVolumeSliderChangedValue()
+    {
+        float newSongVolume = SongVolumeSlider.value;
+        const int volumeUIntMutiplier = 65535;
+        midi.ChangedMidiPlaybackVolume(newSongVolume * volumeUIntMutiplier);
     }
 
     public void PauseMenuPressed()

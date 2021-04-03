@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using Melanchall.DryWetMidi.Core;
 using Melanchall.DryWetMidi.Devices;
 using Melanchall.DryWetMidi.Interaction;
@@ -13,6 +14,7 @@ public class MidiMagic : MonoBehaviour
 
 
     public Playback _playback;
+
     public OutputDevice _outputDevice;
     public MidiFile midiFile;
 
@@ -23,12 +25,17 @@ public class MidiMagic : MonoBehaviour
         midiFile = MidiFile.Read(Midi_path);
         _outputDevice = OutputDevice.GetById(0);
 
-        _playback = midiFile.GetPlayback(_outputDevice, new MidiClockSettings
+    // Note Playback
+    _playback = midiFile.GetPlayback(_outputDevice, new MidiClockSettings
         {
             CreateTickGeneratorCallback = () => null
         });
 
         Debug.Log("TOTAL NOTES: " + midiFile.GetNotes().Count);
+
+        Debug.Log(_outputDevice.SupportsLeftRightVolumeControl);
+        Debug.Log(_outputDevice.SupportsVolumeControl);
+        Debug.Log(_outputDevice.Channels);
 
         
 
@@ -37,9 +44,13 @@ public class MidiMagic : MonoBehaviour
         PersistentData.data.myMidi = midiFile;
         PersistentData.data.myPlayback = _playback;
         _playback.NotesPlaybackStarted += spawner.spawnNote;
-       
+        
         _playback.InterruptNotesOnStop = true;
+
+        Debug.Log("VOLUME: " + _outputDevice.Volume);
+        Debug.Log("VOLUME Device: " + _outputDevice.Name);
         ResumePlayback();
+
     }
 
     public void ChangeMidiPlaybackSpeed(float speed)
@@ -47,11 +58,33 @@ public class MidiMagic : MonoBehaviour
         _playback.Speed = speed;
     }
 
+    public void ChangedMidiPlaybackVolume(float volume)
+    {
+        ushort newVolume = (ushort)volume;
+        if (_outputDevice.SupportsVolumeControl)
+        {
+            try
+            {
+                _outputDevice.Volume = new Volume(newVolume);
+                Debug.Log(_outputDevice.Volume.LeftVolume);
+                Debug.Log(_outputDevice.Volume.RightVolume);
+                Debug.Log(newVolume);
+            }catch(Exception e)
+            {
+                Debug.Log(e);
+            }
+            
+        }
+    }
+
 
     public void ResumePlayback()
     {
         StartCoroutine(StartMusic());
     }
+
+
+
 
 
     private IEnumerator StartMusic()
@@ -88,5 +121,7 @@ public class MidiMagic : MonoBehaviour
         _playback.Dispose();
         _outputDevice.Dispose();
     }
+
+
 
 }
