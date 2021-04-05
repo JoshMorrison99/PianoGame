@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine.EventSystems;
+using UnityEditor;
 
 public class SongSelection : MonoBehaviour
 {
@@ -98,10 +99,16 @@ public class SongSelection : MonoBehaviour
     public void deleteButtonClicked(Button button)
     {
         index = button.transform.GetSiblingIndex();
-        PersistentData.data._SongList.RemoveAt(index - 1);
-
-        PersistentData.SaveJsonData(PersistentData.data);
         
+
+        PersistentData.data.songImportIndex -= 1;
+
+        string ResourcesPath = "Assets/MidiFiles/UserMidiFiles";
+        string songName = PersistentData.data._SongList[index - 1]._SongTitle;
+        FileUtil.DeleteFileOrDirectory(ResourcesPath + "/" + songName);
+
+        PersistentData.data._SongList.RemoveAt(index - 1);
+        PersistentData.SaveJsonData(PersistentData.data);
 
         createSongsFromTemplate();
     }
