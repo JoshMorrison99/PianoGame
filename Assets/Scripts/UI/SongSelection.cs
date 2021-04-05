@@ -86,7 +86,24 @@ public class SongSelection : MonoBehaviour
 
             newSong.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = each._SongTitle;
             newSong.transform.GetChild(2).GetComponent<TextMeshProUGUI>().text = each._SongAuthor;
+
+            // Render the remove button or not
+            if (newSong.GetComponent<SongInfo>()._SongAuthor != "user")
+            {
+                newSong.transform.GetChild(5).gameObject.SetActive(false);
+            }
         }
+    }
+
+    public void deleteButtonClicked(Button button)
+    {
+        index = button.transform.GetSiblingIndex();
+        PersistentData.data._SongList.RemoveAt(index - 1);
+
+        PersistentData.SaveJsonData(PersistentData.data);
+        
+
+        createSongsFromTemplate();
     }
     
 
