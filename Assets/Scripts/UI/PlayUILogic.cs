@@ -54,7 +54,8 @@ public class PlayUILogic : MonoBehaviour
     void Start()
     {
 
-        
+        DeviceFinder deviceFinder = GameObject.Find("DeviceFinder").GetComponent<DeviceFinder>();
+        deviceFinder.GetPianoDeviceErrorText();
 
         spawner = GameObject.Find("PianoKeyboardUI").GetComponent<PianoNoteSpawner>();
 

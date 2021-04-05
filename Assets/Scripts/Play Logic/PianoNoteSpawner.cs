@@ -186,7 +186,7 @@ public class PianoNoteSpawner : MonoBehaviour
             float duration = (float)metricLength.Seconds + ((float)metricLength.Milliseconds) / 1000;
 
 
-            Debug.Log(duration);
+            //Debug.Log(duration);
             if (noteName == "C2")
             {
                 GameObject spawnedNote = Instantiate(Note, new Vector3(C2.transform.position.x, C2.transform.position.y + noteHeight, C2.transform.position.z), Quaternion.identity);
