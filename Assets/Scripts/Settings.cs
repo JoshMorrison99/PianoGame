@@ -40,6 +40,10 @@ public class Settings : MonoBehaviour
     public Button LeftResolutionButton;
     public Button RightResolutionButton;
     public TextMeshProUGUI ResolutionText;
+    Resolution[] resolutions;
+    List<string> resolutionOptions;
+    int resolutionIndex = 0;
+    const string resolution_Pref = "resolution";
 
     // ---------------------------------------
     public Button ApplyButton;
@@ -50,7 +54,27 @@ public class Settings : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        GetDeviceResolutions();
         LoadSettings();
+    }
+
+    public void GetDeviceResolutions()
+    {
+        resolutions = Screen.resolutions;
+        resolutionOptions = new List<string>();
+
+        for (int i = 0; i < resolutions.Length; i++)
+        {
+            string option = resolutions[i].width + " x " + resolutions[i].height;
+            resolutionOptions.Add(option);
+
+            if (resolutions[i].width == Screen.currentResolution.width && resolutions[i].height == Screen.currentResolution.height)
+            {
+                resolutionIndex = i;
+            }
+        }
+
+        ResolutionText.text = resolutionOptions[resolutionIndex];
     }
 
     private void OnApplicationQuit()
@@ -67,7 +91,11 @@ public class Settings : MonoBehaviour
 
         // Save Windowed Mode Setting
         PlayerPrefs.SetString(screenMode_Pref, screenModes[screenModesIndex]);
-        SaveWindowedSetting();
+        SetWindowedSetting();
+
+        // Save Resolution Setting
+        PlayerPrefs.SetString(resolution_Pref, resolutionOptions[resolutionIndex]);
+        SetResolutionSetting();
     }
 
     public void LoadSettings()
@@ -109,6 +137,9 @@ public class Settings : MonoBehaviour
 
         // Load the screen windowed setting text
         WindowedText.text = PlayerPrefs.GetString(screenMode_Pref);
+
+        // Load the screen resolution setting text
+        ResolutionText.text = PlayerPrefs.GetString(resolution_Pref);
     }
 
 
@@ -157,7 +188,13 @@ public class Settings : MonoBehaviour
         MasterVolume.value = 0.5f;
     }
 
-    public void SaveWindowedSetting()
+    public void SetResolutionSetting()
+    {
+        Resolution resolution = resolutions[resolutionIndex];
+        Screen.SetResolution(resolution.width, resolution.height, Screen.fullScreen); 
+    }
+
+    public void SetWindowedSetting()
     {
         if (screenModesIndex == 0)
         {
@@ -254,11 +291,27 @@ public class Settings : MonoBehaviour
 
     public void LeftResolutionButtonClicked()
     {
+        Debug.Log(resolutionIndex);
+        Debug.Log(resolutionOptions);
+        resolutionIndex -= 1;
+        if (resolutionIndex < 0)
+        {
+            resolutionIndex = resolutions.Length - 1;
+        }
 
+        ResolutionText.text = resolutionOptions[resolutionIndex];
     }
 
     public void RightResolutionButtonClicked()
     {
+        Debug.Log(resolutionIndex);
+        Debug.Log(resolutionOptions);
+        resolutionIndex += 1;
+        if (resolutionIndex > resolutions.Length - 1)
+        {
+            resolutionIndex = 0;
+        }
 
+        ResolutionText.text = resolutionOptions[resolutionIndex];
     }
 }
