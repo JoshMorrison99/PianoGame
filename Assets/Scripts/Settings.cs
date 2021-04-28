@@ -6,45 +6,36 @@ using TMPro;
 
 public class Settings : MonoBehaviour
 {
-    // Input
-    // - Not sure if you can realy save anything here
+    
 
     // Audio
     const string volume_Pref = "Volume";
-    public Slider volumeSlider;
 
     // Video
     const string pianoLabel_Pref = "isPianoLabelled";
     const string noteLabel_Pref = "isNoteLabelled";
     const string vfx_Pref = "isVFX";
-    public Button isPianoLabelledButton;
-    public Button isNoteLabelledButton;
-    public Button isVFXButton;
     public int isPianoLabelled = 1;
     public int isNoteLabelled = 1;
     public int isVFX = 1;
 
+    public Slider MasterVolume;
+    public Button ON_Button_VFX;
+    public Button OFF_Button_VFX;
+    public Button ON_Button_NoteLabels;
+    public Button OFF_Button_NoteLabels;
+    public Button ON_Button_PianoLabels;
+    public Button OFF_Button_PianoLabels;
 
-    // --------------Buttons Panels------------------
-    public GameObject InputButtonPanel;
-    public GameObject videoButtonPanel;
-    public GameObject LanguageButtonPanel;
-    public GameObject AudioButtonPanel;
     // ---------------------------------------
     public Button ApplyButton;
     public Button ResetButton;
-    // ---------------------------------------
-    public bool isInputPanelOn;
-    public bool isVideoPanelOn;
-    public bool isLanguagePanelOn;
-    public bool isAudioPanelOn;
+    public Button BackButton;
     // ---------------------------------------
 
     // Start is called before the first frame update
     void Start()
     {
-        
-        InputButtonPressed();
         LoadSettings();
     }
 
@@ -55,7 +46,7 @@ public class Settings : MonoBehaviour
 
     public void SaveSettings()
     {
-        PlayerPrefs.SetFloat(volume_Pref, volumeSlider.value);
+        PlayerPrefs.SetFloat(volume_Pref, MasterVolume.value);
         PlayerPrefs.SetInt(pianoLabel_Pref, isPianoLabelled);
         PlayerPrefs.SetInt(noteLabel_Pref, isNoteLabelled);
         PlayerPrefs.SetInt(vfx_Pref, isVFX);
@@ -63,146 +54,42 @@ public class Settings : MonoBehaviour
 
     public void LoadSettings()
     {
-        volumeSlider.value = PlayerPrefs.GetFloat(volume_Pref);
-
+        MasterVolume.value = PlayerPrefs.GetFloat(volume_Pref);
         isPianoLabelled = PlayerPrefs.GetInt(pianoLabel_Pref);
         isNoteLabelled = PlayerPrefs.GetInt(noteLabel_Pref);
         isVFX = PlayerPrefs.GetInt(vfx_Pref);
 
-        // Video Button UI
-        GetVideoLabels();
-
-    }
-
-    public void InputButtonPressed()
-    {
-        isInputPanelOn = true;
-        isAudioPanelOn = false;
-        isLanguagePanelOn = false;
-        isVideoPanelOn = false; 
-
-        InputButtonPanel.SetActive(true);
-        videoButtonPanel.SetActive(false);
-        LanguageButtonPanel.SetActive(false);
-        AudioButtonPanel.SetActive(false);
-    }
-
-    public void VideoButtonPressed()
-    {
-        isInputPanelOn = false;
-        isAudioPanelOn = false;
-        isLanguagePanelOn = false;
-        isVideoPanelOn = true;
-
-        InputButtonPanel.SetActive(false);
-        videoButtonPanel.SetActive(true);
-        LanguageButtonPanel.SetActive(false);
-        AudioButtonPanel.SetActive(false);
-    }
-
-    public void LangugaeButtonPressed()
-    {
-        isInputPanelOn = false;
-        isAudioPanelOn = false;
-        isLanguagePanelOn = true;
-        isVideoPanelOn = false;
-
-        InputButtonPanel.SetActive(false);
-        videoButtonPanel.SetActive(false);
-        LanguageButtonPanel.SetActive(true);
-        AudioButtonPanel.SetActive(false);
-    }
-
-    public void AudioButtonPressed()
-    {
-        isInputPanelOn = false;
-        isAudioPanelOn = true;
-        isLanguagePanelOn = false;
-        isVideoPanelOn = false;
-
-        InputButtonPanel.SetActive(false);
-        videoButtonPanel.SetActive(false);
-        LanguageButtonPanel.SetActive(false);
-        AudioButtonPanel.SetActive(true);
-    }
-
-    public void PianoLabelledButtonPressed()
-    {
-        if (PlayerPrefs.GetInt(pianoLabel_Pref) == 0)
+        // Set the UI for VFX buttons
+        if (isVFX == 0)
         {
-            PlayerPrefs.SetInt(pianoLabel_Pref, 1);
-            isPianoLabelledButton.GetComponentInChildren<TextMeshProUGUI>().text = "Piano Labelled: Yes";
-            isPianoLabelled = 1;
+            VFX_OFF_Clicked();
         }
         else
         {
-            PlayerPrefs.SetInt(pianoLabel_Pref, 0);
-            isPianoLabelledButton.GetComponentInChildren<TextMeshProUGUI>().text = "Piano Labelled: No";
-            isPianoLabelled = 0;
+            VFX_ON_Clicked();
+        }
+
+        // set the UI for note label buttons
+        if (isNoteLabelled == 0)
+        {
+            NoteLabel_OFF_Clicked();
+        }
+        else
+        {
+            NoteLabel_ON_Clicked();
+        }
+
+        // Set the UI for paino label buttons
+        if (isPianoLabelled == 0)
+        {
+            PianoLabel_OFF_Clicked();
+        }
+        else
+        {
+            PianoLabel_ON_Clicked();
         }
     }
 
-    public void GetVideoLabels()
-    {
-        if (PlayerPrefs.GetInt(pianoLabel_Pref) == 1)
-        {
-            isPianoLabelledButton.GetComponentInChildren<TextMeshProUGUI>().text = "Piano Labelled: Yes";
-        }
-        else
-        {
-            isPianoLabelledButton.GetComponentInChildren<TextMeshProUGUI>().text = "Piano Labelled: No";
-        }
-
-        if (PlayerPrefs.GetInt(noteLabel_Pref) == 1)
-        {
-            isNoteLabelledButton.GetComponentInChildren<TextMeshProUGUI>().text = "Note Labelled: Yes";
-        }
-        else
-        {
-            isNoteLabelledButton.GetComponentInChildren<TextMeshProUGUI>().text = "Note Labelled: No";
-        }
-
-        if (PlayerPrefs.GetInt(vfx_Pref) == 1)
-        {
-            isVFXButton.GetComponentInChildren<TextMeshProUGUI>().text = "VFX: Yes";
-        }
-        else
-        {
-            isVFXButton.GetComponentInChildren<TextMeshProUGUI>().text = "VFX: No";
-        }
-    }
-
-    public void NoteLabelledButtonPressed()
-    {
-        if (PlayerPrefs.GetInt(noteLabel_Pref) == 0)
-        {
-            PlayerPrefs.SetInt(noteLabel_Pref, 1);
-            isNoteLabelledButton.GetComponentInChildren<TextMeshProUGUI>().text = "Note Labelled: Yes";
-            isNoteLabelled = 1;
-        }
-        else
-        {
-            PlayerPrefs.SetInt(noteLabel_Pref, 0);
-            isNoteLabelledButton.GetComponentInChildren<TextMeshProUGUI>().text = "Note Labelled: No";
-            isNoteLabelled = 0;
-        }
-    }
-
-    public void VFXButtonPressed()
-    {
-        if (PlayerPrefs.GetInt(vfx_Pref) == 0)
-        {
-            PlayerPrefs.SetInt(vfx_Pref, 1);
-            isVFXButton.GetComponentInChildren<TextMeshProUGUI>().text = "VFX: Yes";
-            isVFX = 1;
-        }
-        else
-        {
-            PlayerPrefs.SetInt(vfx_Pref, 0);
-            isVFXButton.GetComponentInChildren<TextMeshProUGUI>().text = "VFX: No";
-            isVFX = 0;
-        }
-    }
 
     public void ApplyButtonPressed()
     {
@@ -212,38 +99,93 @@ public class Settings : MonoBehaviour
    
     public void VolumeSliderChangedValue()
     {
-        float volumeValue = volumeSlider.value;
+        float volumeValue = MasterVolume.value;
         PlayerPrefs.SetFloat(volume_Pref, volumeValue);
     }
 
-    public void ResetButtonPressed()
+    public void ResetButtonPressed() // Restore all options to default
     {
-        if (isInputPanelOn)
-        {
-               
-        }
-        else if (isVideoPanelOn)
-        {
-            isVFX = 1;
-            isPianoLabelled = 1;
-            isNoteLabelled = 1;
+        PlayerPrefs.SetInt(pianoLabel_Pref, 1); // Trun on pinao labels by default
+        PlayerPrefs.SetInt(noteLabel_Pref, 0); // Turn off Note labels by default
+        PlayerPrefs.SetInt(vfx_Pref, 0); // Turn off vfx by default
+        PlayerPrefs.SetFloat(volume_Pref, 0.5f); // Sound volume at 50% by default
 
-            PlayerPrefs.SetInt(pianoLabel_Pref, isPianoLabelled);
-            PlayerPrefs.SetInt(noteLabel_Pref, isNoteLabelled);
-            PlayerPrefs.SetInt(vfx_Pref, isVFX);
+        ResetButtonPressedUI();
+    }
 
-            GetVideoLabels();
-        }
-        else if (isLanguagePanelOn)
-        {
+    public void BackButtonPressed()
+    {
+        ApplyButtonPressed();
+    }
 
-        }
-        else if (isAudioPanelOn)
-        {
-            PlayerPrefs.SetFloat(volume_Pref, 0.5f);
+    public void ResetButtonPressedUI() // Restore all options to default UI
+    {
+        // Turn off VFX by default
+        ON_Button_VFX.GetComponent<Image>().color = COLOR_PALLETE.GRAY;
+        OFF_Button_VFX.GetComponent<Image>().color = COLOR_PALLETE.LIGHT_BLUE;
 
-            // Reset UI
-            volumeSlider.value = PlayerPrefs.GetFloat(volume_Pref);
-        }
+        // Turn off Note labels by default
+        ON_Button_NoteLabels.GetComponent<Image>().color = COLOR_PALLETE.GRAY;
+        OFF_Button_NoteLabels.GetComponent<Image>().color = COLOR_PALLETE.LIGHT_BLUE;
+
+        // Trun on pinao labels by default
+        ON_Button_PianoLabels.GetComponent<Image>().color = COLOR_PALLETE.LIGHT_BLUE;
+        OFF_Button_PianoLabels.GetComponent<Image>().color = COLOR_PALLETE.GRAY;
+
+        // Sound volume at 50% by default
+        MasterVolume.value = 0.5f;
+    }
+
+    public void VFX_ON_Clicked()
+    {
+        ON_Button_VFX.GetComponent<Image>().color = COLOR_PALLETE.LIGHT_BLUE;
+        OFF_Button_VFX.GetComponent<Image>().color = COLOR_PALLETE.GRAY;
+
+        // Update player prefs
+        isVFX = 1;
+    }
+
+    public void VFX_OFF_Clicked()
+    {
+        ON_Button_VFX.GetComponent<Image>().color = COLOR_PALLETE.GRAY;
+        OFF_Button_VFX.GetComponent<Image>().color = COLOR_PALLETE.LIGHT_BLUE;
+
+        // Update player prefs
+        isVFX = 0;
+    }
+
+    public void NoteLabel_ON_Clicked()
+    {
+        ON_Button_NoteLabels.GetComponent<Image>().color = COLOR_PALLETE.LIGHT_BLUE;
+        OFF_Button_NoteLabels.GetComponent<Image>().color = COLOR_PALLETE.GRAY;
+
+        // Update player prefs
+        isNoteLabelled = 1;
+    }
+
+    public void NoteLabel_OFF_Clicked()
+    {
+        ON_Button_NoteLabels.GetComponent<Image>().color = COLOR_PALLETE.GRAY;
+        OFF_Button_NoteLabels.GetComponent<Image>().color = COLOR_PALLETE.LIGHT_BLUE;
+
+        // Update player prefs
+        isNoteLabelled = 0;
+    }
+
+    public void PianoLabel_ON_Clicked()
+    {
+        ON_Button_PianoLabels.GetComponent<Image>().color = COLOR_PALLETE.LIGHT_BLUE;
+        OFF_Button_PianoLabels.GetComponent<Image>().color = COLOR_PALLETE.GRAY;
+
+        // Update player prefs
+        isPianoLabelled = 1;
+    }
+    public void PianoLabel_OFF_Clicked()
+    {
+        ON_Button_PianoLabels.GetComponent<Image>().color = COLOR_PALLETE.GRAY;
+        OFF_Button_PianoLabels.GetComponent<Image>().color = COLOR_PALLETE.LIGHT_BLUE;
+
+        // Update player prefs
+        isPianoLabelled = 0;
     }
 }
