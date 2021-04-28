@@ -26,6 +26,20 @@ public class Settings : MonoBehaviour
     public Button OFF_Button_NoteLabels;
     public Button ON_Button_PianoLabels;
     public Button OFF_Button_PianoLabels;
+    public TMP_Dropdown KeyboardSelect;
+
+    // Windowed Mode Settings
+    public Button LeftWindowedButton;
+    public Button RightWindowedButton;
+    public TextMeshProUGUI WindowedText;
+    public string[] screenModes = new string[] { "Fullscreen", "Windowed", "Maximized" };
+    public int screenModesIndex;
+    const string screenMode_Pref = "screenMode";
+
+    // Resolution Mode Settings
+    public Button LeftResolutionButton;
+    public Button RightResolutionButton;
+    public TextMeshProUGUI ResolutionText;
 
     // ---------------------------------------
     public Button ApplyButton;
@@ -50,6 +64,10 @@ public class Settings : MonoBehaviour
         PlayerPrefs.SetInt(pianoLabel_Pref, isPianoLabelled);
         PlayerPrefs.SetInt(noteLabel_Pref, isNoteLabelled);
         PlayerPrefs.SetInt(vfx_Pref, isVFX);
+
+        // Save Windowed Mode Setting
+        PlayerPrefs.SetString(screenMode_Pref, screenModes[screenModesIndex]);
+        SaveWindowedSetting();
     }
 
     public void LoadSettings()
@@ -88,6 +106,9 @@ public class Settings : MonoBehaviour
         {
             PianoLabel_ON_Clicked();
         }
+
+        // Load the screen windowed setting text
+        WindowedText.text = PlayerPrefs.GetString(screenMode_Pref);
     }
 
 
@@ -115,7 +136,7 @@ public class Settings : MonoBehaviour
 
     public void BackButtonPressed()
     {
-        ApplyButtonPressed();
+        SaveSettings();
     }
 
     public void ResetButtonPressedUI() // Restore all options to default UI
@@ -134,6 +155,22 @@ public class Settings : MonoBehaviour
 
         // Sound volume at 50% by default
         MasterVolume.value = 0.5f;
+    }
+
+    public void SaveWindowedSetting()
+    {
+        if (screenModesIndex == 0)
+        {
+            Screen.fullScreen = true;
+        }else if (screenModesIndex == 1)
+        {
+            Screen.fullScreen = false;
+            Screen.fullScreenMode = FullScreenMode.Windowed;
+        }else if (screenModesIndex == 2)
+        {
+            Screen.fullScreen = false;
+            Screen.fullScreenMode = FullScreenMode.MaximizedWindow;
+        }
     }
 
     public void VFX_ON_Clicked()
@@ -187,5 +224,41 @@ public class Settings : MonoBehaviour
 
         // Update player prefs
         isPianoLabelled = 0;
+    }
+
+    public void LeftWindowedButtonClicked()
+    {
+        screenModesIndex -= 1;
+        if (screenModesIndex < 0)
+        {
+            screenModesIndex = 2;
+        }
+
+        WindowedText.text = screenModes[screenModesIndex];
+
+        Debug.Log(screenModesIndex);
+
+    }
+    public void RightWindowedButtonClicked()
+    {
+        screenModesIndex += 1;
+        if (screenModesIndex > 2)
+        {
+            screenModesIndex = 0;
+        }
+
+        WindowedText.text = screenModes[screenModesIndex];
+
+        Debug.Log(screenModesIndex);
+    }
+
+    public void LeftResolutionButtonClicked()
+    {
+
+    }
+
+    public void RightResolutionButtonClicked()
+    {
+
     }
 }
