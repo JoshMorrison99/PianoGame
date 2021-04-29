@@ -136,8 +136,13 @@ public class PianoKeyPresses : MonoBehaviour
                 currentPressedNotes.Add(each);
                 each.GetComponent<SpriteRenderer>().color = Color.red;
 
-                // turn on the note light
-                each.transform.GetChild(2).gameObject.SetActive(true);
+
+                if(PlayerPrefs.GetInt("isVFX") == 1)
+                {
+                    // turn on the note light if the setting is on
+                    each.transform.GetChild(2).gameObject.SetActive(true);
+                }
+                
 
 
             }
@@ -165,7 +170,8 @@ public class PianoKeyPresses : MonoBehaviour
                     each.GetComponent<SpriteRenderer>().color = Color.white;
                 }
 
-                // turn off the note light
+
+                // turn off the note light if the setting is on
                 each.transform.GetChild(2).gameObject.SetActive(false);
 
 
