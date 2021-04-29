@@ -207,6 +207,22 @@ public class PlayUILogic : MonoBehaviour
     {
         piano.SetActive(false);
         settingsPanel.SetActive(true);
+        pianoBackground.SetActive(false);
+        scoreText.gameObject.SetActive(false);
+        progressSong.gameObject.SetActive(false);
+        pauseManuPanel.SetActive(false);
+        pauseBtn.gameObject.SetActive(false);
+    }
+
+    public void PauseSettingBackButtonClicked()
+    {
+        piano.SetActive(true);
+        settingsPanel.SetActive(false);
+        pianoBackground.SetActive(true);
+        scoreText.gameObject.SetActive(true);
+        progressSong.gameObject.SetActive(true);
+        pauseManuPanel.SetActive(true);
+        pauseBtn.gameObject.SetActive(true);
     }
 
     public void TogglePianoLabels()

@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.InputSystem;
 
 public class Settings : MonoBehaviour
 {
-    
 
     // Audio
     const string volume_Pref = "Volume";
@@ -54,6 +54,7 @@ public class Settings : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        GetInputDevices();
         GetDeviceResolutions();
         LoadSettings();
     }
@@ -148,7 +149,31 @@ public class Settings : MonoBehaviour
         SaveSettings();
     }
 
-   
+    public void GetInputDevices()
+    {
+        var devices = InputSystem.devices;
+        foreach (var device in devices)
+        {
+            KeyboardSelect.AddOptions(new List<string> { device.displayName } );
+        }
+
+        InputSystem.onDeviceChange += (device, change) =>
+        {
+            if (change != InputDeviceChange.Added) return;
+
+            KeyboardSelect.AddOptions(new List<string> { device.displayName });
+
+        };
+
+    }
+
+    public void PlayScene_BackButtonPressed(GameObject pauseMenu)
+    {
+        pauseMenu.GetComponent<PlayUILogic>().PauseSettingBackButtonClicked();
+    }
+
+
+
     public void VolumeSliderChangedValue()
     {
         float volumeValue = MasterVolume.value;
