@@ -8,6 +8,10 @@ using UnityEngine.InputSystem;
 public class Settings : MonoBehaviour
 {
 
+    // Gameplay
+    const string speed_Pref = "Speed";
+    public Slider speedSlider;
+
     // Audio
     const string volume_Pref = "Volume";
 
@@ -86,6 +90,7 @@ public class Settings : MonoBehaviour
     public void SaveSettings()
     {
         PlayerPrefs.SetFloat(volume_Pref, MasterVolume.value);
+        PlayerPrefs.SetFloat(speed_Pref, speedSlider.value);
         PlayerPrefs.SetInt(pianoLabel_Pref, isPianoLabelled);
         PlayerPrefs.SetInt(noteLabel_Pref, isNoteLabelled);
         PlayerPrefs.SetInt(vfx_Pref, isVFX);
@@ -102,6 +107,7 @@ public class Settings : MonoBehaviour
     public void LoadSettings()
     {
         MasterVolume.value = PlayerPrefs.GetFloat(volume_Pref);
+        speedSlider.value = PlayerPrefs.GetFloat(speed_Pref);
         isPianoLabelled = PlayerPrefs.GetInt(pianoLabel_Pref);
         isNoteLabelled = PlayerPrefs.GetInt(noteLabel_Pref);
         isVFX = PlayerPrefs.GetInt(vfx_Pref);
@@ -181,12 +187,19 @@ public class Settings : MonoBehaviour
         PlayerPrefs.SetFloat(volume_Pref, volumeValue);
     }
 
+    public void SpeedSliderChangedValue()
+    {
+        float speedValue = speedSlider.value;
+        PlayerPrefs.SetFloat(speed_Pref, speedValue);
+    }
+
     public void ResetButtonPressed() // Restore all options to default
     {
         PlayerPrefs.SetInt(pianoLabel_Pref, 1); // Trun on pinao labels by default
         PlayerPrefs.SetInt(noteLabel_Pref, 0); // Turn off Note labels by default
         PlayerPrefs.SetInt(vfx_Pref, 0); // Turn off vfx by default
         PlayerPrefs.SetFloat(volume_Pref, 0.5f); // Sound volume at 50% by default
+        PlayerPrefs.SetFloat(speed_Pref, 1f); // speed at 100% by default
 
         ResetButtonPressedUI();
     }
@@ -212,6 +225,9 @@ public class Settings : MonoBehaviour
 
         // Sound volume at 50% by default
         MasterVolume.value = 0.5f;
+
+        // Playback speed set to 100% by default
+        speedSlider.value = 1f;
     }
 
     public void SetResolutionSetting()

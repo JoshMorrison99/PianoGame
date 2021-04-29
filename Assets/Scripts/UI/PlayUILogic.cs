@@ -41,6 +41,8 @@ public class PlayUILogic : MonoBehaviour
 
     public TextMeshProUGUI scoreText;
 
+    public Slider speedSlider;
+
 
     public int songPercentage;
 
@@ -74,6 +76,9 @@ public class PlayUILogic : MonoBehaviour
 
 
         //PauseMenuPressed();
+
+        // Disable the slider for playback speed so the user cannot change the speed while playing
+        speedSlider.enabled = false;
     }
 
     // Update is called once per frame
@@ -105,7 +110,6 @@ public class PlayUILogic : MonoBehaviour
         {
             spawner.isNoteLabelled = false;
         }
-
         
     }
 
@@ -126,13 +130,6 @@ public class PlayUILogic : MonoBehaviour
         songFinishedPanel.GetComponent<SongFinished>().UpdateText();
 
         
-    }
-
-    public void SongSpeedSliderChangedValue()
-    {
-        /*float newSongSpeed = SongSpeedSlider.value;
-        //Debug.Log(newSongSpeed);
-        midi.ChangeMidiPlaybackSpeed(newSongSpeed);*/
     }
 
     public void GetAndSetSongVolume()

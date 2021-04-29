@@ -40,6 +40,9 @@ public class MidiMagic : MonoBehaviour
         // Set the volume the same as player prefs
         GetAndSetSongVolume();
 
+        // Set the speed of the playback
+        SongSpeedSliderChangedValue();
+
 
         // Change midi length the english AKA metric
         PersistentData.data.myMidi = midiFile;
@@ -65,6 +68,13 @@ public class MidiMagic : MonoBehaviour
         Debug.Log("Volume " + newSongVolume);
         const int volumeUIntMutiplier = 65535;
         ChangedMidiPlaybackVolume(newSongVolume * volumeUIntMutiplier);
+    }
+
+    public void SongSpeedSliderChangedValue()
+    {
+        float newSongSpeed = PlayerPrefs.GetFloat("Speed");
+        Debug.Log("Speed is now: " + newSongSpeed);
+        ChangeMidiPlaybackSpeed(newSongSpeed);
     }
 
     public void ChangedMidiPlaybackVolume(float volume)
