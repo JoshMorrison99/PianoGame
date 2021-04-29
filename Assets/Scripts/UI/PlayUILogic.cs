@@ -41,12 +41,6 @@ public class PlayUILogic : MonoBehaviour
 
     public TextMeshProUGUI scoreText;
 
-    public Toggle pianoLabelToggle;
-    public Toggle noteLabelToggle;
-
-    public Slider SongSpeedSlider;
-    public Slider SongVolumeSlider;
-
 
     public int songPercentage;
 
@@ -94,23 +88,21 @@ public class PlayUILogic : MonoBehaviour
     {
         if (PlayerPrefs.GetInt("isPianoLabelled") == 1)
         {
-            pianoLabelToggle.isOn = true;
-            
+            pianoKeyLabels.SetActive(true);
+
         }
         else
         {
-            pianoLabelToggle.isOn = false;
-            
+            pianoKeyLabels.SetActive(false);
+
         }
 
         if (PlayerPrefs.GetInt("isNoteLabelled") == 1)
         {
-            noteLabelToggle.isOn = true;
             spawner.isNoteLabelled = true;
         }
         else
         {
-            noteLabelToggle.isOn = false;
             spawner.isNoteLabelled = false;
         }
     }
@@ -129,10 +121,6 @@ public class PlayUILogic : MonoBehaviour
         // remove the helper lines from the UI
         healperLines.SetActive(false);
 
-        // Remove toggles
-        pianoLabelToggle.gameObject.SetActive(false);
-        noteLabelToggle.gameObject.SetActive(false);
-
         songFinishedPanel.GetComponent<SongFinished>().UpdateText();
 
         
@@ -140,16 +128,16 @@ public class PlayUILogic : MonoBehaviour
 
     public void SongSpeedSliderChangedValue()
     {
-        float newSongSpeed = SongSpeedSlider.value;
+        /*float newSongSpeed = SongSpeedSlider.value;
         //Debug.Log(newSongSpeed);
-        midi.ChangeMidiPlaybackSpeed(newSongSpeed);
+        midi.ChangeMidiPlaybackSpeed(newSongSpeed);*/
     }
 
     public void SongVolumeSliderChangedValue()
     {
-        float newSongVolume = SongVolumeSlider.value;
+        /*float newSongVolume = SongVolumeSlider.value;
         const int volumeUIntMutiplier = 65535;
-        midi.ChangedMidiPlaybackVolume(newSongVolume * volumeUIntMutiplier);
+        midi.ChangedMidiPlaybackVolume(newSongVolume * volumeUIntMutiplier);*/
     }
 
     public void PauseMenuPressed()
@@ -223,34 +211,8 @@ public class PlayUILogic : MonoBehaviour
         progressSong.gameObject.SetActive(true);
         pauseManuPanel.SetActive(true);
         pauseBtn.gameObject.SetActive(true);
-    }
 
-    public void TogglePianoLabels()
-    {
-        if (pianoLabelToggle.isOn)
-        {
-            pianoKeyLabels.SetActive(true);
-            PlayerPrefs.SetInt("isPianoLabelled", 1);
-        }
-        else
-        {
-            pianoKeyLabels.SetActive(false);
-            PlayerPrefs.SetInt("isPianoLabelled", 0);
-        }
-    }
-
-    public void ToggleNoteLabels()
-    {
-        if (noteLabelToggle.isOn)
-        {
-            spawner.isNoteLabelled = true;
-            PlayerPrefs.SetInt("isNoteLabelled", 1);
-        }
-        else
-        {
-            spawner.isNoteLabelled = false;
-            PlayerPrefs.SetInt("isNoteLabelled", 0);
-        }
+        InitSettings();
     }
 
 

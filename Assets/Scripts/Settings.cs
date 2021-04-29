@@ -169,6 +169,7 @@ public class Settings : MonoBehaviour
 
     public void PlayScene_BackButtonPressed(GameObject pauseMenu)
     {
+        SaveSettings();
         pauseMenu.GetComponent<PlayUILogic>().PauseSettingBackButtonClicked();
     }
 
