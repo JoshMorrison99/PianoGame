@@ -37,7 +37,8 @@ public class MidiMagic : MonoBehaviour
         Debug.Log(_outputDevice.SupportsVolumeControl);
         Debug.Log(_outputDevice.Channels);
 
-        
+        // Set the volume the same as player prefs
+        GetAndSetSongVolume();
 
 
         // Change midi length the english AKA metric
@@ -56,6 +57,14 @@ public class MidiMagic : MonoBehaviour
     public void ChangeMidiPlaybackSpeed(float speed)
     {
         _playback.Speed = speed;
+    }
+
+    public void GetAndSetSongVolume()
+    {
+        float newSongVolume = PlayerPrefs.GetFloat("Volume");
+        Debug.Log("Volume " + newSongVolume);
+        const int volumeUIntMutiplier = 65535;
+        ChangedMidiPlaybackVolume(newSongVolume * volumeUIntMutiplier);
     }
 
     public void ChangedMidiPlaybackVolume(float volume)

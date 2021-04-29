@@ -105,6 +105,8 @@ public class PlayUILogic : MonoBehaviour
         {
             spawner.isNoteLabelled = false;
         }
+
+        
     }
 
     public void UpdateFinishedSongText()
@@ -133,12 +135,15 @@ public class PlayUILogic : MonoBehaviour
         midi.ChangeMidiPlaybackSpeed(newSongSpeed);*/
     }
 
-    public void SongVolumeSliderChangedValue()
+    public void GetAndSetSongVolume()
     {
-        /*float newSongVolume = SongVolumeSlider.value;
+        float newSongVolume = PlayerPrefs.GetFloat("Volume");
+        Debug.Log("Volume " + newSongVolume);
         const int volumeUIntMutiplier = 65535;
-        midi.ChangedMidiPlaybackVolume(newSongVolume * volumeUIntMutiplier);*/
+        midi.ChangedMidiPlaybackVolume(newSongVolume * volumeUIntMutiplier);
     }
+
+
 
     public void PauseMenuPressed()
     {
