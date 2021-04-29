@@ -123,6 +123,8 @@ public class PlayUILogic : MonoBehaviour
 
         piano.SetActive(false);
         pianoKeyLabels.SetActive(false);
+        scoreText.gameObject.SetActive(false);
+        progressSong.gameObject.SetActive(false);
 
         // remove the helper lines from the UI
         healperLines.SetActive(false);
