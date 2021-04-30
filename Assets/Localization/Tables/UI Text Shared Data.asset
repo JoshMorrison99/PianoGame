@@ -1,0 +1,195 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b11a58205ec3474ca216360e9fa74a8, type: 3}
+  m_Name: UI Text Shared Data
+  m_EditorClassIdentifier: 
+  m_TableCollectionName: UI Text
+  m_TableCollectionNameGuidString: afb9cabc8b024b044b708b562407bdd3
+  m_Entries:
+  - m_Id: 44365328384
+    m_Key: Settings
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9598608158720
+    m_Key: Input
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10086753841152
+    m_Key: Keyboard
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10763307659264
+    m_Key: Gameplay
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10918798897152
+    m_Key: Audio
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11005201559552
+    m_Key: Master Volume
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11074592124928
+    m_Key: Video
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11117281751040
+    m_Key: Monitor
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11164316676096
+    m_Key: Windowed Mode
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11233640132608
+    m_Key: Resolution
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11279005724672
+    m_Key: VFX
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11364636635136
+    m_Key: Speed
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11425571483648
+    m_Key: Volume
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11489425567744
+    m_Key: ON
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11535596466176
+    m_Key: OFF
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11585827450880
+    m_Key: 'Back '
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11630387736576
+    m_Key: Reset
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11676491526144
+    m_Key: Apply
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12621082341376
+    m_Key: Playback Speed
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14219309297664
+    m_Key: Note Labels
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14411576193024
+    m_Key: Piano Labels
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14696965025792
+    m_Key: Languages
+    m_Metadata:
+      m_Items: []
+  - m_Id: 17275518267392
+    m_Key: Main Menu
+    m_Metadata:
+      m_Items: []
+  - m_Id: 17336243400704
+    m_Key: Song Selection
+    m_Metadata:
+      m_Items: []
+  - m_Id: 17396473606144
+    m_Key: Lessons
+    m_Metadata:
+      m_Items: []
+  - m_Id: 17444188008448
+    m_Key: Setting
+    m_Metadata:
+      m_Items: []
+  - m_Id: 17485929721856
+    m_Key: Account
+    m_Metadata:
+      m_Items: []
+  - m_Id: 18178828742656
+    m_Key: Filter
+    m_Metadata:
+      m_Items: []
+  - m_Id: 18220771782656
+    m_Key: Import Song
+    m_Metadata:
+      m_Items: []
+  - m_Id: 18271740964864
+    m_Key: Song
+    m_Metadata:
+      m_Items: []
+  - m_Id: 18446458892288
+    m_Key: Highscore
+    m_Metadata:
+      m_Items: []
+  - m_Id: 18508429733888
+    m_Key: Plays
+    m_Metadata:
+      m_Items: []
+  - m_Id: 18541380186112
+    m_Key: Stars
+    m_Metadata:
+      m_Items: []
+  - m_Id: 18578021625856
+    m_Key: Notes hit
+    m_Metadata:
+      m_Items: []
+  - m_Id: 18629364101120
+    m_Key: Difficulty
+    m_Metadata:
+      m_Items: []
+  - m_Id: 18783240531968
+    m_Key: Completion
+    m_Metadata:
+      m_Items: []
+  - m_Id: 18819076665344
+    m_Key: Play
+    m_Metadata:
+      m_Items: []
+  - m_Id: 25200282382336
+    m_Key: Pause
+    m_Metadata:
+      m_Items: []
+  - m_Id: 26493302419456
+    m_Key: Speed [Locked]
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28097262989312
+    m_Key: Paused
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28152430669824
+    m_Key: Replay
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28194369515520
+    m_Key: Resume
+    m_Metadata:
+      m_Items: []
+  m_Metadata:
+    m_Items: []
+  m_KeyGenerator:
+    id: 0
+  references:
+    version: 1
+    00000000:
+      type: {class: DistributedUIDGenerator, ns: UnityEngine.Localization.Tables, asm: Unity.Localization}
+      data:
+        m_CustomEpoch: 1619792734085

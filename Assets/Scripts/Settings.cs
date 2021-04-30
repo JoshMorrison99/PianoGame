@@ -4,9 +4,13 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine.InputSystem;
+using UnityEngine.Localization.Settings;
 
 public class Settings : MonoBehaviour
 {
+
+    // Language
+    public TMP_Dropdown languageDropdown;
 
     // Gameplay
     const string speed_Pref = "Speed";
@@ -171,6 +175,13 @@ public class Settings : MonoBehaviour
 
         };
 
+    }
+
+    public void LanguageDropdownChanged(TMP_Dropdown dropdownElement)
+    {
+        int index = dropdownElement.value;
+
+        LocalizationSettings.SelectedLocale = LocalizationSettings.AvailableLocales.Locales[index];
     }
 
     public void PlayScene_BackButtonPressed(GameObject pauseMenu)
