@@ -84,6 +84,7 @@ public class SongSelection : MonoBehaviour
             PersistentData.data.songImportIndex += 1;
 
             newSong.transform.SetParent(SongHolder.transform);
+            newSong.transform.localScale = new Vector3(1,1,1);
 
             newSong.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = each._SongTitle;
             newSong.transform.GetChild(2).GetComponent<TextMeshProUGUI>().text = each._SongAuthor;
