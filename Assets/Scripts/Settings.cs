@@ -5,12 +5,20 @@ using UnityEngine.UI;
 using TMPro;
 using UnityEngine.InputSystem;
 using UnityEngine.Localization.Settings;
+using UnityEngine.SceneManagement;
 
 public class Settings : MonoBehaviour
 {
 
+    // Reset 
+    public GameObject ResetSettingPanel;
+    public GameObject ResetPanel;
+    public Button Reset_YES_button;
+    public Button Reset_NO_button;
+
     // Language
     public TMP_Dropdown languageDropdown;
+    public List<string> languages = new List<string>();
 
     // Gameplay
     const string speed_Pref = "Speed";
@@ -62,9 +70,12 @@ public class Settings : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Debug.Log("Start......................................");
         GetInputDevices();
         GetDeviceResolutions();
         LoadSettings();
+        SetupLanguageDropdown();
+        StartupResetSettings();
     }
 
     public void GetDeviceResolutions()
@@ -90,6 +101,13 @@ public class Settings : MonoBehaviour
     {
         SaveSettings();
     }
+
+    public void StartupResetSettings()
+    {
+        ResetSettingPanel.SetActive(false);
+    }
+
+   
 
     public void SaveSettings()
     {
@@ -181,7 +199,30 @@ public class Settings : MonoBehaviour
     {
         int index = dropdownElement.value;
 
+
         LocalizationSettings.SelectedLocale = LocalizationSettings.AvailableLocales.Locales[index];
+    }
+
+    public void SetupLanguageDropdown()
+    {
+        languages.Add("English");
+        languages.Add("French");
+
+        TMP_Dropdown myDropdown = languageDropdown.GetComponent<TMP_Dropdown>();
+        myDropdown.RefreshShownValue();
+
+
+        myDropdown.options.Clear();
+
+        foreach (var language in languages)
+        {
+            myDropdown.options.Add(new TMP_Dropdown.OptionData() { text = language });
+            Debug.Log("Adding Option: " + language);
+        }
+
+        myDropdown.RefreshShownValue();
+        myDropdown.onValueChanged.AddListener(delegate { LanguageDropdownChanged(languageDropdown); });
+
     }
 
     public void PlayScene_BackButtonPressed(GameObject pauseMenu)
@@ -204,15 +245,9 @@ public class Settings : MonoBehaviour
         PlayerPrefs.SetFloat(speed_Pref, speedValue);
     }
 
-    public void ResetButtonPressed() // Restore all options to default
+    public void ResetButtonPressed()
     {
-        PlayerPrefs.SetInt(pianoLabel_Pref, 1); // Trun on pinao labels by default
-        PlayerPrefs.SetInt(noteLabel_Pref, 0); // Turn off Note labels by default
-        PlayerPrefs.SetInt(vfx_Pref, 0); // Turn off vfx by default
-        PlayerPrefs.SetFloat(volume_Pref, 0.5f); // Sound volume at 50% by default
-        PlayerPrefs.SetFloat(speed_Pref, 1f); // speed at 100% by default
-
-        ResetButtonPressedUI();
+        ResetSettingPanel.SetActive(true);
     }
 
     public void BackButtonPressed()
@@ -237,8 +272,11 @@ public class Settings : MonoBehaviour
         // Sound volume at 50% by default
         MasterVolume.value = 0.5f;
 
-        // Playback speed set to 100% by default
-        speedSlider.value = 1f;
+        if (SceneManager.GetActiveScene().name == "MainMenu") {
+            // Playback speed set to 100% by default
+            speedSlider.value = 1f;
+        }
+       
     }
 
     public void SetResolutionSetting()
@@ -366,5 +404,25 @@ public class Settings : MonoBehaviour
         }
 
         ResolutionText.text = resolutionOptions[resolutionIndex];
+    }
+
+    public void ResetYESButtonPressed()
+    {
+        PlayerPrefs.SetInt(pianoLabel_Pref, 1); // Trun on pinao labels by default
+        PlayerPrefs.SetInt(noteLabel_Pref, 0); // Turn off Note labels by default
+        PlayerPrefs.SetInt(vfx_Pref, 0); // Turn off vfx by default
+        PlayerPrefs.SetFloat(volume_Pref, 0.5f); // Sound volume at 50% by default
+
+        if(SceneManager.GetActiveScene().name == "MainMenu")
+            PlayerPrefs.SetFloat(speed_Pref, 1f); // speed at 100% by default
+
+        ResetButtonPressedUI();
+
+        ResetSettingPanel.SetActive(false);
+    }
+
+    public void ResetNOButtonPressed()
+    {
+        ResetSettingPanel.SetActive(false);
     }
 }
