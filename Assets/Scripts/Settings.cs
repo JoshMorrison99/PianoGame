@@ -10,6 +10,11 @@ using UnityEngine.SceneManagement;
 public class Settings : MonoBehaviour
 {
 
+    // Apply
+    public GameObject ApplySettingsPanel;
+    public Button ApplyYESButon;
+    public Button ApplyNOButton;
+
     // Reset 
     public GameObject ResetSettingPanel;
     public GameObject ResetPanel;
@@ -76,6 +81,7 @@ public class Settings : MonoBehaviour
         LoadSettings();
         SetupLanguageDropdown();
         StartupResetSettings();
+        StartupApplyButton();
     }
 
     public void GetDeviceResolutions()
@@ -105,6 +111,12 @@ public class Settings : MonoBehaviour
     public void StartupResetSettings()
     {
         ResetSettingPanel.SetActive(false);
+    }
+
+    public void StartupApplyButton()
+    {
+        ApplyButton.gameObject.SetActive(false);
+        ApplySettingsPanel.SetActive(false);
     }
 
    
@@ -175,6 +187,7 @@ public class Settings : MonoBehaviour
     public void ApplyButtonPressed()
     {
         SaveSettings();
+        ApplyButton.gameObject.SetActive(false);
     }
 
     public void GetInputDevices()
@@ -227,8 +240,15 @@ public class Settings : MonoBehaviour
 
     public void PlayScene_BackButtonPressed(GameObject pauseMenu)
     {
-        SaveSettings();
-        pauseMenu.GetComponent<PlayUILogic>().PauseSettingBackButtonClicked();
+        if (ApplyButton.IsActive() == false)
+        {
+            pauseMenu.GetComponent<PlayUILogic>().PauseSettingBackButtonClicked();
+        }
+        else
+        {
+            ApplySettingsPanel.SetActive(true);
+        }
+        
     }
 
 
@@ -237,12 +257,18 @@ public class Settings : MonoBehaviour
     {
         float volumeValue = MasterVolume.value;
         PlayerPrefs.SetFloat(volume_Pref, volumeValue);
+
+        // Show apply button so the user can see that they can save their settings. 
+        ApplyButton.gameObject.SetActive(true);
     }
 
     public void SpeedSliderChangedValue()
     {
         float speedValue = speedSlider.value;
         PlayerPrefs.SetFloat(speed_Pref, speedValue);
+
+        // Show apply button so the user can see that they can save their settings. 
+        ApplyButton.gameObject.SetActive(true);
     }
 
     public void ResetButtonPressed()
@@ -252,7 +278,15 @@ public class Settings : MonoBehaviour
 
     public void BackButtonPressed()
     {
-        SaveSettings();
+        if (ApplyButton.IsActive() == false)
+        {
+            this.gameObject.SetActive(false);
+        }
+        else
+        {
+            ApplySettingsPanel.SetActive(true);
+        }
+        
     }
 
     public void ResetButtonPressedUI() // Restore all options to default UI
@@ -303,8 +337,16 @@ public class Settings : MonoBehaviour
 
     public void VFX_ON_Clicked()
     {
+        // Change UI Color
         ON_Button_VFX.GetComponent<Image>().color = COLOR_PALLETE.LIGHT_BLUE;
         OFF_Button_VFX.GetComponent<Image>().color = COLOR_PALLETE.GRAY;
+
+        // Apply button logic
+        if (isVFX == 0)
+        {
+            // Show apply button so the user can see that they can save their settings. 
+            ApplyButton.gameObject.SetActive(true);
+        }
 
         // Update player prefs
         isVFX = 1;
@@ -312,8 +354,16 @@ public class Settings : MonoBehaviour
 
     public void VFX_OFF_Clicked()
     {
+        // Change UI Color
         ON_Button_VFX.GetComponent<Image>().color = COLOR_PALLETE.GRAY;
         OFF_Button_VFX.GetComponent<Image>().color = COLOR_PALLETE.LIGHT_BLUE;
+
+        // Apply button logic
+        if (isVFX == 1)
+        {
+            // Show apply button so the user can see that they can save their settings. 
+            ApplyButton.gameObject.SetActive(true);
+        }
 
         // Update player prefs
         isVFX = 0;
@@ -321,8 +371,16 @@ public class Settings : MonoBehaviour
 
     public void NoteLabel_ON_Clicked()
     {
+        // Change UI Color
         ON_Button_NoteLabels.GetComponent<Image>().color = COLOR_PALLETE.LIGHT_BLUE;
         OFF_Button_NoteLabels.GetComponent<Image>().color = COLOR_PALLETE.GRAY;
+
+        // Apply button logic
+        if (isNoteLabelled == 0)
+        {
+            // Show apply button so the user can see that they can save their settings. 
+            ApplyButton.gameObject.SetActive(true);
+        }
 
         // Update player prefs
         isNoteLabelled = 1;
@@ -330,8 +388,16 @@ public class Settings : MonoBehaviour
 
     public void NoteLabel_OFF_Clicked()
     {
+        // Change UI Color
         ON_Button_NoteLabels.GetComponent<Image>().color = COLOR_PALLETE.GRAY;
         OFF_Button_NoteLabels.GetComponent<Image>().color = COLOR_PALLETE.LIGHT_BLUE;
+
+        // Apply button logic
+        if (isNoteLabelled == 1)
+        {
+            // Show apply button so the user can see that they can save their settings. 
+            ApplyButton.gameObject.SetActive(true);
+        }
 
         // Update player prefs
         isNoteLabelled = 0;
@@ -339,16 +405,32 @@ public class Settings : MonoBehaviour
 
     public void PianoLabel_ON_Clicked()
     {
+        // Change UI Color
         ON_Button_PianoLabels.GetComponent<Image>().color = COLOR_PALLETE.LIGHT_BLUE;
         OFF_Button_PianoLabels.GetComponent<Image>().color = COLOR_PALLETE.GRAY;
+
+        // Apply button logic
+        if (isPianoLabelled == 0)
+        {
+            // Show apply button so the user can see that they can save their settings. 
+            ApplyButton.gameObject.SetActive(true);
+        }
 
         // Update player prefs
         isPianoLabelled = 1;
     }
     public void PianoLabel_OFF_Clicked()
     {
+        // Change UI Color
         ON_Button_PianoLabels.GetComponent<Image>().color = COLOR_PALLETE.GRAY;
         OFF_Button_PianoLabels.GetComponent<Image>().color = COLOR_PALLETE.LIGHT_BLUE;
+
+        // Apply button logic
+        if (isPianoLabelled == 1)
+        {
+            // Show apply button so the user can see that they can save their settings. 
+            ApplyButton.gameObject.SetActive(true);
+        }
 
         // Update player prefs
         isPianoLabelled = 0;
@@ -364,7 +446,8 @@ public class Settings : MonoBehaviour
 
         WindowedText.text = screenModes[screenModesIndex];
 
-        Debug.Log(screenModesIndex);
+        // Show apply button so the user can see that they can save their settings.
+        ApplyButton.gameObject.SetActive(true);
 
     }
     public void RightWindowedButtonClicked()
@@ -377,7 +460,8 @@ public class Settings : MonoBehaviour
 
         WindowedText.text = screenModes[screenModesIndex];
 
-        Debug.Log(screenModesIndex);
+        // Show apply button so the user can see that they can save their settings. 
+        ApplyButton.gameObject.SetActive(true);
     }
 
     public void LeftResolutionButtonClicked()
@@ -391,6 +475,9 @@ public class Settings : MonoBehaviour
         }
 
         ResolutionText.text = resolutionOptions[resolutionIndex];
+
+        // Show apply button so the user can see that they can save their settings. 
+        ApplyButton.gameObject.SetActive(true);
     }
 
     public void RightResolutionButtonClicked()
@@ -404,13 +491,19 @@ public class Settings : MonoBehaviour
         }
 
         ResolutionText.text = resolutionOptions[resolutionIndex];
+
+        // Show apply button so the user can see that they can save their settings.
+        ApplyButton.gameObject.SetActive(true);
     }
 
     public void ResetYESButtonPressed()
     {
         PlayerPrefs.SetInt(pianoLabel_Pref, 1); // Trun on pinao labels by default
+        isPianoLabelled = 1;
         PlayerPrefs.SetInt(noteLabel_Pref, 0); // Turn off Note labels by default
+        isNoteLabelled = 0;
         PlayerPrefs.SetInt(vfx_Pref, 0); // Turn off vfx by default
+        isVFX = 0;
         PlayerPrefs.SetFloat(volume_Pref, 0.5f); // Sound volume at 50% by default
 
         if(SceneManager.GetActiveScene().name == "MainMenu")
@@ -419,10 +512,32 @@ public class Settings : MonoBehaviour
         ResetButtonPressedUI();
 
         ResetSettingPanel.SetActive(false);
+
+        ApplyButton.gameObject.SetActive(false);
     }
 
     public void ResetNOButtonPressed()
     {
         ResetSettingPanel.SetActive(false);
     }
+
+    public void ApplyYESButtonPressed()
+    {
+        SaveSettings();
+        ApplySettingsPanel.SetActive(false);
+        this.gameObject.SetActive(false);
+    }
+
+    public void PlayScene_ApplyYESButtonPressed(GameObject pauseMenu)
+    {
+        SaveSettings();
+        ApplySettingsPanel.SetActive(false);
+        pauseMenu.GetComponent<PlayUILogic>().PauseSettingBackButtonClicked();
+    }
+
+    public void ApplyNOButtonPressed()
+    {
+        ApplySettingsPanel.SetActive(false);
+    }
+
 }

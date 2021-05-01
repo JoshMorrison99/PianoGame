@@ -107,6 +107,7 @@ public class MainMenu : MonoBehaviour
 	public void SettingsButtonClicked()
     {
 		SettingsMenuPanel.SetActive(true);
+		SettingsMenuPanel.GetComponent<Settings>().StartupApplyButton();
     }
 
 	public void BackButtonSettings()

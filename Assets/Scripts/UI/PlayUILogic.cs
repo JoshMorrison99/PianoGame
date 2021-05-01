@@ -204,6 +204,8 @@ public class PlayUILogic : MonoBehaviour
         progressSong.gameObject.SetActive(false);
         pauseManuPanel.SetActive(false);
         pauseBtn.gameObject.SetActive(false);
+
+        settingsPanel.GetComponent<Settings>().StartupApplyButton();
     }
 
     public void PauseSettingBackButtonClicked()
