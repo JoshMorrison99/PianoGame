@@ -10,6 +10,22 @@ using UnityEditor;
 public class SongSelection : MonoBehaviour
 {
 
+    // Song Filter
+    public bool isFilterON;
+    public GameObject SongFilterPanel;
+    public Button UserSongFilterButton;
+    public Image UserSongFilterImage;
+    public Button BeginnerSongFilterButton;
+    public Image BeginnerSongFilterImage;
+    public Button MediumSongFilterButton;
+    public Image MediumSongFilterImage;
+    public Button HardSongFilterButton;
+    public Image HardSongFilterImage;
+
+    public Button FilterButton;
+    public Button currentAppliedFilterButton;
+
+
     // Delete Song Panel
     public GameObject deleteSongPanel;
     public Button deleteSongYESButton;
@@ -58,7 +74,10 @@ public class SongSelection : MonoBehaviour
         
         updatePercentageUI();
 
-        deleteSongPanel.SetActive(false); 
+        deleteSongPanel.SetActive(false);
+        isFilterON = false;
+        currentAppliedFilterButton.GetComponentInChildren<TextMeshProUGUI>().text = "";
+        SongFilterPanel.SetActive(false);
     }
 
 
@@ -88,7 +107,7 @@ public class SongSelection : MonoBehaviour
             newSong.GetComponent<SongInfo>()._stars = each._stars;
             newSong.GetComponent<SongInfo>()._songID = PersistentData.data.songImportIndex;
 
-            PersistentData.data.songImportIndex += 1;
+            //PersistentData.data.songImportIndex += 1;
 
             newSong.transform.SetParent(SongHolder.transform);
             newSong.transform.localScale = new Vector3(1,1,1);
@@ -201,6 +220,75 @@ public class SongSelection : MonoBehaviour
     public void DeleteSongNOPressed()
     {
         deleteSongPanel.SetActive(false);
+    }
+
+    public void FilterButtonClicked()
+    {
+        if (isFilterON)
+        {
+            SongFilterPanel.SetActive(false);
+            isFilterON = false;
+        }
+        else
+        {
+            SongFilterPanel.SetActive(true);
+            isFilterON = true;
+        }
+    }
+
+    public void UserSongFilterButtonClicked()
+    {
+        UserSongFilterImage.color = COLOR_PALLETE.LIGHT_BLUE;
+        BeginnerSongFilterImage.color = Color.white;
+        MediumSongFilterImage.color = Color.white;
+        HardSongFilterImage.color = Color.white;
+        currentAppliedFilterButton.GetComponentInChildren<TextMeshProUGUI>().text = "[ User Songs ]";
+        SongFilterPanel.SetActive(false);
+        isFilterON = false;
+    }
+
+    public void BeginnerSongFilterButtonClicked()
+    {
+        UserSongFilterImage.color = Color.white;
+        BeginnerSongFilterImage.color = COLOR_PALLETE.LIGHT_BLUE;
+        MediumSongFilterImage.color = Color.white;
+        HardSongFilterImage.color = Color.white;
+        currentAppliedFilterButton.GetComponentInChildren<TextMeshProUGUI>().text = "[ Beginner Difficulty ]";
+        SongFilterPanel.SetActive(false);
+        isFilterON = false;
+    }
+
+    public void MediumSongFilterButtonClicked()
+    {
+        UserSongFilterImage.color = Color.white;
+        BeginnerSongFilterImage.color = Color.white;
+        MediumSongFilterImage.color = COLOR_PALLETE.LIGHT_BLUE;
+        HardSongFilterImage.color = Color.white;
+        currentAppliedFilterButton.GetComponentInChildren<TextMeshProUGUI>().text = "[ Medium Difficulty ]";
+        SongFilterPanel.SetActive(false);
+        isFilterON = false;
+    }
+
+    public void HardSongFilterButtonClicked()
+    {
+        UserSongFilterImage.color = Color.white;
+        BeginnerSongFilterImage.color = Color.white;
+        MediumSongFilterImage.color = Color.white;
+        HardSongFilterImage.color = COLOR_PALLETE.LIGHT_BLUE;
+        currentAppliedFilterButton.GetComponentInChildren<TextMeshProUGUI>().text = "[ Hard Difficulty ]";
+        SongFilterPanel.SetActive(false);
+        isFilterON = false;
+    }
+
+    public void ClearFilterButtonClicked()
+    {
+        UserSongFilterImage.color = Color.white;
+        BeginnerSongFilterImage.color = Color.white;
+        MediumSongFilterImage.color = Color.white;
+        HardSongFilterImage.color = Color.white;
+        currentAppliedFilterButton.GetComponentInChildren<TextMeshProUGUI>().text = "";
+        SongFilterPanel.SetActive(false);
+        isFilterON = false;
     }
 
 }
