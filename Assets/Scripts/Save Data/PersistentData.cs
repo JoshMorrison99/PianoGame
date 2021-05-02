@@ -190,6 +190,7 @@ public class PersistentData : MonoBehaviour, ISaveable
             newSong.GetComponent<SongInfo>()._Difficulty = a_SaveData.m_SongList[i]._Difficulty;
             newSong.GetComponent<SongInfo>()._songID = a_SaveData.m_SongList[i].m_songID;
             newSong.GetComponent<SongInfo>()._stars = a_SaveData.m_SongList[i].m_stars;
+            newSong.GetComponent<SongInfo>()._songCompletionPercentage = a_SaveData.m_SongList[i].m_songCompletionPercentage;
             newSong.GetComponent<SongInfo>()._totalNote = a_SaveData.m_SongList[i].m_totalNote;
             _SongList.Add(newSong.GetComponent<SongInfo>());
 

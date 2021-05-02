@@ -75,6 +75,9 @@ public class SongFinished : MonoBehaviour
 
     void updatePercentage()
     {
+        Debug.Log((percentTrunk * 100));
+        Debug.Log(PersistentData.data._SongList[PersistentData.data.selectedSong - 1]._songCompletionPercentage);
+        Debug.Log(PersistentData.data._SongList[PersistentData.data.selectedSong - 1]._SongTitle);
 
         if ((percentTrunk * 100) > PersistentData.data._SongList[PersistentData.data.selectedSong - 1]._songCompletionPercentage)
         {
