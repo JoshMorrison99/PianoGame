@@ -8275,7 +8275,7 @@ MonoBehaviour:
   _totalNote: 0
   _notesHit: 0
   _songCompletionPercentage: 0
-  _Difficulty: 
+  _Difficulty: hard
 --- !u!1 &572513270
 GameObject:
   m_ObjectHideFlags: 0
@@ -12351,7 +12351,7 @@ MonoBehaviour:
   _totalNote: 0
   _notesHit: 0
   _songCompletionPercentage: 0
-  _Difficulty: 
+  _Difficulty: medium
 --- !u!1 &774017538
 GameObject:
   m_ObjectHideFlags: 0
@@ -17644,6 +17644,7 @@ MonoBehaviour:
   MediumSongFilterImage: {fileID: 1260053579}
   HardSongFilterButton: {fileID: 1350233064}
   HardSongFilterImage: {fileID: 1551015884}
+  currentFilter: 
   FilterButton: {fileID: 1550189444}
   currentAppliedFilterButton: {fileID: 358945662}
   deleteSongPanel: {fileID: 1542986049}
@@ -30566,7 +30567,7 @@ MonoBehaviour:
   _totalNote: 0
   _notesHit: 0
   _songCompletionPercentage: 0
-  _Difficulty: 
+  _Difficulty: beginner
 --- !u!1 &1843072138
 GameObject:
   m_ObjectHideFlags: 0
@@ -31756,7 +31757,7 @@ MonoBehaviour:
   _totalNote: 0
   _notesHit: 0
   _songCompletionPercentage: 0
-  _Difficulty: 
+  _Difficulty: beginner
 --- !u!1 &1897263745
 GameObject:
   m_ObjectHideFlags: 0

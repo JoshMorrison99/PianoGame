@@ -21,6 +21,7 @@ public class SongSelection : MonoBehaviour
     public Image MediumSongFilterImage;
     public Button HardSongFilterButton;
     public Image HardSongFilterImage;
+    public string currentFilter;
 
     public Button FilterButton;
     public Button currentAppliedFilterButton;
@@ -61,7 +62,7 @@ public class SongSelection : MonoBehaviour
         Debug.Log("===========================================================" + PersistentData.data._SongList.Count);
         //PersistentData.LoadJsonData(PersistentData.data);
 
-        createSongsFromTemplate();
+        createSongsFromTemplate("all");
 
         GameObject buttonHolder = GameObject.Find("Content");
         Button firstBtn = buttonHolder.transform.GetChild(0).GetComponent<Button>();
@@ -78,10 +79,11 @@ public class SongSelection : MonoBehaviour
         isFilterON = false;
         currentAppliedFilterButton.GetComponentInChildren<TextMeshProUGUI>().text = "";
         SongFilterPanel.SetActive(false);
+        currentFilter = "all";
     }
 
 
-    public void createSongsFromTemplate()
+    public void createSongsFromTemplate(string filter)
     {
 
         GameObject SongHolder = GameObject.Find("Content");
@@ -92,35 +94,74 @@ public class SongSelection : MonoBehaviour
             Destroy(child.gameObject);
         }
 
-
-
-        foreach (SongInfo each in PersistentData.data._SongList)
+        if(filter == "all")
         {
-            Debug.Log(each._SongTitle);
-            GameObject newSong = Instantiate(songObjectTemplate);
-            newSong.GetComponent<SongInfo>()._SongTitle = each._SongTitle;
-            newSong.GetComponent<SongInfo>()._SongAuthor = each._SongAuthor;
-            newSong.GetComponent<SongInfo>()._plays = each._plays;
-            newSong.GetComponent<SongInfo>()._notesHit = each._notesHit;
-            newSong.GetComponent<SongInfo>()._highScore = each._highScore;
-            newSong.GetComponent<SongInfo>()._Difficulty = each._Difficulty;
-            newSong.GetComponent<SongInfo>()._stars = each._stars;
-            newSong.GetComponent<SongInfo>()._songID = PersistentData.data.songImportIndex;
-
-            //PersistentData.data.songImportIndex += 1;
-
-            newSong.transform.SetParent(SongHolder.transform);
-            newSong.transform.localScale = new Vector3(1,1,1);
-
-            newSong.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = each._SongTitle;
-            newSong.transform.GetChild(2).GetComponent<TextMeshProUGUI>().text = each._SongAuthor;
-
-            // Render the remove button or not
-            if (newSong.GetComponent<SongInfo>()._SongAuthor != "user")
+            foreach (SongInfo each in PersistentData.data._SongList)
             {
-                newSong.transform.GetChild(5).gameObject.SetActive(false);
+                Debug.Log(each._SongTitle);
+                GameObject newSong = Instantiate(songObjectTemplate);
+                newSong.GetComponent<SongInfo>()._SongTitle = each._SongTitle;
+                newSong.GetComponent<SongInfo>()._SongAuthor = each._SongAuthor;
+                newSong.GetComponent<SongInfo>()._plays = each._plays;
+                newSong.GetComponent<SongInfo>()._notesHit = each._notesHit;
+                newSong.GetComponent<SongInfo>()._highScore = each._highScore;
+                newSong.GetComponent<SongInfo>()._Difficulty = each._Difficulty;
+                newSong.GetComponent<SongInfo>()._stars = each._stars;
+                newSong.GetComponent<SongInfo>()._songID = PersistentData.data.songImportIndex;
+
+                //PersistentData.data.songImportIndex += 1;
+
+                newSong.transform.SetParent(SongHolder.transform);
+                newSong.transform.localScale = new Vector3(1, 1, 1);
+
+                newSong.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = each._SongTitle;
+                newSong.transform.GetChild(2).GetComponent<TextMeshProUGUI>().text = each._SongAuthor;
+
+                // Render the remove button or not
+                if (newSong.GetComponent<SongInfo>()._SongAuthor != "user")
+                {
+                    newSong.transform.GetChild(5).gameObject.SetActive(false);
+                }
+            }
+        }else
+        {
+            foreach (SongInfo each in PersistentData.data._SongList)
+            {
+                
+                Debug.Log(each._SongTitle);
+                GameObject newSong = Instantiate(songObjectTemplate);
+                newSong.GetComponent<SongInfo>()._SongTitle = each._SongTitle;
+                newSong.GetComponent<SongInfo>()._SongAuthor = each._SongAuthor;
+                newSong.GetComponent<SongInfo>()._plays = each._plays;
+                newSong.GetComponent<SongInfo>()._notesHit = each._notesHit;
+                newSong.GetComponent<SongInfo>()._highScore = each._highScore;
+                newSong.GetComponent<SongInfo>()._Difficulty = each._Difficulty;
+                newSong.GetComponent<SongInfo>()._stars = each._stars;
+                newSong.GetComponent<SongInfo>()._songID = PersistentData.data.songImportIndex;
+
+                //PersistentData.data.songImportIndex += 1;
+
+                newSong.transform.SetParent(SongHolder.transform);
+                newSong.transform.localScale = new Vector3(1, 1, 1);
+
+                newSong.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = each._SongTitle;
+                newSong.transform.GetChild(2).GetComponent<TextMeshProUGUI>().text = each._SongAuthor;
+
+                // Render the remove button or not
+                if (newSong.GetComponent<SongInfo>()._SongAuthor != "user")
+                {
+                    newSong.transform.GetChild(5).gameObject.SetActive(false);
+                }
+
+                if (each._Difficulty.ToLower() != filter.ToLower())
+                {
+                    newSong.gameObject.SetActive(false);
+                }
+                
             }
         }
+
+        
     }
 
     public void deleteButtonClicked(Button button)
@@ -177,6 +218,7 @@ public class SongSelection : MonoBehaviour
         songObjectTemplateUser.GetComponent<SongInfo>()._songID = PersistentData.data.songImportIndex;
         songObjectTemplateUser.GetComponent<SongInfo>()._SongTitle = songName;
         songObjectTemplateUser.GetComponent<SongInfo>()._SongAuthor = "user";
+        songObjectTemplateUser.GetComponent<SongInfo>()._Difficulty = "user";
 
         PersistentData.data.songImportIndex += 1;
 
@@ -194,7 +236,7 @@ public class SongSelection : MonoBehaviour
         PersistentData.SaveJsonData(PersistentData.data);
 
 
-        createSongsFromTemplate();
+        createSongsFromTemplate(currentFilter);
 
     }
 
@@ -212,7 +254,7 @@ public class SongSelection : MonoBehaviour
         PersistentData.data._SongList.RemoveAt(index - 1);
         PersistentData.SaveJsonData(PersistentData.data);
 
-        createSongsFromTemplate();
+        createSongsFromTemplate(currentFilter);
 
         deleteSongPanel.SetActive(false);
     }
@@ -245,6 +287,8 @@ public class SongSelection : MonoBehaviour
         currentAppliedFilterButton.GetComponentInChildren<TextMeshProUGUI>().text = "[ User Songs ]";
         SongFilterPanel.SetActive(false);
         isFilterON = false;
+        currentFilter = "user";
+        createSongsFromTemplate("user");
     }
 
     public void BeginnerSongFilterButtonClicked()
@@ -256,6 +300,8 @@ public class SongSelection : MonoBehaviour
         currentAppliedFilterButton.GetComponentInChildren<TextMeshProUGUI>().text = "[ Beginner Difficulty ]";
         SongFilterPanel.SetActive(false);
         isFilterON = false;
+        currentFilter = "beginner";
+        createSongsFromTemplate("beginner");
     }
 
     public void MediumSongFilterButtonClicked()
@@ -267,6 +313,8 @@ public class SongSelection : MonoBehaviour
         currentAppliedFilterButton.GetComponentInChildren<TextMeshProUGUI>().text = "[ Medium Difficulty ]";
         SongFilterPanel.SetActive(false);
         isFilterON = false;
+        currentFilter = "medium";
+        createSongsFromTemplate("medium");
     }
 
     public void HardSongFilterButtonClicked()
@@ -278,6 +326,8 @@ public class SongSelection : MonoBehaviour
         currentAppliedFilterButton.GetComponentInChildren<TextMeshProUGUI>().text = "[ Hard Difficulty ]";
         SongFilterPanel.SetActive(false);
         isFilterON = false;
+        currentFilter = "hard";
+        createSongsFromTemplate("hard");
     }
 
     public void ClearFilterButtonClicked()
@@ -289,6 +339,8 @@ public class SongSelection : MonoBehaviour
         currentAppliedFilterButton.GetComponentInChildren<TextMeshProUGUI>().text = "";
         SongFilterPanel.SetActive(false);
         isFilterON = false;
+        currentFilter = "all";
+        createSongsFromTemplate("all");
     }
 
 }
