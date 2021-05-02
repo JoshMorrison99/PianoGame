@@ -10,6 +10,12 @@ using UnityEditor;
 public class SongSelection : MonoBehaviour
 {
 
+    // Delete Song Panel
+    public GameObject deleteSongPanel;
+    public Button deleteSongYESButton;
+    public Button deleteSongNOButton;
+    public Button doDelete;
+
     //public PersistentData songInfo;
     private int index;
 
@@ -51,8 +57,8 @@ public class SongSelection : MonoBehaviour
 
         
         updatePercentageUI();
-        
 
+        deleteSongPanel.SetActive(false); 
     }
 
 
@@ -71,6 +77,7 @@ public class SongSelection : MonoBehaviour
 
         foreach (SongInfo each in PersistentData.data._SongList)
         {
+            Debug.Log(each._SongTitle);
             GameObject newSong = Instantiate(songObjectTemplate);
             newSong.GetComponent<SongInfo>()._SongTitle = each._SongTitle;
             newSong.GetComponent<SongInfo>()._SongAuthor = each._SongAuthor;
@@ -99,19 +106,8 @@ public class SongSelection : MonoBehaviour
 
     public void deleteButtonClicked(Button button)
     {
-        index = button.transform.GetSiblingIndex();
-        
-
-        PersistentData.data.songImportIndex -= 1;
-
-        string ResourcesPath = "Assets/MidiFiles/UserMidiFiles";
-        string songName = PersistentData.data._SongList[index - 1]._SongTitle;
-        FileUtil.DeleteFileOrDirectory(ResourcesPath + "/" + songName);
-
-        PersistentData.data._SongList.RemoveAt(index - 1);
-        PersistentData.SaveJsonData(PersistentData.data);
-
-        createSongsFromTemplate();
+        deleteSongPanel.SetActive(true);
+        doDelete = button;
     }
     
 
@@ -181,6 +177,30 @@ public class SongSelection : MonoBehaviour
 
         createSongsFromTemplate();
 
+    }
+
+    public void DeleteSongYESPressed()
+    {
+        index = doDelete.transform.GetSiblingIndex();
+
+
+        PersistentData.data.songImportIndex -= 1;
+
+        string ResourcesPath = "Assets/MidiFiles/UserMidiFiles";
+        string songName = PersistentData.data._SongList[index - 1]._SongTitle;
+        FileUtil.DeleteFileOrDirectory(ResourcesPath + "/" + songName);
+
+        PersistentData.data._SongList.RemoveAt(index - 1);
+        PersistentData.SaveJsonData(PersistentData.data);
+
+        createSongsFromTemplate();
+
+        deleteSongPanel.SetActive(false);
+    }
+
+    public void DeleteSongNOPressed()
+    {
+        deleteSongPanel.SetActive(false);
     }
 
 }
