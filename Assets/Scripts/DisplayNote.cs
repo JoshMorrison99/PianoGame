@@ -11,11 +11,17 @@ public class DisplayNote : MonoBehaviour
 {
     Minis.MidiDevice midiDevice;
     public TMP_Text displayNoteText;
+    
 
     // Start is called before the first frame update
     void Start()
     {
+        Settings.SettingsChanged += DisplayNoteLogic;
+        DisplayNoteLogic();
+    }
 
+    void DisplayNoteLogic()
+    {
         displayNoteText.text = "";
 
         foreach (var each in InputSystem.devices)
@@ -40,7 +46,7 @@ public class DisplayNote : MonoBehaviour
                 };
 
                 midiDevice.onWillNoteOff += (note) => {
-                    
+
                 };
             }
 

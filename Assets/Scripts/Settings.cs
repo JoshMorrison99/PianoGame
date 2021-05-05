@@ -10,6 +10,10 @@ using UnityEngine.SceneManagement;
 public class Settings : MonoBehaviour
 {
 
+    // Delegates
+    public delegate void SettingsChangedAction();
+    public static event SettingsChangedAction SettingsChanged;
+
     // Apply
     public GameObject ApplySettingsPanel;
     public Button ApplyYESButon;
@@ -141,6 +145,12 @@ public class Settings : MonoBehaviour
         // Save Resolution Setting
         PlayerPrefs.SetString(resolution_Pref, resolutionOptions[resolutionIndex]);
         SetResolutionSetting();
+
+        // Dispatch event to listeners (the only listener is the display note right now)
+        if (SettingsChanged != null)
+        {
+            SettingsChanged();
+        }
     }
 
     public void LoadSettings()
