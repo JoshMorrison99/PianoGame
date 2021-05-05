@@ -104,7 +104,7 @@ public class SongSelection : MonoBehaviour
         {
             foreach (SongInfo each in PersistentData.data._SongList)
             {
-                Debug.Log(each._SongTitle);
+                //Debug.Log(each._SongTitle);
                 GameObject newSong = Instantiate(songObjectTemplate);
                 newSong.GetComponent<SongInfo>()._SongTitle = each._SongTitle;
                 newSong.GetComponent<SongInfo>()._SongAuthor = each._SongAuthor;
@@ -213,6 +213,7 @@ public class SongSelection : MonoBehaviour
     {
         PersistentData.data.selectedSong = index + 1;
         PersistentData.data.userSongSelected = PersistentData.data._SongList[index]._SongTitle;
+        PersistentData.data.songStartPlayerExp = PersistentData.data.exp;
         SceneManager.LoadScene("Play");
     }
 

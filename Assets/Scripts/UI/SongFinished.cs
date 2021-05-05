@@ -14,6 +14,11 @@ public class SongFinished : MonoBehaviour
     public TextMeshProUGUI moneyNotesText;
     public TextMeshProUGUI levelTextBig;
     public Slider levelSlider;
+    private float startExp;
+    private float endExp;
+    private int startLevel;
+    private int endLevel;
+    private float finalExp;
 
     // Stars ui
     public Image star1;
@@ -63,13 +68,15 @@ public class SongFinished : MonoBehaviour
         UpdateHighScore();
         UpdateNotesHit();
         UpdatePlays();
-        
+
+        startLevel = PersistentData.data.level;
 
         LevelUp();
         UpdateUserMoney();
         UpdateUserMoneyUI();
         SetUserLevel();
         UpdateExpBar();
+
 
         // Save data
         PersistentData.SaveJsonData(PersistentData.data);
@@ -95,9 +102,56 @@ public class SongFinished : MonoBehaviour
 
     public void UpdateExpBar()
     {
-        levelTextStart.text = PersistentData.data.exp.ToString();
+       
+
+        levelTextStart.text = PersistentData.data.songStartPlayerExp.ToString();
         levelTextNext.text = "Next: " + ReturnXPNeededToLevelUp(PersistentData.data.level);
-        levelSlider.value = PersistentData.data.exp / ReturnXPNeededToLevelUp(PersistentData.data.level);
+
+        // Calculate start exp
+        startExp = PersistentData.data.songStartPlayerExp;
+        endExp = PersistentData.data.exp;
+        finalExp = ReturnXPNeededToLevelUp(PersistentData.data.level);
+        endLevel = PersistentData.data.level;
+
+        StartCoroutine(ExpSlider());
+        
+    }
+
+    public IEnumerator ExpSlider()
+    {
+
+        // Handles slider exp for leveling animation
+        if (startLevel != endLevel)
+        {
+            while (startExp/finalExp < 1)
+            {
+                levelSlider.value = startExp / finalExp;
+                startExp += 1f;
+                levelTextStart.text = startExp.ToString();
+                yield return new WaitForSeconds(0.05f);
+            }
+            startLevel += 1;
+            startExp = 0;
+        }
+
+
+        // Handles slider exp for non-leveling animation
+        while (startExp < endExp)
+        {
+            Debug.Log("Slider Start Animation: " + startExp);
+            Debug.Log("Slider End Animation: " + endExp);
+            levelSlider.value = startExp / finalExp;
+            startExp += 1f;
+            levelTextStart.text = startExp.ToString();
+            yield return new WaitForSeconds(0.05f);
+        }
+
+        Debug.Log("END");
+        Debug.Log("Slider Start Animation: " + startExp);
+        Debug.Log("Slider End Animation: " + endExp);
+
+
+
     }
 
 
@@ -188,7 +242,7 @@ public class SongFinished : MonoBehaviour
     public void OneStar()
     {
         star1.gameObject.transform.localScale = new Vector3(0,0,0);
-        LeanTween.scale(star1.gameObject, new Vector3(1, 1, 1), 0.3f).setDelay(0.3f);
+        LeanTween.scale(star1.gameObject, new Vector3(1, 1, 1), 0.5f).setDelay(0.5f).setEaseOutSine();
         star2.gameObject.transform.localScale = new Vector3(0, 0, 0);
         star3.gameObject.transform.localScale = new Vector3(0, 0, 0);
         star4.gameObject.transform.localScale = new Vector3(0, 0, 0);
@@ -198,9 +252,9 @@ public class SongFinished : MonoBehaviour
     public void TwoStar()
     {
         star1.gameObject.transform.localScale = new Vector3(0, 0, 0);
-        LeanTween.scale(star1.gameObject, new Vector3(1, 1, 1), 0.3f).setDelay(0.3f);
+        LeanTween.scale(star1.gameObject, new Vector3(1, 1, 1), 0.5f).setDelay(0.5f).setEaseOutSine();
         star2.gameObject.transform.localScale = new Vector3(0, 0, 0);
-        LeanTween.scale(star2.gameObject, new Vector3(1, 1, 1), 0.3f).setDelay(0.6f);
+        LeanTween.scale(star2.gameObject, new Vector3(1, 1, 1), 0.5f).setDelay(1.0f).setEaseOutSine();
         star3.gameObject.transform.localScale = new Vector3(0, 0, 0);
         star4.gameObject.transform.localScale = new Vector3(0, 0, 0);
         star5.gameObject.transform.localScale = new Vector3(0, 0, 0);
@@ -209,11 +263,11 @@ public class SongFinished : MonoBehaviour
     public void ThreeStar()
     {
         star1.gameObject.transform.localScale = new Vector3(0, 0, 0);
-        LeanTween.scale(star1.gameObject, new Vector3(1, 1, 1), 0.3f).setDelay(0.3f);
+        LeanTween.scale(star1.gameObject, new Vector3(1, 1, 1), 0.5f).setDelay(0.5f).setEaseOutSine();
         star2.gameObject.transform.localScale = new Vector3(0, 0, 0);
-        LeanTween.scale(star2.gameObject, new Vector3(1, 1, 1), 0.3f).setDelay(0.6f);
+        LeanTween.scale(star2.gameObject, new Vector3(1, 1, 1), 0.5f).setDelay(1.0f).setEaseOutSine();
         star3.gameObject.transform.localScale = new Vector3(0, 0, 0);
-        LeanTween.scale(star3.gameObject, new Vector3(1, 1, 1), 0.3f).setDelay(0.9f);
+        LeanTween.scale(star3.gameObject, new Vector3(1, 1, 1), 0.5f).setDelay(1.5f).setEaseOutSine();
         star4.gameObject.transform.localScale = new Vector3(0, 0, 0);
         star5.gameObject.transform.localScale = new Vector3(0, 0, 0);
     }
@@ -221,28 +275,28 @@ public class SongFinished : MonoBehaviour
     public void FourStar()
     {
         star1.gameObject.transform.localScale = new Vector3(0, 0, 0);
-        LeanTween.scale(star1.gameObject, new Vector3(1, 1, 1), 0.3f).setDelay(0.3f);
+        LeanTween.scale(star1.gameObject, new Vector3(1, 1, 1), 0.5f).setDelay(0.5f).setEaseOutSine();
         star2.gameObject.transform.localScale = new Vector3(0, 0, 0);
-        LeanTween.scale(star2.gameObject, new Vector3(1, 1, 1), 0.3f).setDelay(0.6f);
+        LeanTween.scale(star2.gameObject, new Vector3(1, 1, 1), 0.5f).setDelay(1.0f).setEaseOutSine();
         star3.gameObject.transform.localScale = new Vector3(0, 0, 0);
-        LeanTween.scale(star3.gameObject, new Vector3(1, 1, 1), 0.3f).setDelay(0.9f);
+        LeanTween.scale(star3.gameObject, new Vector3(1, 1, 1), 0.5f).setDelay(1.5f).setEaseOutSine();
         star4.gameObject.transform.localScale = new Vector3(0, 0, 0);
-        LeanTween.scale(star4.gameObject, new Vector3(1, 1, 1), 0.3f).setDelay(1.2f);
+        LeanTween.scale(star4.gameObject, new Vector3(1, 1, 1), 0.5f).setDelay(2.0f).setEaseOutSine();
         star5.gameObject.transform.localScale = new Vector3(0, 0, 0);
     }
 
     public void FiveStar()
     {
         star1.gameObject.transform.localScale = new Vector3(0, 0, 0);
-        LeanTween.scale(star1.gameObject, new Vector3(1, 1, 1), 0.3f).setDelay(0.3f);
+        LeanTween.scale(star1.gameObject, new Vector3(1, 1, 1), 0.5f).setDelay(0.5f).setEaseOutSine();
         star2.gameObject.transform.localScale = new Vector3(0, 0, 0);
-        LeanTween.scale(star2.gameObject, new Vector3(1, 1, 1), 0.3f).setDelay(0.6f);
+        LeanTween.scale(star2.gameObject, new Vector3(1, 1, 1), 0.5f).setDelay(1.0f).setEaseOutSine();
         star3.gameObject.transform.localScale = new Vector3(0, 0, 0);
-        LeanTween.scale(star3.gameObject, new Vector3(1, 1, 1), 0.3f).setDelay(0.9f);
+        LeanTween.scale(star3.gameObject, new Vector3(1, 1, 1), 0.5f).setDelay(1.5f).setEaseOutSine();
         star4.gameObject.transform.localScale = new Vector3(0, 0, 0);
-        LeanTween.scale(star4.gameObject, new Vector3(1, 1, 1), 0.3f).setDelay(1.2f);
+        LeanTween.scale(star4.gameObject, new Vector3(1, 1, 1), 0.5f).setDelay(2.0f).setEaseOutSine();
         star5.gameObject.transform.localScale = new Vector3(0, 0, 0);
-        LeanTween.scale(star5.gameObject, new Vector3(1, 1, 1), 0.3f).setDelay(1.5f);
+        LeanTween.scale(star5.gameObject, new Vector3(1, 1, 1), 0.5f).setDelay(2.5f).setEaseOutSine();
     }
 
 }
