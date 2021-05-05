@@ -36,9 +36,11 @@ public class Settings : MonoBehaviour
     const string pianoLabel_Pref = "isPianoLabelled";
     const string noteLabel_Pref = "isNoteLabelled";
     const string vfx_Pref = "isVFX";
+    const string keyPress_Pref = "isKeyPressLabel";
     public int isPianoLabelled = 1;
     public int isNoteLabelled = 1;
     public int isVFX = 1;
+    public int isKeyPressLabel = 1;
 
     public Slider MasterVolume;
     public Button ON_Button_VFX;
@@ -47,6 +49,8 @@ public class Settings : MonoBehaviour
     public Button OFF_Button_NoteLabels;
     public Button ON_Button_PianoLabels;
     public Button OFF_Button_PianoLabels;
+    public Button ON_Button_KeyPressLabel;
+    public Button OFF_Button_KeyPressLabel;
     public TMP_Dropdown KeyboardSelect;
 
     // Windowed Mode Settings
@@ -128,6 +132,7 @@ public class Settings : MonoBehaviour
         PlayerPrefs.SetInt(pianoLabel_Pref, isPianoLabelled);
         PlayerPrefs.SetInt(noteLabel_Pref, isNoteLabelled);
         PlayerPrefs.SetInt(vfx_Pref, isVFX);
+        PlayerPrefs.SetInt(keyPress_Pref, isKeyPressLabel);
 
         // Save Windowed Mode Setting
         PlayerPrefs.SetString(screenMode_Pref, screenModes[screenModesIndex]);
@@ -145,6 +150,7 @@ public class Settings : MonoBehaviour
         isPianoLabelled = PlayerPrefs.GetInt(pianoLabel_Pref);
         isNoteLabelled = PlayerPrefs.GetInt(noteLabel_Pref);
         isVFX = PlayerPrefs.GetInt(vfx_Pref);
+        isKeyPressLabel = PlayerPrefs.GetInt(keyPress_Pref);
 
         // Set the UI for VFX buttons
         if (isVFX == 0)
@@ -174,6 +180,16 @@ public class Settings : MonoBehaviour
         else
         {
             PianoLabel_ON_Clicked();
+        }
+
+        // Set the UI for the key press label button
+        if (isKeyPressLabel == 0)
+        {
+            KeyPressLabel_OFF_Clicked();
+        }
+        else
+        {
+            KeyPressLabel_ON_Clicked();
         }
 
         // Load the screen windowed setting text
@@ -289,6 +305,42 @@ public class Settings : MonoBehaviour
         
     }
 
+    public void KeyPressLabel_ON_Clicked()
+    {
+        // Change UI Color
+        ON_Button_KeyPressLabel.GetComponent<Image>().color = COLOR_PALLETE.LIGHT_BLUE;
+        OFF_Button_KeyPressLabel.GetComponent<Image>().color = COLOR_PALLETE.GRAY;
+
+        // Apply button logic
+        if (isKeyPressLabel == 0)
+        {
+            // Show apply button so the user can see that they can save their settings. 
+            ApplyButton.gameObject.SetActive(true);
+        }
+
+        // Update player prefs
+        isKeyPressLabel = 1;
+    }
+
+    public void KeyPressLabel_OFF_Clicked()
+    {
+        // Change UI Color
+        ON_Button_KeyPressLabel.GetComponent<Image>().color = COLOR_PALLETE.GRAY;
+        OFF_Button_KeyPressLabel.GetComponent<Image>().color = COLOR_PALLETE.LIGHT_BLUE;
+
+        // Apply button logic
+        if (isKeyPressLabel == 1)
+        {
+            // Show apply button so the user can see that they can save their settings. 
+            ApplyButton.gameObject.SetActive(true);
+        }
+
+        // Update player prefs
+        isKeyPressLabel = 0;
+    }
+
+
+
     public void ResetButtonPressedUI() // Restore all options to default UI
     {
         // Turn off VFX by default
@@ -299,9 +351,13 @@ public class Settings : MonoBehaviour
         ON_Button_NoteLabels.GetComponent<Image>().color = COLOR_PALLETE.GRAY;
         OFF_Button_NoteLabels.GetComponent<Image>().color = COLOR_PALLETE.LIGHT_BLUE;
 
-        // Trun on pinao labels by default
+        // Turn on pinao labels by default
         ON_Button_PianoLabels.GetComponent<Image>().color = COLOR_PALLETE.LIGHT_BLUE;
         OFF_Button_PianoLabels.GetComponent<Image>().color = COLOR_PALLETE.GRAY;
+
+        // Turn on key press labels by default
+        ON_Button_KeyPressLabel.GetComponent<Image>().color = COLOR_PALLETE.LIGHT_BLUE;
+        OFF_Button_KeyPressLabel.GetComponent<Image>().color = COLOR_PALLETE.GRAY;
 
         // Sound volume at 50% by default
         MasterVolume.value = 0.5f;
@@ -498,6 +554,8 @@ public class Settings : MonoBehaviour
 
     public void ResetYESButtonPressed()
     {
+        PlayerPrefs.SetInt(keyPress_Pref, 1); // Trun on key press labels by default
+        isKeyPressLabel = 1;
         PlayerPrefs.SetInt(pianoLabel_Pref, 1); // Trun on pinao labels by default
         isPianoLabelled = 1;
         PlayerPrefs.SetInt(noteLabel_Pref, 0); // Turn off Note labels by default

@@ -16,6 +16,8 @@ public class DisplayNote : MonoBehaviour
     void Start()
     {
 
+        displayNoteText.text = "";
+
         foreach (var each in InputSystem.devices)
         {
             if (each.displayName != "Mouse")
@@ -26,7 +28,14 @@ public class DisplayNote : MonoBehaviour
                 midiDevice.onWillNoteOn += (note, velocity) => {
                     if (SceneManager.GetActiveScene().name == "Play")
                     {
-                        displayNoteText.text = note.shortDisplayName;
+                        if (PlayerPrefs.GetInt("isKeyPressLabel") == 1)
+                        {
+                            displayNoteText.text = note.shortDisplayName;
+                        }
+                        else
+                        {
+                            displayNoteText.text = "";
+                        }
                     }
                 };
 
@@ -47,7 +56,14 @@ public class DisplayNote : MonoBehaviour
             midiDevice.onWillNoteOn += (note, velocity) => {
                 if (SceneManager.GetActiveScene().name == "Play")
                 {
-                    displayNoteText.text = note.shortDisplayName;
+                    if (PlayerPrefs.GetInt("isKeyPressLabel") == 1)
+                    {
+                        displayNoteText.text = note.shortDisplayName;
+                    }
+                    else
+                    {
+                        displayNoteText.text = "";
+                    }
                 }
             };
 
