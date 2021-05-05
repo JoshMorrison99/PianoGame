@@ -46,6 +46,8 @@ ExportedObj/
 # My own packages
 /Assets/Particlecollection_Free\ samples/
 /Assets/Particlecollection_Free\ samples.meta
+/Assets/LeanTween
+/Assets/LeanTween.meta
 
 # Unity3D generated meta files
 *.pidb.meta
@@ -61,4 +63,3 @@ sysinfo.txt
 
 # Crashlytics generated file
 crashlytics-build.properties
-

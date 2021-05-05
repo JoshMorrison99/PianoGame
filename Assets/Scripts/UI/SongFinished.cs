@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using TMPro;
+using UnityEngine.Events;
 
 public class SongFinished : MonoBehaviour
 {
@@ -107,23 +108,23 @@ public class SongFinished : MonoBehaviour
 
     void UpdateStars()
     {
-        if ((percentTrunk * 100) < 25)
+        if ((percentTrunk * 100) < 20)
         {
             PersistentData.data._SongList[PersistentData.data.selectedSong - 1]._stars = "*";
             OneStar();
-        }else if ((percentTrunk * 100) > 25 && (percentTrunk * 100) < 50)
+        }else if ((percentTrunk * 100) > 20 && (percentTrunk * 100) < 40)
         {
             PersistentData.data._SongList[PersistentData.data.selectedSong - 1]._stars = "* *";
             TwoStar();
-        }else if ((percentTrunk * 100) > 50 && (percentTrunk * 100) < 75)
+        }else if ((percentTrunk * 100) > 40 && (percentTrunk * 100) < 60)
         {
             PersistentData.data._SongList[PersistentData.data.selectedSong - 1]._stars = "* * *";
             ThreeStar();
-        }else if ((percentTrunk * 100) > 75 && (percentTrunk * 100) < 95)
+        }else if ((percentTrunk * 100) > 60 && (percentTrunk * 100) < 80)
         {
             PersistentData.data._SongList[PersistentData.data.selectedSong - 1]._stars = "* * * *";
             FourStar();
-        }else if ((percentTrunk * 100) > 95)
+        }else if ((percentTrunk * 100) > 80)
         {
             PersistentData.data._SongList[PersistentData.data.selectedSong - 1]._stars = "* * * * *";
             FiveStar();
@@ -186,47 +187,62 @@ public class SongFinished : MonoBehaviour
 
     public void OneStar()
     {
-        star1.gameObject.SetActive(true);
-        star2.gameObject.SetActive(false);
-        star3.gameObject.SetActive(false);
-        star4.gameObject.SetActive(false);
-        star5.gameObject.SetActive(false);
+        star1.gameObject.transform.localScale = new Vector3(0,0,0);
+        LeanTween.scale(star1.gameObject, new Vector3(1, 1, 1), 0.3f).setDelay(0.3f);
+        star2.gameObject.transform.localScale = new Vector3(0, 0, 0);
+        star3.gameObject.transform.localScale = new Vector3(0, 0, 0);
+        star4.gameObject.transform.localScale = new Vector3(0, 0, 0);
+        star5.gameObject.transform.localScale = new Vector3(0, 0, 0);
     }
 
     public void TwoStar()
     {
-        star1.gameObject.SetActive(true);
-        star2.gameObject.SetActive(true);
-        star3.gameObject.SetActive(false);
-        star4.gameObject.SetActive(false);
-        star5.gameObject.SetActive(false);
+        star1.gameObject.transform.localScale = new Vector3(0, 0, 0);
+        LeanTween.scale(star1.gameObject, new Vector3(1, 1, 1), 0.3f).setDelay(0.3f);
+        star2.gameObject.transform.localScale = new Vector3(0, 0, 0);
+        LeanTween.scale(star2.gameObject, new Vector3(1, 1, 1), 0.3f).setDelay(0.6f);
+        star3.gameObject.transform.localScale = new Vector3(0, 0, 0);
+        star4.gameObject.transform.localScale = new Vector3(0, 0, 0);
+        star5.gameObject.transform.localScale = new Vector3(0, 0, 0);
     }
 
     public void ThreeStar()
     {
-        star1.gameObject.SetActive(true);
-        star2.gameObject.SetActive(true);
-        star3.gameObject.SetActive(true);
-        star4.gameObject.SetActive(false);
-        star5.gameObject.SetActive(false);
+        star1.gameObject.transform.localScale = new Vector3(0, 0, 0);
+        LeanTween.scale(star1.gameObject, new Vector3(1, 1, 1), 0.3f).setDelay(0.3f);
+        star2.gameObject.transform.localScale = new Vector3(0, 0, 0);
+        LeanTween.scale(star2.gameObject, new Vector3(1, 1, 1), 0.3f).setDelay(0.6f);
+        star3.gameObject.transform.localScale = new Vector3(0, 0, 0);
+        LeanTween.scale(star3.gameObject, new Vector3(1, 1, 1), 0.3f).setDelay(0.9f);
+        star4.gameObject.transform.localScale = new Vector3(0, 0, 0);
+        star5.gameObject.transform.localScale = new Vector3(0, 0, 0);
     }
 
     public void FourStar()
     {
-        star1.gameObject.SetActive(true);
-        star2.gameObject.SetActive(true);
-        star3.gameObject.SetActive(true);
-        star4.gameObject.SetActive(true);
-        star5.gameObject.SetActive(false);
+        star1.gameObject.transform.localScale = new Vector3(0, 0, 0);
+        LeanTween.scale(star1.gameObject, new Vector3(1, 1, 1), 0.3f).setDelay(0.3f);
+        star2.gameObject.transform.localScale = new Vector3(0, 0, 0);
+        LeanTween.scale(star2.gameObject, new Vector3(1, 1, 1), 0.3f).setDelay(0.6f);
+        star3.gameObject.transform.localScale = new Vector3(0, 0, 0);
+        LeanTween.scale(star3.gameObject, new Vector3(1, 1, 1), 0.3f).setDelay(0.9f);
+        star4.gameObject.transform.localScale = new Vector3(0, 0, 0);
+        LeanTween.scale(star4.gameObject, new Vector3(1, 1, 1), 0.3f).setDelay(1.2f);
+        star5.gameObject.transform.localScale = new Vector3(0, 0, 0);
     }
 
     public void FiveStar()
     {
-        star1.gameObject.SetActive(true);
-        star2.gameObject.SetActive(true);
-        star3.gameObject.SetActive(true);
-        star4.gameObject.SetActive(true);
-        star5.gameObject.SetActive(true);
+        star1.gameObject.transform.localScale = new Vector3(0, 0, 0);
+        LeanTween.scale(star1.gameObject, new Vector3(1, 1, 1), 0.3f).setDelay(0.3f);
+        star2.gameObject.transform.localScale = new Vector3(0, 0, 0);
+        LeanTween.scale(star2.gameObject, new Vector3(1, 1, 1), 0.3f).setDelay(0.6f);
+        star3.gameObject.transform.localScale = new Vector3(0, 0, 0);
+        LeanTween.scale(star3.gameObject, new Vector3(1, 1, 1), 0.3f).setDelay(0.9f);
+        star4.gameObject.transform.localScale = new Vector3(0, 0, 0);
+        LeanTween.scale(star4.gameObject, new Vector3(1, 1, 1), 0.3f).setDelay(1.2f);
+        star5.gameObject.transform.localScale = new Vector3(0, 0, 0);
+        LeanTween.scale(star5.gameObject, new Vector3(1, 1, 1), 0.3f).setDelay(1.5f);
     }
 
 }
