@@ -14,6 +14,7 @@ public class MidiMagic : MonoBehaviour
 
 
     public Playback _playback;
+    public Playback _playback_audio;
 
     public OutputDevice _outputDevice;
     public MidiFile midiFile;
@@ -25,17 +26,24 @@ public class MidiMagic : MonoBehaviour
         midiFile = MidiFile.Read(Midi_path);
         _outputDevice = OutputDevice.GetById(0);
 
-    // Note Playback
-    _playback = midiFile.GetPlayback(_outputDevice, new MidiClockSettings
+        // Note Playback
+        _playback = midiFile.GetPlayback( new MidiClockSettings
         {
             CreateTickGeneratorCallback = () => null
         });
 
-        Debug.Log("TOTAL NOTES: " + midiFile.GetNotes().Count);
+        // Audio Playback
+        _playback_audio = midiFile.GetPlayback(_outputDevice, new MidiClockSettings
+        {
+            CreateTickGeneratorCallback = () => null
+        });
 
-        Debug.Log(_outputDevice.SupportsLeftRightVolumeControl);
-        Debug.Log(_outputDevice.SupportsVolumeControl);
-        Debug.Log(_outputDevice.Channels);
+        //Debug.Log("TOTAL NOTES: " + midiFile.GetNotes().Count);
+
+        //Debug.Log(_outputDevice.SupportsLeftRightVolumeControl);
+        //Debug.Log(_outputDevice.SupportsVolumeControl);
+        //Debug.Log(_outputDevice.Channels);
+
 
         // Set the volume the same as player prefs
         GetAndSetSongVolume();
@@ -99,7 +107,9 @@ public class MidiMagic : MonoBehaviour
 
     public void ResumePlayback()
     {
+        
         StartCoroutine(StartMusic());
+        StartCoroutine(StartAudio());
     }
 
 
@@ -131,6 +141,35 @@ public class MidiMagic : MonoBehaviour
 
         _playback.Dispose();
        
+
+    }
+
+    private IEnumerator StartAudio()
+    {
+        yield return new WaitForSeconds(3.2f);
+        _playback_audio.Start();
+        while (_playback_audio.IsRunning || PersistentData.data.isPaused)
+        {
+
+            // Debug.Log("ACTIVE");
+            if (PersistentData.data.isPaused == false)
+            {
+                _playback_audio.TickClock();
+            }
+
+            yield return null;
+
+        }
+
+        Debug.Log("ENDED");
+
+        yield return new WaitForSeconds(6f);
+
+        //UILogic.UpdateFinishedSongText();
+
+
+        _playback_audio.Dispose();
+
 
     }
 
