@@ -33,6 +33,7 @@ public class SongFinished : MonoBehaviour
     public float percentTrunk;
     public PlayLogic Logic;
 
+
     public void UpdateText()
     {
         notesHitText.text = Logic.numNotesHit + "/" + Logic.numNotesTotal + " notes hit";
@@ -97,6 +98,7 @@ public class SongFinished : MonoBehaviour
         levelTextNext.text = "Next: " + ReturnXPNeededToLevelUp(PersistentData.data.level);
         levelSlider.value = PersistentData.data.exp / ReturnXPNeededToLevelUp(PersistentData.data.level);
     }
+
 
     public void UpdateUserMoneyUI()
     {
