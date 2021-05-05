@@ -74,7 +74,6 @@ public class SongFinished : MonoBehaviour
         LevelUp();
         UpdateUserMoney();
         UpdateUserMoneyUI();
-        SetUserLevel();
         UpdateExpBar();
 
 
@@ -95,11 +94,6 @@ public class SongFinished : MonoBehaviour
         }
     }
 
-    public void SetUserLevel()
-    {
-        levelTextBig.text = "Level: " + PersistentData.data.level;
-    }
-
     public void UpdateExpBar()
     {
        
@@ -112,6 +106,8 @@ public class SongFinished : MonoBehaviour
         endExp = PersistentData.data.exp;
         finalExp = ReturnXPNeededToLevelUp(PersistentData.data.level);
         endLevel = PersistentData.data.level;
+
+        levelTextBig.text = "Level: " + startLevel;
 
         StartCoroutine(ExpSlider());
         
@@ -132,6 +128,7 @@ public class SongFinished : MonoBehaviour
             }
             startLevel += 1;
             startExp = 0;
+            levelTextBig.text = "Level: " + startLevel;
         }
 
 
