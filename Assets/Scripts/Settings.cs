@@ -361,9 +361,9 @@ public class Settings : MonoBehaviour
         ON_Button_NoteLabels.GetComponent<Image>().color = COLOR_PALLETE.GRAY;
         OFF_Button_NoteLabels.GetComponent<Image>().color = COLOR_PALLETE.LIGHT_BLUE;
 
-        // Turn on pinao labels by default
-        ON_Button_PianoLabels.GetComponent<Image>().color = COLOR_PALLETE.LIGHT_BLUE;
-        OFF_Button_PianoLabels.GetComponent<Image>().color = COLOR_PALLETE.GRAY;
+        // Turn off pinao labels by default
+        ON_Button_PianoLabels.GetComponent<Image>().color = COLOR_PALLETE.GRAY;
+        OFF_Button_PianoLabels.GetComponent<Image>().color = COLOR_PALLETE.LIGHT_BLUE;
 
         // Turn on key press labels by default
         ON_Button_KeyPressLabel.GetComponent<Image>().color = COLOR_PALLETE.LIGHT_BLUE;
@@ -566,8 +566,8 @@ public class Settings : MonoBehaviour
     {
         PlayerPrefs.SetInt(keyPress_Pref, 1); // Trun on key press labels by default
         isKeyPressLabel = 1;
-        PlayerPrefs.SetInt(pianoLabel_Pref, 1); // Trun on pinao labels by default
-        isPianoLabelled = 1;
+        PlayerPrefs.SetInt(pianoLabel_Pref, 0); // Trun off pinao labels by default
+        isPianoLabelled = 0;
         PlayerPrefs.SetInt(noteLabel_Pref, 0); // Turn off Note labels by default
         isNoteLabelled = 0;
         PlayerPrefs.SetInt(vfx_Pref, 0); // Turn off vfx by default
