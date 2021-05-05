@@ -74,6 +74,7 @@ public class MidiMagic : MonoBehaviour
     public void ChangeMidiPlaybackSpeed(float speed)
     {
         _playback.Speed = speed;
+        _playback_audio.Speed = speed;
     }
 
     public void GetAndSetSongVolume()
