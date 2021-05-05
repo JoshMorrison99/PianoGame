@@ -21,7 +21,10 @@ public class SongSelection : MonoBehaviour
     public Image MediumSongFilterImage;
     public Button HardSongFilterButton;
     public Image HardSongFilterImage;
+    public Button MemeSongFilterButton;
+    public Image MemeSongFilterImage;
     public string currentFilter;
+    public GameObject bgDark;
 
     public Button FilterButton;
     public Button currentAppliedFilterButton;
@@ -269,11 +272,13 @@ public class SongSelection : MonoBehaviour
         if (isFilterON)
         {
             SongFilterPanel.SetActive(false);
+            bgDark.SetActive(false);
             isFilterON = false;
         }
         else
         {
             SongFilterPanel.SetActive(true);
+            bgDark.SetActive(true);
             isFilterON = true;
         }
     }
@@ -284,6 +289,7 @@ public class SongSelection : MonoBehaviour
         BeginnerSongFilterImage.color = Color.white;
         MediumSongFilterImage.color = Color.white;
         HardSongFilterImage.color = Color.white;
+        MemeSongFilterImage.color = Color.white;
         currentAppliedFilterButton.GetComponentInChildren<TextMeshProUGUI>().text = "[ User Songs ]";
         SongFilterPanel.SetActive(false);
         isFilterON = false;
@@ -297,6 +303,7 @@ public class SongSelection : MonoBehaviour
         BeginnerSongFilterImage.color = COLOR_PALLETE.LIGHT_BLUE;
         MediumSongFilterImage.color = Color.white;
         HardSongFilterImage.color = Color.white;
+        MemeSongFilterImage.color = Color.white;
         currentAppliedFilterButton.GetComponentInChildren<TextMeshProUGUI>().text = "[ Beginner Difficulty ]";
         SongFilterPanel.SetActive(false);
         isFilterON = false;
@@ -310,6 +317,7 @@ public class SongSelection : MonoBehaviour
         BeginnerSongFilterImage.color = Color.white;
         MediumSongFilterImage.color = COLOR_PALLETE.LIGHT_BLUE;
         HardSongFilterImage.color = Color.white;
+        MemeSongFilterImage.color = Color.white;
         currentAppliedFilterButton.GetComponentInChildren<TextMeshProUGUI>().text = "[ Medium Difficulty ]";
         SongFilterPanel.SetActive(false);
         isFilterON = false;
@@ -323,11 +331,26 @@ public class SongSelection : MonoBehaviour
         BeginnerSongFilterImage.color = Color.white;
         MediumSongFilterImage.color = Color.white;
         HardSongFilterImage.color = COLOR_PALLETE.LIGHT_BLUE;
+        MemeSongFilterImage.color = Color.white;
         currentAppliedFilterButton.GetComponentInChildren<TextMeshProUGUI>().text = "[ Hard Difficulty ]";
         SongFilterPanel.SetActive(false);
         isFilterON = false;
         currentFilter = "hard";
         createSongsFromTemplate("hard");
+    }
+
+    public void MemeSongFilterButtonClicked()
+    {
+        UserSongFilterImage.color = Color.white;
+        BeginnerSongFilterImage.color = Color.white;
+        MediumSongFilterImage.color = Color.white;
+        HardSongFilterImage.color = Color.white;
+        MemeSongFilterImage.color = COLOR_PALLETE.LIGHT_BLUE;
+        currentAppliedFilterButton.GetComponentInChildren<TextMeshProUGUI>().text = "[ Meme Difficulty ]";
+        SongFilterPanel.SetActive(false);
+        isFilterON = false;
+        currentFilter = "meme";
+        createSongsFromTemplate("meme");
     }
 
     public void ClearFilterButtonClicked()
