@@ -162,6 +162,7 @@ public class PlayUILogic : MonoBehaviour
             pauseManuPanel.SetActive(true);
             isPaused = true;
             midi._playback.Stop();
+            midi._playback_audio.Stop();
             PersistentData.data.isPaused = true;
             Time.timeScale = 0.00001f;
             Debug.Log("Button Setting to True");

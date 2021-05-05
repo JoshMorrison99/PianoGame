@@ -22,6 +22,7 @@ public class PersistentData : MonoBehaviour, ISaveable
 
     public MidiFile myMidi;
     public Playback myPlayback;
+    public Playback myPlaybackAudio;
 
     public string userSongSelected;
 

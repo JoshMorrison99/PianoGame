@@ -12,6 +12,8 @@ public class MidiMagic : MonoBehaviour
     public PianoNoteSpawner spawner;
     public PlayUILogic UILogic;
 
+    public bool isFirstRun = true;
+
 
     public Playback _playback;
     public Playback _playback_audio;
@@ -51,13 +53,17 @@ public class MidiMagic : MonoBehaviour
         // Set the speed of the playback
         SongSpeedSliderChangedValue();
 
+        isFirstRun = true;
+
 
         // Change midi length the english AKA metric
         PersistentData.data.myMidi = midiFile;
         PersistentData.data.myPlayback = _playback;
+        PersistentData.data.myPlaybackAudio = _playback_audio;
         _playback.NotesPlaybackStarted += spawner.spawnNote;
         
         _playback.InterruptNotesOnStop = true;
+        _playback_audio.InterruptNotesOnStop = true;
 
         Debug.Log("VOLUME: " + _outputDevice.Volume);
         Debug.Log("VOLUME Device: " + _outputDevice.Name);
@@ -107,7 +113,6 @@ public class MidiMagic : MonoBehaviour
 
     public void ResumePlayback()
     {
-        
         StartCoroutine(StartMusic());
         StartCoroutine(StartAudio());
     }
@@ -122,9 +127,10 @@ public class MidiMagic : MonoBehaviour
         while (_playback.IsRunning || PersistentData.data.isPaused)
         {
             
-            // Debug.Log("ACTIVE");
+             
             if ( PersistentData.data.isPaused == false)
             {
+                //Debug.Log("ACTIVE StartMusic=========");
                 _playback.TickClock();
             }
             
@@ -132,7 +138,7 @@ public class MidiMagic : MonoBehaviour
 
         }
 
-        Debug.Log("ENDED");
+        Debug.Log("ENDED StartMusic");
 
         yield return new WaitForSeconds(6f);
 
@@ -146,14 +152,19 @@ public class MidiMagic : MonoBehaviour
 
     private IEnumerator StartAudio()
     {
-        yield return new WaitForSeconds(3.2f);
+        if (isFirstRun)
+        {
+            yield return new WaitForSeconds(3.2f);
+            isFirstRun = false;
+        }
         _playback_audio.Start();
         while (_playback_audio.IsRunning || PersistentData.data.isPaused)
         {
 
-            // Debug.Log("ACTIVE");
+             
             if (PersistentData.data.isPaused == false)
             {
+                //Debug.Log("ACTIVE StartAudio------");
                 _playback_audio.TickClock();
             }
 
@@ -161,9 +172,9 @@ public class MidiMagic : MonoBehaviour
 
         }
 
-        Debug.Log("ENDED");
+        Debug.Log("ENDED --StartAudio");
 
-        yield return new WaitForSeconds(6f);
+        yield return new WaitForSeconds(9.2f);
 
         //UILogic.UpdateFinishedSongText();
 
@@ -177,6 +188,7 @@ public class MidiMagic : MonoBehaviour
     {
         Debug.Log("Dispose Playback");
         _playback.Dispose();
+        _playback_audio.Dispose();
         _outputDevice.Dispose();
     }
 
