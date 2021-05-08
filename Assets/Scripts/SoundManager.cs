@@ -29,16 +29,23 @@ public class SoundManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        audioSource.volume = 0.5f;
+
         buttonHitSound = Resources.Load<AudioClip>("buttonHitSound");
         buttonHitSoundError = Resources.Load<AudioClip>("buttonHitSoundError");
 
         audioSource = GetComponent<AudioSource>();
 
+        // Main Menu Sounds
         MainMenu.buttonClickedEvent += ButtonHitSoundPlay;
         MainMenu.buttonClickedSuccessEvent += ButtonSuccessSoundPlay;
         MainMenu.buttonClickedErrorEvent += ButtonHitSoundErrorPlay;
         SongSelection.buttonClickAction += ButtonHitSoundPlay;
         Settings.buttonClickedEvent += ButtonHitSoundPlay;
+
+        // Play Scene Sounds
+        PlayUILogic.buttonClickedEvent += ButtonHitSoundPlay;
+        SongFinished.buttonClickedEvent += ButtonHitSoundPlay;
     }
 
     public void ButtonHitSoundPlay()

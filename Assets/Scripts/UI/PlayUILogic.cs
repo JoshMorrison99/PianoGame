@@ -9,6 +9,9 @@ using UnityEngine.InputSystem;
 public class PlayUILogic : MonoBehaviour
 {
 
+    public delegate void ButtonClickedAction();
+    public static event ButtonClickedAction buttonClickedEvent;
+
     public PlayLogic Logic;
 
     public MidiMagic midi;
@@ -167,8 +170,12 @@ public class PlayUILogic : MonoBehaviour
             Time.timeScale = 0.00001f;
             Debug.Log("Button Setting to True");
         }
-        
-       
+
+        // play button clicked sfx
+        if (buttonClickedEvent != null)
+        {
+            buttonClickedEvent();
+        }
     }
 
     void ActivateGame()
@@ -184,6 +191,12 @@ public class PlayUILogic : MonoBehaviour
 
     public void PauseMainMenuClicked()
     {
+        // play button clicked sfx
+        if (buttonClickedEvent != null)
+        {
+            buttonClickedEvent();
+        }
+
         midi.ReplaySong();
         SceneManager.LoadScene("MainMenu");
         Debug.Log("REPLAY");
@@ -191,9 +204,15 @@ public class PlayUILogic : MonoBehaviour
 
     public void PauseReplayClicked()
     {
+
+        // play button clicked sfx
+        if (buttonClickedEvent != null)
+        {
+            buttonClickedEvent();
+        }
+
         midi.ReplaySong();
         SceneManager.LoadScene("Play");
-        
     }
 
     public void PauseSettingsClicked()
@@ -207,6 +226,12 @@ public class PlayUILogic : MonoBehaviour
         pauseBtn.gameObject.SetActive(false);
 
         settingsPanel.GetComponent<Settings>().StartupApplyButton();
+
+        // play button clicked sfx
+        if (buttonClickedEvent != null)
+        {
+            buttonClickedEvent();
+        }
     }
 
     public void PauseSettingBackButtonClicked()
@@ -220,6 +245,12 @@ public class PlayUILogic : MonoBehaviour
         pauseBtn.gameObject.SetActive(true);
 
         InitSettings();
+
+        // play button clicked sfx
+        if (buttonClickedEvent != null)
+        {
+            buttonClickedEvent();
+        }
     }
 
 

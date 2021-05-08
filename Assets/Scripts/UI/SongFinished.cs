@@ -8,6 +8,10 @@ using UnityEngine.Events;
 
 public class SongFinished : MonoBehaviour
 {
+
+    public delegate void ButtonClickedAction();
+    public static event ButtonClickedAction buttonClickedEvent;
+
     // level system ui
     public TextMeshProUGUI levelTextStart;
     public TextMeshProUGUI levelTextNext;
@@ -51,12 +55,24 @@ public class SongFinished : MonoBehaviour
 
     public void mainMenuButtonClicked()
     {
+        // play sfx
+        if (buttonClickedEvent != null)
+        {
+            buttonClickedEvent();
+        }
+
         midi.ReplaySong();
         SceneManager.LoadScene("MainMenu");
     }
 
     public void replayButtonClicked()
     {
+        // play sfx
+        if (buttonClickedEvent != null)
+        {
+            buttonClickedEvent();
+        }
+
         midi.ReplaySong();
         SceneManager.LoadScene("Play");
     }
