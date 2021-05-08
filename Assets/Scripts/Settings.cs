@@ -9,10 +9,13 @@ using UnityEngine.SceneManagement;
 
 public class Settings : MonoBehaviour
 {
+    bool isFirstLoad = true;
 
     // Delegates
     public delegate void SettingsChangedAction();
     public static event SettingsChangedAction SettingsChanged;
+    public delegate void ButtonClickedAction();
+    public static event ButtonClickedAction buttonClickedEvent;
 
     // Apply
     public GameObject ApplySettingsPanel;
@@ -83,6 +86,7 @@ public class Settings : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        isFirstLoad = true;
         Debug.Log("Start......................................");
         GetInputDevices();
         GetDeviceResolutions();
@@ -202,6 +206,8 @@ public class Settings : MonoBehaviour
             KeyPressLabel_ON_Clicked();
         }
 
+        isFirstLoad = false;
+
         // Load the screen windowed setting text
         WindowedText.text = PlayerPrefs.GetString(screenMode_Pref);
 
@@ -214,6 +220,12 @@ public class Settings : MonoBehaviour
     {
         SaveSettings();
         ApplyButton.gameObject.SetActive(false);
+
+        // Play button clicked SFX
+        if (buttonClickedEvent != null)
+        {
+            buttonClickedEvent();
+        }
     }
 
     public void GetInputDevices()
@@ -274,7 +286,13 @@ public class Settings : MonoBehaviour
         {
             ApplySettingsPanel.SetActive(true);
         }
-        
+
+        // Play button clicked SFX
+        if (buttonClickedEvent != null)
+        {
+            buttonClickedEvent();
+        }
+
     }
 
 
@@ -300,6 +318,12 @@ public class Settings : MonoBehaviour
     public void ResetButtonPressed()
     {
         ResetSettingPanel.SetActive(true);
+
+        // Play button clicked SFX
+        if (buttonClickedEvent != null)
+        {
+            buttonClickedEvent();
+        }
     }
 
     public void BackButtonPressed()
@@ -312,7 +336,13 @@ public class Settings : MonoBehaviour
         {
             ApplySettingsPanel.SetActive(true);
         }
-        
+
+        // Play button clicked SFX
+        if (buttonClickedEvent != null)
+        {
+            buttonClickedEvent();
+        }
+
     }
 
     public void KeyPressLabel_ON_Clicked()
@@ -330,6 +360,12 @@ public class Settings : MonoBehaviour
 
         // Update player prefs
         isKeyPressLabel = 1;
+
+        // Play button clicked SFX
+        if (buttonClickedEvent != null && isFirstLoad == false)
+        {
+            buttonClickedEvent();
+        }
     }
 
     public void KeyPressLabel_OFF_Clicked()
@@ -347,6 +383,12 @@ public class Settings : MonoBehaviour
 
         // Update player prefs
         isKeyPressLabel = 0;
+
+        // Play button clicked SFX
+        if (buttonClickedEvent != null && isFirstLoad == false)
+        {
+            buttonClickedEvent();
+        }
     }
 
 
@@ -376,6 +418,8 @@ public class Settings : MonoBehaviour
             // Playback speed set to 100% by default
             speedSlider.value = 1f;
         }
+
+
        
     }
 
@@ -416,6 +460,12 @@ public class Settings : MonoBehaviour
 
         // Update player prefs
         isVFX = 1;
+
+        // Play button clicked SFX
+        if (buttonClickedEvent != null && isFirstLoad == false)
+        {
+            buttonClickedEvent();
+        }
     }
 
     public void VFX_OFF_Clicked()
@@ -433,6 +483,12 @@ public class Settings : MonoBehaviour
 
         // Update player prefs
         isVFX = 0;
+
+        // Play button clicked SFX
+        if (buttonClickedEvent != null && isFirstLoad == false)
+        {
+            buttonClickedEvent();
+        }
     }
 
     public void NoteLabel_ON_Clicked()
@@ -450,6 +506,12 @@ public class Settings : MonoBehaviour
 
         // Update player prefs
         isNoteLabelled = 1;
+
+        // Play button clicked SFX
+        if (buttonClickedEvent != null && isFirstLoad == false)
+        {
+            buttonClickedEvent();
+        }
     }
 
     public void NoteLabel_OFF_Clicked()
@@ -467,6 +529,12 @@ public class Settings : MonoBehaviour
 
         // Update player prefs
         isNoteLabelled = 0;
+
+        // Play button clicked SFX
+        if (buttonClickedEvent != null && isFirstLoad == false)
+        {
+            buttonClickedEvent();
+        }
     }
 
     public void PianoLabel_ON_Clicked()
@@ -484,6 +552,12 @@ public class Settings : MonoBehaviour
 
         // Update player prefs
         isPianoLabelled = 1;
+
+        // Play button clicked SFX
+        if (buttonClickedEvent != null && isFirstLoad == false)
+        {
+            buttonClickedEvent();
+        }
     }
     public void PianoLabel_OFF_Clicked()
     {
@@ -500,6 +574,12 @@ public class Settings : MonoBehaviour
 
         // Update player prefs
         isPianoLabelled = 0;
+
+        // Play button clicked SFX
+        if (buttonClickedEvent != null && isFirstLoad == false)
+        {
+            buttonClickedEvent();
+        }
     }
 
     public void LeftWindowedButtonClicked()
@@ -515,6 +595,12 @@ public class Settings : MonoBehaviour
         // Show apply button so the user can see that they can save their settings.
         ApplyButton.gameObject.SetActive(true);
 
+        // Play button clicked SFX
+        if (buttonClickedEvent != null)
+        {
+            buttonClickedEvent();
+        }
+
     }
     public void RightWindowedButtonClicked()
     {
@@ -528,6 +614,12 @@ public class Settings : MonoBehaviour
 
         // Show apply button so the user can see that they can save their settings. 
         ApplyButton.gameObject.SetActive(true);
+
+        // Play button clicked SFX
+        if (buttonClickedEvent != null)
+        {
+            buttonClickedEvent();
+        }
     }
 
     public void LeftResolutionButtonClicked()
@@ -544,6 +636,12 @@ public class Settings : MonoBehaviour
 
         // Show apply button so the user can see that they can save their settings. 
         ApplyButton.gameObject.SetActive(true);
+
+        // Play button clicked SFX
+        if (buttonClickedEvent != null)
+        {
+            buttonClickedEvent();
+        }
     }
 
     public void RightResolutionButtonClicked()
@@ -560,6 +658,12 @@ public class Settings : MonoBehaviour
 
         // Show apply button so the user can see that they can save their settings.
         ApplyButton.gameObject.SetActive(true);
+
+        // Play button clicked SFX
+        if (buttonClickedEvent != null)
+        {
+            buttonClickedEvent();
+        }
     }
 
     public void ResetYESButtonPressed()
@@ -582,11 +686,23 @@ public class Settings : MonoBehaviour
         ResetSettingPanel.SetActive(false);
 
         ApplyButton.gameObject.SetActive(false);
+
+        // Play button clicked SFX
+        if (buttonClickedEvent != null)
+        {
+            buttonClickedEvent();
+        }
     }
 
     public void ResetNOButtonPressed()
     {
         ResetSettingPanel.SetActive(false);
+
+        // Play button clicked SFX
+        if (buttonClickedEvent != null)
+        {
+            buttonClickedEvent();
+        }
     }
 
     public void ApplyYESButtonPressed()
@@ -594,6 +710,12 @@ public class Settings : MonoBehaviour
         SaveSettings();
         ApplySettingsPanel.SetActive(false);
         this.gameObject.SetActive(false);
+
+        // Play button clicked SFX
+        if (buttonClickedEvent != null)
+        {
+            buttonClickedEvent();
+        }
     }
 
     public void PlayScene_ApplyYESButtonPressed(GameObject pauseMenu)
@@ -601,11 +723,23 @@ public class Settings : MonoBehaviour
         SaveSettings();
         ApplySettingsPanel.SetActive(false);
         pauseMenu.GetComponent<PlayUILogic>().PauseSettingBackButtonClicked();
+
+        // Play button clicked SFX
+        if (buttonClickedEvent != null)
+        {
+            buttonClickedEvent();
+        }
     }
 
     public void ApplyNOButtonPressed()
     {
         ApplySettingsPanel.SetActive(false);
+
+        // Play button clicked SFX
+        if (buttonClickedEvent != null)
+        {
+            buttonClickedEvent();
+        }
     }
 
 }

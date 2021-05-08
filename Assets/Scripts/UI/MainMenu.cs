@@ -9,7 +9,21 @@ using System;
 
 public class MainMenu : MonoBehaviour
 {
-    public Button songSelectionBtn;
+
+	public delegate void ButtonClickedAction();
+	public static event ButtonClickedAction buttonClickedEvent;
+
+	public delegate void ButtonClickedErrorAction();
+	public static event ButtonClickedErrorAction buttonClickedErrorEvent;
+
+	public delegate void ButtonClickedHoverAction();
+	public static event ButtonClickedHoverAction buttonClickedHoverEvent;
+
+	public delegate void ButtonClickedSuccessAction();
+	public static event ButtonClickedSuccessAction buttonClickedSuccessEvent;
+
+
+	public Button songSelectionBtn;
 	public Button lessonsBtn;
 	public Button settingsBtn;
 	public Button accountBtn;
@@ -55,11 +69,24 @@ public class MainMenu : MonoBehaviour
 	public void showMainMenu()
     {
 		SongSelectionPanel.SetActive(false);
+
+		// play button clcik sfx
+		if (buttonClickedEvent != null)
+		{
+			buttonClickedEvent();
+		}
 	}
 
 	public void songSelectionClicked()
     {
 		SongSelectionPanel.SetActive(true);
+
+		// play button clcik sfx
+		if (buttonClickedEvent != null)
+        {
+			buttonClickedEvent();
+        }
+		
 	}
 
 	private void EXPSlideSetup()
@@ -82,7 +109,13 @@ public class MainMenu : MonoBehaviour
     {
 		string website = "http://localhost:3000/tutorial";
 		Application.OpenURL(website);
-    }
+
+		// play button clcik sfx
+		if (buttonClickedEvent != null)
+		{
+			buttonClickedEvent();
+		}
+	}
 
 	private void PlayerStatsLoad()
     {
@@ -108,15 +141,33 @@ public class MainMenu : MonoBehaviour
     {
 		SettingsMenuPanel.SetActive(true);
 		SettingsMenuPanel.GetComponent<Settings>().StartupApplyButton();
-    }
+
+		if (buttonClickedEvent != null)
+		{
+			buttonClickedEvent();
+		}
+
+	}
 
 	public void BackButtonSettings()
     {
 		SettingsMenuPanel.SetActive(false);
-    }
+
+		if (buttonClickedEvent != null)
+		{
+			buttonClickedEvent();
+		}
+
+	}
 
 	public void ImportSongButtonClicked()
     {
+		// play button clicked sfx
+		if (buttonClickedEvent != null)
+		{
+			buttonClickedEvent();
+		}
+
 		path = EditorUtility.OpenFilePanel("user imported midi", "", "mid");
 
         if (path == "")
@@ -133,6 +184,12 @@ public class MainMenu : MonoBehaviour
 			SongImportErrorMessagePanel.GetComponent<Image>().color = Color.red;
 			SongImportErrorMessagePanel.GetComponentInChildren<TextMeshProUGUI>().text = "Error: File must be a .mid file";
 			StartCoroutine(SpawnErrorMessage());
+
+			// play button error clicked sfx
+			if (buttonClickedErrorEvent != null)
+			{
+				buttonClickedErrorEvent();
+			}
 
 		}
         else
@@ -151,6 +208,12 @@ public class MainMenu : MonoBehaviour
 				SongImportErrorMessagePanel.GetComponent<Image>().color = Color.red;
 				SongImportErrorMessagePanel.GetComponentInChildren<TextMeshProUGUI>().text = "Error: File already exists";
 				StartCoroutine(SpawnErrorMessage());
+
+				// play button error clicked sfx
+				if (buttonClickedErrorEvent != null)
+				{
+					buttonClickedErrorEvent();
+				}
 			}
             else
             {
@@ -173,13 +236,18 @@ public class MainMenu : MonoBehaviour
 
 				songSelectionClass.ImportUserSong(fileName);
 
+				// play success sfx
+                if (buttonClickedSuccessEvent != null)
+                {
+					buttonClickedSuccessEvent();
+                }
+
 			}
 
 			
 		}
 
 		
-
 	}
 
 

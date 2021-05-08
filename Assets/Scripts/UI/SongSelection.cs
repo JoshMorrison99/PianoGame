@@ -10,6 +10,9 @@ using UnityEditor;
 public class SongSelection : MonoBehaviour
 {
 
+    public delegate void ButtonClickAction();
+    public static event ButtonClickAction buttonClickAction;
+
     // Song Filter
     public bool isFilterON;
     public GameObject SongFilterPanel;
@@ -70,8 +73,9 @@ public class SongSelection : MonoBehaviour
         createSongsFromTemplate("all");
 
         GameObject buttonHolder = GameObject.Find("Content");
-        Button firstBtn = buttonHolder.transform.GetChild(0).GetComponent<Button>();
-        firstBtn.onClick.Invoke();
+        setDefaultSongSelection();
+        //Button firstBtn = buttonHolder.transform.GetChild(0).GetComponent<Button>();
+        //firstBtn.onClick.Invoke();
 
         // Player persistent data UI
         playerLevelUI.text = PersistentData.data.level.ToString();
@@ -174,6 +178,12 @@ public class SongSelection : MonoBehaviour
     {
         deleteSongPanel.SetActive(true);
         doDelete = button;
+
+        // Play button click sfx
+        if (buttonClickAction != null)
+        {
+            buttonClickAction();
+        }
     }
     
 
@@ -207,6 +217,24 @@ public class SongSelection : MonoBehaviour
         Stars_Text.text = songClicked._stars.ToString();
         NotesHit_Text.text = songClicked._notesHit.ToString() + " / " + songClicked._totalNote.ToString();
         Difficulty_Text.text = songClicked._Difficulty;
+
+        // Play button click sfx
+        if (buttonClickAction != null)
+        {
+            buttonClickAction();
+        }
+    }
+
+    public void setDefaultSongSelection()
+    {
+        SongInfo songClicked = PersistentData.data._SongList[0];
+        SongTitle.text = songClicked._SongTitle;
+        SongAuthor.text = songClicked._SongAuthor;
+        HighScore_Text.text = songClicked._highScore.ToString();
+        Plays_Text.text = songClicked._plays.ToString();
+        Stars_Text.text = songClicked._stars.ToString();
+        NotesHit_Text.text = songClicked._notesHit.ToString() + " / " + songClicked._totalNote.ToString();
+        Difficulty_Text.text = songClicked._Difficulty;
     }
 
     public void onClickPlay()
@@ -215,6 +243,12 @@ public class SongSelection : MonoBehaviour
         PersistentData.data.userSongSelected = PersistentData.data._SongList[index]._SongTitle;
         PersistentData.data.songStartPlayerExp = PersistentData.data.exp;
         SceneManager.LoadScene("Play");
+
+        // Play button click sfx
+        if (buttonClickAction != null)
+        {
+            buttonClickAction();
+        }
     }
 
     public void ImportUserSong(string songName)
@@ -264,11 +298,23 @@ public class SongSelection : MonoBehaviour
         createSongsFromTemplate(currentFilter);
 
         deleteSongPanel.SetActive(false);
+
+        // Play button click sfx
+        if (buttonClickAction != null)
+        {
+            buttonClickAction();
+        }
     }
 
     public void DeleteSongNOPressed()
     {
         deleteSongPanel.SetActive(false);
+
+        // Play button click sfx
+        if (buttonClickAction != null)
+        {
+            buttonClickAction();
+        }
     }
 
     public void FilterButtonClicked()
@@ -285,6 +331,12 @@ public class SongSelection : MonoBehaviour
             bgDark.SetActive(true);
             isFilterON = true;
         }
+
+        // Play button click sfx
+        if (buttonClickAction != null)
+        {
+            buttonClickAction();
+        }
     }
 
     public void NoneSongFilterButtonClicked()
@@ -300,6 +352,12 @@ public class SongSelection : MonoBehaviour
         isFilterON = false;
         currentFilter = "all";
         createSongsFromTemplate("all");
+
+        // Play button click sfx
+        if (buttonClickAction != null)
+        {
+            buttonClickAction();
+        }
     }
 
     public void UserSongFilterButtonClicked()
@@ -315,6 +373,12 @@ public class SongSelection : MonoBehaviour
         isFilterON = false;
         currentFilter = "user";
         createSongsFromTemplate("user");
+
+        // Play button click sfx
+        if (buttonClickAction != null)
+        {
+            buttonClickAction();
+        }
     }
 
     public void BeginnerSongFilterButtonClicked()
@@ -330,6 +394,12 @@ public class SongSelection : MonoBehaviour
         isFilterON = false;
         currentFilter = "beginner";
         createSongsFromTemplate("beginner");
+
+        // Play button click sfx
+        if (buttonClickAction != null)
+        {
+            buttonClickAction();
+        }
     }
 
     public void MediumSongFilterButtonClicked()
@@ -345,6 +415,12 @@ public class SongSelection : MonoBehaviour
         isFilterON = false;
         currentFilter = "medium";
         createSongsFromTemplate("medium");
+
+        // Play button click sfx
+        if (buttonClickAction != null)
+        {
+            buttonClickAction();
+        }
     }
 
     public void HardSongFilterButtonClicked()
@@ -360,6 +436,12 @@ public class SongSelection : MonoBehaviour
         isFilterON = false;
         currentFilter = "hard";
         createSongsFromTemplate("hard");
+
+        // Play button click sfx
+        if (buttonClickAction != null)
+        {
+            buttonClickAction();
+        }
     }
 
     public void MemeSongFilterButtonClicked()
@@ -375,6 +457,12 @@ public class SongSelection : MonoBehaviour
         isFilterON = false;
         currentFilter = "meme";
         createSongsFromTemplate("meme");
+
+        // Play button click sfx
+        if (buttonClickAction != null)
+        {
+            buttonClickAction();
+        }
     }
 
     public void ClearFilterButtonClicked()
@@ -390,6 +478,12 @@ public class SongSelection : MonoBehaviour
         isFilterON = false;
         currentFilter = "all";
         createSongsFromTemplate("all");
+
+        // Play button click sfx
+        if (buttonClickAction != null)
+        {
+            buttonClickAction();
+        }
     }
 
 }
