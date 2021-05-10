@@ -7,6 +7,7 @@ public class SongInfo : MonoBehaviour, ISaveable
     public int _songID;
     public string _SongTitle;
     public string _SongAuthor;
+    public string _FileName;
     public int _highScore;
     public int _plays;
     public string _stars;
@@ -24,6 +25,7 @@ public class SongInfo : MonoBehaviour, ISaveable
             {
                 _SongTitle = mySongData.m_SongTitle;
                 _SongAuthor = mySongData.m_SongAuthor;
+                _Difficulty = mySongData.m_FileName;
                 _highScore = mySongData.m_highScore;
                 _plays = mySongData.m_plays;
                 _stars = mySongData.m_stars;
@@ -44,6 +46,7 @@ public class SongInfo : MonoBehaviour, ISaveable
         mySongData.m_songID = _songID;
         mySongData.m_SongTitle = _SongTitle;
         mySongData.m_SongAuthor = _SongAuthor;
+        mySongData.m_FileName = _FileName;
         mySongData.m_highScore = _highScore;
         mySongData.m_plays = _plays;
         mySongData.m_stars = _stars;

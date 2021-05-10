@@ -26,6 +26,7 @@ public class PersistentDataInformation
         public int m_songID;
         public string m_SongTitle;
         public string m_SongAuthor;
+        public string m_FileName;
         public int m_highScore;
         public int m_plays;
         public string  m_stars;

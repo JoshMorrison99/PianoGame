@@ -5726,6 +5726,7 @@ MonoBehaviour:
   _songID: 0
   _SongTitle: '-'
   _SongAuthor: '-'
+  _FileName: 
   _highScore: 0
   _plays: 0
   _stars: '-'
@@ -8919,8 +8920,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _songID: 1
-  _SongTitle: let her go
-  _SongAuthor: passenger
+  _SongTitle: Let Her Go
+  _SongAuthor: Passenger
+  _FileName: Passenger - Let Her Go.mid
   _highScore: 0
   _plays: 0
   _stars: 
@@ -13166,8 +13168,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _songID: 2
-  _SongTitle: Wake me up when
-  _SongAuthor: asd
+  _SongTitle: Wake Me Up When September Ends
+  _SongAuthor: GreenDay
+  _FileName: GreenDay-Wake-Me-Up-When-September-ends.mid
   _highScore: 0
   _plays: 0
   _stars: 
@@ -32460,8 +32463,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _songID: 3
-  _SongTitle: let it go
-  _SongAuthor: asd
+  _SongTitle: Let It Go
+  _SongAuthor: Frozen
+  _FileName: Frozen - Let It Go.mid
   _highScore: 0
   _plays: 0
   _stars: 
@@ -33650,8 +33654,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _songID: 0
-  _SongTitle: All of me
-  _SongAuthor: john legend
+  _SongTitle: All of Me
+  _SongAuthor: John Legend
+  _FileName: John Legend - All of Me.mid
   _highScore: 0
   _plays: 0
   _stars: 
@@ -33849,7 +33854,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 100%
+  m_text: ERROR
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}

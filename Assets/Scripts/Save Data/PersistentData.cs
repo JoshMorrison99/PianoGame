@@ -6,6 +6,7 @@ using System.IO;
 using Melanchall.DryWetMidi.Devices;
 using Melanchall.DryWetMidi.Core;
 using UnityEngine.UI;
+using Melanchall.DryWetMidi.Interaction;
 //Gets all the data into one class and one constructor
 //From Brackeys Save and Load System in Unity
 
@@ -53,12 +54,38 @@ public class PersistentData : MonoBehaviour, ISaveable
 
     private void Start()
     {
+
         songImportIndex = 0;
         LoadJsonData(this);
 
         //ReInitializeData();
 
         //SaveJsonData(this);             // During development Activate this function first to reset the song list
+
+        if (PlayerPrefs.HasKey("installed") == false)
+        {
+            SetTotalSongNotes();
+            PlayerPrefs.SetString("installed", "true"); 
+        }
+    }
+
+    public void SetTotalSongNotes()
+    {
+
+        foreach (var song in _SongList)
+        {
+            try{
+                string currentSong = song.GetComponent<SongInfo>()._FileName;
+                MidiFile midiFile = MidiFile.Read("./Assets/MidiFiles/" + currentSong);
+                int numNotesTotal = midiFile.GetNotes().Count;
+                song.GetComponent<SongInfo>()._totalNote = numNotesTotal;
+                SaveJsonData(this);
+            }
+            catch (Exception err)
+            {
+                Debug.Log(err);
+            }
+        }
     }
 
     public void ReInitializeData()
@@ -186,6 +213,7 @@ public class PersistentData : MonoBehaviour, ISaveable
             GameObject newSong = Instantiate(templateSong);
             newSong.GetComponent<SongInfo>()._SongTitle = a_SaveData.m_SongList[i].m_SongTitle;
             newSong.GetComponent<SongInfo>()._SongAuthor = a_SaveData.m_SongList[i].m_SongAuthor;
+            newSong.GetComponent<SongInfo>()._FileName = a_SaveData.m_SongList[i].m_FileName;
             newSong.GetComponent<SongInfo>()._plays = a_SaveData.m_SongList[i].m_plays;
             newSong.GetComponent<SongInfo>()._notesHit = a_SaveData.m_SongList[i].m_notesHit;
             newSong.GetComponent<SongInfo>()._highScore = a_SaveData.m_SongList[i].m_highScore;

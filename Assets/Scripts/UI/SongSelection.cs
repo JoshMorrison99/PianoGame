@@ -6,6 +6,9 @@ using UnityEngine.UI;
 using TMPro;
 using UnityEngine.EventSystems;
 using UnityEditor;
+using Melanchall.DryWetMidi.Devices;
+using Melanchall.DryWetMidi.Core;
+using Melanchall.DryWetMidi.Interaction;
 
 public class SongSelection : MonoBehaviour
 {
@@ -132,6 +135,11 @@ public class SongSelection : MonoBehaviour
                 {
                     newSong.transform.GetChild(5).gameObject.SetActive(false);
                 }
+
+                // Update the percentage text
+                Transform percentageText = songObjectTemplate.gameObject.transform.Find("Percentage");
+                percentageText.gameObject.GetComponentInChildren<TextMeshProUGUI>().text = newSong.GetComponent<SongInfo>()._songCompletionPercentage.ToString() + "%";
+
             }
         }else
         {
@@ -167,7 +175,11 @@ public class SongSelection : MonoBehaviour
                 {
                     newSong.gameObject.SetActive(false);
                 }
-                
+
+                // Update the percentage text
+                Transform percentageText = songObjectTemplate.gameObject.transform.Find("Percentage");
+                percentageText.gameObject.GetComponentInChildren<TextMeshProUGUI>().text = newSong.GetComponent<SongInfo>()._songCompletionPercentage.ToString() + "%";
+
             }
         }
 
@@ -189,18 +201,20 @@ public class SongSelection : MonoBehaviour
 
     public void updatePercentageUI()
     {
-        ContentSizeFitter content = this.GetComponentInChildren<ContentSizeFitter>();
+        Debug.Log("==============================START================================");
+        GameObject content = GameObject.Find("Content");
         int loopIndex = 0;
         foreach (Transform child in content.transform)
         {
-            //Debug.Log(child.gameObject);
+            Debug.Log(child.gameObject);
             Transform percentageText = child.gameObject.transform.Find("Percentage");
-            //Debug.Log(PersistentData.data._SongList[loopIndex]._songCompletionPercentage);
-            //Debug.Log(loopIndex);
+            Debug.Log("PersistentData.data._SongList[loopIndex]._songCompletionPercentage.ToString() " + PersistentData.data._SongList[loopIndex]._songCompletionPercentage);
+            Debug.Log(loopIndex);
             //Debug.Log(PersistentData.data._SongList);
             percentageText.gameObject.GetComponentInChildren<TextMeshProUGUI>().text = PersistentData.data._SongList[loopIndex]._songCompletionPercentage.ToString() + "%";
             loopIndex += 1;
         }
+        Debug.Log("==============================END================================");
     }
 
 
@@ -260,6 +274,15 @@ public class SongSelection : MonoBehaviour
         songObjectTemplateUser.GetComponent<SongInfo>()._SongTitle = songName;
         songObjectTemplateUser.GetComponent<SongInfo>()._SongAuthor = "user";
         songObjectTemplateUser.GetComponent<SongInfo>()._Difficulty = "user";
+        songObjectTemplateUser.GetComponent<SongInfo>()._stars = "";
+        MidiFile midiFile = MidiFile.Read("./Assets/MidiFiles/UserMidiFiles/" + songName);
+        songObjectTemplateUser.GetComponent<SongInfo>()._totalNote = midiFile.GetNotes().Count;
+        songObjectTemplateUser.GetComponent<SongInfo>()._songCompletionPercentage = 0;
+        songObjectTemplateUser.GetComponent<SongInfo>()._plays = 0;
+        songObjectTemplateUser.GetComponent<SongInfo>()._FileName = "./Assets/MidiFiles/UserMidiFiles/" + songName;
+        songObjectTemplateUser.GetComponent<SongInfo>()._highScore = 0;
+        songObjectTemplateUser.GetComponent<SongInfo>()._notesHit = 0;
+
 
         PersistentData.data.songImportIndex += 1;
 
@@ -272,10 +295,8 @@ public class SongSelection : MonoBehaviour
 
         PersistentData.data._SongList.Add(songObjectTemplateUser.GetComponent<SongInfo>());
 
-
         // Save data
         PersistentData.SaveJsonData(PersistentData.data);
-
 
         createSongsFromTemplate(currentFilter);
 
