@@ -100,7 +100,7 @@ public class PersistentData : MonoBehaviour, ISaveable
 
         int ContentChildren = Content.transform.childCount;
 
-        Debug.Log(ContentChildren);
+        //Debug.Log(ContentChildren);
 
         for (int i = 0; i < ContentChildren; i++)
         {
@@ -146,7 +146,7 @@ public class PersistentData : MonoBehaviour, ISaveable
 
         if (FileManager.WriteToFile("SaveData01.dat", sd.ToJson()))
         {
-            Debug.Log("Save Successful");
+            //Debug.Log("Save Successful");
         }
     }
 
@@ -158,7 +158,7 @@ public class PersistentData : MonoBehaviour, ISaveable
             sd.LoadFromJson(json);
 
             a_GameViewController.LoadFromSaveData(sd);
-            Debug.Log("Load Complete");
+            //Debug.Log("Load Complete");
         }
     }
 
@@ -180,7 +180,7 @@ public class PersistentData : MonoBehaviour, ISaveable
         // Song Information
         foreach (SongInfo song in _SongList)
         {
-            Debug.Log("song.LoadFromSaveData: " + song);
+            //Debug.Log("song.LoadFromSaveData: " + song);
             song.PopulateSaveData(a_SaveData);
         }
 
@@ -188,7 +188,7 @@ public class PersistentData : MonoBehaviour, ISaveable
 
     public void LoadFromSaveData(PersistentDataInformation a_SaveData)
     {
-        Debug.Log("LoadFromSaveData");
+        //Debug.Log("LoadFromSaveData");
 
         // Player Info
         level = a_SaveData.m_level;
@@ -207,7 +207,7 @@ public class PersistentData : MonoBehaviour, ISaveable
         GameObject SongHolder = GameObject.Find("Songs");
 
         // Song Information
-        Debug.Log(a_SaveData.m_SongList.Count);
+        //Debug.Log(a_SaveData.m_SongList.Count);
         for(int i = 0; i < a_SaveData.m_SongList.Count; i++)
         {
             GameObject newSong = Instantiate(templateSong);

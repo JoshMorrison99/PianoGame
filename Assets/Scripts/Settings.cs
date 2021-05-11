@@ -268,7 +268,7 @@ public class Settings : MonoBehaviour
         foreach (var language in languages)
         {
             myDropdown.options.Add(new TMP_Dropdown.OptionData() { text = language });
-            Debug.Log("Adding Option: " + language);
+            //Debug.Log("Adding Option: " + language);
         }
 
         myDropdown.RefreshShownValue();

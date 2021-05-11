@@ -42,7 +42,7 @@ public class SongSelection : MonoBehaviour
     public GameObject deleteSongPanel;
     public Button deleteSongYESButton;
     public Button deleteSongNOButton;
-    public Button doDelete;
+    public GameObject doDelete;
 
     //public PersistentData songInfo;
     private int index;
@@ -70,7 +70,7 @@ public class SongSelection : MonoBehaviour
     private void Start()
     {
         //PersistentData.data.ReInitializeData();
-        Debug.Log("===========================================================" + PersistentData.data._SongList.Count);
+        //Debug.Log("===========================================================" + PersistentData.data._SongList.Count);
         //PersistentData.LoadJsonData(PersistentData.data);
 
         createSongsFromTemplate("all");
@@ -120,6 +120,7 @@ public class SongSelection : MonoBehaviour
                 newSong.GetComponent<SongInfo>()._highScore = each._highScore;
                 newSong.GetComponent<SongInfo>()._Difficulty = each._Difficulty;
                 newSong.GetComponent<SongInfo>()._stars = each._stars;
+                newSong.GetComponent<SongInfo>()._songCompletionPercentage = each._songCompletionPercentage;
                 newSong.GetComponent<SongInfo>()._songID = PersistentData.data.songImportIndex;
 
                 //PersistentData.data.songImportIndex += 1;
@@ -130,15 +131,16 @@ public class SongSelection : MonoBehaviour
                 newSong.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = each._SongTitle;
                 newSong.transform.GetChild(2).GetComponent<TextMeshProUGUI>().text = each._SongAuthor;
 
+                // Update the percentage text
+                newSong.transform.GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>().text = each._songCompletionPercentage.ToString() + "%";
+
                 // Render the remove button or not
                 if (newSong.GetComponent<SongInfo>()._SongAuthor != "user")
                 {
                     newSong.transform.GetChild(5).gameObject.SetActive(false);
                 }
 
-                // Update the percentage text
-                Transform percentageText = songObjectTemplate.gameObject.transform.Find("Percentage");
-                percentageText.gameObject.GetComponentInChildren<TextMeshProUGUI>().text = newSong.GetComponent<SongInfo>()._songCompletionPercentage.ToString() + "%";
+                
 
             }
         }else
@@ -155,6 +157,7 @@ public class SongSelection : MonoBehaviour
                 newSong.GetComponent<SongInfo>()._highScore = each._highScore;
                 newSong.GetComponent<SongInfo>()._Difficulty = each._Difficulty;
                 newSong.GetComponent<SongInfo>()._stars = each._stars;
+                newSong.GetComponent<SongInfo>()._songCompletionPercentage = each._songCompletionPercentage;
                 newSong.GetComponent<SongInfo>()._songID = PersistentData.data.songImportIndex;
 
                 //PersistentData.data.songImportIndex += 1;
@@ -164,6 +167,9 @@ public class SongSelection : MonoBehaviour
 
                 newSong.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = each._SongTitle;
                 newSong.transform.GetChild(2).GetComponent<TextMeshProUGUI>().text = each._SongAuthor;
+
+                // Update the percentage text
+                newSong.transform.GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>().text = each._songCompletionPercentage.ToString() + "%";
 
                 // Render the remove button or not
                 if (newSong.GetComponent<SongInfo>()._SongAuthor != "user")
@@ -176,9 +182,7 @@ public class SongSelection : MonoBehaviour
                     newSong.gameObject.SetActive(false);
                 }
 
-                // Update the percentage text
-                Transform percentageText = songObjectTemplate.gameObject.transform.Find("Percentage");
-                percentageText.gameObject.GetComponentInChildren<TextMeshProUGUI>().text = newSong.GetComponent<SongInfo>()._songCompletionPercentage.ToString() + "%";
+                
 
             }
         }
@@ -189,7 +193,7 @@ public class SongSelection : MonoBehaviour
     public void deleteButtonClicked(Button button)
     {
         deleteSongPanel.SetActive(true);
-        doDelete = button;
+        doDelete = button.GetComponentInParent<SongInfo>().gameObject;
 
         // Play button click sfx
         if (buttonClickAction != null)
@@ -206,15 +210,15 @@ public class SongSelection : MonoBehaviour
         int loopIndex = 0;
         foreach (Transform child in content.transform)
         {
-            Debug.Log(child.gameObject);
+            //Debug.Log(child.gameObject);
             Transform percentageText = child.gameObject.transform.Find("Percentage");
-            Debug.Log("PersistentData.data._SongList[loopIndex]._songCompletionPercentage.ToString() " + PersistentData.data._SongList[loopIndex]._songCompletionPercentage);
-            Debug.Log(loopIndex);
+            //Debug.Log("PersistentData.data._SongList[loopIndex]._songCompletionPercentage.ToString() " + PersistentData.data._SongList[loopIndex]._songCompletionPercentage);
+            //Debug.Log(loopIndex);
             //Debug.Log(PersistentData.data._SongList);
             percentageText.gameObject.GetComponentInChildren<TextMeshProUGUI>().text = PersistentData.data._SongList[loopIndex]._songCompletionPercentage.ToString() + "%";
             loopIndex += 1;
         }
-        Debug.Log("==============================END================================");
+        //Debug.Log("==============================END================================");
     }
 
 
@@ -304,16 +308,19 @@ public class SongSelection : MonoBehaviour
 
     public void DeleteSongYESPressed()
     {
+        
         index = doDelete.transform.GetSiblingIndex();
 
-
+        Debug.Log("index: " + index);
         PersistentData.data.songImportIndex -= 1;
 
         string ResourcesPath = "Assets/MidiFiles/UserMidiFiles";
-        string songName = PersistentData.data._SongList[index - 1]._SongTitle;
+        string songName = PersistentData.data._SongList[index]._SongTitle;
         FileUtil.DeleteFileOrDirectory(ResourcesPath + "/" + songName);
 
-        PersistentData.data._SongList.RemoveAt(index - 1);
+        Debug.Log("DELETING: " + songName);
+
+        PersistentData.data._SongList.RemoveAt(index);
         PersistentData.SaveJsonData(PersistentData.data);
 
         createSongsFromTemplate(currentFilter);
