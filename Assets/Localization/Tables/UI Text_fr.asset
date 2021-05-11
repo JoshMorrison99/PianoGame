@@ -186,5 +186,57 @@ MonoBehaviour:
     m_Localized: Reprendre
     m_Metadata:
       m_Items: []
+  - m_Id: 4104817913966592
+    m_Localized: Rien
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4104921551024128
+    m_Localized: Morceaux utilisateur
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4105066535530496
+    m_Localized: "\rDifficult\xE9 d\xE9butant"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4105143303876608
+    m_Localized: "Difficult\xE9 moyenne"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4105445683834880
+    m_Localized: "Difficult\xE9 difficile"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4105541104250880
+    m_Localized: Chansons Meme
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4106283328286720
+    m_Localized: "Chanson termin\xE9e"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4106729681924096
+    m_Localized: Rejouer la chanson
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4108096534294528
+    m_Localized: Remarquer
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4108139643351040
+    m_Localized: "R\xE9initialiser les options?"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4108445244534784
+    m_Localized: Oui
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4108496951914496
+    m_Localized: Non
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4108782584016896
+    m_Localized: "Appliquer les param\xE8tres?"
+    m_Metadata:
+      m_Items: []
   references:
     version: 1

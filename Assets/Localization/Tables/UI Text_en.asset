@@ -186,5 +186,57 @@ MonoBehaviour:
     m_Localized: Resume
     m_Metadata:
       m_Items: []
+  - m_Id: 4104817913966592
+    m_Localized: None
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4104921551024128
+    m_Localized: User Songs
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4105066535530496
+    m_Localized: Beginner Difficulty
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4105143303876608
+    m_Localized: Medium Difficulty
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4105445683834880
+    m_Localized: Hard Difficulty
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4105541104250880
+    m_Localized: Meme Songs
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4106283328286720
+    m_Localized: Song Complete
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4106729681924096
+    m_Localized: Replay Song
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4108096534294528
+    m_Localized: Notice
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4108139643351040
+    m_Localized: Reset Settings?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4108445244534784
+    m_Localized: Yes
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4108496951914496
+    m_Localized: No
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4108782584016896
+    m_Localized: Apply Settings?
+    m_Metadata:
+      m_Items: []
   references:
     version: 1
