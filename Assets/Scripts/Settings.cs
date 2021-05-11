@@ -6,6 +6,7 @@ using TMPro;
 using UnityEngine.InputSystem;
 using UnityEngine.Localization.Settings;
 using UnityEngine.SceneManagement;
+using System.IO;
 
 public class Settings : MonoBehaviour
 {
@@ -234,6 +235,7 @@ public class Settings : MonoBehaviour
         foreach (var device in devices)
         {
             KeyboardSelect.AddOptions(new List<string> { device.displayName } );
+            KeyboardSelect.itemText.font = Resources.Load("Roboto-Regular SDF") as TMP_FontAsset;
         }
 
         InputSystem.onDeviceChange += (device, change) =>
@@ -241,6 +243,7 @@ public class Settings : MonoBehaviour
             if (change != InputDeviceChange.Added) return;
 
             KeyboardSelect.AddOptions(new List<string> { device.displayName });
+            KeyboardSelect.itemText.font = Resources.Load("Roboto-Regular SDF") as TMP_FontAsset;
 
         };
 
@@ -250,12 +253,12 @@ public class Settings : MonoBehaviour
     {
         int index = dropdownElement.value;
 
-
         LocalizationSettings.SelectedLocale = LocalizationSettings.AvailableLocales.Locales[index];
     }
 
     public void SetupLanguageDropdown()
     {
+        Debug.Log("SETUP LANGUAGE DROPDOWN");
         languages.Add("English");
         languages.Add("French");
 
@@ -267,7 +270,8 @@ public class Settings : MonoBehaviour
 
         foreach (var language in languages)
         {
-            myDropdown.options.Add(new TMP_Dropdown.OptionData() { text = language });
+            myDropdown.options.Add(new TMP_Dropdown.OptionData() { text = language});
+            myDropdown.itemText.font = Resources.Load("Roboto-Regular SDF") as TMP_FontAsset;
             //Debug.Log("Adding Option: " + language);
         }
 
