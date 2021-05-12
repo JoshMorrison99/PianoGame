@@ -59,6 +59,20 @@ public class SongFinished : MonoBehaviour
         UpdateUserScore();
     }
 
+    private void Update()
+    {
+        if (PersistentData.data.isLevellingUp)
+        {
+            mainMenuBtn.enabled = false;
+            replaySongBtn.enabled = false;
+        }
+        else
+        {
+            mainMenuBtn.enabled = true;
+            replaySongBtn.enabled = true;
+        }
+    }
+
     public void mainMenuButtonClicked()
     {
         // play sfx
@@ -68,6 +82,7 @@ public class SongFinished : MonoBehaviour
         }
 
         midi.ReplaySong();
+        
         SceneManager.LoadScene("MainMenu");
     }
 
