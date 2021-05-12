@@ -5,10 +5,10 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine.EventSystems;
-using UnityEditor;
 using Melanchall.DryWetMidi.Devices;
 using Melanchall.DryWetMidi.Core;
 using Melanchall.DryWetMidi.Interaction;
+using System.IO;
 
 public class SongSelection : MonoBehaviour
 {
@@ -314,7 +314,7 @@ public class SongSelection : MonoBehaviour
 
         string ResourcesPath = "Assets/MidiFiles/UserMidiFiles";
         string songName = PersistentData.data._SongList[index]._SongTitle;
-        FileUtil.DeleteFileOrDirectory(ResourcesPath + "/" + songName);
+        File.Delete(ResourcesPath + "/" + songName);
 
         Debug.Log("DELETING: " + songName);
 

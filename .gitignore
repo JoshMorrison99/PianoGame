@@ -49,6 +49,7 @@ ExportedObj/
 /Assets/LeanTween
 /Assets/LeanTween.meta
 /Assets/MidiFiles
+/Assets/StandaloneFileBrowser
 
 # Unity3D generated meta files
 *.pidb.meta

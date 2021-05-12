@@ -3,15 +3,21 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-using UnityEditor;
+//using UnityEditor;
 using System.IO;
 using System;
+using UnityEditor;
+using SFB;
+
 
 public class MainMenu : MonoBehaviour
 {
 
 	public GameObject comingSoonOBJ;
 	bool activeComingSoon;
+
+	public string converArrayStringToString;
+	public string covertWindowsStringToStandalone;
 
 	public delegate void ButtonClickedAction();
 	public static event ButtonClickedAction buttonClickedEvent;
@@ -184,6 +190,36 @@ public class MainMenu : MonoBehaviour
 		activeComingSoon = false;
 	}
 
+	public string ConvertStringArrToString(string[] stringArr)
+    {
+		
+        foreach (string str in stringArr)
+        {
+			converArrayStringToString += str;
+        }
+		Debug.Log(converArrayStringToString);
+		return converArrayStringToString;
+
+	}
+
+	public string ConvertWindowsPathToStandalone(string str)
+    {
+        foreach (char i in str)
+        {
+			if (i.Equals('\\'))
+            {
+				Debug.Log("EQUAL");
+				covertWindowsStringToStandalone += "/";
+            }
+            else
+            {
+				covertWindowsStringToStandalone += i;
+			}
+        }
+		Debug.Log(covertWindowsStringToStandalone);
+		return covertWindowsStringToStandalone;
+    }
+
 	public void ImportSongButtonClicked()
     {
 		// play button clicked sfx
@@ -192,9 +228,15 @@ public class MainMenu : MonoBehaviour
 			buttonClickedEvent();
 		}
 
-		path = EditorUtility.OpenFilePanel("user imported midi", "", "mid");
+		
+		string[] pathArr = StandaloneFileBrowser.OpenFilePanel("Open File", "", "mid", false);
+		//path = EditorUtility.OpenFilePanel("user imported midi", "", "mid");
 
-        if (path == "")
+		string path = ConvertStringArrToString(pathArr);
+		path = ConvertWindowsPathToStandalone(path);
+
+
+		if (path == "")
         {
 			return;
         }
@@ -220,11 +262,13 @@ public class MainMenu : MonoBehaviour
         {
 			string ResourcesPath = "Assets/MidiFiles/UserMidiFiles";
 
+			Debug.Log("PATH __ " + path);
 			int pos = path.LastIndexOf("/") + 1;
 			string fileName = path.Substring(pos, path.Length - pos);
+			Debug.Log("FILENAME __ " + fileName);
 
 			//check if file already exists
-			if(File.Exists(ResourcesPath + "/" + fileName))
+			if (File.Exists(ResourcesPath + "/" + fileName))
             {
 				// PRINT ERROR TO USER THAT THE FILE ALREADY EXISTS
 				Debug.Log("File already exists");
@@ -243,7 +287,7 @@ public class MainMenu : MonoBehaviour
             {
 				try
 				{
-					FileUtil.CopyFileOrDirectory(path, ResourcesPath + "/" + fileName);
+					File.Copy(path, ResourcesPath + "/" + fileName);
 
 				}
 				catch (Exception e)
@@ -273,6 +317,8 @@ public class MainMenu : MonoBehaviour
 
 		
 	}
+
+
 
 
 	IEnumerator SpawnErrorMessage()
