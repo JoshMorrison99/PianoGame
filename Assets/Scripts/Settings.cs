@@ -436,6 +436,7 @@ public class Settings : MonoBehaviour
 
     public void SetWindowedSetting()
     {
+        Debug.Log(screenModesIndex);
         if (screenModesIndex == 0)
         {
             Screen.fullScreen = true;

@@ -69,7 +69,7 @@ public class PersistentData : MonoBehaviour, ISaveable
 
         //SaveJsonData(this);             // During development Activate this function first to reset the song list
 
-        PlayerPrefs.DeleteKey("installed"); // During development Activate this function first to reset the song list
+        //PlayerPrefs.DeleteKey("installed"); // During development Activate this function first to reset the song list
 
         if (PlayerPrefs.HasKey("installed") == false)
         {
