@@ -2,6 +2,7 @@ using Melanchall.DryWetMidi.Interaction;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 
 public class PlayLogic : MonoBehaviour
@@ -63,7 +64,12 @@ public class PlayLogic : MonoBehaviour
         // Add song
         try
         {
-            myMidi.ActivateMidi("./Assets/MidiFiles/" + PersistentData.data.userSongSelected);
+            
+            string path = Path.Combine(Application.streamingAssetsPath, "/MidiFiles/" + PersistentData.data.userSongSelected);
+            Debug.Log(path);
+            Debug.Log(Application.streamingAssetsPath);
+            Debug.Log(Path.Combine(Application.streamingAssetsPath, "/MidiFiles/" + PersistentData.data.userSongSelected));
+            myMidi.ActivateMidi(Application.streamingAssetsPath + "/MidiFiles/" + PersistentData.data.userSongSelected);
         }
         catch (Exception err)
         {
@@ -88,7 +94,8 @@ public class PlayLogic : MonoBehaviour
         }*/
         try
         {
-            myMidi.ActivateMidi("./Assets/MidiFiles/UserMidiFiles/" + PersistentData.data.userSongSelected);
+            
+            myMidi.ActivateMidi(Application.streamingAssetsPath + "/MidiFiles/UserMidiFiles/" + PersistentData.data.userSongSelected);
         }
         catch (Exception err)
         {

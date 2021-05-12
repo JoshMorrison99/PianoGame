@@ -260,7 +260,7 @@ public class MainMenu : MonoBehaviour
 		}
         else
         {
-			string ResourcesPath = "Assets/MidiFiles/UserMidiFiles";
+			string ResourcesPath = Application.streamingAssetsPath + "/MidiFiles/UserMidiFiles";
 
 			Debug.Log("PATH __ " + path);
 			int pos = path.LastIndexOf("/") + 1;

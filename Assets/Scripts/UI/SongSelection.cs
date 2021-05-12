@@ -277,7 +277,7 @@ public class SongSelection : MonoBehaviour
         songObjectTemplateUser.GetComponent<SongInfo>()._SongAuthor = "user";
         songObjectTemplateUser.GetComponent<SongInfo>()._Difficulty = "user";
         songObjectTemplateUser.GetComponent<SongInfo>()._stars = "";
-        MidiFile midiFile = MidiFile.Read("./Assets/MidiFiles/UserMidiFiles/" + songName);
+        MidiFile midiFile = MidiFile.Read(Application.streamingAssetsPath + "/MidiFiles/UserMidiFiles/" + songName);
         songObjectTemplateUser.GetComponent<SongInfo>()._totalNote = midiFile.GetNotes().Count;
         songObjectTemplateUser.GetComponent<SongInfo>()._songCompletionPercentage = 0;
         songObjectTemplateUser.GetComponent<SongInfo>()._plays = 0;
@@ -312,7 +312,7 @@ public class SongSelection : MonoBehaviour
         Debug.Log("index: " + index);
         PersistentData.data.songImportIndex -= 1;
 
-        string ResourcesPath = "Assets/MidiFiles/UserMidiFiles";
+        string ResourcesPath = Application.streamingAssetsPath + "/MidiFiles/UserMidiFiles";
         string songName = PersistentData.data._SongList[index]._SongTitle;
         File.Delete(ResourcesPath + "/" + songName);
 
