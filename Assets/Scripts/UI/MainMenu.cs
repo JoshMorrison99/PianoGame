@@ -10,6 +10,9 @@ using System;
 public class MainMenu : MonoBehaviour
 {
 
+	public GameObject comingSoonOBJ;
+	bool activeComingSoon;
+
 	public delegate void ButtonClickedAction();
 	public static event ButtonClickedAction buttonClickedEvent;
 
@@ -64,6 +67,9 @@ public class MainMenu : MonoBehaviour
 		btn.onClick.AddListener(songSelectionClicked);
 
 		EXPSlideSetup();
+
+		comingSoonOBJ.SetActive(false);
+		activeComingSoon = false;
 	}
 
 	public void showMainMenu()
@@ -158,6 +164,24 @@ public class MainMenu : MonoBehaviour
 			buttonClickedEvent();
 		}
 
+	}
+
+	public void LessonsOrAccountComingSoonSelect()
+    {
+        if (activeComingSoon == false)
+        {
+			StartCoroutine(ComingSoon());
+		}
+		
+    }
+
+	public IEnumerator ComingSoon()
+    {
+		activeComingSoon = true;
+		comingSoonOBJ.SetActive(true);
+		yield return new WaitForSeconds(1f);
+		comingSoonOBJ.SetActive(false);
+		activeComingSoon = false;
 	}
 
 	public void ImportSongButtonClicked()
