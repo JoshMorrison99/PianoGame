@@ -19604,8 +19604,6 @@ MonoBehaviour:
   MediumSongFilterImage: {fileID: 1260053579}
   HardSongFilterButton: {fileID: 1350233064}
   HardSongFilterImage: {fileID: 1551015884}
-  MemeSongFilterButton: {fileID: 0}
-  MemeSongFilterImage: {fileID: 0}
   NoneSongFilterButton: {fileID: 72271120}
   NoneSongFilterImage: {fileID: 1231661147}
   currentFilter: 
@@ -20715,6 +20713,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   comingSoonOBJ: {fileID: 1000331525}
+  converArrayStringToString: 
+  covertWindowsStringToStandalone: 
   songSelectionBtn: {fileID: 537082617}
   lessonsBtn: {fileID: 1255211382}
   settingsBtn: {fileID: 350843405}
