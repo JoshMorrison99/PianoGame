@@ -57,13 +57,19 @@ public class PersistentData : MonoBehaviour, ISaveable
     {
 
         songImportIndex = 0;
+
+        if (!File.Exists(Application.persistentDataPath + "/SaveData01.dat"))
+        {
+            Debug.Log("NOT EXISTS " + Application.persistentDataPath + "/SaveData01.dat");
+            SaveJsonData(this);
+        }
         LoadJsonData(this);
 
         //ReInitializeData();
 
         //SaveJsonData(this);             // During development Activate this function first to reset the song list
 
-        //PlayerPrefs.DeleteKey("installed"); // During development Activate this function first to reset the song list
+        PlayerPrefs.DeleteKey("installed"); // During development Activate this function first to reset the song list
 
         if (PlayerPrefs.HasKey("installed") == false)
         {
