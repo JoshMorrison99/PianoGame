@@ -12,6 +12,10 @@ public class SoundManager : MonoBehaviour
     public AudioClip buttonHoverSound;
     public AudioClip buttonSuccessSound;
     public AudioSource audioSource;
+    public AudioSource audioSourceLevelup;
+    public AudioSource audioSourceExp;
+    public AudioClip LevelUpSound;
+    public AudioClip LevellingUpSound;
 
     private void Awake()
     {
@@ -35,6 +39,7 @@ public class SoundManager : MonoBehaviour
         buttonHitSoundError = Resources.Load<AudioClip>("buttonHitSoundError");
 
         audioSource = GetComponent<AudioSource>();
+        audioSourceLevelup = GetComponent<AudioSource>();
 
         // Main Menu Sounds
         MainMenu.buttonClickedEvent += ButtonHitSoundPlay;
@@ -46,6 +51,26 @@ public class SoundManager : MonoBehaviour
         // Play Scene Sounds
         PlayUILogic.buttonClickedEvent += ButtonHitSoundPlay;
         SongFinished.buttonClickedEvent += ButtonHitSoundPlay;
+
+        
+
+        SongFinished.LevelUpEvent += LevelUpSoundPlay;
+        
+    }
+
+    private void Update()
+    {
+        // Level Up Sound
+        if (PersistentData.data.isLevellingUp)
+        {
+            SongFinished.LevellingUpEvent += LevellingUpSoundStart;
+        }
+        else
+        {
+            SongFinished.LevellingUpEvent -= LevellingUpSoundStart;
+            audioSourceExp.Stop();
+            audioSourceExp.loop = false;
+        }
     }
 
     public void ButtonHitSoundPlay()
@@ -64,5 +89,23 @@ public class SoundManager : MonoBehaviour
     public void ButtonSuccessSoundPlay()
     {
         audioSource.PlayOneShot(buttonSuccessSound);
+    }
+
+    public void LevelUpSoundPlay()
+    {
+        audioSource.volume = 80f;
+        audioSourceLevelup.PlayOneShot(LevelUpSound);
+    }
+
+    public void LevellingUpSoundStart()
+    {
+        audioSourceExp.loop = true;
+        audioSourceExp.volume = 50f;
+        audioSourceExp.clip = LevellingUpSound;
+        if (audioSourceExp.isPlaying == false)
+        {
+            audioSourceExp.Play();
+        }
+        
     }
 }

@@ -18,6 +18,7 @@ public class PersistentData : MonoBehaviour, ISaveable
     public float songSpeed;
     public bool isPaused;
     public float songStartPlayerExp;
+    public bool isLevellingUp;
 
     public GameObject templateSong;
 

@@ -9,6 +9,12 @@ using UnityEngine.Events;
 public class SongFinished : MonoBehaviour
 {
 
+    public delegate void LevelUpAction();
+    public static event LevelUpAction LevelUpEvent;
+
+    public delegate void LevellingUpAction();
+    public static event LevellingUpAction LevellingUpEvent;
+
     public delegate void ButtonClickedAction();
     public static event ButtonClickedAction buttonClickedEvent;
 
@@ -131,26 +137,41 @@ public class SongFinished : MonoBehaviour
 
     public IEnumerator ExpSlider()
     {
-
+        
         // Handles slider exp for leveling animation
         if (startLevel != endLevel)
         {
             while (startExp/finalExp < 1)
             {
+                PersistentData.data.isLevellingUp = true;
+                if (LevellingUpEvent != null)
+                {
+                    LevellingUpEvent();
+                }
                 levelSlider.value = startExp / finalExp;
                 startExp += 1f;
                 levelTextStart.text = startExp.ToString();
                 yield return new WaitForSeconds(0.05f);
             }
+            PersistentData.data.isLevellingUp = false;
             startLevel += 1;
             startExp = 0;
             levelTextBig.text = "Level: " + startLevel;
+            if (LevelUpEvent != null)
+            {
+                LevelUpEvent();
+            }
         }
 
 
         // Handles slider exp for non-leveling animation
         while (startExp < endExp)
         {
+            PersistentData.data.isLevellingUp = true;
+            if (LevellingUpEvent != null)
+            {
+                LevellingUpEvent();
+            }
             Debug.Log("Slider Start Animation: " + startExp);
             Debug.Log("Slider End Animation: " + endExp);
             levelSlider.value = startExp / finalExp;
@@ -158,6 +179,7 @@ public class SongFinished : MonoBehaviour
             levelTextStart.text = startExp.ToString();
             yield return new WaitForSeconds(0.05f);
         }
+        PersistentData.data.isLevellingUp = false;
 
         Debug.Log("END");
         Debug.Log("Slider Start Animation: " + startExp);
@@ -231,11 +253,14 @@ public class SongFinished : MonoBehaviour
     {
         while (PersistentData.data.exp > ReturnXPNeededToLevelUp(PersistentData.data.level))
         {
+            
             Debug.Log(PersistentData.data.exp);
             Debug.Log(ReturnXPNeededToLevelUp(PersistentData.data.level));
             PersistentData.data.exp = PersistentData.data.exp - ReturnXPNeededToLevelUp(PersistentData.data.level); 
             PersistentData.data.level += 1;
+            
         }
+        
     }
 
     public void UpdateUserMoney()
