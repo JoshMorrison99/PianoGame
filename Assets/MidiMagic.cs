@@ -155,7 +155,7 @@ public class MidiMagic : MonoBehaviour
     {
         if (isFirstRun)
         {
-            yield return new WaitForSeconds(3.2f);
+            yield return new WaitForSeconds(3.23f);
             isFirstRun = false;
         }
         _playback_audio.Start();
