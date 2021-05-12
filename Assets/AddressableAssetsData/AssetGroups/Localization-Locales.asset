@@ -31,6 +31,13 @@ MonoBehaviour:
     - Locale
     m_MainAsset: {fileID: 0}
     m_TargetAsset: {fileID: 0}
+  - m_GUID: 10e2c453239195f4fbebfb997299117e
+    m_Address: Spanish (es)
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
   m_ReadOnly: 1
   m_Settings: {fileID: 11400000, guid: 9ff4ba5185a866d41b55161dd79d3a2a, type: 2}
   m_SchemaSet:

@@ -261,6 +261,7 @@ public class Settings : MonoBehaviour
         Debug.Log("SETUP LANGUAGE DROPDOWN");
         languages.Add("English");
         languages.Add("French");
+        languages.Add("Spanish");
 
         TMP_Dropdown myDropdown = languageDropdown.GetComponent<TMP_Dropdown>();
         myDropdown.RefreshShownValue();

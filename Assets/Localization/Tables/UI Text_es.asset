@@ -1,0 +1,242 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
+  m_Name: UI Text_es
+  m_EditorClassIdentifier: 
+  m_LocaleId:
+    m_Code: es
+  m_SharedData: {fileID: 11400000, guid: afb9cabc8b024b044b708b562407bdd3, type: 2}
+  m_Metadata:
+    m_Items: []
+  m_TableData:
+  - m_Id: 44365328384
+    m_Localized: Ajustes
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9598608158720
+    m_Localized: Aporte
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10086753841152
+    m_Localized: Teclado
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10763307659264
+    m_Localized: "\rComo se Juega"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10918798897152
+    m_Localized: Audio
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11005201559552
+    m_Localized: Volumen principal
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11074592124928
+    m_Localized: "\rVideo"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11164316676096
+    m_Localized: Modo ventana
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11117281751040
+    m_Localized: Monitor
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11233640132608
+    m_Localized: "Resoluci\xF3n"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11279005724672
+    m_Localized: VFX
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11364636635136
+    m_Localized: Velocidad
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11425571483648
+    m_Localized: Volumen
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11489425567744
+    m_Localized: EN
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11585827450880
+    m_Localized: "Atr\xE1s"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11535596466176
+    m_Localized: APAGADO
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11630387736576
+    m_Localized: Reiniciar
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11676491526144
+    m_Localized: Solicitar
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12621082341376
+    m_Localized: "Velocidad de reproducci\xF3n"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14219309297664
+    m_Localized: Etiquetas de nota
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14411576193024
+    m_Localized: Etiquetas de piano
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14696965025792
+    m_Localized: Idiomas
+    m_Metadata:
+      m_Items: []
+  - m_Id: 17275518267392
+    m_Localized: "Men\xFA principal"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 17336243400704
+    m_Localized: "Selecci\xF3n de canciones"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 17396473606144
+    m_Localized: Lecciones
+    m_Metadata:
+      m_Items: []
+  - m_Id: 17444188008448
+    m_Localized: Ajustes
+    m_Metadata:
+      m_Items: []
+  - m_Id: 17485929721856
+    m_Localized: Cuenta
+    m_Metadata:
+      m_Items: []
+  - m_Id: 18178828742656
+    m_Localized: Filtrar
+    m_Metadata:
+      m_Items: []
+  - m_Id: 18220771782656
+    m_Localized: "Importar Canci\xF3n"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 18271740964864
+    m_Localized: "Canci\xF3n"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 18446458892288
+    m_Localized: "Puntuaci\xF3n m\xE1s alta"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 18508429733888
+    m_Localized: Obras de teatro
+    m_Metadata:
+      m_Items: []
+  - m_Id: 18541380186112
+    m_Localized: Estrellas
+    m_Metadata:
+      m_Items: []
+  - m_Id: 18578021625856
+    m_Localized: Notas golpeadas
+    m_Metadata:
+      m_Items: []
+  - m_Id: 18629364101120
+    m_Localized: Dificultad
+    m_Metadata:
+      m_Items: []
+  - m_Id: 18783240531968
+    m_Localized: "Terminaci\xF3n"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 18819076665344
+    m_Localized: Tocar
+    m_Metadata:
+      m_Items: []
+  - m_Id: 25200282382336
+    m_Localized: Pausa
+    m_Metadata:
+      m_Items: []
+  - m_Id: 26493302419456
+    m_Localized: Velocidad [bloqueado]
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28097262989312
+    m_Localized: Pausado
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28152430669824
+    m_Localized: "Repetici\xF3n"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28194369515520
+    m_Localized: Reanudar
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4104817913966592
+    m_Localized: Ninguno
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4104921551024128
+    m_Localized: "\rCanciones de usuario"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4105066535530496
+    m_Localized: Dificultad para principiantes
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4105143303876608
+    m_Localized: Dificultad media
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4105445683834880
+    m_Localized: Dificultad dura
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4105541104250880
+    m_Localized: Canciones De Memes
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4106283328286720
+    m_Localized: "Canci\xF3n completa"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4106729681924096
+    m_Localized: "Repetir canci\xF3n"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4108096534294528
+    m_Localized: darse cuenta
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4108139643351040
+    m_Localized: "\xBFReiniciar ajustes?"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4108445244534784
+    m_Localized: "s\xED"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4108496951914496
+    m_Localized: "\rNo"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4108782584016896
+    m_Localized: "\xBFAplicar configuraciones?"
+    m_Metadata:
+      m_Items: []
+  references:
+    version: 1

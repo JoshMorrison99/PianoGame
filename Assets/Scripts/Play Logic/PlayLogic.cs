@@ -1,4 +1,5 @@
 using Melanchall.DryWetMidi.Interaction;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -58,8 +59,17 @@ public class PlayLogic : MonoBehaviour
         numNotesHit = 0;
 
         songNumber = PersistentData.data.selectedSong;
+        Debug.Log(PersistentData.data.userSongSelected);
         // Add song
-        if (songNumber == 1)
+        try
+        {
+            myMidi.ActivateMidi("./Assets/MidiFiles/" + PersistentData.data.userSongSelected);
+        }
+        catch (Exception err)
+        {
+            Debug.Log(err);
+        }
+        /*if (songNumber == 1)
         {
             myMidi.ActivateMidi("./Assets/MidiFiles/John Legend - All of Me.mid");
            
@@ -75,10 +85,14 @@ public class PlayLogic : MonoBehaviour
         else if(songNumber == 4)
         {
             myMidi.ActivateMidi("./Assets/MidiFiles/Frozen - Let It Go.mid");
-        }
-        else
+        }*/
+        try
         {
             myMidi.ActivateMidi("./Assets/MidiFiles/UserMidiFiles/" + PersistentData.data.userSongSelected);
+        }
+        catch (Exception err)
+        {
+            Debug.Log(err);
         }
 
         numNotesTotal = myMidi.midiFile.GetNotes().Count;

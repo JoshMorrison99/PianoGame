@@ -258,7 +258,7 @@ public class SongSelection : MonoBehaviour
     public void onClickPlay()
     {
         PersistentData.data.selectedSong = index + 1;
-        PersistentData.data.userSongSelected = PersistentData.data._SongList[index]._SongTitle;
+        PersistentData.data.userSongSelected = PersistentData.data._SongList[index]._FileName;
         PersistentData.data.songStartPlayerExp = PersistentData.data.exp;
         SceneManager.LoadScene("Play");
 
@@ -283,7 +283,7 @@ public class SongSelection : MonoBehaviour
         songObjectTemplateUser.GetComponent<SongInfo>()._totalNote = midiFile.GetNotes().Count;
         songObjectTemplateUser.GetComponent<SongInfo>()._songCompletionPercentage = 0;
         songObjectTemplateUser.GetComponent<SongInfo>()._plays = 0;
-        songObjectTemplateUser.GetComponent<SongInfo>()._FileName = "./Assets/MidiFiles/UserMidiFiles/" + songName;
+        songObjectTemplateUser.GetComponent<SongInfo>()._FileName = songName;
         songObjectTemplateUser.GetComponent<SongInfo>()._highScore = 0;
         songObjectTemplateUser.GetComponent<SongInfo>()._notesHit = 0;
 
