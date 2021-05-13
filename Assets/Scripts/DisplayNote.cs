@@ -17,6 +17,7 @@ public class DisplayNote : MonoBehaviour
     void Start()
     {
         Settings.SettingsChanged += DisplayNoteLogic;
+        DeviceFinder.DeviceAddedEvent += AddDevices;
         DisplayNoteLogic();
     }
 
@@ -24,7 +25,12 @@ public class DisplayNote : MonoBehaviour
     {
         displayNoteText.text = "";
 
-        foreach (var each in InputSystem.devices)
+        if (DeviceFinder.device.midiDevice != null)
+        {
+            AddDevices();
+        }
+
+        /*foreach (var each in InputSystem.devices)
         {
             if (each.displayName != "Mouse")
             {
@@ -50,32 +56,31 @@ public class DisplayNote : MonoBehaviour
                 };
             }
 
-        }
+        }*/
 
-        InputSystem.onDeviceChange += (device, change) =>
-        {
-            if (change != InputDeviceChange.Added) return;
+        
 
-            midiDevice = device as Minis.MidiDevice;
-            if (midiDevice == null) return;
+        
+    }
 
-            midiDevice.onWillNoteOn += (note, velocity) => {
-                if (SceneManager.GetActiveScene().name == "Play")
+    public void AddDevices()
+    {
+        DeviceFinder.device.midiDevice.onWillNoteOn += (note, velocity) => {
+            if (SceneManager.GetActiveScene().name == "Play")
+            {
+                if (PlayerPrefs.GetInt("isKeyPressLabel") == 1)
                 {
-                    if (PlayerPrefs.GetInt("isKeyPressLabel") == 1)
-                    {
-                        displayNoteText.text = note.shortDisplayName;
-                    }
-                    else
-                    {
-                        displayNoteText.text = "";
-                    }
+                    displayNoteText.text = note.shortDisplayName;
                 }
-            };
+                else
+                {
+                    displayNoteText.text = "";
+                }
+            }
+        };
 
-            midiDevice.onWillNoteOff += (note) => {
-                //displayNoteText.text = " ";
-            };
+        DeviceFinder.device.midiDevice.onWillNoteOff += (note) => {
+            //displayNoteText.text = " ";
         };
     }
 }

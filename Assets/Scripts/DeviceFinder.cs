@@ -10,8 +10,12 @@ public class DeviceFinder : MonoBehaviour
 {
     // Start is called before the first frame update
 
+    public delegate void DeviceAdded();
+    public static event DeviceAdded DeviceAddedEvent;
+
     public static DeviceFinder device;
-    private TextMeshProUGUI PianoUnpluggErrorText = null;
+    public Minis.MidiDevice midiDevice;
+    public TextMeshProUGUI PianoUnpluggErrorText = null;
 
     private void Awake()
     {
@@ -27,20 +31,39 @@ public class DeviceFinder : MonoBehaviour
         }
     }
 
+
     void Start()
     {
-            
+
+        PianoUnpluggErrorText.gameObject.SetActive(false);
+
+
         InputSystem.EnableDevice(Mouse.current);
+        foreach(var device in InputSystem.devices)
+        {
+            Debug.Log(device.displayName);
+            
+        }
+
         
         InputSystem.onDeviceChange +=
         (device, change) =>
         {
+            //midiDevice = device as Minis.MidiDevice;
+            //Debug.Log(midiDevice.displayName);
             Debug.Log("CHANGE");
             switch (change)
             {
                 case InputDeviceChange.Added:
                     // New Device.
                     Debug.Log("Device Added: " + device);
+                    midiDevice = device as Minis.MidiDevice;
+                    if (DeviceAddedEvent != null)
+                    {
+                        DeviceAddedEvent();
+                    }
+                    
+                    StartCoroutine(PianoSuccessText());
                     //InputSystem.DisableDevice(device);
                     break;
                 case InputDeviceChange.Disconnected:
@@ -54,7 +77,11 @@ public class DeviceFinder : MonoBehaviour
                     break;
                 case InputDeviceChange.Removed:
                     Debug.Log("Device Removed: " + device);
-                    StartCoroutine(PianoErrorText());
+                    if (this != null)
+                    {
+                        StartCoroutine(PianoErrorText());
+                    }
+                    
                     // Remove from Input System entirely; by default, Devices stay in the system once discovered.
                     break;
                 default:
@@ -78,7 +105,17 @@ public class DeviceFinder : MonoBehaviour
     public IEnumerator PianoErrorText()
     {
         PianoUnpluggErrorText.gameObject.SetActive(true);
-        PianoUnpluggErrorText.text = "Piano unplugged.";
+        PianoUnpluggErrorText.text = "Piano Disconnected";
+        PianoUnpluggErrorText.color = Color.red;
+        yield return new WaitForSeconds(5);
+        PianoUnpluggErrorText.gameObject.SetActive(false);
+    }
+
+    public IEnumerator PianoSuccessText()
+    {
+        PianoUnpluggErrorText.gameObject.SetActive(true);
+        PianoUnpluggErrorText.text = "Piano Connected";
+        PianoUnpluggErrorText.color = Color.green;
         yield return new WaitForSeconds(5);
         PianoUnpluggErrorText.gameObject.SetActive(false);
     }

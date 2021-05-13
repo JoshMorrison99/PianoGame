@@ -69,9 +69,15 @@ public class PianoKeyPresses : MonoBehaviour
     void Start()
     {
 
+        DeviceFinder.DeviceAddedEvent += AddDevices;
+
+        if (DeviceFinder.device.midiDevice != null)
+        {
+            AddDevices();
+        }
         
 
-        foreach (var each in InputSystem.devices)
+        /*foreach (var each in InputSystem.devices)
         {
             if (each.displayName != "Mouse")
             {
@@ -93,9 +99,9 @@ public class PianoKeyPresses : MonoBehaviour
                 };
             }
 
-        }
+        }*/
 
-        InputSystem.onDeviceChange += (device, change) =>
+       /* InputSystem.onDeviceChange += (device, change) =>
         {
             if (change != InputDeviceChange.Added) return;
 
@@ -104,22 +110,27 @@ public class PianoKeyPresses : MonoBehaviour
 
             
 
-            midiDevice.onWillNoteOn += (note, velocity) => {
-                if (SceneManager.GetActiveScene().name == "Play")
-                {
-                    PianoKeyPressedUI(note.shortDisplayName);
-                }
-            };
-
-            midiDevice.onWillNoteOff += (note) => {
-                if (SceneManager.GetActiveScene().name == "Play")
-                {
-                    PianoKeyLiftedUI(note.shortDisplayName);
-                }
-            };
-        };
+            
+        };*/
 
         
+    }
+
+    public void AddDevices()
+    {
+        DeviceFinder.device.midiDevice.onWillNoteOn += (note, velocity) => {
+            if (SceneManager.GetActiveScene().name == "Play")
+            {
+                PianoKeyPressedUI(note.shortDisplayName);
+            }
+        };
+
+        DeviceFinder.device.midiDevice.onWillNoteOff += (note) => {
+            if (SceneManager.GetActiveScene().name == "Play")
+            {
+                PianoKeyLiftedUI(note.shortDisplayName);
+            }
+        };
     }
 
     void PianoKeyPressedUI(string notePressed)

@@ -24,41 +24,48 @@ public class detectorScript : MonoBehaviour
     {
         
         PianoKeysObject = GameObject.Find("PianoKeyboardUI").GetComponent<PianoKeyPresses>();
+        DeviceFinder.DeviceAddedEvent += AddDevices;
 
-            foreach (var each in InputSystem.devices)
+
+        if (DeviceFinder.device.midiDevice != null)
         {
-            if (each.displayName != "Mouse")
-            {
-                midiDevice = each as Minis.MidiDevice;
-                Debug.Log("FOUND:" + midiDevice);
-                if (midiDevice == null) return;
-
-
-                
-                    
-                    Debug.Log("CURRENT: " + SceneManager.GetActiveScene().name);
-                    midiDevice.onWillNoteOn += (note, velocity) =>
-                    {
-                        if (SceneManager.GetActiveScene().name == "Play")
-                        {
-                            PianoKeyPressedUI(note.shortDisplayName);
-                        }
-                    };
-
-                    midiDevice.onWillNoteOff += (note) =>
-                    {
-                        if (SceneManager.GetActiveScene().name == "Play")
-                        {
-                            PianoKeyLiftedUI(note.shortDisplayName);
-                        }
-                    };
-                
-                
-            }
-
+            AddDevices();
         }
 
-        InputSystem.onDeviceChange += (device, change) =>
+        /* foreach (var each in InputSystem.devices)
+     {
+         if (each.displayName != "Mouse")
+         {
+             midiDevice = each as Minis.MidiDevice;
+             Debug.Log("FOUND:" + midiDevice);
+             if (midiDevice == null) return;
+
+
+
+
+                 Debug.Log("CURRENT: " + SceneManager.GetActiveScene().name);
+                 midiDevice.onWillNoteOn += (note, velocity) =>
+                 {
+                     if (SceneManager.GetActiveScene().name == "Play")
+                     {
+                         PianoKeyPressedUI(note.shortDisplayName);
+                     }
+                 };
+
+                 midiDevice.onWillNoteOff += (note) =>
+                 {
+                     if (SceneManager.GetActiveScene().name == "Play")
+                     {
+                         PianoKeyLiftedUI(note.shortDisplayName);
+                     }
+                 };
+
+
+         }
+
+     }*/
+
+        /*InputSystem.onDeviceChange += (device, change) =>
         {
             if (change != InputDeviceChange.Added) return;
 
@@ -66,22 +73,29 @@ public class detectorScript : MonoBehaviour
             if (midiDevice == null) return;
 
             
-                midiDevice.onWillNoteOn += (note, velocity) => {
-                    if (SceneManager.GetActiveScene().name == "Play")
-                    {
-                        PianoKeyPressedUI(note.shortDisplayName);
-                    }
-                };
-
-                midiDevice.onWillNoteOff += (note) => {
-                    if (SceneManager.GetActiveScene().name == "Play")
-                    {
-                        PianoKeyLiftedUI(note.shortDisplayName);
-                    }
-                };
+                
             
 
             
+        };*/
+
+        
+    }
+
+    public void AddDevices()
+    {
+        DeviceFinder.device.midiDevice.onWillNoteOn += (note, velocity) => {
+            if (SceneManager.GetActiveScene().name == "Play")
+            {
+                PianoKeyPressedUI(note.shortDisplayName);
+            }
+        };
+
+        DeviceFinder.device.midiDevice.onWillNoteOff += (note) => {
+            if (SceneManager.GetActiveScene().name == "Play")
+            {
+                PianoKeyLiftedUI(note.shortDisplayName);
+            }
         };
     }
 
