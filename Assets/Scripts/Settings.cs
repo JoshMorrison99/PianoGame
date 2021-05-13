@@ -7,6 +7,7 @@ using UnityEngine.InputSystem;
 using UnityEngine.Localization.Settings;
 using UnityEngine.SceneManagement;
 using System.IO;
+using System.Linq;
 
 public class Settings : MonoBehaviour
 {
@@ -17,6 +18,13 @@ public class Settings : MonoBehaviour
     public static event SettingsChangedAction SettingsChanged;
     public delegate void ButtonClickedAction();
     public static event ButtonClickedAction buttonClickedEvent;
+
+    // Display Quality
+    public int currentQualityIndex = 0;
+    public Button LeftQualityButton;
+    public Button RightQualityButton;
+    public TextMeshProUGUI qualityText;
+    public string[] qualityOptions = new string[] { "Very Low", "Low", "Medium", "High", "Very High", "Ultra" };
 
     // Apply
     public GameObject ApplySettingsPanel;
@@ -65,9 +73,10 @@ public class Settings : MonoBehaviour
     public Button LeftWindowedButton;
     public Button RightWindowedButton;
     public TextMeshProUGUI WindowedText;
-    public string[] screenModes = new string[] { "Fullscreen", "Windowed", "Maximized" };
+    public string[] screenModes = new string[] { "Fullscreen", "Windowed"};
     public int screenModesIndex;
     const string screenMode_Pref = "screenMode";
+    public bool isFullScreen;
 
     // Resolution Mode Settings
     public Button LeftResolutionButton;
@@ -99,7 +108,7 @@ public class Settings : MonoBehaviour
 
     public void GetDeviceResolutions()
     {
-        resolutions = Screen.resolutions;
+        resolutions = Screen.resolutions.Select(resolution => new Resolution { width = resolution.width, height = resolution.height }).Distinct().ToArray();
         resolutionOptions = new List<string>();
 
         for (int i = 0; i < resolutions.Length; i++)
@@ -107,7 +116,7 @@ public class Settings : MonoBehaviour
             string option = resolutions[i].width + " x " + resolutions[i].height;
             resolutionOptions.Add(option);
 
-            if (resolutions[i].width == Screen.currentResolution.width && resolutions[i].height == Screen.currentResolution.height)
+            if (resolutions[i].width == Screen.width && resolutions[i].height == Screen.height)
             {
                 resolutionIndex = i;
             }
@@ -428,10 +437,53 @@ public class Settings : MonoBehaviour
        
     }
 
+    public void LeftButtonChangeQuality()
+    {
+        if (currentQualityIndex == 0)
+        {
+            currentQualityIndex = qualityOptions.Length - 1;
+            QualitySettings.SetQualityLevel(currentQualityIndex, false);
+            qualityText.text = "Quality " + qualityOptions[currentQualityIndex];
+        }else if (currentQualityIndex > 0)
+        {
+            currentQualityIndex -= 1;
+            QualitySettings.SetQualityLevel(currentQualityIndex, false);
+            qualityText.text = "Quality " + qualityOptions[currentQualityIndex];
+        }
+
+        // Play button clicked SFX
+        if (buttonClickedEvent != null)
+        {
+            buttonClickedEvent();
+        }
+    }
+
+    public void RightButtonChangeQuality()
+    {
+        if (currentQualityIndex == qualityOptions.Length - 1)
+        {
+            currentQualityIndex = 0;
+            QualitySettings.SetQualityLevel(currentQualityIndex, false);
+            qualityText.text = "Quality " + qualityOptions[currentQualityIndex];
+        }
+        else if (currentQualityIndex < qualityOptions.Length - 1)
+        {
+            currentQualityIndex += 1;
+            QualitySettings.SetQualityLevel(currentQualityIndex, false);
+            qualityText.text = "Quality " + qualityOptions[currentQualityIndex];
+        }
+
+        // Play button clicked SFX
+        if (buttonClickedEvent != null)
+        {
+            buttonClickedEvent();
+        }
+    }
+
     public void SetResolutionSetting()
     {
         Resolution resolution = resolutions[resolutionIndex];
-        Screen.SetResolution(resolution.width, resolution.height, Screen.fullScreen); 
+        Screen.SetResolution(resolution.width, resolution.height, isFullScreen); 
     }
 
     public void SetWindowedSetting()
@@ -439,15 +491,13 @@ public class Settings : MonoBehaviour
         Debug.Log(screenModesIndex);
         if (screenModesIndex == 0)
         {
-            Screen.fullScreen = true;
-        }else if (screenModesIndex == 1)
+            isFullScreen = true;
+            Screen.fullScreen = isFullScreen;
+        }else
         {
-            Screen.fullScreen = false;
-            Screen.fullScreenMode = FullScreenMode.Windowed;
-        }else if (screenModesIndex == 2)
-        {
-            Screen.fullScreen = false;
-            Screen.fullScreenMode = FullScreenMode.MaximizedWindow;
+            isFullScreen = false;
+            Screen.fullScreen = isFullScreen;
+            //Screen.fullScreenMode = FullScreenMode.Windowed;
         }
     }
 
@@ -590,10 +640,13 @@ public class Settings : MonoBehaviour
 
     public void LeftWindowedButtonClicked()
     {
-        screenModesIndex -= 1;
-        if (screenModesIndex < 0)
+        if (screenModesIndex == 0)
         {
-            screenModesIndex = 2;
+            screenModesIndex = 1;
+        }
+        else
+        {
+            screenModesIndex = 0;
         }
 
         WindowedText.text = screenModes[screenModesIndex];
@@ -610,10 +663,13 @@ public class Settings : MonoBehaviour
     }
     public void RightWindowedButtonClicked()
     {
-        screenModesIndex += 1;
-        if (screenModesIndex > 2)
+        if (screenModesIndex == 1)
         {
             screenModesIndex = 0;
+        }
+        else
+        {
+            screenModesIndex = 1;
         }
 
         WindowedText.text = screenModes[screenModesIndex];
