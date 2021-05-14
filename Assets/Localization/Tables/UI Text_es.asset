@@ -238,5 +238,9 @@ MonoBehaviour:
     m_Localized: "\xBFAplicar configuraciones?"
     m_Metadata:
       m_Items: []
+  - m_Id: 5043970235248640
+    m_Localized: Dejar
+    m_Metadata:
+      m_Items: []
   references:
     version: 1

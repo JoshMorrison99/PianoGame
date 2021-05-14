@@ -235,6 +235,10 @@ MonoBehaviour:
     m_Key: Apply Settings?
     m_Metadata:
       m_Items: []
+  - m_Id: 5043970235248640
+    m_Key: Quit
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:
