@@ -161,6 +161,11 @@ public class MainMenu : MonoBehaviour
 
 	}
 
+	public void QuitApplication()
+    {
+		Application.Quit();
+    }
+
 	public void BackButtonSettings()
     {
 		SettingsMenuPanel.SetActive(false);
