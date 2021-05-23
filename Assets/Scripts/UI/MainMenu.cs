@@ -6,12 +6,14 @@ using TMPro;
 //using UnityEditor;
 using System.IO;
 using System;
-using UnityEditor;
 using SFB;
+using UnityEngine.Networking;
 
 
 public class MainMenu : MonoBehaviour
 {
+
+	readonly string postSignupURL_Debug = "http://localhost:5000/api/signup";
 
 	public string converArrayStringToString;
 	public string covertWindowsStringToStandalone;
@@ -37,6 +39,9 @@ public class MainMenu : MonoBehaviour
 	public TMP_InputField emailSignup;
 	public TMP_InputField passwordSignup;
 	public TMP_InputField re_passwordSignup;
+	public TextMeshProUGUI usernameSignupErrorText;
+	public TextMeshProUGUI emailSignupErrorText;
+	public TextMeshProUGUI passwordSignupErrorText;
 
 	// Account Login
 	public TMP_InputField usernameLogin;
@@ -86,6 +91,9 @@ public class MainMenu : MonoBehaviour
 
 		LoginAccountGameObject.SetActive(false);
 		CreateAccountGameObject.SetActive(true);
+		usernameSignupErrorText.text = "";
+		emailSignupErrorText.text = "";
+		passwordSignupErrorText.text = "";
 
 	}
 
@@ -338,8 +346,75 @@ public class MainMenu : MonoBehaviour
 
 	public void SignUpButtonClicked()
     {
+        // Simple unity side error handling
+        if (usernameSignup.text == "")
+        {
+			usernameSignupErrorText.text = "username cannot be empty";
+        }
+        else
+        {
+			usernameSignupErrorText.text = "";
+        }
 
+        if (emailSignup.text == "")
+        {
+			emailSignupErrorText.text = "email cannot be empty";
+        }
+        else
+        {
+			emailSignupErrorText.text = "";
+		}
+
+        if (passwordSignup.text != re_passwordSignup.text)
+        {
+			passwordSignupErrorText.text = "password must match the re-entered password";
+        }
+        else
+        {
+			passwordSignupErrorText.text = "";
+		}
+
+		Debug.Log("Signing user up");
+		StartCoroutine(SignUpRequest());
     }
+
+	IEnumerator SignUpRequest()
+    {
+
+        SignupModel mySignUp = new SignupModel();
+        mySignUp.username = usernameSignup.text;
+        mySignUp.email = emailSignup.text;
+        mySignUp.password = passwordSignup.text;
+
+        string json = JsonUtility.ToJson(mySignUp);
+
+        WWWForm form = new WWWForm();
+		form.AddField("username", usernameSignup.text);
+		form.AddField("email", emailSignup.text);
+		form.AddField("password", passwordSignup.text);
+
+		Debug.Log(json);
+		
+
+		using (UnityWebRequest www = UnityWebRequest.Post(postSignupURL_Debug, json))
+		{
+			var byteJSON = System.Text.Encoding.UTF8.GetBytes(json);
+			www.method = UnityWebRequest.kHttpVerbPOST;
+			www.uploadHandler = (UploadHandler)new UploadHandlerRaw(byteJSON);
+			www.SetRequestHeader("Content-Type", "application/json");
+			www.SetRequestHeader("Accept", "application/json");
+			yield return www.SendWebRequest();
+
+			if (www.result != UnityWebRequest.Result.Success)
+			{
+				Debug.Log(www.error);
+			}
+			else
+			{
+				Debug.Log("Form upload complete!");
+			}
+		}
+	}
 
 
 }
