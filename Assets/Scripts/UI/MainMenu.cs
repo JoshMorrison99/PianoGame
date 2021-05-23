@@ -28,6 +28,19 @@ public class MainMenu : MonoBehaviour
 	public delegate void ButtonClickedSuccessAction();
 	public static event ButtonClickedSuccessAction buttonClickedSuccessEvent;
 
+	// Account
+	public GameObject CreateAccountGameObject;
+	public GameObject LoginAccountGameObject;
+
+	// Account Signup
+	public TMP_InputField usernameSignup;
+	public TMP_InputField emailSignup;
+	public TMP_InputField passwordSignup;
+	public TMP_InputField re_passwordSignup;
+
+	// Account Login
+	public TMP_InputField usernameLogin;
+	public TMP_InputField passwordLogin;
 
 	public Button songSelectionBtn;
 	public Button lessonsBtn;
@@ -70,6 +83,9 @@ public class MainMenu : MonoBehaviour
 		btn.onClick.AddListener(songSelectionClicked);
 
 		EXPSlideSetup();
+
+		LoginAccountGameObject.SetActive(false);
+		CreateAccountGameObject.SetActive(true);
 
 	}
 
@@ -202,6 +218,18 @@ public class MainMenu : MonoBehaviour
 		return covertWindowsStringToStandalone;
     }
 
+	public void DontHaveAccountSignUpClicked()
+    {
+		LoginAccountGameObject.SetActive(false);
+		CreateAccountGameObject.SetActive(true);
+    }
+
+	public void HaveAccountLoginClicked()
+    {
+		CreateAccountGameObject.SetActive(false);
+		LoginAccountGameObject.SetActive(true);
+    }
+
 	public void ImportSongButtonClicked()
     {
 		// play button clicked sfx
@@ -300,14 +328,18 @@ public class MainMenu : MonoBehaviour
 		
 	}
 
-
-
-
 	IEnumerator SpawnErrorMessage()
 	{
 		// suspend execution for 5 seconds
 		yield return new WaitForSeconds(5);
 		SongImportErrorMessagePanel.SetActive(false);
 	}
+
+
+	public void SignUpButtonClicked()
+    {
+
+    }
+
 
 }
