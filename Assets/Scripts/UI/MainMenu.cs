@@ -13,9 +13,6 @@ using SFB;
 public class MainMenu : MonoBehaviour
 {
 
-	public GameObject comingSoonOBJ;
-	bool activeComingSoon;
-
 	public string converArrayStringToString;
 	public string covertWindowsStringToStandalone;
 
@@ -74,8 +71,6 @@ public class MainMenu : MonoBehaviour
 
 		EXPSlideSetup();
 
-		comingSoonOBJ.SetActive(false);
-		activeComingSoon = false;
 	}
 
 	public void showMainMenu()
@@ -175,24 +170,6 @@ public class MainMenu : MonoBehaviour
 			buttonClickedEvent();
 		}
 
-	}
-
-	public void LessonsOrAccountComingSoonSelect()
-    {
-        if (activeComingSoon == false)
-        {
-			StartCoroutine(ComingSoon());
-		}
-		
-    }
-
-	public IEnumerator ComingSoon()
-    {
-		activeComingSoon = true;
-		comingSoonOBJ.SetActive(true);
-		yield return new WaitForSeconds(1f);
-		comingSoonOBJ.SetActive(false);
-		activeComingSoon = false;
 	}
 
 	public string ConvertStringArrToString(string[] stringArr)

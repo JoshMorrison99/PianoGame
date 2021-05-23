@@ -112,7 +112,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 17396473606144
-    m_Key: Lessons
+    m_Key: Shop
     m_Metadata:
       m_Items: []
   - m_Id: 17444188008448
@@ -237,6 +237,10 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 5043970235248640
     m_Key: Quit
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8126727043756032
+    m_Key: New Entry
     m_Metadata:
       m_Items: []
   m_Metadata:
