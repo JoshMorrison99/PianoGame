@@ -1,4 +1,5 @@
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,11 +10,8 @@ public class API : MonoBehaviour
 
 	public static API api;
 
-	private void Awake()
+    private void Awake()
 	{
-
-		//data = this;
-
 		if (api != null && api != this)
 		{
 			Destroy(this.gameObject);
@@ -22,6 +20,11 @@ public class API : MonoBehaviour
 		{
 			api = this;
 			DontDestroyOnLoad(gameObject);
+		}
+
+		if (PlayerPrefs.HasKey("user_username"))
+		{
+			GetUser(PlayerPrefs.GetString("user_id"));
 		}
 	}
 
@@ -45,11 +48,20 @@ public class API : MonoBehaviour
 			{
 				Debug.Log("Failed to get user!");
 				Debug.Log(www.downloadHandler.text);
+				UserModel.user.isLoggedIn = false;
 			}
 			else
 			{
 				Debug.Log("Form upload complete!");
 				Debug.Log(www.downloadHandler.text);
+				JObject o = JObject.Parse(www.downloadHandler.text);
+				UserModel.user.username = o["username"].ToString();
+				UserModel.user._id = o["_id"].ToString();
+				UserModel.user.money = (int)o["money"];
+				UserModel.user.exp = (int)o["exp"];
+				UserModel.user.level = (int)o["level"];
+				UserModel.user.purchased = (bool)o["purchased"];
+				UserModel.user.isLoggedIn = true;
 			}
 		}
 	}

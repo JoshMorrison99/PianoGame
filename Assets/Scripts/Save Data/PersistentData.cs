@@ -76,6 +76,8 @@ public class PersistentData : MonoBehaviour, ISaveable
             SetTotalSongNotes();
             PlayerPrefs.SetString("installed", "true"); 
         }
+
+        
     }
 
     public void SetTotalSongNotes()

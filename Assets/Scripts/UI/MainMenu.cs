@@ -36,6 +36,7 @@ public class MainMenu : MonoBehaviour
 	public GameObject CreateAccountGameObject;
 	public GameObject LoginAccountGameObject;
 	public TextMeshProUGUI usernameUI;
+	public GameObject AccountInformationObject;
 
 	// Account Signup
 	public TMP_InputField usernameSignup;
@@ -93,9 +94,8 @@ public class MainMenu : MonoBehaviour
 		btn.onClick.AddListener(songSelectionClicked);
 
 		EXPSlideSetup();
-
-		LoginAccountGameObject.SetActive(false);
-		CreateAccountGameObject.SetActive(true);
+		AccountInformationObject.SetActive(false);
+		
 		usernameSignupErrorText.text = "";
 		emailSignupErrorText.text = "";
 		passwordSignupErrorText.text = "";
@@ -103,6 +103,18 @@ public class MainMenu : MonoBehaviour
 		usernameLoginError.text = "";
 		passwordLoginError.text = "";
 
+        if (UserModel.user.isLoggedIn)
+        {
+			usernameUI.text = UserModel.user.username;
+			LoginAccountGameObject.SetActive(false);
+			CreateAccountGameObject.SetActive(false);
+		}
+        else
+        {
+			usernameUI.text = "local";
+			LoginAccountGameObject.SetActive(false);
+			CreateAccountGameObject.SetActive(true);
+		}
 		
 	}
 
@@ -203,6 +215,23 @@ public class MainMenu : MonoBehaviour
 			buttonClickedEvent();
 		}
 
+	}
+
+	public void AccountButtonClicked()
+    {
+		AccountInformationObject.SetActive(true);
+		LoginAccountGameObject.SetActive(false);
+		CreateAccountGameObject.SetActive(false);
+	}
+
+	public void LogoutButtonClicked()
+    {
+		PlayerPrefs.DeleteKey("user_id");
+		PlayerPrefs.DeleteKey("user_username");
+		AccountInformationObject.SetActive(false);
+		LoginAccountGameObject.SetActive(false);
+		CreateAccountGameObject.SetActive(true);
+		usernameUI.text = "local";
 	}
 
 	public string ConvertStringArrToString(string[] stringArr)
@@ -414,12 +443,13 @@ public class MainMenu : MonoBehaviour
 				JObject o = JObject.Parse(www.downloadHandler.text);
 				PlayerPrefs.SetString("user_id", o["_id"].ToString());
 				PlayerPrefs.SetString("user_username", o["username"].ToString());
-				PlayerPrefs.SetString("user_loggedin", "true");
+
+				API.api.GetUser(o["_id"].ToString());
 
 				// Set ui
 				usernameUI.text = o["username"].ToString();
 
-				Debug.Log("GETTING USER");
+				/*Debug.Log("GETTING USER");
 				API.api.GetUser(o["_id"].ToString());
 
 				Debug.Log("UPDATING USER");
@@ -431,7 +461,7 @@ public class MainMenu : MonoBehaviour
 				update.money = 12;
 				update.exp = 18;
 				update.purchased = false;
-				API.api.PutUser(o["_id"].ToString(), update);
+				API.api.PutUser(o["_id"].ToString(), update);*/
 			}
 		}
 	}
@@ -550,7 +580,8 @@ public class MainMenu : MonoBehaviour
 				JObject o = JObject.Parse(www.downloadHandler.text);
 				PlayerPrefs.SetString("user_id", o["_id"].ToString());
 				PlayerPrefs.SetString("user_username", o["username"].ToString());
-				PlayerPrefs.SetString("user_loggedin", "true");
+
+				API.api.GetUser(o["_id"].ToString());
 
 				// Set ui
 				usernameUI.text = o["username"].ToString();
