@@ -8,7 +8,8 @@ using System.IO;
 using System;
 using SFB;
 using UnityEngine.Networking;
-
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 public class MainMenu : MonoBehaviour
 {
@@ -95,6 +96,7 @@ public class MainMenu : MonoBehaviour
 		emailSignupErrorText.text = "";
 		passwordSignupErrorText.text = "";
 
+		
 	}
 
 	public void showMainMenu()
@@ -346,9 +348,11 @@ public class MainMenu : MonoBehaviour
 
 	public void SignUpButtonClicked()
     {
+		bool error = false;
         // Simple unity side error handling
         if (usernameSignup.text == "")
         {
+			error = true;
 			usernameSignupErrorText.text = "username cannot be empty";
         }
         else
@@ -356,8 +360,19 @@ public class MainMenu : MonoBehaviour
 			usernameSignupErrorText.text = "";
         }
 
-        if (emailSignup.text == "")
+		if (usernameSignup.text.Length < 4)
+		{
+			error = true;
+			usernameSignupErrorText.text = "Minimum username length is 4";
+		}
+		else
+		{
+			usernameSignupErrorText.text = "";
+		}
+
+		if (emailSignup.text == "")
         {
+			error = true;
 			emailSignupErrorText.text = "email cannot be empty";
         }
         else
@@ -365,8 +380,10 @@ public class MainMenu : MonoBehaviour
 			emailSignupErrorText.text = "";
 		}
 
-        if (passwordSignup.text != re_passwordSignup.text)
+
+		if (passwordSignup.text != re_passwordSignup.text)
         {
+			error = true;
 			passwordSignupErrorText.text = "password must match the re-entered password";
         }
         else
@@ -374,24 +391,24 @@ public class MainMenu : MonoBehaviour
 			passwordSignupErrorText.text = "";
 		}
 
-		Debug.Log("Signing user up");
-		StartCoroutine(SignUpRequest());
+
+		Debug.Log(error);
+        if (error == false)
+        {
+			Debug.Log("Signing user up");
+			StartCoroutine(SignUpRequest());
+		}
+		
     }
 
 	IEnumerator SignUpRequest()
     {
+		SignupModel signupModel = new SignupModel();
+		signupModel.username = usernameSignup.text;
+		signupModel.email = emailSignup.text;
+		signupModel.password = passwordSignup.text;
 
-        SignupModel mySignUp = new SignupModel();
-        mySignUp.username = usernameSignup.text;
-        mySignUp.email = emailSignup.text;
-        mySignUp.password = passwordSignup.text;
-
-        string json = JsonUtility.ToJson(mySignUp);
-
-        WWWForm form = new WWWForm();
-		form.AddField("username", usernameSignup.text);
-		form.AddField("email", emailSignup.text);
-		form.AddField("password", passwordSignup.text);
+		string json = JsonConvert.SerializeObject(signupModel);
 
 		Debug.Log(json);
 		
@@ -405,16 +422,52 @@ public class MainMenu : MonoBehaviour
 			www.SetRequestHeader("Accept", "application/json");
 			yield return www.SendWebRequest();
 
+
 			if (www.result != UnityWebRequest.Result.Success)
 			{
-				Debug.Log(www.error);
+				Debug.Log(www.downloadHandler.text);
+				JObject o = JObject.Parse(www.downloadHandler.text);
+				Debug.Log(o["errors"]["username"]);
+				Debug.Log(o["errors"]["email"]);
+				Debug.Log(o["errors"]["password"]);
+                if (o["errors"]["username"].ToString() != "")
+                {
+					usernameSignupErrorText.text = o["errors"]["username"].ToString();
+
+				}
+                else
+                {
+					usernameSignupErrorText.text = "";
+				}
+
+                if (o["errors"]["email"].ToString() != "")
+                {
+					emailSignupErrorText.text = o["errors"]["email"].ToString();
+				}
+                else
+                {
+					emailSignupErrorText.text = "";
+				}
+
+                if (o["errors"]["password"].ToString() != "")
+                {
+					passwordSignupErrorText.text = o["errors"]["password"].ToString();
+                }
+                else
+                {
+					passwordSignupErrorText.text = "";
+				}
 			}
 			else
 			{
 				Debug.Log("Form upload complete!");
+				CreateAccountGameObject.SetActive(false);
+				LoginAccountGameObject.SetActive(false);
 			}
 		}
 	}
 
 
 }
+
+
