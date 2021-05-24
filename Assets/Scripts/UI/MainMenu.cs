@@ -360,16 +360,6 @@ public class MainMenu : MonoBehaviour
 			usernameSignupErrorText.text = "";
         }
 
-		if (usernameSignup.text.Length < 4)
-		{
-			error = true;
-			usernameSignupErrorText.text = "Minimum username length is 4";
-		}
-		else
-		{
-			usernameSignupErrorText.text = "";
-		}
-
 		if (emailSignup.text == "")
         {
 			error = true;
