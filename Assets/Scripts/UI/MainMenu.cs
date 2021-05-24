@@ -15,6 +15,7 @@ public class MainMenu : MonoBehaviour
 {
 
 	readonly string postSignupURL_Debug = "http://localhost:5000/api/signup";
+	readonly string postLoginURL_Debug = "http://localhost:5000/api/login";
 
 	public string converArrayStringToString;
 	public string covertWindowsStringToStandalone;
@@ -34,6 +35,7 @@ public class MainMenu : MonoBehaviour
 	// Account
 	public GameObject CreateAccountGameObject;
 	public GameObject LoginAccountGameObject;
+	public TextMeshProUGUI usernameUI;
 
 	// Account Signup
 	public TMP_InputField usernameSignup;
@@ -47,6 +49,8 @@ public class MainMenu : MonoBehaviour
 	// Account Login
 	public TMP_InputField usernameLogin;
 	public TMP_InputField passwordLogin;
+	public TextMeshProUGUI usernameLoginError;
+	public TextMeshProUGUI passwordLoginError;
 
 	public Button songSelectionBtn;
 	public Button lessonsBtn;
@@ -96,7 +100,8 @@ public class MainMenu : MonoBehaviour
 		emailSignupErrorText.text = "";
 		passwordSignupErrorText.text = "";
 
-		
+		usernameLoginError.text = "";
+		passwordLoginError.text = "";
 	}
 
 	public void showMainMenu()
@@ -345,6 +350,76 @@ public class MainMenu : MonoBehaviour
 		SongImportErrorMessagePanel.SetActive(false);
 	}
 
+	public void LoginButtonClicked()
+    {
+		Debug.Log("Login user");
+		StartCoroutine(LoginRequest());
+	}
+
+	IEnumerator LoginRequest()
+    {
+		LoginModel loginModel = new LoginModel();
+		loginModel.username = usernameLogin.text;
+		loginModel.password = passwordLogin.text;
+
+		string json = JsonConvert.SerializeObject(loginModel);
+
+		Debug.Log(json);
+
+		using (UnityWebRequest www = UnityWebRequest.Post(postLoginURL_Debug, json))
+		{
+			var byteJSON = System.Text.Encoding.UTF8.GetBytes(json);
+			www.method = UnityWebRequest.kHttpVerbPOST;
+			www.uploadHandler = (UploadHandler)new UploadHandlerRaw(byteJSON);
+			www.SetRequestHeader("Content-Type", "application/json");
+			www.SetRequestHeader("Accept", "application/json");
+			yield return www.SendWebRequest();
+
+
+			if (www.result != UnityWebRequest.Result.Success)
+			{
+				Debug.Log(www.downloadHandler.text);
+				JObject o = JObject.Parse(www.downloadHandler.text);
+				Debug.Log(o["errors"]["username"]);
+				Debug.Log(o["errors"]["password"]);
+				if (o["errors"]["username"].ToString() != "")
+				{
+					usernameLoginError.text = o["errors"]["username"].ToString();
+
+				}
+				else
+				{
+					usernameLoginError.text = "";
+				}
+
+				if (o["errors"]["password"].ToString() != "")
+				{
+					passwordLoginError.text = o["errors"]["password"].ToString();
+				}
+				else
+				{
+					passwordLoginError.text = "";
+				}
+			}
+			else
+			{
+				Debug.Log("Form upload complete!");
+				CreateAccountGameObject.SetActive(false);
+				LoginAccountGameObject.SetActive(false);
+
+				// Store username and user id
+				Debug.Log(www.downloadHandler.text);
+				JObject o = JObject.Parse(www.downloadHandler.text);
+				PlayerPrefs.SetString("user_id", o["_id"].ToString());
+				PlayerPrefs.SetString("user_username", o["username"].ToString());
+				PlayerPrefs.SetString("user_loggedin", "true");
+
+				// Set ui
+				usernameUI.text = o["username"].ToString();
+			}
+		}
+	}
+
 
 	public void SignUpButtonClicked()
     {
@@ -453,6 +528,16 @@ public class MainMenu : MonoBehaviour
 				Debug.Log("Form upload complete!");
 				CreateAccountGameObject.SetActive(false);
 				LoginAccountGameObject.SetActive(false);
+
+				// Store username and user id
+				Debug.Log(www.downloadHandler.text);
+				JObject o = JObject.Parse(www.downloadHandler.text);
+				PlayerPrefs.SetString("user_id", o["_id"].ToString());
+				PlayerPrefs.SetString("user_username", o["username"].ToString());
+				PlayerPrefs.SetString("user_loggedin", "true");
+
+				// Set ui
+				usernameUI.text = o["username"].ToString();
 			}
 		}
 	}
