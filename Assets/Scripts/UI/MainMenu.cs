@@ -102,6 +102,8 @@ public class MainMenu : MonoBehaviour
 
 		usernameLoginError.text = "";
 		passwordLoginError.text = "";
+
+		
 	}
 
 	public void showMainMenu()
@@ -416,6 +418,20 @@ public class MainMenu : MonoBehaviour
 
 				// Set ui
 				usernameUI.text = o["username"].ToString();
+
+				Debug.Log("GETTING USER");
+				API.api.GetUser(o["_id"].ToString());
+
+				Debug.Log("UPDATING USER");
+
+				UpdateModel update = new UpdateModel();
+				update.username = PlayerPrefs.GetString("user_username");
+				update._id = PlayerPrefs.GetString("user_id");
+				update.level = 12;
+				update.money = 12;
+				update.exp = 18;
+				update.purchased = false;
+				API.api.PutUser(o["_id"].ToString(), update);
 			}
 		}
 	}
