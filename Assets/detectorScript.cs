@@ -136,7 +136,7 @@ public class detectorScript : MonoBehaviour
     private IEnumerator ScoreIncrementer()
     {
         
-        while (isPressed)
+        while (isPressed && PersistentData.data.isPaused == false)
         {
 
             Logic.currentScore += 1;
@@ -189,12 +189,14 @@ public class detectorScript : MonoBehaviour
     
     void IncrementNotesHit()
     {
+        if (PersistentData.data.isPaused == false)
+        {
+            // Note successfully hit
+            Logic.numNotesHit += 1;
 
-        // Note successfully hit
-        Logic.numNotesHit += 1;
-
-        // Increment exp
-        PersistentData.data.exp += 1;
+            // Increment exp
+            PersistentData.data.exp += 1;
+        }
 
     }
 }

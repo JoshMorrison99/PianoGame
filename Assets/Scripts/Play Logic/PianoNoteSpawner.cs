@@ -17,8 +17,9 @@ public class PianoNoteSpawner : MonoBehaviour
 
     public List<GameObject> spawnedNotes;
     public List<GameObject> garbageNotes;
+    public List<GameObject> garbageNotesSharp;
 
-    const float NOTE_DESTROY_DEPTH = -30f;
+    const float NOTE_DESTROY_DEPTH = -20f;
 
     const float SEE_YOU_AGAIN_NOTESCALE = 2f;
 
@@ -120,16 +121,26 @@ public class PianoNoteSpawner : MonoBehaviour
             }
             else
             {
-                garbageNotes.Add(spawnedNotes[i]);
+                if (spawnedNotes[i].transform.GetChild(0).GetComponent<Note_Falling>().noteName.Contains("#"))
+                {
+                    garbageNotesSharp.Add(spawnedNotes[i]);
+                }
+                else
+                {
+                    garbageNotes.Add(spawnedNotes[i]);
+                }
+                
                 spawnedNotes.RemoveAt(i);
                 i--;
             }
         }
 
-        if (garbageNotes.Count > 0)
+
+        // CLEAR THIS AT THE END OF THE SONG
+        /*if (garbageNotes.Count > 0)
         {
             garbageCollect();
-        }
+        }*/
 
 
 
@@ -143,18 +154,6 @@ public class PianoNoteSpawner : MonoBehaviour
         }
     }
 
-    public void ScaleNotes(GameObject spawnedNote)
-    {
-        if (PersistentData.data.selectedSong == 1)
-        {
-            // Scale Note Prefabs
-            spawnedNote.transform.localScale = new Vector3(spawnedNote.transform.localScale.x * 1.3f, spawnedNote.transform.localScale.y * 1.3f, 0);
-        }
-        else if (PersistentData.data.selectedSong == 2)
-        {
-            spawnedNote.transform.localScale = new Vector3(spawnedNote.transform.localScale.x, spawnedNote.transform.localScale.y * SEE_YOU_AGAIN_NOTESCALE, 0);
-        }
-    }
 
     public void spawnNote(object sender, NotesEventArgs notesArgs)
     {
@@ -163,8 +162,7 @@ public class PianoNoteSpawner : MonoBehaviour
         foreach (Note item in notesList)
         {
             string noteName = item.ToString();
-            
-            long ticks = 0;
+           
             TempoMap tempoMap = PersistentData.data.myMidi.GetTempoMap();
             MetricTimeSpan metricLength = item.LengthAs<MetricTimeSpan>(tempoMap);
 
@@ -174,723 +172,1743 @@ public class PianoNoteSpawner : MonoBehaviour
             //Debug.Log(duration);
             if (noteName == "C2")
             {
-                GameObject spawnedNote = Instantiate(Note, new Vector3(C2.transform.position.x, C2.transform.position.y + noteHeight, C2.transform.position.z), Quaternion.identity);
-                //spawnedNote.transform.GetChild(0).localScale = new Vector3(spawnedNote.transform.GetChild(0).localScale.x, spawnedNote.transform.GetChild(0).localScale.y * duration, 0);
-                spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
-                spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
-                spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = isNoteLabelled ? spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "C" : spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = ""; 
-                spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
-                spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<BoxCollider2D>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
-                spawnedNote.transform.position = new Vector3(spawnedNote.transform.position.x, spawnedNote.transform.position.y + (NOTE_SCALE * duration / 2), 0);
-                spawnedNotes.Add(spawnedNote);
+                if (garbageNotes.Count > 0)
+                {
+                    GameObject spawnedNote = garbageNotes[0];
+                    garbageNotes.RemoveAt(0);
+                    spawnedNote.transform.position = new Vector3(C2.transform.position.x, C2.transform.position.y + noteHeight, C2.transform.position.z);
+                    spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
+                    spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
+                    spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = isNoteLabelled ? spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "C" : spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "";
+                    spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
+                    spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<BoxCollider2D>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
+                    spawnedNote.transform.position = new Vector3(spawnedNote.transform.position.x, spawnedNote.transform.position.y + (NOTE_SCALE * duration / 2), 0);
+                    spawnedNotes.Add(spawnedNote);
+                }
+                else
+                {
+                    GameObject spawnedNote = Instantiate(Note, new Vector3(C2.transform.position.x, C2.transform.position.y + noteHeight, C2.transform.position.z), Quaternion.identity);
+                    //spawnedNote.transform.GetChild(0).localScale = new Vector3(spawnedNote.transform.GetChild(0).localScale.x, spawnedNote.transform.GetChild(0).localScale.y * duration, 0);
+                    spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
+                    spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
+                    spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = isNoteLabelled ? spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "C" : spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "";
+                    spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
+                    spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<BoxCollider2D>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
+                    spawnedNote.transform.position = new Vector3(spawnedNote.transform.position.x, spawnedNote.transform.position.y + (NOTE_SCALE * duration / 2), 0);
+                    spawnedNotes.Add(spawnedNote);
+                }
             }
             else if (noteName == "C#2")
             {
-                GameObject spawnedNote = Instantiate(SharpNote, new Vector3(Cs2.transform.position.x, C2.transform.position.y + noteSharpHeight, Cs2.transform.position.z), Quaternion.identity);
-                //spawnedNote.transform.GetChild(0).localScale = new Vector3(spawnedNote.transform.GetChild(0).localScale.x, spawnedNote.transform.GetChild(0).localScale.y * duration, 0);
-                spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
-                spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
-                spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = isNoteLabelled ? spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "C#" : spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "";
-                spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
-                spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<BoxCollider2D>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
-                spawnedNote.transform.position = new Vector3(spawnedNote.transform.position.x, spawnedNote.transform.position.y + (NOTE_SCALE * duration / 2), 0);
-                spawnedNotes.Add(spawnedNote);
+                if (garbageNotesSharp.Count > 0)
+                {
+                    GameObject spawnedNote = garbageNotesSharp[0];
+                    garbageNotesSharp.RemoveAt(0);
+                    spawnedNote.transform.position = new Vector3(Cs2.transform.position.x, Cs2.transform.position.y + noteSharpHeight, Cs2.transform.position.z);
+                    spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
+                    spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
+                    spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = isNoteLabelled ? spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "C#" : spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "";
+                    spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
+                    spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<BoxCollider2D>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
+                    spawnedNote.transform.position = new Vector3(spawnedNote.transform.position.x, spawnedNote.transform.position.y + (NOTE_SCALE * duration / 2), 0);
+                    spawnedNotes.Add(spawnedNote);
+                }
+                else
+                {
+                    GameObject spawnedNote = Instantiate(SharpNote, new Vector3(Cs2.transform.position.x, Cs2.transform.position.y + noteSharpHeight, Cs2.transform.position.z), Quaternion.identity);
+                    //spawnedNote.transform.GetChild(0).localScale = new Vector3(spawnedNote.transform.GetChild(0).localScale.x, spawnedNote.transform.GetChild(0).localScale.y * duration, 0);
+                    spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
+                    spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
+                    spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = isNoteLabelled ? spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "C#" : spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "";
+                    spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
+                    spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<BoxCollider2D>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
+                    spawnedNote.transform.position = new Vector3(spawnedNote.transform.position.x, spawnedNote.transform.position.y + (NOTE_SCALE * duration / 2), 0);
+                    spawnedNotes.Add(spawnedNote);
+                }
+
+                
             }
             else if (noteName == "D2")
             {
-                GameObject spawnedNote = Instantiate(Note, new Vector3(D2.transform.position.x, D2.transform.position.y + noteHeight, D2.transform.position.z), Quaternion.identity);
-                //spawnedNote.transform.GetChild(0).localScale = new Vector3(spawnedNote.transform.GetChild(0).localScale.x, spawnedNote.transform.GetChild(0).localScale.y * duration, 0);
-                spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
-                spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
-                spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = isNoteLabelled ? spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "D" : spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "";
-                spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
-                spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<BoxCollider2D>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
-                spawnedNote.transform.position = new Vector3(spawnedNote.transform.position.x, spawnedNote.transform.position.y + (NOTE_SCALE * duration / 2), 0);
-                spawnedNotes.Add(spawnedNote);
+                if (garbageNotes.Count > 0)
+                {
+                    GameObject spawnedNote = garbageNotes[0];
+                    garbageNotes.RemoveAt(0);
+                    spawnedNote.transform.position = new Vector3(D2.transform.position.x, D2.transform.position.y + noteHeight, D2.transform.position.z);
+                    spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
+                    spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
+                    spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = isNoteLabelled ? spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "D" : spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "";
+                    spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
+                    spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<BoxCollider2D>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
+                    spawnedNote.transform.position = new Vector3(spawnedNote.transform.position.x, spawnedNote.transform.position.y + (NOTE_SCALE * duration / 2), 0);
+                    spawnedNotes.Add(spawnedNote);
+                }
+                else
+                {
+                    GameObject spawnedNote = Instantiate(Note, new Vector3(D2.transform.position.x, D2.transform.position.y + noteHeight, D2.transform.position.z), Quaternion.identity);
+                    //spawnedNote.transform.GetChild(0).localScale = new Vector3(spawnedNote.transform.GetChild(0).localScale.x, spawnedNote.transform.GetChild(0).localScale.y * duration, 0);
+                    spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
+                    spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
+                    spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = isNoteLabelled ? spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "D" : spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "";
+                    spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
+                    spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<BoxCollider2D>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
+                    spawnedNote.transform.position = new Vector3(spawnedNote.transform.position.x, spawnedNote.transform.position.y + (NOTE_SCALE * duration / 2), 0);
+                    spawnedNotes.Add(spawnedNote);
+                }
+                
             }
             else if (noteName == "D#2")
             {
-                GameObject spawnedNote = Instantiate(SharpNote, new Vector3(Ds2.transform.position.x, Ds2.transform.position.y + noteSharpHeight, Ds2.transform.position.z), Quaternion.identity);
-                //spawnedNote.transform.GetChild(0).localScale = new Vector3(spawnedNote.transform.GetChild(0).localScale.x, spawnedNote.transform.GetChild(0).localScale.y * duration, 0);
-                spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
-                spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
-                spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = isNoteLabelled ? spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "D#" : spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "";
-                spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
-                spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<BoxCollider2D>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
-                spawnedNote.transform.position = new Vector3(spawnedNote.transform.position.x, spawnedNote.transform.position.y + (NOTE_SCALE * duration / 2), 0);
-                spawnedNotes.Add(spawnedNote);
+                if (garbageNotesSharp.Count > 0)
+                {
+                    GameObject spawnedNote = garbageNotesSharp[0];
+                    garbageNotesSharp.RemoveAt(0);
+                    spawnedNote.transform.position = new Vector3(Ds2.transform.position.x, Ds2.transform.position.y + noteSharpHeight, Ds2.transform.position.z);
+                    spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
+                    spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
+                    spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = isNoteLabelled ? spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "D#" : spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "";
+                    spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
+                    spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<BoxCollider2D>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
+                    spawnedNote.transform.position = new Vector3(spawnedNote.transform.position.x, spawnedNote.transform.position.y + (NOTE_SCALE * duration / 2), 0);
+                    spawnedNotes.Add(spawnedNote);
+                }
+                else
+                {
+                    GameObject spawnedNote = Instantiate(SharpNote, new Vector3(Ds2.transform.position.x, Ds2.transform.position.y + noteSharpHeight, Ds2.transform.position.z), Quaternion.identity);
+                    //spawnedNote.transform.GetChild(0).localScale = new Vector3(spawnedNote.transform.GetChild(0).localScale.x, spawnedNote.transform.GetChild(0).localScale.y * duration, 0);
+                    spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
+                    spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
+                    spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = isNoteLabelled ? spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "D#" : spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "";
+                    spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
+                    spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<BoxCollider2D>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
+                    spawnedNote.transform.position = new Vector3(spawnedNote.transform.position.x, spawnedNote.transform.position.y + (NOTE_SCALE * duration / 2), 0);
+                    spawnedNotes.Add(spawnedNote);
+                }
+                
             }
             else if (noteName == "E2")
             {
-                GameObject spawnedNote = Instantiate(Note, new Vector3(E2.transform.position.x, E2.transform.position.y + noteHeight, E2.transform.position.z), Quaternion.identity);
-                //spawnedNote.transform.GetChild(0).localScale = new Vector3(spawnedNote.transform.GetChild(0).localScale.x, spawnedNote.transform.GetChild(0).localScale.y * duration, 0);
-                spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
-                spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
-                spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = isNoteLabelled ? spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "E" : spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "";
-                spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
-                spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<BoxCollider2D>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
-                spawnedNote.transform.position = new Vector3(spawnedNote.transform.position.x, spawnedNote.transform.position.y + (NOTE_SCALE * duration / 2), 0);
-                spawnedNotes.Add(spawnedNote);
+                if (garbageNotes.Count > 0)
+                {
+                    GameObject spawnedNote = garbageNotes[0];
+                    garbageNotes.RemoveAt(0);
+                    spawnedNote.transform.position = new Vector3(E2.transform.position.x, E2.transform.position.y + noteHeight, E2.transform.position.z);
+                    spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
+                    spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
+                    spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = isNoteLabelled ? spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "E" : spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "";
+                    spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
+                    spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<BoxCollider2D>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
+                    spawnedNote.transform.position = new Vector3(spawnedNote.transform.position.x, spawnedNote.transform.position.y + (NOTE_SCALE * duration / 2), 0);
+                    spawnedNotes.Add(spawnedNote);
+                }
+                else
+                {
+                    GameObject spawnedNote = Instantiate(Note, new Vector3(E2.transform.position.x, E2.transform.position.y + noteHeight, E2.transform.position.z), Quaternion.identity);
+                    //spawnedNote.transform.GetChild(0).localScale = new Vector3(spawnedNote.transform.GetChild(0).localScale.x, spawnedNote.transform.GetChild(0).localScale.y * duration, 0);
+                    spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
+                    spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
+                    spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = isNoteLabelled ? spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "E" : spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "";
+                    spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
+                    spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<BoxCollider2D>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
+                    spawnedNote.transform.position = new Vector3(spawnedNote.transform.position.x, spawnedNote.transform.position.y + (NOTE_SCALE * duration / 2), 0);
+                    spawnedNotes.Add(spawnedNote);
+                }
+                
             }
             else if (noteName == "F2")
             {
-                GameObject spawnedNote = Instantiate(Note, new Vector3(F2.transform.position.x, F2.transform.position.y + noteHeight, F2.transform.position.z), Quaternion.identity);
-                //spawnedNote.transform.GetChild(0).localScale = new Vector3(spawnedNote.transform.GetChild(0).localScale.x, spawnedNote.transform.GetChild(0).localScale.y * duration, 0);
-                spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
-                spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
-                spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = isNoteLabelled ? spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "F" : spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "";
-                spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
-                spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<BoxCollider2D>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
-                spawnedNote.transform.position = new Vector3(spawnedNote.transform.position.x, spawnedNote.transform.position.y + (NOTE_SCALE * duration / 2), 0);
-                spawnedNotes.Add(spawnedNote);
+                if (garbageNotes.Count > 0)
+                {
+                    GameObject spawnedNote = garbageNotes[0];
+                    garbageNotes.RemoveAt(0);
+                    spawnedNote.transform.position = new Vector3(F2.transform.position.x, F2.transform.position.y + noteHeight, F2.transform.position.z);
+                    spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
+                    spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
+                    spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = isNoteLabelled ? spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "F" : spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "";
+                    spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
+                    spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<BoxCollider2D>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
+                    spawnedNote.transform.position = new Vector3(spawnedNote.transform.position.x, spawnedNote.transform.position.y + (NOTE_SCALE * duration / 2), 0);
+                    spawnedNotes.Add(spawnedNote);
+                }
+                else
+                {
+                    GameObject spawnedNote = Instantiate(Note, new Vector3(F2.transform.position.x, F2.transform.position.y + noteHeight, F2.transform.position.z), Quaternion.identity);
+                    //spawnedNote.transform.GetChild(0).localScale = new Vector3(spawnedNote.transform.GetChild(0).localScale.x, spawnedNote.transform.GetChild(0).localScale.y * duration, 0);
+                    spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
+                    spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
+                    spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = isNoteLabelled ? spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "F" : spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "";
+                    spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
+                    spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<BoxCollider2D>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
+                    spawnedNote.transform.position = new Vector3(spawnedNote.transform.position.x, spawnedNote.transform.position.y + (NOTE_SCALE * duration / 2), 0);
+                    spawnedNotes.Add(spawnedNote);
+                }
+                
             }
             else if (noteName == "F#2")
             {
-                GameObject spawnedNote = Instantiate(SharpNote, new Vector3(Fs2.transform.position.x, Fs2.transform.position.y + noteSharpHeight, Fs2.transform.position.z), Quaternion.identity);
-                //spawnedNote.transform.GetChild(0).localScale = new Vector3(spawnedNote.transform.GetChild(0).localScale.x, spawnedNote.transform.GetChild(0).localScale.y * duration, 0);
-                spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
-                spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
-                spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = isNoteLabelled ? spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "F#" : spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "";
-                spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
-                spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<BoxCollider2D>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
-                spawnedNote.transform.position = new Vector3(spawnedNote.transform.position.x, spawnedNote.transform.position.y + (NOTE_SCALE * duration / 2), 0);
-                spawnedNotes.Add(spawnedNote);
+                if (garbageNotesSharp.Count > 0)
+                {
+                    GameObject spawnedNote = garbageNotesSharp[0];
+                    garbageNotesSharp.RemoveAt(0);
+                    spawnedNote.transform.position = new Vector3(Fs2.transform.position.x, Fs2.transform.position.y + noteSharpHeight, Fs2.transform.position.z);
+                    spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
+                    spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
+                    spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = isNoteLabelled ? spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "F#" : spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "";
+                    spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
+                    spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<BoxCollider2D>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
+                    spawnedNote.transform.position = new Vector3(spawnedNote.transform.position.x, spawnedNote.transform.position.y + (NOTE_SCALE * duration / 2), 0);
+                    spawnedNotes.Add(spawnedNote);
+                }
+                else
+                {
+                    GameObject spawnedNote = Instantiate(SharpNote, new Vector3(Fs2.transform.position.x, Fs2.transform.position.y + noteSharpHeight, Fs2.transform.position.z), Quaternion.identity);
+                    //spawnedNote.transform.GetChild(0).localScale = new Vector3(spawnedNote.transform.GetChild(0).localScale.x, spawnedNote.transform.GetChild(0).localScale.y * duration, 0);
+                    spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
+                    spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
+                    spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = isNoteLabelled ? spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "F#" : spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "";
+                    spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
+                    spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<BoxCollider2D>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
+                    spawnedNote.transform.position = new Vector3(spawnedNote.transform.position.x, spawnedNote.transform.position.y + (NOTE_SCALE * duration / 2), 0);
+                    spawnedNotes.Add(spawnedNote);
+                }
+                
             }
             else if (noteName == "G2")
             {
-                GameObject spawnedNote = Instantiate(Note, new Vector3(G2.transform.position.x, G2.transform.position.y + noteHeight, G2.transform.position.z), Quaternion.identity);
-                //spawnedNote.transform.GetChild(0).localScale = new Vector3(spawnedNote.transform.GetChild(0).localScale.x, spawnedNote.transform.GetChild(0).localScale.y * duration, 0);
-                spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
-                spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
-                spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = isNoteLabelled ? spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "G" : spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "";
-                spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
-                spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<BoxCollider2D>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
-                spawnedNote.transform.position = new Vector3(spawnedNote.transform.position.x, spawnedNote.transform.position.y + (NOTE_SCALE * duration / 2), 0);
-                spawnedNotes.Add(spawnedNote);
+                if (garbageNotes.Count > 0)
+                {
+                    GameObject spawnedNote = garbageNotes[0];
+                    garbageNotes.RemoveAt(0);
+                    spawnedNote.transform.position = new Vector3(G2.transform.position.x, G2.transform.position.y + noteHeight, G2.transform.position.z);
+                    spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
+                    spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
+                    spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = isNoteLabelled ? spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "G" : spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "";
+                    spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
+                    spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<BoxCollider2D>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
+                    spawnedNote.transform.position = new Vector3(spawnedNote.transform.position.x, spawnedNote.transform.position.y + (NOTE_SCALE * duration / 2), 0);
+                    spawnedNotes.Add(spawnedNote);
+                }
+                else
+                {
+                    GameObject spawnedNote = Instantiate(Note, new Vector3(G2.transform.position.x, G2.transform.position.y + noteHeight, G2.transform.position.z), Quaternion.identity);
+                    //spawnedNote.transform.GetChild(0).localScale = new Vector3(spawnedNote.transform.GetChild(0).localScale.x, spawnedNote.transform.GetChild(0).localScale.y * duration, 0);
+                    spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
+                    spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
+                    spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = isNoteLabelled ? spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "G" : spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "";
+                    spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
+                    spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<BoxCollider2D>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
+                    spawnedNote.transform.position = new Vector3(spawnedNote.transform.position.x, spawnedNote.transform.position.y + (NOTE_SCALE * duration / 2), 0);
+                    spawnedNotes.Add(spawnedNote);
+                }
+                
             }
             else if (noteName == "G#2")
             {
-                GameObject spawnedNote = Instantiate(SharpNote, new Vector3(Gs2.transform.position.x, Gs2.transform.position.y + noteSharpHeight, Gs2.transform.position.z), Quaternion.identity);
-                //spawnedNote.transform.GetChild(0).localScale = new Vector3(spawnedNote.transform.GetChild(0).localScale.x, spawnedNote.transform.GetChild(0).localScale.y * duration, 0);
-                spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
-                spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
-                spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = isNoteLabelled ? spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "G#" : spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "";
-                spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
-                spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<BoxCollider2D>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
-                spawnedNote.transform.position = new Vector3(spawnedNote.transform.position.x, spawnedNote.transform.position.y + (NOTE_SCALE * duration / 2), 0);
-                spawnedNotes.Add(spawnedNote);
+                if (garbageNotesSharp.Count > 0)
+                {
+                    GameObject spawnedNote = garbageNotesSharp[0];
+                    garbageNotesSharp.RemoveAt(0);
+                    spawnedNote.transform.position = new Vector3(Gs2.transform.position.x, Gs2.transform.position.y + noteSharpHeight, Gs2.transform.position.z);
+                    spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
+                    spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
+                    spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = isNoteLabelled ? spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "G#" : spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "";
+                    spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
+                    spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<BoxCollider2D>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
+                    spawnedNote.transform.position = new Vector3(spawnedNote.transform.position.x, spawnedNote.transform.position.y + (NOTE_SCALE * duration / 2), 0);
+                    spawnedNotes.Add(spawnedNote);
+                }
+                else
+                {
+                    GameObject spawnedNote = Instantiate(SharpNote, new Vector3(Gs2.transform.position.x, Gs2.transform.position.y + noteSharpHeight, Gs2.transform.position.z), Quaternion.identity);
+                    //spawnedNote.transform.GetChild(0).localScale = new Vector3(spawnedNote.transform.GetChild(0).localScale.x, spawnedNote.transform.GetChild(0).localScale.y * duration, 0);
+                    spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
+                    spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
+                    spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = isNoteLabelled ? spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "G#" : spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "";
+                    spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
+                    spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<BoxCollider2D>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
+                    spawnedNote.transform.position = new Vector3(spawnedNote.transform.position.x, spawnedNote.transform.position.y + (NOTE_SCALE * duration / 2), 0);
+                    spawnedNotes.Add(spawnedNote);
+                }
+                
             }
             else if (noteName == "A2")
             {
-                GameObject spawnedNote = Instantiate(Note, new Vector3(A2.transform.position.x, A2.transform.position.y + noteHeight, A2.transform.position.z), Quaternion.identity);
-                //spawnedNote.transform.GetChild(0).localScale = new Vector3(spawnedNote.transform.GetChild(0).localScale.x, spawnedNote.transform.GetChild(0).localScale.y * duration, 0);
-                spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
-                spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
-                spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = isNoteLabelled ? spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "A" : spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "";
-                spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
-                spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<BoxCollider2D>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
-                spawnedNote.transform.position = new Vector3(spawnedNote.transform.position.x, spawnedNote.transform.position.y + (NOTE_SCALE * duration / 2), 0);
-                spawnedNotes.Add(spawnedNote);
+                if (garbageNotes.Count > 0)
+                {
+                    GameObject spawnedNote = garbageNotes[0];
+                    garbageNotes.RemoveAt(0);
+                    spawnedNote.transform.position = new Vector3(A2.transform.position.x, A2.transform.position.y + noteHeight, A2.transform.position.z);
+                    spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
+                    spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
+                    spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = isNoteLabelled ? spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "A" : spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "";
+                    spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
+                    spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<BoxCollider2D>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
+                    spawnedNote.transform.position = new Vector3(spawnedNote.transform.position.x, spawnedNote.transform.position.y + (NOTE_SCALE * duration / 2), 0);
+                    spawnedNotes.Add(spawnedNote);
+                }
+                else
+                {
+                    GameObject spawnedNote = Instantiate(Note, new Vector3(A2.transform.position.x, A2.transform.position.y + noteHeight, A2.transform.position.z), Quaternion.identity);
+                    //spawnedNote.transform.GetChild(0).localScale = new Vector3(spawnedNote.transform.GetChild(0).localScale.x, spawnedNote.transform.GetChild(0).localScale.y * duration, 0);
+                    spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
+                    spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
+                    spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = isNoteLabelled ? spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "A" : spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "";
+                    spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
+                    spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<BoxCollider2D>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
+                    spawnedNote.transform.position = new Vector3(spawnedNote.transform.position.x, spawnedNote.transform.position.y + (NOTE_SCALE * duration / 2), 0);
+                    spawnedNotes.Add(spawnedNote);
+                }
+                
             }
             else if (noteName == "A#2")
             {
-                GameObject spawnedNote = Instantiate(SharpNote, new Vector3(As2.transform.position.x, As2.transform.position.y + noteSharpHeight, As2.transform.position.z), Quaternion.identity);
-                //spawnedNote.transform.GetChild(0).localScale = new Vector3(spawnedNote.transform.GetChild(0).localScale.x, spawnedNote.transform.GetChild(0).localScale.y * duration, 0);
-                spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
-                spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
-                spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = isNoteLabelled ? spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "A#" : spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "";
-                spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
-                spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<BoxCollider2D>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
-                spawnedNote.transform.position = new Vector3(spawnedNote.transform.position.x, spawnedNote.transform.position.y + (NOTE_SCALE * duration / 2), 0);
-                spawnedNotes.Add(spawnedNote);
+                if (garbageNotesSharp.Count > 0)
+                {
+                    GameObject spawnedNote = garbageNotesSharp[0];
+                    garbageNotesSharp.RemoveAt(0);
+                    spawnedNote.transform.position = new Vector3(As2.transform.position.x, As2.transform.position.y + noteSharpHeight, As2.transform.position.z);
+                    spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
+                    spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
+                    spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = isNoteLabelled ? spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "A#" : spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "";
+                    spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
+                    spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<BoxCollider2D>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
+                    spawnedNote.transform.position = new Vector3(spawnedNote.transform.position.x, spawnedNote.transform.position.y + (NOTE_SCALE * duration / 2), 0);
+                    spawnedNotes.Add(spawnedNote);
+                }
+                else
+                {
+                    GameObject spawnedNote = Instantiate(SharpNote, new Vector3(As2.transform.position.x, As2.transform.position.y + noteSharpHeight, As2.transform.position.z), Quaternion.identity);
+                    //spawnedNote.transform.GetChild(0).localScale = new Vector3(spawnedNote.transform.GetChild(0).localScale.x, spawnedNote.transform.GetChild(0).localScale.y * duration, 0);
+                    spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
+                    spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
+                    spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = isNoteLabelled ? spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "A#" : spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "";
+                    spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
+                    spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<BoxCollider2D>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
+                    spawnedNote.transform.position = new Vector3(spawnedNote.transform.position.x, spawnedNote.transform.position.y + (NOTE_SCALE * duration / 2), 0);
+                    spawnedNotes.Add(spawnedNote);
+                }
+                
             }
             else if (noteName == "B2")
             {
-                GameObject spawnedNote = Instantiate(Note, new Vector3(B2.transform.position.x, B2.transform.position.y + noteHeight, B2.transform.position.z), Quaternion.identity);
-               // spawnedNote.transform.GetChild(0).localScale = new Vector3(spawnedNote.transform.GetChild(0).localScale.x, spawnedNote.transform.GetChild(0).localScale.y * duration, 0);
-                spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
-                spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
-                spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = isNoteLabelled ? spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "B" : spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "";
-                spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
-                spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<BoxCollider2D>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
-                spawnedNote.transform.position = new Vector3(spawnedNote.transform.position.x, spawnedNote.transform.position.y + (NOTE_SCALE * duration / 2), 0);
-                spawnedNotes.Add(spawnedNote);
+                if (garbageNotes.Count > 0)
+                {
+                    GameObject spawnedNote = garbageNotes[0];
+                    garbageNotes.RemoveAt(0);
+                    spawnedNote.transform.position = new Vector3(B2.transform.position.x, B2.transform.position.y + noteHeight, B2.transform.position.z);
+                    spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
+                    spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
+                    spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = isNoteLabelled ? spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "B" : spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "";
+                    spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
+                    spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<BoxCollider2D>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
+                    spawnedNote.transform.position = new Vector3(spawnedNote.transform.position.x, spawnedNote.transform.position.y + (NOTE_SCALE * duration / 2), 0);
+                    spawnedNotes.Add(spawnedNote);
+                }
+                else
+                {
+                    GameObject spawnedNote = Instantiate(Note, new Vector3(B2.transform.position.x, B2.transform.position.y + noteHeight, B2.transform.position.z), Quaternion.identity);
+                    // spawnedNote.transform.GetChild(0).localScale = new Vector3(spawnedNote.transform.GetChild(0).localScale.x, spawnedNote.transform.GetChild(0).localScale.y * duration, 0);
+                    spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
+                    spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
+                    spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = isNoteLabelled ? spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "B" : spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "";
+                    spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
+                    spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<BoxCollider2D>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
+                    spawnedNote.transform.position = new Vector3(spawnedNote.transform.position.x, spawnedNote.transform.position.y + (NOTE_SCALE * duration / 2), 0);
+                    spawnedNotes.Add(spawnedNote);
+                }
+                
             }
             else if (noteName == "C3")
             {
-                GameObject spawnedNote = Instantiate(Note, new Vector3(C2.transform.position.x, C2.transform.position.y + noteHeight, C2.transform.position.z), Quaternion.identity);
-                //spawnedNote.transform.GetChild(0).localScale = new Vector3(spawnedNote.transform.GetChild(0).localScale.x, spawnedNote.transform.GetChild(0).localScale.y * duration, 0);
-                spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
-                spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
-                spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = isNoteLabelled ? spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "C" : spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "";
-                spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
-                spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<BoxCollider2D>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
-                spawnedNote.transform.position = new Vector3(spawnedNote.transform.position.x, spawnedNote.transform.position.y + (NOTE_SCALE * duration / 2), 0);
-                spawnedNotes.Add(spawnedNote);
+                if (garbageNotes.Count > 0)
+                {
+                    GameObject spawnedNote = garbageNotes[0];
+                    garbageNotes.RemoveAt(0);
+                    spawnedNote.transform.position = new Vector3(C3.transform.position.x, C3.transform.position.y + noteHeight, C3.transform.position.z);
+                    spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
+                    spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
+                    spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = isNoteLabelled ? spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "C" : spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "";
+                    spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
+                    spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<BoxCollider2D>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
+                    spawnedNote.transform.position = new Vector3(spawnedNote.transform.position.x, spawnedNote.transform.position.y + (NOTE_SCALE * duration / 2), 0);
+                    spawnedNotes.Add(spawnedNote);
+                }
+                else
+                {
+                    GameObject spawnedNote = Instantiate(Note, new Vector3(C3.transform.position.x, C3.transform.position.y + noteHeight, C3.transform.position.z), Quaternion.identity);
+                    //spawnedNote.transform.GetChild(0).localScale = new Vector3(spawnedNote.transform.GetChild(0).localScale.x, spawnedNote.transform.GetChild(0).localScale.y * duration, 0);
+                    spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
+                    spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
+                    spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = isNoteLabelled ? spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "C" : spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "";
+                    spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
+                    spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<BoxCollider2D>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
+                    spawnedNote.transform.position = new Vector3(spawnedNote.transform.position.x, spawnedNote.transform.position.y + (NOTE_SCALE * duration / 2), 0);
+                    spawnedNotes.Add(spawnedNote);
+                }
+                
             }
             else if (noteName == "C#3")
             {
-                GameObject spawnedNote = Instantiate(SharpNote, new Vector3(Cs3.transform.position.x, Cs3.transform.position.y + noteSharpHeight, Cs3.transform.position.z), Quaternion.identity);
-                //spawnedNote.transform.GetChild(0).localScale = new Vector3(spawnedNote.transform.GetChild(0).localScale.x, spawnedNote.transform.GetChild(0).localScale.y * duration, 0);
-                spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
-                spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
-                spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = isNoteLabelled ? spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "C#" : spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "";
-                spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
-                spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<BoxCollider2D>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
-                spawnedNote.transform.position = new Vector3(spawnedNote.transform.position.x, spawnedNote.transform.position.y + (NOTE_SCALE * duration / 2), 0);
-                spawnedNotes.Add(spawnedNote);
+                if (garbageNotesSharp.Count > 0)
+                {
+                    GameObject spawnedNote = garbageNotesSharp[0];
+                    garbageNotesSharp.RemoveAt(0);
+                    spawnedNote.transform.position = new Vector3(Cs3.transform.position.x, Cs3.transform.position.y + noteSharpHeight, Cs3.transform.position.z);
+                    spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
+                    spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
+                    spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = isNoteLabelled ? spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "C#" : spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "";
+                    spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
+                    spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<BoxCollider2D>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
+                    spawnedNote.transform.position = new Vector3(spawnedNote.transform.position.x, spawnedNote.transform.position.y + (NOTE_SCALE * duration / 2), 0);
+                    spawnedNotes.Add(spawnedNote);
+                }
+                else
+                {
+                    GameObject spawnedNote = Instantiate(SharpNote, new Vector3(Cs3.transform.position.x, Cs3.transform.position.y + noteSharpHeight, Cs3.transform.position.z), Quaternion.identity);
+                    //spawnedNote.transform.GetChild(0).localScale = new Vector3(spawnedNote.transform.GetChild(0).localScale.x, spawnedNote.transform.GetChild(0).localScale.y * duration, 0);
+                    spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
+                    spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
+                    spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = isNoteLabelled ? spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "C#" : spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "";
+                    spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
+                    spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<BoxCollider2D>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
+                    spawnedNote.transform.position = new Vector3(spawnedNote.transform.position.x, spawnedNote.transform.position.y + (NOTE_SCALE * duration / 2), 0);
+                    spawnedNotes.Add(spawnedNote);
+                }
+                
             }
             else if (noteName == "D3")
             {
-                GameObject spawnedNote = Instantiate(Note, new Vector3(D3.transform.position.x, D3.transform.position.y + noteHeight, D3.transform.position.z), Quaternion.identity);
-                //spawnedNote.transform.GetChild(0).localScale = new Vector3(spawnedNote.transform.GetChild(0).localScale.x, spawnedNote.transform.GetChild(0).localScale.y * duration, 0);
-                spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
-                spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
-                spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = isNoteLabelled ? spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "D" : spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "";
-                spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
-                spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<BoxCollider2D>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
-                spawnedNote.transform.position = new Vector3(spawnedNote.transform.position.x, spawnedNote.transform.position.y + (NOTE_SCALE * duration / 2), 0);
-                spawnedNotes.Add(spawnedNote);
+                if (garbageNotes.Count > 0)
+                {
+                    GameObject spawnedNote = garbageNotes[0];
+                    garbageNotes.RemoveAt(0);
+                    spawnedNote.transform.position = new Vector3(D3.transform.position.x, D3.transform.position.y + noteHeight, D3.transform.position.z);
+                    spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
+                    spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
+                    spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = isNoteLabelled ? spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "D" : spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "";
+                    spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
+                    spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<BoxCollider2D>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
+                    spawnedNote.transform.position = new Vector3(spawnedNote.transform.position.x, spawnedNote.transform.position.y + (NOTE_SCALE * duration / 2), 0);
+                    spawnedNotes.Add(spawnedNote);
+                }
+                else
+                {
+                    GameObject spawnedNote = Instantiate(Note, new Vector3(D3.transform.position.x, D3.transform.position.y + noteHeight, D3.transform.position.z), Quaternion.identity);
+                    //spawnedNote.transform.GetChild(0).localScale = new Vector3(spawnedNote.transform.GetChild(0).localScale.x, spawnedNote.transform.GetChild(0).localScale.y * duration, 0);
+                    spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
+                    spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
+                    spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = isNoteLabelled ? spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "D" : spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "";
+                    spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
+                    spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<BoxCollider2D>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
+                    spawnedNote.transform.position = new Vector3(spawnedNote.transform.position.x, spawnedNote.transform.position.y + (NOTE_SCALE * duration / 2), 0);
+                    spawnedNotes.Add(spawnedNote);
+                }
+                
             }
             else if (noteName == "D#3")
             {
-                GameObject spawnedNote = Instantiate(SharpNote, new Vector3(Ds3.transform.position.x, Ds3.transform.position.y + noteSharpHeight, Ds3.transform.position.z), Quaternion.identity);
-                //spawnedNote.transform.GetChild(0).localScale = new Vector3(spawnedNote.transform.GetChild(0).localScale.x, spawnedNote.transform.GetChild(0).localScale.y * duration, 0);
-                spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
-                spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
-                spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = isNoteLabelled ? spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "D#" : spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "";
-                spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
-                spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<BoxCollider2D>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
-                spawnedNote.transform.position = new Vector3(spawnedNote.transform.position.x, spawnedNote.transform.position.y + (NOTE_SCALE * duration / 2), 0);
-                spawnedNotes.Add(spawnedNote);
+                if (garbageNotesSharp.Count > 0)
+                {
+                    GameObject spawnedNote = garbageNotesSharp[0];
+                    garbageNotesSharp.RemoveAt(0);
+                    spawnedNote.transform.position = new Vector3(Ds3.transform.position.x, Ds3.transform.position.y + noteSharpHeight, Ds3.transform.position.z);
+                    spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
+                    spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
+                    spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = isNoteLabelled ? spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "D#" : spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "";
+                    spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
+                    spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<BoxCollider2D>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
+                    spawnedNote.transform.position = new Vector3(spawnedNote.transform.position.x, spawnedNote.transform.position.y + (NOTE_SCALE * duration / 2), 0);
+                    spawnedNotes.Add(spawnedNote);
+                }
+                else
+                {
+                    GameObject spawnedNote = Instantiate(SharpNote, new Vector3(Ds3.transform.position.x, Ds3.transform.position.y + noteSharpHeight, Ds3.transform.position.z), Quaternion.identity);
+                    //spawnedNote.transform.GetChild(0).localScale = new Vector3(spawnedNote.transform.GetChild(0).localScale.x, spawnedNote.transform.GetChild(0).localScale.y * duration, 0);
+                    spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
+                    spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
+                    spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = isNoteLabelled ? spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "D#" : spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "";
+                    spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
+                    spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<BoxCollider2D>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
+                    spawnedNote.transform.position = new Vector3(spawnedNote.transform.position.x, spawnedNote.transform.position.y + (NOTE_SCALE * duration / 2), 0);
+                    spawnedNotes.Add(spawnedNote);
+                }
+                
             }
             else if (noteName == "E3")
             {
-                GameObject spawnedNote = Instantiate(Note, new Vector3(E3.transform.position.x, E3.transform.position.y + noteHeight, E3.transform.position.z), Quaternion.identity);
-                //spawnedNote.transform.GetChild(0).localScale = new Vector3(spawnedNote.transform.GetChild(0).localScale.x, spawnedNote.transform.GetChild(0).localScale.y * duration, 0);
-                spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
-                spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
-                spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = isNoteLabelled ? spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "E" : spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "";
-                spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
-                spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<BoxCollider2D>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
-                spawnedNote.transform.position = new Vector3(spawnedNote.transform.position.x, spawnedNote.transform.position.y + (NOTE_SCALE * duration / 2), 0);
-                spawnedNotes.Add(spawnedNote);
+                if (garbageNotes.Count > 0)
+                {
+                    GameObject spawnedNote = garbageNotes[0];
+                    garbageNotes.RemoveAt(0);
+                    spawnedNote.transform.position = new Vector3(E3.transform.position.x, E3.transform.position.y + noteHeight, E3.transform.position.z);
+                    spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
+                    spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
+                    spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = isNoteLabelled ? spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "E" : spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "";
+                    spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
+                    spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<BoxCollider2D>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
+                    spawnedNote.transform.position = new Vector3(spawnedNote.transform.position.x, spawnedNote.transform.position.y + (NOTE_SCALE * duration / 2), 0);
+                    spawnedNotes.Add(spawnedNote);
+                }
+                else
+                {
+                    GameObject spawnedNote = Instantiate(Note, new Vector3(E3.transform.position.x, E3.transform.position.y + noteHeight, E3.transform.position.z), Quaternion.identity);
+                    //spawnedNote.transform.GetChild(0).localScale = new Vector3(spawnedNote.transform.GetChild(0).localScale.x, spawnedNote.transform.GetChild(0).localScale.y * duration, 0);
+                    spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
+                    spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
+                    spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = isNoteLabelled ? spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "E" : spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "";
+                    spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
+                    spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<BoxCollider2D>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
+                    spawnedNote.transform.position = new Vector3(spawnedNote.transform.position.x, spawnedNote.transform.position.y + (NOTE_SCALE * duration / 2), 0);
+                    spawnedNotes.Add(spawnedNote);
+                }
+                
             }
             else if (noteName == "F3")
             {
-                GameObject spawnedNote = Instantiate(Note, new Vector3(F3.transform.position.x, F3.transform.position.y + noteHeight, F3.transform.position.z), Quaternion.identity);
-                //spawnedNote.transform.GetChild(0).localScale = new Vector3(spawnedNote.transform.GetChild(0).localScale.x, spawnedNote.transform.GetChild(0).localScale.y * duration, 0);
-                spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
-                spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
-                spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = isNoteLabelled ? spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "F" : spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "";
-                spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
-                spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<BoxCollider2D>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
-                spawnedNote.transform.position = new Vector3(spawnedNote.transform.position.x, spawnedNote.transform.position.y + (NOTE_SCALE * duration / 2), 0);
-                spawnedNotes.Add(spawnedNote);
+                if (garbageNotes.Count > 0)
+                {
+                    GameObject spawnedNote = garbageNotes[0];
+                    garbageNotes.RemoveAt(0);
+                    spawnedNote.transform.position = new Vector3(F3.transform.position.x, F3.transform.position.y + noteHeight, F3.transform.position.z);
+                    spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
+                    spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
+                    spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = isNoteLabelled ? spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "F" : spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "";
+                    spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
+                    spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<BoxCollider2D>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
+                    spawnedNote.transform.position = new Vector3(spawnedNote.transform.position.x, spawnedNote.transform.position.y + (NOTE_SCALE * duration / 2), 0);
+                    spawnedNotes.Add(spawnedNote);
+                }
+                else
+                {
+                    GameObject spawnedNote = Instantiate(Note, new Vector3(F3.transform.position.x, F3.transform.position.y + noteHeight, F3.transform.position.z), Quaternion.identity);
+                    //spawnedNote.transform.GetChild(0).localScale = new Vector3(spawnedNote.transform.GetChild(0).localScale.x, spawnedNote.transform.GetChild(0).localScale.y * duration, 0);
+                    spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
+                    spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
+                    spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = isNoteLabelled ? spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "F" : spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "";
+                    spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
+                    spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<BoxCollider2D>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
+                    spawnedNote.transform.position = new Vector3(spawnedNote.transform.position.x, spawnedNote.transform.position.y + (NOTE_SCALE * duration / 2), 0);
+                    spawnedNotes.Add(spawnedNote);
+                }
+                
             }
             else if (noteName == "F#3")
             {
-                GameObject spawnedNote = Instantiate(SharpNote, new Vector3(Fs3.transform.position.x, Fs3.transform.position.y + noteSharpHeight, Fs3.transform.position.z), Quaternion.identity);
-                //spawnedNote.transform.GetChild(0).localScale = new Vector3(spawnedNote.transform.GetChild(0).localScale.x, spawnedNote.transform.GetChild(0).localScale.y * duration, 0);
-                spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
-                spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
-                spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = isNoteLabelled ? spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "F#" : spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "";
-                spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
-                spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<BoxCollider2D>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
-                spawnedNote.transform.position = new Vector3(spawnedNote.transform.position.x, spawnedNote.transform.position.y + (NOTE_SCALE * duration / 2), 0);
-                spawnedNotes.Add(spawnedNote);
+                if (garbageNotesSharp.Count > 0)
+                {
+                    GameObject spawnedNote = garbageNotesSharp[0];
+                    garbageNotesSharp.RemoveAt(0);
+                    spawnedNote.transform.position = new Vector3(Fs3.transform.position.x, Fs3.transform.position.y + noteSharpHeight, Fs3.transform.position.z);
+                    spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
+                    spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
+                    spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = isNoteLabelled ? spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "F#" : spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "";
+                    spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
+                    spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<BoxCollider2D>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
+                    spawnedNote.transform.position = new Vector3(spawnedNote.transform.position.x, spawnedNote.transform.position.y + (NOTE_SCALE * duration / 2), 0);
+                    spawnedNotes.Add(spawnedNote);
+                }
+                else
+                {
+                    GameObject spawnedNote = Instantiate(SharpNote, new Vector3(Fs3.transform.position.x, Fs3.transform.position.y + noteSharpHeight, Fs3.transform.position.z), Quaternion.identity);
+                    //spawnedNote.transform.GetChild(0).localScale = new Vector3(spawnedNote.transform.GetChild(0).localScale.x, spawnedNote.transform.GetChild(0).localScale.y * duration, 0);
+                    spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
+                    spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
+                    spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = isNoteLabelled ? spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "F#" : spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "";
+                    spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
+                    spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<BoxCollider2D>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
+                    spawnedNote.transform.position = new Vector3(spawnedNote.transform.position.x, spawnedNote.transform.position.y + (NOTE_SCALE * duration / 2), 0);
+                    spawnedNotes.Add(spawnedNote);
+                }
+                
             }
             else if (noteName == "G3")
             {
-                GameObject spawnedNote = Instantiate(Note, new Vector3(G3.transform.position.x, G3.transform.position.y + noteHeight, G3.transform.position.z), Quaternion.identity);
-                //spawnedNote.transform.GetChild(0).localScale = new Vector3(spawnedNote.transform.GetChild(0).localScale.x, spawnedNote.transform.GetChild(0).localScale.y * duration, 0);
-                spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
-                spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
-                spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = isNoteLabelled ? spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "G" : spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "";
-                spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
-                spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<BoxCollider2D>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
-                spawnedNote.transform.position = new Vector3(spawnedNote.transform.position.x, spawnedNote.transform.position.y + (NOTE_SCALE * duration / 2), 0);
-                spawnedNotes.Add(spawnedNote);
+                if (garbageNotes.Count > 0)
+                {
+                    GameObject spawnedNote = garbageNotes[0];
+                    garbageNotes.RemoveAt(0);
+                    spawnedNote.transform.position = new Vector3(G3.transform.position.x, G3.transform.position.y + noteHeight, G3.transform.position.z);
+                    spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
+                    spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
+                    spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = isNoteLabelled ? spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "G" : spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "";
+                    spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
+                    spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<BoxCollider2D>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
+                    spawnedNote.transform.position = new Vector3(spawnedNote.transform.position.x, spawnedNote.transform.position.y + (NOTE_SCALE * duration / 2), 0);
+                    spawnedNotes.Add(spawnedNote);
+                }
+                else
+                {
+                    GameObject spawnedNote = Instantiate(Note, new Vector3(G3.transform.position.x, G3.transform.position.y + noteHeight, G3.transform.position.z), Quaternion.identity);
+                    //spawnedNote.transform.GetChild(0).localScale = new Vector3(spawnedNote.transform.GetChild(0).localScale.x, spawnedNote.transform.GetChild(0).localScale.y * duration, 0);
+                    spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
+                    spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
+                    spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = isNoteLabelled ? spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "G" : spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "";
+                    spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
+                    spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<BoxCollider2D>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
+                    spawnedNote.transform.position = new Vector3(spawnedNote.transform.position.x, spawnedNote.transform.position.y + (NOTE_SCALE * duration / 2), 0);
+                    spawnedNotes.Add(spawnedNote);
+                }
+                
             }
             else if (noteName == "G#3")
             {
-                GameObject spawnedNote = Instantiate(SharpNote, new Vector3(Gs3.transform.position.x, Gs3.transform.position.y + noteSharpHeight, Gs3.transform.position.z), Quaternion.identity);
-                //spawnedNote.transform.GetChild(0).localScale = new Vector3(spawnedNote.transform.GetChild(0).localScale.x, spawnedNote.transform.GetChild(0).localScale.y * duration, 0);
-                spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
-                spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
-                spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = isNoteLabelled ? spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "G#" : spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "";
-                spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
-                spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<BoxCollider2D>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
-                spawnedNote.transform.position = new Vector3(spawnedNote.transform.position.x, spawnedNote.transform.position.y + (NOTE_SCALE * duration / 2), 0);
-                spawnedNotes.Add(spawnedNote);
+                if (garbageNotesSharp.Count > 0)
+                {
+                    GameObject spawnedNote = garbageNotesSharp[0];
+                    garbageNotesSharp.RemoveAt(0);
+                    spawnedNote.transform.position = new Vector3(Gs3.transform.position.x, Gs3.transform.position.y + noteSharpHeight, Gs3.transform.position.z);
+                    spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
+                    spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
+                    spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = isNoteLabelled ? spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "G#" : spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "";
+                    spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
+                    spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<BoxCollider2D>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
+                    spawnedNote.transform.position = new Vector3(spawnedNote.transform.position.x, spawnedNote.transform.position.y + (NOTE_SCALE * duration / 2), 0);
+                    spawnedNotes.Add(spawnedNote);
+                }
+                else
+                {
+                    GameObject spawnedNote = Instantiate(SharpNote, new Vector3(Gs3.transform.position.x, Gs3.transform.position.y + noteSharpHeight, Gs3.transform.position.z), Quaternion.identity);
+                    //spawnedNote.transform.GetChild(0).localScale = new Vector3(spawnedNote.transform.GetChild(0).localScale.x, spawnedNote.transform.GetChild(0).localScale.y * duration, 0);
+                    spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
+                    spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
+                    spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = isNoteLabelled ? spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "G#" : spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "";
+                    spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
+                    spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<BoxCollider2D>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
+                    spawnedNote.transform.position = new Vector3(spawnedNote.transform.position.x, spawnedNote.transform.position.y + (NOTE_SCALE * duration / 2), 0);
+                    spawnedNotes.Add(spawnedNote);
+                }
+                
             }
             else if (noteName == "A3")
             {
-                GameObject spawnedNote = Instantiate(Note, new Vector3(A3.transform.position.x, A3.transform.position.y + noteHeight, A3.transform.position.z), Quaternion.identity);
-                //spawnedNote.transform.GetChild(0).localScale = new Vector3(spawnedNote.transform.GetChild(0).localScale.x, spawnedNote.transform.GetChild(0).localScale.y * duration, 0);
-                spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
-                spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
-                spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = isNoteLabelled ? spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "A" : spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "";
-                spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
-                spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<BoxCollider2D>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
-                spawnedNote.transform.position = new Vector3(spawnedNote.transform.position.x, spawnedNote.transform.position.y + (NOTE_SCALE * duration / 2), 0);
-                spawnedNotes.Add(spawnedNote);
+                if (garbageNotes.Count > 0)
+                {
+                    GameObject spawnedNote = garbageNotes[0];
+                    garbageNotes.RemoveAt(0);
+                    spawnedNote.transform.position = new Vector3(A3.transform.position.x, A3.transform.position.y + noteHeight, A3.transform.position.z);
+                    spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
+                    spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
+                    spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = isNoteLabelled ? spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "A" : spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "";
+                    spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
+                    spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<BoxCollider2D>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
+                    spawnedNote.transform.position = new Vector3(spawnedNote.transform.position.x, spawnedNote.transform.position.y + (NOTE_SCALE * duration / 2), 0);
+                    spawnedNotes.Add(spawnedNote);
+                }
+                else
+                {
+                    GameObject spawnedNote = Instantiate(Note, new Vector3(A3.transform.position.x, A3.transform.position.y + noteHeight, A3.transform.position.z), Quaternion.identity);
+                    //spawnedNote.transform.GetChild(0).localScale = new Vector3(spawnedNote.transform.GetChild(0).localScale.x, spawnedNote.transform.GetChild(0).localScale.y * duration, 0);
+                    spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
+                    spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
+                    spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = isNoteLabelled ? spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "A" : spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "";
+                    spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
+                    spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<BoxCollider2D>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
+                    spawnedNote.transform.position = new Vector3(spawnedNote.transform.position.x, spawnedNote.transform.position.y + (NOTE_SCALE * duration / 2), 0);
+                    spawnedNotes.Add(spawnedNote);
+                }
+                
             }
             else if (noteName == "A#3")
             {
-                GameObject spawnedNote = Instantiate(SharpNote, new Vector3(As3.transform.position.x, As3.transform.position.y + noteSharpHeight, As3.transform.position.z), Quaternion.identity);
-                //spawnedNote.transform.GetChild(0).localScale = new Vector3(spawnedNote.transform.GetChild(0).localScale.x, spawnedNote.transform.GetChild(0).localScale.y * duration, 0);
-                spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
-                spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
-                spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = isNoteLabelled ? spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "A#" : spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "";
-                spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
-                spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<BoxCollider2D>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
-                spawnedNote.transform.position = new Vector3(spawnedNote.transform.position.x, spawnedNote.transform.position.y + (NOTE_SCALE * duration / 2), 0);
-                spawnedNotes.Add(spawnedNote);
+                if (garbageNotesSharp.Count > 0)
+                {
+                    GameObject spawnedNote = garbageNotesSharp[0];
+                    garbageNotesSharp.RemoveAt(0);
+                    spawnedNote.transform.position = new Vector3(As3.transform.position.x, As3.transform.position.y + noteSharpHeight, As3.transform.position.z);
+                    spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
+                    spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
+                    spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = isNoteLabelled ? spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "A#" : spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "";
+                    spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
+                    spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<BoxCollider2D>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
+                    spawnedNote.transform.position = new Vector3(spawnedNote.transform.position.x, spawnedNote.transform.position.y + (NOTE_SCALE * duration / 2), 0);
+                    spawnedNotes.Add(spawnedNote);
+                }
+                else
+                {
+                    GameObject spawnedNote = Instantiate(SharpNote, new Vector3(As3.transform.position.x, As3.transform.position.y + noteSharpHeight, As3.transform.position.z), Quaternion.identity);
+                    //spawnedNote.transform.GetChild(0).localScale = new Vector3(spawnedNote.transform.GetChild(0).localScale.x, spawnedNote.transform.GetChild(0).localScale.y * duration, 0);
+                    spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
+                    spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
+                    spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = isNoteLabelled ? spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "A#" : spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "";
+                    spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
+                    spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<BoxCollider2D>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
+                    spawnedNote.transform.position = new Vector3(spawnedNote.transform.position.x, spawnedNote.transform.position.y + (NOTE_SCALE * duration / 2), 0);
+                    spawnedNotes.Add(spawnedNote);
+                }
+                
             }
             else if (noteName == "B3")
             {
-                GameObject spawnedNote = Instantiate(Note, new Vector3(B3.transform.position.x, B3.transform.position.y + noteHeight, B3.transform.position.z), Quaternion.identity);
-                //spawnedNote.transform.GetChild(0).localScale = new Vector3(spawnedNote.transform.GetChild(0).localScale.x, spawnedNote.transform.GetChild(0).localScale.y * duration, 0);
-                spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
-                spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
-                spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = isNoteLabelled ? spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "B" : spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "";
-                spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
-                spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<BoxCollider2D>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
-                spawnedNote.transform.position = new Vector3(spawnedNote.transform.position.x, spawnedNote.transform.position.y + (NOTE_SCALE * duration / 2), 0);
-                spawnedNotes.Add(spawnedNote);
+                if (garbageNotes.Count > 0)
+                {
+                    GameObject spawnedNote = garbageNotes[0];
+                    garbageNotes.RemoveAt(0);
+                    spawnedNote.transform.position = new Vector3(B3.transform.position.x, B3.transform.position.y + noteHeight, B3.transform.position.z);
+                    spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
+                    spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
+                    spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = isNoteLabelled ? spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "B" : spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "";
+                    spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
+                    spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<BoxCollider2D>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
+                    spawnedNote.transform.position = new Vector3(spawnedNote.transform.position.x, spawnedNote.transform.position.y + (NOTE_SCALE * duration / 2), 0);
+                    spawnedNotes.Add(spawnedNote);
+                }
+                else
+                {
+                    GameObject spawnedNote = Instantiate(Note, new Vector3(B3.transform.position.x, B3.transform.position.y + noteHeight, B3.transform.position.z), Quaternion.identity);
+                    //spawnedNote.transform.GetChild(0).localScale = new Vector3(spawnedNote.transform.GetChild(0).localScale.x, spawnedNote.transform.GetChild(0).localScale.y * duration, 0);
+                    spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
+                    spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
+                    spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = isNoteLabelled ? spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "B" : spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "";
+                    spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
+                    spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<BoxCollider2D>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
+                    spawnedNote.transform.position = new Vector3(spawnedNote.transform.position.x, spawnedNote.transform.position.y + (NOTE_SCALE * duration / 2), 0);
+                    spawnedNotes.Add(spawnedNote);
+                }
+                
             }
             else if (noteName == "C4")
             {
-                GameObject spawnedNote = Instantiate(Note, new Vector3(C4.transform.position.x, C4.transform.position.y + noteHeight, C4.transform.position.z), Quaternion.identity);
-                //spawnedNote.transform.GetChild(0).localScale = new Vector3(spawnedNote.transform.GetChild(0).localScale.x, spawnedNote.transform.GetChild(0).localScale.y * duration, 0);
-                spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
-                spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
-                spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = isNoteLabelled ? spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "C" : spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "";
-                spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
-                spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<BoxCollider2D>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
-                spawnedNote.transform.position = new Vector3(spawnedNote.transform.position.x, spawnedNote.transform.position.y + (NOTE_SCALE * duration / 2), 0);
-                spawnedNotes.Add(spawnedNote);
+                if (garbageNotes.Count > 0)
+                {
+                    GameObject spawnedNote = garbageNotes[0];
+                    garbageNotes.RemoveAt(0);
+                    spawnedNote.transform.position = new Vector3(C4.transform.position.x, C4.transform.position.y + noteHeight, C4.transform.position.z);
+                    spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
+                    spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
+                    spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = isNoteLabelled ? spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "C" : spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "";
+                    spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
+                    spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<BoxCollider2D>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
+                    spawnedNote.transform.position = new Vector3(spawnedNote.transform.position.x, spawnedNote.transform.position.y + (NOTE_SCALE * duration / 2), 0);
+                    spawnedNotes.Add(spawnedNote);
+                }
+                else
+                {
+                    GameObject spawnedNote = Instantiate(Note, new Vector3(C4.transform.position.x, C4.transform.position.y + noteHeight, C4.transform.position.z), Quaternion.identity);
+                    //spawnedNote.transform.GetChild(0).localScale = new Vector3(spawnedNote.transform.GetChild(0).localScale.x, spawnedNote.transform.GetChild(0).localScale.y * duration, 0);
+                    spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
+                    spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
+                    spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = isNoteLabelled ? spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "C" : spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "";
+                    spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
+                    spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<BoxCollider2D>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
+                    spawnedNote.transform.position = new Vector3(spawnedNote.transform.position.x, spawnedNote.transform.position.y + (NOTE_SCALE * duration / 2), 0);
+                    spawnedNotes.Add(spawnedNote);
+                }
+                
             }
             else if (noteName == "C#4")
             {
-                GameObject spawnedNote = Instantiate(SharpNote, new Vector3(Cs4.transform.position.x, C4.transform.position.y + noteSharpHeight, Cs4.transform.position.z), Quaternion.identity);
-                //spawnedNote.transform.GetChild(0).localScale = new Vector3(spawnedNote.transform.GetChild(0).localScale.x, spawnedNote.transform.GetChild(0).localScale.y * duration, 0);
-                spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
-                spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
-                spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = isNoteLabelled ? spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "C#" : spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "";
-                spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
-                spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<BoxCollider2D>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
-                spawnedNote.transform.position = new Vector3(spawnedNote.transform.position.x, spawnedNote.transform.position.y + (NOTE_SCALE * duration / 2), 0);
-                spawnedNotes.Add(spawnedNote);
+                if (garbageNotesSharp.Count > 0)
+                {
+                    GameObject spawnedNote = garbageNotesSharp[0];
+                    garbageNotesSharp.RemoveAt(0);
+                    spawnedNote.transform.position = new Vector3(Cs4.transform.position.x, Cs4.transform.position.y + noteSharpHeight, Cs4.transform.position.z);
+                    spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
+                    spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
+                    spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = isNoteLabelled ? spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "C#" : spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "";
+                    spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
+                    spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<BoxCollider2D>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
+                    spawnedNote.transform.position = new Vector3(spawnedNote.transform.position.x, spawnedNote.transform.position.y + (NOTE_SCALE * duration / 2), 0);
+                    spawnedNotes.Add(spawnedNote);
+                }
+                else
+                {
+                    GameObject spawnedNote = Instantiate(SharpNote, new Vector3(Cs4.transform.position.x, Cs4.transform.position.y + noteSharpHeight, Cs4.transform.position.z), Quaternion.identity);
+                    //spawnedNote.transform.GetChild(0).localScale = new Vector3(spawnedNote.transform.GetChild(0).localScale.x, spawnedNote.transform.GetChild(0).localScale.y * duration, 0);
+                    spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
+                    spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
+                    spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = isNoteLabelled ? spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "C#" : spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "";
+                    spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
+                    spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<BoxCollider2D>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
+                    spawnedNote.transform.position = new Vector3(spawnedNote.transform.position.x, spawnedNote.transform.position.y + (NOTE_SCALE * duration / 2), 0);
+                    spawnedNotes.Add(spawnedNote);
+                }
+                
             }
             else if (noteName == "D4")
             {
-                GameObject spawnedNote = Instantiate(Note, new Vector3(D4.transform.position.x, D4.transform.position.y + noteHeight, D4.transform.position.z), Quaternion.identity);
-                //spawnedNote.transform.GetChild(0).localScale = new Vector3(spawnedNote.transform.GetChild(0).localScale.x, spawnedNote.transform.GetChild(0).localScale.y * duration, 0);
-                spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
-                spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
-                spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = isNoteLabelled ? spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "D" : spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "";
-                spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
-                spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<BoxCollider2D>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
-                spawnedNote.transform.position = new Vector3(spawnedNote.transform.position.x, spawnedNote.transform.position.y + (NOTE_SCALE * duration / 2), 0);
-                spawnedNotes.Add(spawnedNote);
+                if (garbageNotes.Count > 0)
+                {
+                    GameObject spawnedNote = garbageNotes[0];
+                    garbageNotes.RemoveAt(0);
+                    spawnedNote.transform.position = new Vector3(D4.transform.position.x, D4.transform.position.y + noteHeight, D4.transform.position.z);
+                    spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
+                    spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
+                    spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = isNoteLabelled ? spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "D" : spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "";
+                    spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
+                    spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<BoxCollider2D>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
+                    spawnedNote.transform.position = new Vector3(spawnedNote.transform.position.x, spawnedNote.transform.position.y + (NOTE_SCALE * duration / 2), 0);
+                    spawnedNotes.Add(spawnedNote);
+                }
+                else
+                {
+                    GameObject spawnedNote = Instantiate(Note, new Vector3(D4.transform.position.x, D4.transform.position.y + noteHeight, D4.transform.position.z), Quaternion.identity);
+                    //spawnedNote.transform.GetChild(0).localScale = new Vector3(spawnedNote.transform.GetChild(0).localScale.x, spawnedNote.transform.GetChild(0).localScale.y * duration, 0);
+                    spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
+                    spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
+                    spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = isNoteLabelled ? spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "D" : spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "";
+                    spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
+                    spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<BoxCollider2D>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
+                    spawnedNote.transform.position = new Vector3(spawnedNote.transform.position.x, spawnedNote.transform.position.y + (NOTE_SCALE * duration / 2), 0);
+                    spawnedNotes.Add(spawnedNote);
+                }
+                
             }
             else if (noteName == "D#4")
             {
-                GameObject spawnedNote = Instantiate(SharpNote, new Vector3(Ds4.transform.position.x, Ds4.transform.position.y + noteSharpHeight, Ds4.transform.position.z), Quaternion.identity);
-                //spawnedNote.transform.GetChild(0).localScale = new Vector3(spawnedNote.transform.GetChild(0).localScale.x, spawnedNote.transform.GetChild(0).localScale.y * duration, 0);
-                spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
-                spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
-                spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = isNoteLabelled ? spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "D#" : spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "";
-                spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
-                spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<BoxCollider2D>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
-                spawnedNote.transform.position = new Vector3(spawnedNote.transform.position.x, spawnedNote.transform.position.y + (NOTE_SCALE * duration / 2), 0);
-                spawnedNotes.Add(spawnedNote);
+                if (garbageNotesSharp.Count > 0)
+                {
+                    GameObject spawnedNote = garbageNotesSharp[0];
+                    garbageNotesSharp.RemoveAt(0);
+                    spawnedNote.transform.position = new Vector3(Ds4.transform.position.x, Ds4.transform.position.y + noteSharpHeight, Ds4.transform.position.z);
+                    spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
+                    spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
+                    spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = isNoteLabelled ? spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "D#" : spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "";
+                    spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
+                    spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<BoxCollider2D>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
+                    spawnedNote.transform.position = new Vector3(spawnedNote.transform.position.x, spawnedNote.transform.position.y + (NOTE_SCALE * duration / 2), 0);
+                    spawnedNotes.Add(spawnedNote);
+                }
+                else
+                {
+                    GameObject spawnedNote = Instantiate(SharpNote, new Vector3(Ds4.transform.position.x, Ds4.transform.position.y + noteSharpHeight, Ds4.transform.position.z), Quaternion.identity);
+                    //spawnedNote.transform.GetChild(0).localScale = new Vector3(spawnedNote.transform.GetChild(0).localScale.x, spawnedNote.transform.GetChild(0).localScale.y * duration, 0);
+                    spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
+                    spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
+                    spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = isNoteLabelled ? spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "D#" : spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "";
+                    spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
+                    spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<BoxCollider2D>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
+                    spawnedNote.transform.position = new Vector3(spawnedNote.transform.position.x, spawnedNote.transform.position.y + (NOTE_SCALE * duration / 2), 0);
+                    spawnedNotes.Add(spawnedNote);
+                }
+                
             }
             else if (noteName == "E4")
             {
-                GameObject spawnedNote = Instantiate(Note, new Vector3(E4.transform.position.x, E4.transform.position.y + noteHeight, E4.transform.position.z), Quaternion.identity);
-                //spawnedNote.transform.GetChild(0).localScale = new Vector3(spawnedNote.transform.GetChild(0).localScale.x, spawnedNote.transform.GetChild(0).localScale.y * duration, 0);
-                spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
-                spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
-                spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = isNoteLabelled ? spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "E" : spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "";
-                spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
-                spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<BoxCollider2D>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
-                spawnedNote.transform.position = new Vector3(spawnedNote.transform.position.x, spawnedNote.transform.position.y + (NOTE_SCALE * duration / 2), 0);
-                spawnedNotes.Add(spawnedNote);
+                if (garbageNotes.Count > 0)
+                {
+                    GameObject spawnedNote = garbageNotes[0];
+                    garbageNotes.RemoveAt(0);
+                    spawnedNote.transform.position = new Vector3(E4.transform.position.x, E4.transform.position.y + noteHeight, E4.transform.position.z);
+                    spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
+                    spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
+                    spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = isNoteLabelled ? spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "E" : spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "";
+                    spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
+                    spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<BoxCollider2D>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
+                    spawnedNote.transform.position = new Vector3(spawnedNote.transform.position.x, spawnedNote.transform.position.y + (NOTE_SCALE * duration / 2), 0);
+                    spawnedNotes.Add(spawnedNote);
+                }
+                else
+                {
+                    GameObject spawnedNote = Instantiate(Note, new Vector3(E4.transform.position.x, E4.transform.position.y + noteHeight, E4.transform.position.z), Quaternion.identity);
+                    //spawnedNote.transform.GetChild(0).localScale = new Vector3(spawnedNote.transform.GetChild(0).localScale.x, spawnedNote.transform.GetChild(0).localScale.y * duration, 0);
+                    spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
+                    spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
+                    spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = isNoteLabelled ? spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "E" : spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "";
+                    spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
+                    spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<BoxCollider2D>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
+                    spawnedNote.transform.position = new Vector3(spawnedNote.transform.position.x, spawnedNote.transform.position.y + (NOTE_SCALE * duration / 2), 0);
+                    spawnedNotes.Add(spawnedNote);
+                }
+                
             }
             else if (noteName == "F4")
             {
-                GameObject spawnedNote = Instantiate(Note, new Vector3(F4.transform.position.x, F4.transform.position.y + noteHeight, F4.transform.position.z), Quaternion.identity);
-                //spawnedNote.transform.GetChild(0).localScale = new Vector3(spawnedNote.transform.GetChild(0).localScale.x, spawnedNote.transform.GetChild(0).localScale.y * duration, 0);
-                spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
-                spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
-                spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = isNoteLabelled ? spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "F" : spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "";
-                spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
-                spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<BoxCollider2D>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
-                spawnedNote.transform.position = new Vector3(spawnedNote.transform.position.x, spawnedNote.transform.position.y + (NOTE_SCALE * duration / 2), 0);
-                spawnedNotes.Add(spawnedNote);
+                if (garbageNotes.Count > 0)
+                {
+                    GameObject spawnedNote = garbageNotes[0];
+                    garbageNotes.RemoveAt(0);
+                    spawnedNote.transform.position = new Vector3(F4.transform.position.x, F4.transform.position.y + noteHeight, F4.transform.position.z);
+                    spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
+                    spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
+                    spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = isNoteLabelled ? spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "F" : spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "";
+                    spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
+                    spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<BoxCollider2D>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
+                    spawnedNote.transform.position = new Vector3(spawnedNote.transform.position.x, spawnedNote.transform.position.y + (NOTE_SCALE * duration / 2), 0);
+                    spawnedNotes.Add(spawnedNote);
+                }
+                else
+                {
+                    GameObject spawnedNote = Instantiate(Note, new Vector3(F4.transform.position.x, F4.transform.position.y + noteHeight, F4.transform.position.z), Quaternion.identity);
+                    //spawnedNote.transform.GetChild(0).localScale = new Vector3(spawnedNote.transform.GetChild(0).localScale.x, spawnedNote.transform.GetChild(0).localScale.y * duration, 0);
+                    spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
+                    spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
+                    spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = isNoteLabelled ? spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "F" : spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "";
+                    spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
+                    spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<BoxCollider2D>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
+                    spawnedNote.transform.position = new Vector3(spawnedNote.transform.position.x, spawnedNote.transform.position.y + (NOTE_SCALE * duration / 2), 0);
+                    spawnedNotes.Add(spawnedNote);
+                }
+                
             }
             else if (noteName == "F#4")
             {
-                GameObject spawnedNote = Instantiate(SharpNote, new Vector3(Fs4.transform.position.x, Fs4.transform.position.y + noteSharpHeight, Fs4.transform.position.z), Quaternion.identity);
-                //spawnedNote.transform.GetChild(0).localScale = new Vector3(spawnedNote.transform.GetChild(0).localScale.x, spawnedNote.transform.GetChild(0).localScale.y * duration, 0);
-                spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
-                spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
-                spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = isNoteLabelled ? spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "F#" : spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "";
-                spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
-                spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<BoxCollider2D>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
-                spawnedNote.transform.position = new Vector3(spawnedNote.transform.position.x, spawnedNote.transform.position.y + (NOTE_SCALE * duration / 2), 0);
-                spawnedNotes.Add(spawnedNote);
+                if (garbageNotesSharp.Count > 0)
+                {
+                    GameObject spawnedNote = garbageNotesSharp[0];
+                    garbageNotesSharp.RemoveAt(0);
+                    spawnedNote.transform.position = new Vector3(Fs4.transform.position.x, Fs4.transform.position.y + noteSharpHeight, Fs4.transform.position.z);
+                    spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
+                    spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
+                    spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = isNoteLabelled ? spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "F#" : spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "";
+                    spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
+                    spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<BoxCollider2D>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
+                    spawnedNote.transform.position = new Vector3(spawnedNote.transform.position.x, spawnedNote.transform.position.y + (NOTE_SCALE * duration / 2), 0);
+                    spawnedNotes.Add(spawnedNote);
+                }
+                else
+                {
+                    GameObject spawnedNote = Instantiate(SharpNote, new Vector3(Fs4.transform.position.x, Fs4.transform.position.y + noteSharpHeight, Fs4.transform.position.z), Quaternion.identity);
+                    //spawnedNote.transform.GetChild(0).localScale = new Vector3(spawnedNote.transform.GetChild(0).localScale.x, spawnedNote.transform.GetChild(0).localScale.y * duration, 0);
+                    spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
+                    spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
+                    spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = isNoteLabelled ? spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "F#" : spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "";
+                    spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
+                    spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<BoxCollider2D>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
+                    spawnedNote.transform.position = new Vector3(spawnedNote.transform.position.x, spawnedNote.transform.position.y + (NOTE_SCALE * duration / 2), 0);
+                    spawnedNotes.Add(spawnedNote);
+                }
+                
             }
             else if (noteName == "G4")
             {
-                GameObject spawnedNote = Instantiate(Note, new Vector3(G4.transform.position.x, G4.transform.position.y + noteHeight, G4.transform.position.z), Quaternion.identity);
-                //spawnedNote.transform.GetChild(0).localScale = new Vector3(spawnedNote.transform.GetChild(0).localScale.x, spawnedNote.transform.GetChild(0).localScale.y * duration, 0);
-                spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
-                spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
-                spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = isNoteLabelled ? spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "G" : spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "";
-                spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
-                spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<BoxCollider2D>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
-                spawnedNote.transform.position = new Vector3(spawnedNote.transform.position.x, spawnedNote.transform.position.y + (NOTE_SCALE * duration / 2), 0);
-                spawnedNotes.Add(spawnedNote);
+                if (garbageNotes.Count > 0)
+                {
+                    GameObject spawnedNote = garbageNotes[0];
+                    garbageNotes.RemoveAt(0);
+                    spawnedNote.transform.position = new Vector3(G4.transform.position.x, G4.transform.position.y + noteHeight, G4.transform.position.z);
+                    spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
+                    spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
+                    spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = isNoteLabelled ? spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "G" : spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "";
+                    spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
+                    spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<BoxCollider2D>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
+                    spawnedNote.transform.position = new Vector3(spawnedNote.transform.position.x, spawnedNote.transform.position.y + (NOTE_SCALE * duration / 2), 0);
+                    spawnedNotes.Add(spawnedNote);
+                }
+                else
+                {
+                    GameObject spawnedNote = Instantiate(Note, new Vector3(G4.transform.position.x, G4.transform.position.y + noteHeight, G4.transform.position.z), Quaternion.identity);
+                    //spawnedNote.transform.GetChild(0).localScale = new Vector3(spawnedNote.transform.GetChild(0).localScale.x, spawnedNote.transform.GetChild(0).localScale.y * duration, 0);
+                    spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
+                    spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
+                    spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = isNoteLabelled ? spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "G" : spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "";
+                    spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
+                    spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<BoxCollider2D>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
+                    spawnedNote.transform.position = new Vector3(spawnedNote.transform.position.x, spawnedNote.transform.position.y + (NOTE_SCALE * duration / 2), 0);
+                    spawnedNotes.Add(spawnedNote);
+                }
+                
             }
             else if (noteName == "G#4")
             {
-                GameObject spawnedNote = Instantiate(SharpNote, new Vector3(Gs4.transform.position.x, Gs4.transform.position.y + noteSharpHeight, Gs4.transform.position.z), Quaternion.identity);
-                //spawnedNote.transform.GetChild(0).localScale = new Vector3(spawnedNote.transform.GetChild(0).localScale.x, spawnedNote.transform.GetChild(0).localScale.y * duration, 0);
-                spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
-                spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
-                spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = isNoteLabelled ? spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "G#" : spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "";
-                spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
-                spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<BoxCollider2D>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
-                spawnedNote.transform.position = new Vector3(spawnedNote.transform.position.x, spawnedNote.transform.position.y + (NOTE_SCALE * duration / 2), 0);
-                spawnedNotes.Add(spawnedNote);
+                if (garbageNotesSharp.Count > 0)
+                {
+                    GameObject spawnedNote = garbageNotesSharp[0];
+                    garbageNotesSharp.RemoveAt(0);
+                    spawnedNote.transform.position = new Vector3(Gs4.transform.position.x, Gs4.transform.position.y + noteSharpHeight, Gs4.transform.position.z);
+                    spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
+                    spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
+                    spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = isNoteLabelled ? spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "G#" : spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "";
+                    spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
+                    spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<BoxCollider2D>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
+                    spawnedNote.transform.position = new Vector3(spawnedNote.transform.position.x, spawnedNote.transform.position.y + (NOTE_SCALE * duration / 2), 0);
+                    spawnedNotes.Add(spawnedNote);
+                }
+                else
+                {
+                    GameObject spawnedNote = Instantiate(SharpNote, new Vector3(Gs4.transform.position.x, Gs4.transform.position.y + noteSharpHeight, Gs4.transform.position.z), Quaternion.identity);
+                    //spawnedNote.transform.GetChild(0).localScale = new Vector3(spawnedNote.transform.GetChild(0).localScale.x, spawnedNote.transform.GetChild(0).localScale.y * duration, 0);
+                    spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
+                    spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
+                    spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = isNoteLabelled ? spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "G#" : spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "";
+                    spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
+                    spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<BoxCollider2D>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
+                    spawnedNote.transform.position = new Vector3(spawnedNote.transform.position.x, spawnedNote.transform.position.y + (NOTE_SCALE * duration / 2), 0);
+                    spawnedNotes.Add(spawnedNote);
+                }
+                
             }
             else if (noteName == "A4")
             {
-                GameObject spawnedNote = Instantiate(Note, new Vector3(A4.transform.position.x, A4.transform.position.y + noteHeight, A4.transform.position.z), Quaternion.identity);
-                //spawnedNote.transform.GetChild(0).localScale = new Vector3(spawnedNote.transform.GetChild(0).localScale.x, spawnedNote.transform.GetChild(0).localScale.y * duration, 0);
-                spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
-                spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
-                spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = isNoteLabelled ? spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "A" : spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "";
-                spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
-                spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<BoxCollider2D>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
-                spawnedNote.transform.position = new Vector3(spawnedNote.transform.position.x, spawnedNote.transform.position.y + (NOTE_SCALE * duration / 2), 0);
-                spawnedNotes.Add(spawnedNote);
+                if (garbageNotes.Count > 0)
+                {
+                    GameObject spawnedNote = garbageNotes[0];
+                    garbageNotes.RemoveAt(0);
+                    spawnedNote.transform.position = new Vector3(A4.transform.position.x, A4.transform.position.y + noteHeight, A4.transform.position.z);
+                    spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
+                    spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
+                    spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = isNoteLabelled ? spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "A" : spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "";
+                    spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
+                    spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<BoxCollider2D>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
+                    spawnedNote.transform.position = new Vector3(spawnedNote.transform.position.x, spawnedNote.transform.position.y + (NOTE_SCALE * duration / 2), 0);
+                    spawnedNotes.Add(spawnedNote);
+                }
+                else
+                {
+                    GameObject spawnedNote = Instantiate(Note, new Vector3(A4.transform.position.x, A4.transform.position.y + noteHeight, A4.transform.position.z), Quaternion.identity);
+                    //spawnedNote.transform.GetChild(0).localScale = new Vector3(spawnedNote.transform.GetChild(0).localScale.x, spawnedNote.transform.GetChild(0).localScale.y * duration, 0);
+                    spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
+                    spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
+                    spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = isNoteLabelled ? spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "A" : spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "";
+                    spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
+                    spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<BoxCollider2D>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
+                    spawnedNote.transform.position = new Vector3(spawnedNote.transform.position.x, spawnedNote.transform.position.y + (NOTE_SCALE * duration / 2), 0);
+                    spawnedNotes.Add(spawnedNote);
+                }
+                
             }
             else if (noteName == "A#4")
             {
-                GameObject spawnedNote = Instantiate(SharpNote, new Vector3(As4.transform.position.x, As4.transform.position.y + noteSharpHeight, As4.transform.position.z), Quaternion.identity);
-                //spawnedNote.transform.GetChild(0).localScale = new Vector3(spawnedNote.transform.GetChild(0).localScale.x, spawnedNote.transform.GetChild(0).localScale.y * duration, 0);
-                spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
-                spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
-                spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = isNoteLabelled ? spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "A#" : spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "";
-                spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
-                spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<BoxCollider2D>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
-                spawnedNote.transform.position = new Vector3(spawnedNote.transform.position.x, spawnedNote.transform.position.y + (NOTE_SCALE * duration / 2), 0);
-                spawnedNotes.Add(spawnedNote);
+                if (garbageNotesSharp.Count > 0)
+                {
+                    GameObject spawnedNote = garbageNotesSharp[0];
+                    garbageNotesSharp.RemoveAt(0);
+                    spawnedNote.transform.position = new Vector3(As4.transform.position.x, As4.transform.position.y + noteSharpHeight, As4.transform.position.z);
+                    spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
+                    spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
+                    spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = isNoteLabelled ? spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "A#" : spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "";
+                    spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
+                    spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<BoxCollider2D>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
+                    spawnedNote.transform.position = new Vector3(spawnedNote.transform.position.x, spawnedNote.transform.position.y + (NOTE_SCALE * duration / 2), 0);
+                    spawnedNotes.Add(spawnedNote);
+                }
+                else
+                {
+                    GameObject spawnedNote = Instantiate(SharpNote, new Vector3(As4.transform.position.x, As4.transform.position.y + noteSharpHeight, As4.transform.position.z), Quaternion.identity);
+                    //spawnedNote.transform.GetChild(0).localScale = new Vector3(spawnedNote.transform.GetChild(0).localScale.x, spawnedNote.transform.GetChild(0).localScale.y * duration, 0);
+                    spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
+                    spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
+                    spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = isNoteLabelled ? spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "A#" : spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "";
+                    spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
+                    spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<BoxCollider2D>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
+                    spawnedNote.transform.position = new Vector3(spawnedNote.transform.position.x, spawnedNote.transform.position.y + (NOTE_SCALE * duration / 2), 0);
+                    spawnedNotes.Add(spawnedNote);
+                }
+                
             }
             else if (noteName == "B4")
             {
-                GameObject spawnedNote = Instantiate(Note, new Vector3(B4.transform.position.x, B4.transform.position.y + noteHeight, B4.transform.position.z), Quaternion.identity);
-                //spawnedNote.transform.GetChild(0).localScale = new Vector3(spawnedNote.transform.GetChild(0).localScale.x, spawnedNote.transform.GetChild(0).localScale.y * duration, 0);
-                spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
-                spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
-                spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = isNoteLabelled ? spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "B" : spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "";
-                spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
-                spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<BoxCollider2D>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
-                spawnedNote.transform.position = new Vector3(spawnedNote.transform.position.x, spawnedNote.transform.position.y + (NOTE_SCALE * duration / 2), 0);
-                spawnedNotes.Add(spawnedNote);
+                if (garbageNotes.Count > 0)
+                {
+                    GameObject spawnedNote = garbageNotes[0];
+                    garbageNotes.RemoveAt(0);
+                    spawnedNote.transform.position = new Vector3(B4.transform.position.x, B4.transform.position.y + noteHeight, B4.transform.position.z);
+                    spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
+                    spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
+                    spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = isNoteLabelled ? spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "B" : spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "";
+                    spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
+                    spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<BoxCollider2D>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
+                    spawnedNote.transform.position = new Vector3(spawnedNote.transform.position.x, spawnedNote.transform.position.y + (NOTE_SCALE * duration / 2), 0);
+                    spawnedNotes.Add(spawnedNote);
+                }
+                else
+                {
+                    GameObject spawnedNote = Instantiate(Note, new Vector3(B4.transform.position.x, B4.transform.position.y + noteHeight, B4.transform.position.z), Quaternion.identity);
+                    //spawnedNote.transform.GetChild(0).localScale = new Vector3(spawnedNote.transform.GetChild(0).localScale.x, spawnedNote.transform.GetChild(0).localScale.y * duration, 0);
+                    spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
+                    spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
+                    spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = isNoteLabelled ? spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "B" : spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "";
+                    spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
+                    spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<BoxCollider2D>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
+                    spawnedNote.transform.position = new Vector3(spawnedNote.transform.position.x, spawnedNote.transform.position.y + (NOTE_SCALE * duration / 2), 0);
+                    spawnedNotes.Add(spawnedNote);
+                }
+                
             }
             else if (noteName == "C5")
             {
-                GameObject spawnedNote = Instantiate(Note, new Vector3(C5.transform.position.x, C5.transform.position.y + noteHeight, C5.transform.position.z), Quaternion.identity);
-                //spawnedNote.transform.GetChild(0).localScale = new Vector3(spawnedNote.transform.GetChild(0).localScale.x, spawnedNote.transform.GetChild(0).localScale.y * duration, 0);
-                spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
-                spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
-                spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = isNoteLabelled ? spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "C" : spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "";
-                spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
-                spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<BoxCollider2D>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
-                spawnedNote.transform.position = new Vector3(spawnedNote.transform.position.x, spawnedNote.transform.position.y + (NOTE_SCALE * duration / 2), 0);
-                spawnedNotes.Add(spawnedNote);
+                if (garbageNotes.Count > 0)
+                {
+                    GameObject spawnedNote = garbageNotes[0];
+                    garbageNotes.RemoveAt(0);
+                    spawnedNote.transform.position = new Vector3(C5.transform.position.x, C5.transform.position.y + noteHeight, C5.transform.position.z);
+                    spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
+                    spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
+                    spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = isNoteLabelled ? spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "C" : spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "";
+                    spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
+                    spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<BoxCollider2D>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
+                    spawnedNote.transform.position = new Vector3(spawnedNote.transform.position.x, spawnedNote.transform.position.y + (NOTE_SCALE * duration / 2), 0);
+                    spawnedNotes.Add(spawnedNote);
+                }
+                else
+                {
+                    GameObject spawnedNote = Instantiate(Note, new Vector3(C5.transform.position.x, C5.transform.position.y + noteHeight, C5.transform.position.z), Quaternion.identity);
+                    //spawnedNote.transform.GetChild(0).localScale = new Vector3(spawnedNote.transform.GetChild(0).localScale.x, spawnedNote.transform.GetChild(0).localScale.y * duration, 0);
+                    spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
+                    spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
+                    spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = isNoteLabelled ? spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "C" : spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "";
+                    spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
+                    spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<BoxCollider2D>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
+                    spawnedNote.transform.position = new Vector3(spawnedNote.transform.position.x, spawnedNote.transform.position.y + (NOTE_SCALE * duration / 2), 0);
+                    spawnedNotes.Add(spawnedNote);
+                }
+                
             }
             else if (noteName == "C#5")
             {
-                GameObject spawnedNote = Instantiate(SharpNote, new Vector3(Cs5.transform.position.x, Cs5.transform.position.y + noteSharpHeight, Cs5.transform.position.z), Quaternion.identity);
-                //spawnedNote.transform.GetChild(0).localScale = new Vector3(spawnedNote.transform.GetChild(0).localScale.x, spawnedNote.transform.GetChild(0).localScale.y * duration, 0);
-                spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
-                spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
-                spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = isNoteLabelled ? spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "C#" : spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "";
-                spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
-                spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<BoxCollider2D>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
-                spawnedNote.transform.position = new Vector3(spawnedNote.transform.position.x, spawnedNote.transform.position.y + (NOTE_SCALE * duration / 2), 0);
-                spawnedNotes.Add(spawnedNote);
+                if (garbageNotesSharp.Count > 0)
+                {
+                    GameObject spawnedNote = garbageNotesSharp[0];
+                    garbageNotesSharp.RemoveAt(0);
+                    spawnedNote.transform.position = new Vector3(Cs5.transform.position.x, Cs5.transform.position.y + noteSharpHeight, Cs5.transform.position.z);
+                    spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
+                    spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
+                    spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = isNoteLabelled ? spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "C#" : spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "";
+                    spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
+                    spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<BoxCollider2D>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
+                    spawnedNote.transform.position = new Vector3(spawnedNote.transform.position.x, spawnedNote.transform.position.y + (NOTE_SCALE * duration / 2), 0);
+                    spawnedNotes.Add(spawnedNote);
+                }
+                else
+                {
+                    GameObject spawnedNote = Instantiate(SharpNote, new Vector3(Cs5.transform.position.x, Cs5.transform.position.y + noteSharpHeight, Cs5.transform.position.z), Quaternion.identity);
+                    //spawnedNote.transform.GetChild(0).localScale = new Vector3(spawnedNote.transform.GetChild(0).localScale.x, spawnedNote.transform.GetChild(0).localScale.y * duration, 0);
+                    spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
+                    spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
+                    spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = isNoteLabelled ? spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "C#" : spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "";
+                    spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
+                    spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<BoxCollider2D>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
+                    spawnedNote.transform.position = new Vector3(spawnedNote.transform.position.x, spawnedNote.transform.position.y + (NOTE_SCALE * duration / 2), 0);
+                    spawnedNotes.Add(spawnedNote);
+                }
+                
             }
             else if (noteName == "D5")
             {
-                GameObject spawnedNote = Instantiate(Note, new Vector3(D5.transform.position.x, D5.transform.position.y + noteHeight, D5.transform.position.z), Quaternion.identity);
-                //spawnedNote.transform.GetChild(0).localScale = new Vector3(spawnedNote.transform.GetChild(0).localScale.x, spawnedNote.transform.GetChild(0).localScale.y * duration, 0);
-                spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
-                spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
-                spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = isNoteLabelled ? spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "D" : spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "";
-                spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
-                spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<BoxCollider2D>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
-                spawnedNote.transform.position = new Vector3(spawnedNote.transform.position.x, spawnedNote.transform.position.y + (NOTE_SCALE * duration / 2), 0);
-                spawnedNotes.Add(spawnedNote);
+                if (garbageNotes.Count > 0)
+                {
+                    GameObject spawnedNote = garbageNotes[0];
+                    garbageNotes.RemoveAt(0);
+                    spawnedNote.transform.position = new Vector3(D5.transform.position.x, D5.transform.position.y + noteHeight, D5.transform.position.z);
+                    spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
+                    spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
+                    spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = isNoteLabelled ? spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "D" : spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "";
+                    spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
+                    spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<BoxCollider2D>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
+                    spawnedNote.transform.position = new Vector3(spawnedNote.transform.position.x, spawnedNote.transform.position.y + (NOTE_SCALE * duration / 2), 0);
+                    spawnedNotes.Add(spawnedNote);
+                }
+                else
+                {
+                    GameObject spawnedNote = Instantiate(Note, new Vector3(D5.transform.position.x, D5.transform.position.y + noteHeight, D5.transform.position.z), Quaternion.identity);
+                    //spawnedNote.transform.GetChild(0).localScale = new Vector3(spawnedNote.transform.GetChild(0).localScale.x, spawnedNote.transform.GetChild(0).localScale.y * duration, 0);
+                    spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
+                    spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
+                    spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = isNoteLabelled ? spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "D" : spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "";
+                    spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
+                    spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<BoxCollider2D>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
+                    spawnedNote.transform.position = new Vector3(spawnedNote.transform.position.x, spawnedNote.transform.position.y + (NOTE_SCALE * duration / 2), 0);
+                    spawnedNotes.Add(spawnedNote);
+                }
+                
             }
             else if (noteName == "D#5")
             {
-                GameObject spawnedNote = Instantiate(SharpNote, new Vector3(Ds5.transform.position.x, Ds5.transform.position.y + noteSharpHeight, Ds5.transform.position.z), Quaternion.identity);
-                //spawnedNote.transform.GetChild(0).localScale = new Vector3(spawnedNote.transform.GetChild(0).localScale.x, spawnedNote.transform.GetChild(0).localScale.y * duration, 0);
-                spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
-                spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
-                spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = isNoteLabelled ? spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "D#" : spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "";
-                spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
-                spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<BoxCollider2D>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
-                spawnedNote.transform.position = new Vector3(spawnedNote.transform.position.x, spawnedNote.transform.position.y + (NOTE_SCALE * duration / 2), 0);
-                spawnedNotes.Add(spawnedNote);
+                if (garbageNotesSharp.Count > 0)
+                {
+                    GameObject spawnedNote = garbageNotesSharp[0];
+                    garbageNotesSharp.RemoveAt(0);
+                    spawnedNote.transform.position = new Vector3(Ds5.transform.position.x, Ds5.transform.position.y + noteSharpHeight, Ds5.transform.position.z);
+                    spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
+                    spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
+                    spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = isNoteLabelled ? spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "D#" : spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "";
+                    spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
+                    spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<BoxCollider2D>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
+                    spawnedNote.transform.position = new Vector3(spawnedNote.transform.position.x, spawnedNote.transform.position.y + (NOTE_SCALE * duration / 2), 0);
+                    spawnedNotes.Add(spawnedNote);
+                }
+                else
+                {
+                    GameObject spawnedNote = Instantiate(SharpNote, new Vector3(Ds5.transform.position.x, Ds5.transform.position.y + noteSharpHeight, Ds5.transform.position.z), Quaternion.identity);
+                    //spawnedNote.transform.GetChild(0).localScale = new Vector3(spawnedNote.transform.GetChild(0).localScale.x, spawnedNote.transform.GetChild(0).localScale.y * duration, 0);
+                    spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
+                    spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
+                    spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = isNoteLabelled ? spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "D#" : spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "";
+                    spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
+                    spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<BoxCollider2D>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
+                    spawnedNote.transform.position = new Vector3(spawnedNote.transform.position.x, spawnedNote.transform.position.y + (NOTE_SCALE * duration / 2), 0);
+                    spawnedNotes.Add(spawnedNote);
+                }
+                
             }
             else if (noteName == "E5")
             {
-                GameObject spawnedNote = Instantiate(Note, new Vector3(E5.transform.position.x, E5.transform.position.y + noteHeight, E5.transform.position.z), Quaternion.identity);
-                //spawnedNote.transform.GetChild(0).localScale = new Vector3(spawnedNote.transform.GetChild(0).localScale.x, spawnedNote.transform.GetChild(0).localScale.y * duration, 0);
-                spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
-                spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
-                spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = isNoteLabelled ? spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "E" : spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "";
-                spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
-                spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<BoxCollider2D>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
-                spawnedNote.transform.position = new Vector3(spawnedNote.transform.position.x, spawnedNote.transform.position.y + (NOTE_SCALE * duration / 2), 0);
-                spawnedNotes.Add(spawnedNote);
+                if (garbageNotes.Count > 0)
+                {
+                    GameObject spawnedNote = garbageNotes[0];
+                    garbageNotes.RemoveAt(0);
+                    spawnedNote.transform.position = new Vector3(E5.transform.position.x, E5.transform.position.y + noteHeight, E5.transform.position.z);
+                    spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
+                    spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
+                    spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = isNoteLabelled ? spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "E" : spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "";
+                    spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
+                    spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<BoxCollider2D>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
+                    spawnedNote.transform.position = new Vector3(spawnedNote.transform.position.x, spawnedNote.transform.position.y + (NOTE_SCALE * duration / 2), 0);
+                    spawnedNotes.Add(spawnedNote);
+                }
+                else
+                {
+                    GameObject spawnedNote = Instantiate(Note, new Vector3(E5.transform.position.x, E5.transform.position.y + noteHeight, E5.transform.position.z), Quaternion.identity);
+                    //spawnedNote.transform.GetChild(0).localScale = new Vector3(spawnedNote.transform.GetChild(0).localScale.x, spawnedNote.transform.GetChild(0).localScale.y * duration, 0);
+                    spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
+                    spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
+                    spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = isNoteLabelled ? spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "E" : spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "";
+                    spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
+                    spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<BoxCollider2D>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
+                    spawnedNote.transform.position = new Vector3(spawnedNote.transform.position.x, spawnedNote.transform.position.y + (NOTE_SCALE * duration / 2), 0);
+                    spawnedNotes.Add(spawnedNote);
+                }
+                
             }
             else if (noteName == "F5")
             {
-                GameObject spawnedNote = Instantiate(Note, new Vector3(F5.transform.position.x, F5.transform.position.y + noteHeight, F5.transform.position.z), Quaternion.identity);
-                //spawnedNote.transform.GetChild(0).localScale = new Vector3(spawnedNote.transform.GetChild(0).localScale.x, spawnedNote.transform.GetChild(0).localScale.y * duration, 0);
-                spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
-                spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
-                spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = isNoteLabelled ? spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "F" : spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "";
-                spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
-                spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<BoxCollider2D>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
-                spawnedNote.transform.position = new Vector3(spawnedNote.transform.position.x, spawnedNote.transform.position.y + (NOTE_SCALE * duration / 2), 0);
-                spawnedNotes.Add(spawnedNote);
+                if (garbageNotes.Count > 0)
+                {
+                    GameObject spawnedNote = garbageNotes[0];
+                    garbageNotes.RemoveAt(0);
+                    spawnedNote.transform.position = new Vector3(F5.transform.position.x, F5.transform.position.y + noteHeight, F5.transform.position.z);
+                    spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
+                    spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
+                    spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = isNoteLabelled ? spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "F" : spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "";
+                    spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
+                    spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<BoxCollider2D>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
+                    spawnedNote.transform.position = new Vector3(spawnedNote.transform.position.x, spawnedNote.transform.position.y + (NOTE_SCALE * duration / 2), 0);
+                    spawnedNotes.Add(spawnedNote);
+                }
+                else
+                {
+                    GameObject spawnedNote = Instantiate(Note, new Vector3(F5.transform.position.x, F5.transform.position.y + noteHeight, F5.transform.position.z), Quaternion.identity);
+                    //spawnedNote.transform.GetChild(0).localScale = new Vector3(spawnedNote.transform.GetChild(0).localScale.x, spawnedNote.transform.GetChild(0).localScale.y * duration, 0);
+                    spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
+                    spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
+                    spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = isNoteLabelled ? spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "F" : spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "";
+                    spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
+                    spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<BoxCollider2D>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
+                    spawnedNote.transform.position = new Vector3(spawnedNote.transform.position.x, spawnedNote.transform.position.y + (NOTE_SCALE * duration / 2), 0);
+                    spawnedNotes.Add(spawnedNote);
+                }
+                
             }
             else if (noteName == "F#5")
             {
-                GameObject spawnedNote = Instantiate(SharpNote, new Vector3(Fs5.transform.position.x, Fs5.transform.position.y + noteSharpHeight, Fs5.transform.position.z), Quaternion.identity);
-                //spawnedNote.transform.GetChild(0).localScale = new Vector3(spawnedNote.transform.GetChild(0).localScale.x, spawnedNote.transform.GetChild(0).localScale.y * duration, 0);
-                spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
-                spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
-                spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = isNoteLabelled ? spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "F#" : spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "";
-                spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
-                spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<BoxCollider2D>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
-                spawnedNote.transform.position = new Vector3(spawnedNote.transform.position.x, spawnedNote.transform.position.y + (NOTE_SCALE * duration / 2), 0);
-                spawnedNotes.Add(spawnedNote);
+                if (garbageNotesSharp.Count > 0)
+                {
+                    GameObject spawnedNote = garbageNotesSharp[0];
+                    garbageNotesSharp.RemoveAt(0);
+                    spawnedNote.transform.position = new Vector3(Fs5.transform.position.x, Fs5.transform.position.y + noteSharpHeight, Fs5.transform.position.z);
+                    spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
+                    spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
+                    spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = isNoteLabelled ? spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "F#" : spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "";
+                    spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
+                    spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<BoxCollider2D>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
+                    spawnedNote.transform.position = new Vector3(spawnedNote.transform.position.x, spawnedNote.transform.position.y + (NOTE_SCALE * duration / 2), 0);
+                    spawnedNotes.Add(spawnedNote);
+                }
+                else
+                {
+                    GameObject spawnedNote = Instantiate(SharpNote, new Vector3(Fs5.transform.position.x, Fs5.transform.position.y + noteSharpHeight, Fs5.transform.position.z), Quaternion.identity);
+                    //spawnedNote.transform.GetChild(0).localScale = new Vector3(spawnedNote.transform.GetChild(0).localScale.x, spawnedNote.transform.GetChild(0).localScale.y * duration, 0);
+                    spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
+                    spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
+                    spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = isNoteLabelled ? spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "F#" : spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "";
+                    spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
+                    spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<BoxCollider2D>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
+                    spawnedNote.transform.position = new Vector3(spawnedNote.transform.position.x, spawnedNote.transform.position.y + (NOTE_SCALE * duration / 2), 0);
+                    spawnedNotes.Add(spawnedNote);
+                }
+                
             }
             else if (noteName == "G5")
             {
-                GameObject spawnedNote = Instantiate(Note, new Vector3(G5.transform.position.x, G5.transform.position.y + noteHeight, G5.transform.position.z), Quaternion.identity);
-                //spawnedNote.transform.GetChild(0).localScale = new Vector3(spawnedNote.transform.GetChild(0).localScale.x, spawnedNote.transform.GetChild(0).localScale.y * duration, 0);
-                spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
-                spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
-                spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = isNoteLabelled ? spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "G" : spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "";
-                spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
-                spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<BoxCollider2D>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
-                spawnedNote.transform.position = new Vector3(spawnedNote.transform.position.x, spawnedNote.transform.position.y + (NOTE_SCALE * duration / 2), 0);
-                spawnedNotes.Add(spawnedNote);
+                if (garbageNotes.Count > 0)
+                {
+                    GameObject spawnedNote = garbageNotes[0];
+                    garbageNotes.RemoveAt(0);
+                    spawnedNote.transform.position = new Vector3(G5.transform.position.x, G5.transform.position.y + noteHeight, G5.transform.position.z);
+                    spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
+                    spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
+                    spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = isNoteLabelled ? spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "G" : spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "";
+                    spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
+                    spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<BoxCollider2D>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
+                    spawnedNote.transform.position = new Vector3(spawnedNote.transform.position.x, spawnedNote.transform.position.y + (NOTE_SCALE * duration / 2), 0);
+                    spawnedNotes.Add(spawnedNote);
+                }
+                else
+                {
+                    GameObject spawnedNote = Instantiate(Note, new Vector3(G5.transform.position.x, G5.transform.position.y + noteHeight, G5.transform.position.z), Quaternion.identity);
+                    //spawnedNote.transform.GetChild(0).localScale = new Vector3(spawnedNote.transform.GetChild(0).localScale.x, spawnedNote.transform.GetChild(0).localScale.y * duration, 0);
+                    spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
+                    spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
+                    spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = isNoteLabelled ? spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "G" : spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "";
+                    spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
+                    spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<BoxCollider2D>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
+                    spawnedNote.transform.position = new Vector3(spawnedNote.transform.position.x, spawnedNote.transform.position.y + (NOTE_SCALE * duration / 2), 0);
+                    spawnedNotes.Add(spawnedNote);
+                }
+                
             }
             else if (noteName == "G#5")
             {
-                GameObject spawnedNote = Instantiate(SharpNote, new Vector3(Gs5.transform.position.x, Gs5.transform.position.y + noteSharpHeight, Gs5.transform.position.z), Quaternion.identity);
-                //spawnedNote.transform.GetChild(0).localScale = new Vector3(spawnedNote.transform.GetChild(0).localScale.x, spawnedNote.transform.GetChild(0).localScale.y * duration, 0);
-                spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
-                spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
-                spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = isNoteLabelled ? spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "G#" : spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "";
-                spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
-                spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<BoxCollider2D>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
-                spawnedNote.transform.position = new Vector3(spawnedNote.transform.position.x, spawnedNote.transform.position.y + (NOTE_SCALE * duration / 2), 0);
-                spawnedNotes.Add(spawnedNote);
+                if (garbageNotesSharp.Count > 0)
+                {
+                    GameObject spawnedNote = garbageNotesSharp[0];
+                    garbageNotesSharp.RemoveAt(0);
+                    spawnedNote.transform.position = new Vector3(Gs5.transform.position.x, Gs5.transform.position.y + noteSharpHeight, Gs5.transform.position.z);
+                    spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
+                    spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
+                    spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = isNoteLabelled ? spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "G#" : spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "";
+                    spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
+                    spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<BoxCollider2D>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
+                    spawnedNote.transform.position = new Vector3(spawnedNote.transform.position.x, spawnedNote.transform.position.y + (NOTE_SCALE * duration / 2), 0);
+                    spawnedNotes.Add(spawnedNote);
+                }
+                else
+                {
+                    GameObject spawnedNote = Instantiate(SharpNote, new Vector3(Gs5.transform.position.x, Gs5.transform.position.y + noteSharpHeight, Gs5.transform.position.z), Quaternion.identity);
+                    //spawnedNote.transform.GetChild(0).localScale = new Vector3(spawnedNote.transform.GetChild(0).localScale.x, spawnedNote.transform.GetChild(0).localScale.y * duration, 0);
+                    spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
+                    spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
+                    spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = isNoteLabelled ? spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "G#" : spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "";
+                    spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
+                    spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<BoxCollider2D>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
+                    spawnedNote.transform.position = new Vector3(spawnedNote.transform.position.x, spawnedNote.transform.position.y + (NOTE_SCALE * duration / 2), 0);
+                    spawnedNotes.Add(spawnedNote);
+                }
+                
             }
             else if (noteName == "A5")
             {
-                GameObject spawnedNote = Instantiate(Note, new Vector3(A5.transform.position.x, A5.transform.position.y + noteHeight, A5.transform.position.z), Quaternion.identity);
-                //spawnedNote.transform.GetChild(0).localScale = new Vector3(spawnedNote.transform.GetChild(0).localScale.x, spawnedNote.transform.GetChild(0).localScale.y * duration, 0);
-                spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
-                spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
-                spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = isNoteLabelled ? spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "A" : spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "";
-                spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
-                spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<BoxCollider2D>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
-                spawnedNote.transform.position = new Vector3(spawnedNote.transform.position.x, spawnedNote.transform.position.y + (NOTE_SCALE * duration / 2), 0);
-                spawnedNotes.Add(spawnedNote);
+                if (garbageNotes.Count > 0)
+                {
+                    GameObject spawnedNote = garbageNotes[0];
+                    garbageNotes.RemoveAt(0);
+                    spawnedNote.transform.position = new Vector3(A5.transform.position.x, A5.transform.position.y + noteHeight, A5.transform.position.z);
+                    spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
+                    spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
+                    spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = isNoteLabelled ? spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "A" : spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "";
+                    spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
+                    spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<BoxCollider2D>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
+                    spawnedNote.transform.position = new Vector3(spawnedNote.transform.position.x, spawnedNote.transform.position.y + (NOTE_SCALE * duration / 2), 0);
+                    spawnedNotes.Add(spawnedNote);
+                }
+                else
+                {
+                    GameObject spawnedNote = Instantiate(Note, new Vector3(A5.transform.position.x, A5.transform.position.y + noteHeight, A5.transform.position.z), Quaternion.identity);
+                    //spawnedNote.transform.GetChild(0).localScale = new Vector3(spawnedNote.transform.GetChild(0).localScale.x, spawnedNote.transform.GetChild(0).localScale.y * duration, 0);
+                    spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
+                    spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
+                    spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = isNoteLabelled ? spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "A" : spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "";
+                    spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
+                    spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<BoxCollider2D>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
+                    spawnedNote.transform.position = new Vector3(spawnedNote.transform.position.x, spawnedNote.transform.position.y + (NOTE_SCALE * duration / 2), 0);
+                    spawnedNotes.Add(spawnedNote);
+                }
+                
             }
             else if (noteName == "A#5")
             {
-                GameObject spawnedNote = Instantiate(SharpNote, new Vector3(As5.transform.position.x, As5.transform.position.y + noteSharpHeight, As5.transform.position.z), Quaternion.identity);
-                //spawnedNote.transform.GetChild(0).localScale = new Vector3(spawnedNote.transform.GetChild(0).localScale.x, spawnedNote.transform.GetChild(0).localScale.y * duration, 0);
-                spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
-                spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
-                spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = isNoteLabelled ? spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "A#" : spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "";
-                spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
-                spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<BoxCollider2D>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
-                spawnedNote.transform.position = new Vector3(spawnedNote.transform.position.x, spawnedNote.transform.position.y + (NOTE_SCALE * duration / 2), 0);
-                spawnedNotes.Add(spawnedNote);
+                if (garbageNotesSharp.Count > 0)
+                {
+                    GameObject spawnedNote = garbageNotesSharp[0];
+                    garbageNotesSharp.RemoveAt(0);
+                    spawnedNote.transform.position = new Vector3(As5.transform.position.x, As5.transform.position.y + noteSharpHeight, As5.transform.position.z);
+                    spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
+                    spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
+                    spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = isNoteLabelled ? spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "A#" : spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "";
+                    spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
+                    spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<BoxCollider2D>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
+                    spawnedNote.transform.position = new Vector3(spawnedNote.transform.position.x, spawnedNote.transform.position.y + (NOTE_SCALE * duration / 2), 0);
+                    spawnedNotes.Add(spawnedNote);
+                }
+                else
+                {
+                    GameObject spawnedNote = Instantiate(SharpNote, new Vector3(As5.transform.position.x, As5.transform.position.y + noteSharpHeight, As5.transform.position.z), Quaternion.identity);
+                    //spawnedNote.transform.GetChild(0).localScale = new Vector3(spawnedNote.transform.GetChild(0).localScale.x, spawnedNote.transform.GetChild(0).localScale.y * duration, 0);
+                    spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
+                    spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
+                    spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = isNoteLabelled ? spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "A#" : spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "";
+                    spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
+                    spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<BoxCollider2D>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
+                    spawnedNote.transform.position = new Vector3(spawnedNote.transform.position.x, spawnedNote.transform.position.y + (NOTE_SCALE * duration / 2), 0);
+                    spawnedNotes.Add(spawnedNote);
+                }
+                
             }
             else if (noteName == "B5")
             {
-                GameObject spawnedNote = Instantiate(Note, new Vector3(B5.transform.position.x, B5.transform.position.y + noteHeight, B5.transform.position.z), Quaternion.identity);
-                //spawnedNote.transform.GetChild(0).localScale = new Vector3(spawnedNote.transform.GetChild(0).localScale.x, spawnedNote.transform.GetChild(0).localScale.y * duration, 0);
-                spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
-                spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
-                spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = isNoteLabelled ? spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "B" : spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "";
-                spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
-                spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<BoxCollider2D>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
-                spawnedNote.transform.position = new Vector3(spawnedNote.transform.position.x, spawnedNote.transform.position.y + (NOTE_SCALE * duration / 2), 0);
-                spawnedNotes.Add(spawnedNote);
+                if (garbageNotes.Count > 0)
+                {
+                    GameObject spawnedNote = garbageNotes[0];
+                    garbageNotes.RemoveAt(0);
+                    spawnedNote.transform.position = new Vector3(B5.transform.position.x, B5.transform.position.y + noteHeight, B5.transform.position.z);
+                    spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
+                    spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
+                    spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = isNoteLabelled ? spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "B" : spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "";
+                    spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
+                    spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<BoxCollider2D>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
+                    spawnedNote.transform.position = new Vector3(spawnedNote.transform.position.x, spawnedNote.transform.position.y + (NOTE_SCALE * duration / 2), 0);
+                    spawnedNotes.Add(spawnedNote);
+                }
+                else
+                {
+                    GameObject spawnedNote = Instantiate(Note, new Vector3(B5.transform.position.x, B5.transform.position.y + noteHeight, B5.transform.position.z), Quaternion.identity);
+                    //spawnedNote.transform.GetChild(0).localScale = new Vector3(spawnedNote.transform.GetChild(0).localScale.x, spawnedNote.transform.GetChild(0).localScale.y * duration, 0);
+                    spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
+                    spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
+                    spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = isNoteLabelled ? spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "B" : spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "";
+                    spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
+                    spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<BoxCollider2D>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
+                    spawnedNote.transform.position = new Vector3(spawnedNote.transform.position.x, spawnedNote.transform.position.y + (NOTE_SCALE * duration / 2), 0);
+                    spawnedNotes.Add(spawnedNote);
+                }
+                
             }
             else if (noteName == "C6")
             {
-                GameObject spawnedNote = Instantiate(Note, new Vector3(C6.transform.position.x, C6.transform.position.y + noteHeight, C6.transform.position.z), Quaternion.identity);
-                //spawnedNote.transform.GetChild(0).localScale = new Vector3(spawnedNote.transform.GetChild(0).localScale.x, spawnedNote.transform.GetChild(0).localScale.y * duration, 0);
-                spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
-                spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
-                spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = isNoteLabelled ? spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "C" : spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "";
-                spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
-                spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<BoxCollider2D>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
-                spawnedNote.transform.position = new Vector3(spawnedNote.transform.position.x, spawnedNote.transform.position.y + (NOTE_SCALE * duration / 2), 0);
-                spawnedNotes.Add(spawnedNote);
+                if (garbageNotes.Count > 0)
+                {
+                    GameObject spawnedNote = garbageNotes[0];
+                    garbageNotes.RemoveAt(0);
+                    spawnedNote.transform.position = new Vector3(C6.transform.position.x, C6.transform.position.y + noteHeight, C6.transform.position.z);
+                    spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
+                    spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
+                    spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = isNoteLabelled ? spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "C" : spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "";
+                    spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
+                    spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<BoxCollider2D>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
+                    spawnedNote.transform.position = new Vector3(spawnedNote.transform.position.x, spawnedNote.transform.position.y + (NOTE_SCALE * duration / 2), 0);
+                    spawnedNotes.Add(spawnedNote);
+                }
+                else
+                {
+                    GameObject spawnedNote = Instantiate(Note, new Vector3(C6.transform.position.x, C6.transform.position.y + noteHeight, C6.transform.position.z), Quaternion.identity);
+                    //spawnedNote.transform.GetChild(0).localScale = new Vector3(spawnedNote.transform.GetChild(0).localScale.x, spawnedNote.transform.GetChild(0).localScale.y * duration, 0);
+                    spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
+                    spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
+                    spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = isNoteLabelled ? spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "C" : spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "";
+                    spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
+                    spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<BoxCollider2D>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
+                    spawnedNote.transform.position = new Vector3(spawnedNote.transform.position.x, spawnedNote.transform.position.y + (NOTE_SCALE * duration / 2), 0);
+                    spawnedNotes.Add(spawnedNote);
+                }
+                
             }
             else if (noteName == "C#6")
             {
-                GameObject spawnedNote = Instantiate(SharpNote, new Vector3(Cs6.transform.position.x, Cs6.transform.position.y + noteSharpHeight, Cs6.transform.position.z), Quaternion.identity);
-                //spawnedNote.transform.GetChild(0).localScale = new Vector3(spawnedNote.transform.GetChild(0).localScale.x, spawnedNote.transform.GetChild(0).localScale.y * duration, 0);
-                spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
-                spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
-                spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = isNoteLabelled ? spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "C#" : spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "";
-                spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
-                spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<BoxCollider2D>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
-                spawnedNote.transform.position = new Vector3(spawnedNote.transform.position.x, spawnedNote.transform.position.y + (NOTE_SCALE * duration / 2), 0);
-                spawnedNotes.Add(spawnedNote);
+                if (garbageNotesSharp.Count > 0)
+                {
+                    GameObject spawnedNote = garbageNotesSharp[0];
+                    garbageNotesSharp.RemoveAt(0);
+                    spawnedNote.transform.position = new Vector3(Cs6.transform.position.x, Cs6.transform.position.y + noteSharpHeight, Cs6.transform.position.z);
+                    spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
+                    spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
+                    spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = isNoteLabelled ? spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "C#" : spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "";
+                    spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
+                    spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<BoxCollider2D>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
+                    spawnedNote.transform.position = new Vector3(spawnedNote.transform.position.x, spawnedNote.transform.position.y + (NOTE_SCALE * duration / 2), 0);
+                    spawnedNotes.Add(spawnedNote);
+                }
+                else
+                {
+                    GameObject spawnedNote = Instantiate(SharpNote, new Vector3(Cs6.transform.position.x, Cs6.transform.position.y + noteSharpHeight, Cs6.transform.position.z), Quaternion.identity);
+                    //spawnedNote.transform.GetChild(0).localScale = new Vector3(spawnedNote.transform.GetChild(0).localScale.x, spawnedNote.transform.GetChild(0).localScale.y * duration, 0);
+                    spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
+                    spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
+                    spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = isNoteLabelled ? spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "C#" : spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "";
+                    spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
+                    spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<BoxCollider2D>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
+                    spawnedNote.transform.position = new Vector3(spawnedNote.transform.position.x, spawnedNote.transform.position.y + (NOTE_SCALE * duration / 2), 0);
+                    spawnedNotes.Add(spawnedNote);
+                }
+                
             }
             else if (noteName == "D6")
             {
-                GameObject spawnedNote = Instantiate(Note, new Vector3(D6.transform.position.x, D6.transform.position.y + noteHeight, D6.transform.position.z), Quaternion.identity);
-                //spawnedNote.transform.GetChild(0).localScale = new Vector3(spawnedNote.transform.GetChild(0).localScale.x, spawnedNote.transform.GetChild(0).localScale.y * duration, 0);
-                spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
-                spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
-                spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = isNoteLabelled ? spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "D" : spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "";
-                spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
-                spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<BoxCollider2D>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
-                spawnedNote.transform.position = new Vector3(spawnedNote.transform.position.x, spawnedNote.transform.position.y + (NOTE_SCALE * duration / 2), 0);
-                spawnedNotes.Add(spawnedNote);
+                if (garbageNotes.Count > 0)
+                {
+                    GameObject spawnedNote = garbageNotes[0];
+                    garbageNotes.RemoveAt(0);
+                    spawnedNote.transform.position = new Vector3(D6.transform.position.x, D6.transform.position.y + noteHeight, D6.transform.position.z);
+                    spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
+                    spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
+                    spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = isNoteLabelled ? spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "D" : spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "";
+                    spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
+                    spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<BoxCollider2D>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
+                    spawnedNote.transform.position = new Vector3(spawnedNote.transform.position.x, spawnedNote.transform.position.y + (NOTE_SCALE * duration / 2), 0);
+                    spawnedNotes.Add(spawnedNote);
+                }
+                else
+                {
+                    GameObject spawnedNote = Instantiate(Note, new Vector3(D6.transform.position.x, D6.transform.position.y + noteHeight, D6.transform.position.z), Quaternion.identity);
+                    //spawnedNote.transform.GetChild(0).localScale = new Vector3(spawnedNote.transform.GetChild(0).localScale.x, spawnedNote.transform.GetChild(0).localScale.y * duration, 0);
+                    spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
+                    spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
+                    spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = isNoteLabelled ? spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "D" : spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "";
+                    spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
+                    spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<BoxCollider2D>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
+                    spawnedNote.transform.position = new Vector3(spawnedNote.transform.position.x, spawnedNote.transform.position.y + (NOTE_SCALE * duration / 2), 0);
+                    spawnedNotes.Add(spawnedNote);
+                }
+                
             }
             else if (noteName == "D#6")
             {
-                GameObject spawnedNote = Instantiate(SharpNote, new Vector3(Ds6.transform.position.x, Ds6.transform.position.y + noteSharpHeight, Ds6.transform.position.z), Quaternion.identity);
-                //spawnedNote.transform.GetChild(0).localScale = new Vector3(spawnedNote.transform.GetChild(0).localScale.x, spawnedNote.transform.GetChild(0).localScale.y * duration, 0);
-                spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
-                spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
-                spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = isNoteLabelled ? spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "D#" : spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "";
-                spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
-                spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<BoxCollider2D>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
-                spawnedNote.transform.position = new Vector3(spawnedNote.transform.position.x, spawnedNote.transform.position.y + (NOTE_SCALE * duration / 2), 0);
-                spawnedNotes.Add(spawnedNote);
+                if (garbageNotesSharp.Count > 0)
+                {
+                    GameObject spawnedNote = garbageNotesSharp[0];
+                    garbageNotesSharp.RemoveAt(0);
+                    spawnedNote.transform.position = new Vector3(Ds6.transform.position.x, Ds6.transform.position.y + noteSharpHeight, Ds6.transform.position.z);
+                    spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
+                    spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
+                    spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = isNoteLabelled ? spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "D#" : spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "";
+                    spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
+                    spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<BoxCollider2D>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
+                    spawnedNote.transform.position = new Vector3(spawnedNote.transform.position.x, spawnedNote.transform.position.y + (NOTE_SCALE * duration / 2), 0);
+                    spawnedNotes.Add(spawnedNote);
+                }
+                else
+                {
+                    GameObject spawnedNote = Instantiate(SharpNote, new Vector3(Ds6.transform.position.x, Ds6.transform.position.y + noteSharpHeight, Ds6.transform.position.z), Quaternion.identity);
+                    //spawnedNote.transform.GetChild(0).localScale = new Vector3(spawnedNote.transform.GetChild(0).localScale.x, spawnedNote.transform.GetChild(0).localScale.y * duration, 0);
+                    spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
+                    spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
+                    spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = isNoteLabelled ? spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "D#" : spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "";
+                    spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
+                    spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<BoxCollider2D>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
+                    spawnedNote.transform.position = new Vector3(spawnedNote.transform.position.x, spawnedNote.transform.position.y + (NOTE_SCALE * duration / 2), 0);
+                    spawnedNotes.Add(spawnedNote);
+                }
+                
             }
             else if (noteName == "E6")
             {
-                GameObject spawnedNote = Instantiate(Note, new Vector3(E6.transform.position.x, E6.transform.position.y + noteHeight, E6.transform.position.z), Quaternion.identity);
-                //spawnedNote.transform.GetChild(0).localScale = new Vector3(spawnedNote.transform.GetChild(0).localScale.x, spawnedNote.transform.GetChild(0).localScale.y * duration, 0);
-                spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
-                spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
-                spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = isNoteLabelled ? spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "E#" : spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "";
-                spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
-                spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<BoxCollider2D>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
-                spawnedNote.transform.position = new Vector3(spawnedNote.transform.position.x, spawnedNote.transform.position.y + (NOTE_SCALE * duration / 2), 0);
-                spawnedNotes.Add(spawnedNote);
+                if (garbageNotes.Count > 0)
+                {
+                    GameObject spawnedNote = garbageNotes[0];
+                    garbageNotes.RemoveAt(0);
+                    spawnedNote.transform.position = new Vector3(E6.transform.position.x, E6.transform.position.y + noteHeight, E6.transform.position.z);
+                    spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
+                    spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
+                    spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = isNoteLabelled ? spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "E#" : spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "";
+                    spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
+                    spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<BoxCollider2D>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
+                    spawnedNote.transform.position = new Vector3(spawnedNote.transform.position.x, spawnedNote.transform.position.y + (NOTE_SCALE * duration / 2), 0);
+                    spawnedNotes.Add(spawnedNote);
+                }
+                else
+                {
+                    GameObject spawnedNote = Instantiate(Note, new Vector3(E6.transform.position.x, E6.transform.position.y + noteHeight, E6.transform.position.z), Quaternion.identity);
+                    //spawnedNote.transform.GetChild(0).localScale = new Vector3(spawnedNote.transform.GetChild(0).localScale.x, spawnedNote.transform.GetChild(0).localScale.y * duration, 0);
+                    spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
+                    spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
+                    spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = isNoteLabelled ? spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "E#" : spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "";
+                    spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
+                    spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<BoxCollider2D>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
+                    spawnedNote.transform.position = new Vector3(spawnedNote.transform.position.x, spawnedNote.transform.position.y + (NOTE_SCALE * duration / 2), 0);
+                    spawnedNotes.Add(spawnedNote);
+                }
+                
             }
             else if (noteName == "F6")
             {
-                GameObject spawnedNote = Instantiate(Note, new Vector3(F6.transform.position.x, F6.transform.position.y + noteHeight, F6.transform.position.z), Quaternion.identity);
-                //spawnedNote.transform.GetChild(0).localScale = new Vector3(spawnedNote.transform.GetChild(0).localScale.x, spawnedNote.transform.GetChild(0).localScale.y * duration, 0);
-                spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
-                spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
-                spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = isNoteLabelled ? spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "F" : spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "";
-                spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
-                spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<BoxCollider2D>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
-                spawnedNote.transform.position = new Vector3(spawnedNote.transform.position.x, spawnedNote.transform.position.y + (NOTE_SCALE * duration / 2), 0);
-                spawnedNotes.Add(spawnedNote);
+                if (garbageNotes.Count > 0)
+                {
+                    GameObject spawnedNote = garbageNotes[0];
+                    garbageNotes.RemoveAt(0);
+                    spawnedNote.transform.position = new Vector3(F6.transform.position.x, F6.transform.position.y + noteHeight, F6.transform.position.z);
+                    spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
+                    spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
+                    spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = isNoteLabelled ? spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "F" : spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "";
+                    spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
+                    spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<BoxCollider2D>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
+                    spawnedNote.transform.position = new Vector3(spawnedNote.transform.position.x, spawnedNote.transform.position.y + (NOTE_SCALE * duration / 2), 0);
+                    spawnedNotes.Add(spawnedNote);
+                }
+                else
+                {
+                    GameObject spawnedNote = Instantiate(Note, new Vector3(F6.transform.position.x, F6.transform.position.y + noteHeight, F6.transform.position.z), Quaternion.identity);
+                    //spawnedNote.transform.GetChild(0).localScale = new Vector3(spawnedNote.transform.GetChild(0).localScale.x, spawnedNote.transform.GetChild(0).localScale.y * duration, 0);
+                    spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
+                    spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
+                    spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = isNoteLabelled ? spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "F" : spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "";
+                    spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
+                    spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<BoxCollider2D>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
+                    spawnedNote.transform.position = new Vector3(spawnedNote.transform.position.x, spawnedNote.transform.position.y + (NOTE_SCALE * duration / 2), 0);
+                    spawnedNotes.Add(spawnedNote);
+                }
+                
             }
             else if (noteName == "F#6")
             {
-                GameObject spawnedNote = Instantiate(SharpNote, new Vector3(Fs6.transform.position.x, Fs6.transform.position.y + noteSharpHeight, Fs6.transform.position.z), Quaternion.identity);
-                //spawnedNote.transform.GetChild(0).localScale = new Vector3(spawnedNote.transform.GetChild(0).localScale.x, spawnedNote.transform.GetChild(0).localScale.y * duration, 0);
-                spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
-                spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
-                spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = isNoteLabelled ? spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "F#" : spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "";
-                spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
-                spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<BoxCollider2D>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
-                spawnedNote.transform.position = new Vector3(spawnedNote.transform.position.x, spawnedNote.transform.position.y + (NOTE_SCALE * duration / 2), 0);
-                spawnedNotes.Add(spawnedNote);
+                if (garbageNotesSharp.Count > 0)
+                {
+                    GameObject spawnedNote = garbageNotesSharp[0];
+                    garbageNotesSharp.RemoveAt(0);
+                    spawnedNote.transform.position = new Vector3(Fs6.transform.position.x, Fs6.transform.position.y + noteSharpHeight, Fs6.transform.position.z);
+                    spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
+                    spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
+                    spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = isNoteLabelled ? spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "F#" : spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "";
+                    spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
+                    spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<BoxCollider2D>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
+                    spawnedNote.transform.position = new Vector3(spawnedNote.transform.position.x, spawnedNote.transform.position.y + (NOTE_SCALE * duration / 2), 0);
+                    spawnedNotes.Add(spawnedNote);
+                }
+                else
+                {
+                    GameObject spawnedNote = Instantiate(SharpNote, new Vector3(Fs6.transform.position.x, Fs6.transform.position.y + noteSharpHeight, Fs6.transform.position.z), Quaternion.identity);
+                    //spawnedNote.transform.GetChild(0).localScale = new Vector3(spawnedNote.transform.GetChild(0).localScale.x, spawnedNote.transform.GetChild(0).localScale.y * duration, 0);
+                    spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
+                    spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
+                    spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = isNoteLabelled ? spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "F#" : spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "";
+                    spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
+                    spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<BoxCollider2D>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
+                    spawnedNote.transform.position = new Vector3(spawnedNote.transform.position.x, spawnedNote.transform.position.y + (NOTE_SCALE * duration / 2), 0);
+                    spawnedNotes.Add(spawnedNote);
+                }
+                
             }
             else if (noteName == "G6")
             {
-                GameObject spawnedNote = Instantiate(Note, new Vector3(G6.transform.position.x, G6.transform.position.y + noteHeight, G6.transform.position.z), Quaternion.identity);
-                //spawnedNote.transform.GetChild(0).localScale = new Vector3(spawnedNote.transform.GetChild(0).localScale.x, spawnedNote.transform.GetChild(0).localScale.y * duration, 0);
-                spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
-                spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
-                spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = isNoteLabelled ? spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "G" : spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "";
-                spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
-                spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<BoxCollider2D>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
-                spawnedNote.transform.position = new Vector3(spawnedNote.transform.position.x, spawnedNote.transform.position.y + (NOTE_SCALE * duration / 2), 0);
-                spawnedNotes.Add(spawnedNote);
+                if (garbageNotes.Count > 0)
+                {
+                    GameObject spawnedNote = garbageNotes[0];
+                    garbageNotes.RemoveAt(0);
+                    spawnedNote.transform.position = new Vector3(G6.transform.position.x, G6.transform.position.y + noteHeight, G6.transform.position.z);
+                    spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
+                    spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
+                    spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = isNoteLabelled ? spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "G" : spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "";
+                    spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
+                    spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<BoxCollider2D>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
+                    spawnedNote.transform.position = new Vector3(spawnedNote.transform.position.x, spawnedNote.transform.position.y + (NOTE_SCALE * duration / 2), 0);
+                    spawnedNotes.Add(spawnedNote);
+                }
+                else
+                {
+                    GameObject spawnedNote = Instantiate(Note, new Vector3(G6.transform.position.x, G6.transform.position.y + noteHeight, G6.transform.position.z), Quaternion.identity);
+                    //spawnedNote.transform.GetChild(0).localScale = new Vector3(spawnedNote.transform.GetChild(0).localScale.x, spawnedNote.transform.GetChild(0).localScale.y * duration, 0);
+                    spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
+                    spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
+                    spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = isNoteLabelled ? spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "G" : spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "";
+                    spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
+                    spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<BoxCollider2D>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
+                    spawnedNote.transform.position = new Vector3(spawnedNote.transform.position.x, spawnedNote.transform.position.y + (NOTE_SCALE * duration / 2), 0);
+                    spawnedNotes.Add(spawnedNote);
+                }
+                
             }
             else if (noteName == "G#6")
             {
-                GameObject spawnedNote = Instantiate(SharpNote, new Vector3(Gs6.transform.position.x, Gs6.transform.position.y + noteSharpHeight, Gs6.transform.position.z), Quaternion.identity);
-                //spawnedNote.transform.GetChild(0).localScale = new Vector3(spawnedNote.transform.GetChild(0).localScale.x, spawnedNote.transform.GetChild(0).localScale.y * duration, 0);
-                spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
-                spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
-                spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = isNoteLabelled ? spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "G#" : spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "";
-                spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
-                spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<BoxCollider2D>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
-                spawnedNote.transform.position = new Vector3(spawnedNote.transform.position.x, spawnedNote.transform.position.y + (NOTE_SCALE * duration / 2), 0);
-                spawnedNotes.Add(spawnedNote);
+                if (garbageNotesSharp.Count > 0)
+                {
+                    GameObject spawnedNote = garbageNotesSharp[0];
+                    garbageNotesSharp.RemoveAt(0);
+                    spawnedNote.transform.position = new Vector3(Gs6.transform.position.x, Gs6.transform.position.y + noteSharpHeight, Gs6.transform.position.z);
+                    spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
+                    spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
+                    spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = isNoteLabelled ? spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "G#" : spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "";
+                    spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
+                    spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<BoxCollider2D>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
+                    spawnedNote.transform.position = new Vector3(spawnedNote.transform.position.x, spawnedNote.transform.position.y + (NOTE_SCALE * duration / 2), 0);
+                    spawnedNotes.Add(spawnedNote);
+                }
+                else
+                {
+                    GameObject spawnedNote = Instantiate(SharpNote, new Vector3(Gs6.transform.position.x, Gs6.transform.position.y + noteSharpHeight, Gs6.transform.position.z), Quaternion.identity);
+                    //spawnedNote.transform.GetChild(0).localScale = new Vector3(spawnedNote.transform.GetChild(0).localScale.x, spawnedNote.transform.GetChild(0).localScale.y * duration, 0);
+                    spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
+                    spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
+                    spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = isNoteLabelled ? spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "G#" : spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "";
+                    spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
+                    spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<BoxCollider2D>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
+                    spawnedNote.transform.position = new Vector3(spawnedNote.transform.position.x, spawnedNote.transform.position.y + (NOTE_SCALE * duration / 2), 0);
+                    spawnedNotes.Add(spawnedNote);
+                }
+                
             }
             else if (noteName == "A6")
             {
-                GameObject spawnedNote = Instantiate(Note, new Vector3(A6.transform.position.x, A6.transform.position.y + noteHeight, A6.transform.position.z), Quaternion.identity);
-                //spawnedNote.transform.GetChild(0).localScale = new Vector3(spawnedNote.transform.GetChild(0).localScale.x, spawnedNote.transform.GetChild(0).localScale.y * duration, 0);
-                spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
-                spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
-                spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = isNoteLabelled ? spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "A" : spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "";
-                spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
-                spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<BoxCollider2D>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
-                spawnedNote.transform.position = new Vector3(spawnedNote.transform.position.x, spawnedNote.transform.position.y + (NOTE_SCALE * duration / 2), 0);
-                spawnedNotes.Add(spawnedNote);
+                if (garbageNotes.Count > 0)
+                {
+                    GameObject spawnedNote = garbageNotes[0];
+                    garbageNotes.RemoveAt(0);
+                    spawnedNote.transform.position = new Vector3(A6.transform.position.x, A6.transform.position.y + noteHeight, A6.transform.position.z);
+                    spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
+                    spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
+                    spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = isNoteLabelled ? spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "A" : spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "";
+                    spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
+                    spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<BoxCollider2D>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
+                    spawnedNote.transform.position = new Vector3(spawnedNote.transform.position.x, spawnedNote.transform.position.y + (NOTE_SCALE * duration / 2), 0);
+                    spawnedNotes.Add(spawnedNote);
+                }
+                else
+                {
+                    GameObject spawnedNote = Instantiate(Note, new Vector3(A6.transform.position.x, A6.transform.position.y + noteHeight, A6.transform.position.z), Quaternion.identity);
+                    //spawnedNote.transform.GetChild(0).localScale = new Vector3(spawnedNote.transform.GetChild(0).localScale.x, spawnedNote.transform.GetChild(0).localScale.y * duration, 0);
+                    spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
+                    spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
+                    spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = isNoteLabelled ? spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "A" : spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "";
+                    spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
+                    spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<BoxCollider2D>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
+                    spawnedNote.transform.position = new Vector3(spawnedNote.transform.position.x, spawnedNote.transform.position.y + (NOTE_SCALE * duration / 2), 0);
+                    spawnedNotes.Add(spawnedNote);
+                }
+                
             }
             else if (noteName == "A#6")
             {
-                GameObject spawnedNote = Instantiate(SharpNote, new Vector3(As6.transform.position.x, As6.transform.position.y + noteSharpHeight, As6.transform.position.z), Quaternion.identity);
-                //spawnedNote.transform.GetChild(0).localScale = new Vector3(spawnedNote.transform.GetChild(0).localScale.x, spawnedNote.transform.GetChild(0).localScale.y * duration, 0);
-                spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
-                spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
-                spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = isNoteLabelled ? spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "A#" : spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "";
-                spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
-                spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<BoxCollider2D>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
-                spawnedNote.transform.position = new Vector3(spawnedNote.transform.position.x, spawnedNote.transform.position.y + (NOTE_SCALE * duration / 2), 0);
-                spawnedNotes.Add(spawnedNote);
+                if (garbageNotesSharp.Count > 0)
+                {
+                    GameObject spawnedNote = garbageNotesSharp[0];
+                    garbageNotesSharp.RemoveAt(0);
+                    spawnedNote.transform.position = new Vector3(As6.transform.position.x, As6.transform.position.y + noteSharpHeight, As6.transform.position.z);
+                    spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
+                    spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
+                    spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = isNoteLabelled ? spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "A#" : spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "";
+                    spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
+                    spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<BoxCollider2D>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
+                    spawnedNote.transform.position = new Vector3(spawnedNote.transform.position.x, spawnedNote.transform.position.y + (NOTE_SCALE * duration / 2), 0);
+                    spawnedNotes.Add(spawnedNote);
+                }
+                else
+                {
+                    GameObject spawnedNote = Instantiate(SharpNote, new Vector3(As6.transform.position.x, As6.transform.position.y + noteSharpHeight, As6.transform.position.z), Quaternion.identity);
+                    //spawnedNote.transform.GetChild(0).localScale = new Vector3(spawnedNote.transform.GetChild(0).localScale.x, spawnedNote.transform.GetChild(0).localScale.y * duration, 0);
+                    spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
+                    spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
+                    spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = isNoteLabelled ? spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "A#" : spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "";
+                    spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
+                    spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<BoxCollider2D>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
+                    spawnedNote.transform.position = new Vector3(spawnedNote.transform.position.x, spawnedNote.transform.position.y + (NOTE_SCALE * duration / 2), 0);
+                    spawnedNotes.Add(spawnedNote);
+                }
+                
             }
             else if (noteName == "B6")
             {
-                GameObject spawnedNote = Instantiate(Note, new Vector3(B6.transform.position.x, B6.transform.position.y + noteHeight, B6.transform.position.z), Quaternion.identity);
-                //spawnedNote.transform.GetChild(0).localScale = new Vector3(spawnedNote.transform.GetChild(0).localScale.x, spawnedNote.transform.GetChild(0).localScale.y * duration, 0);
-                spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
-                spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
-                spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = isNoteLabelled ? spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "B" : spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "";
-                spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
-                spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<BoxCollider2D>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
-                spawnedNote.transform.position = new Vector3(spawnedNote.transform.position.x, spawnedNote.transform.position.y + (NOTE_SCALE * duration / 2), 0);
-                spawnedNotes.Add(spawnedNote);
+                if (garbageNotes.Count > 0)
+                {
+                    GameObject spawnedNote = garbageNotes[0];
+                    garbageNotes.RemoveAt(0);
+                    spawnedNote.transform.position = new Vector3(B6.transform.position.x, B6.transform.position.y + noteHeight, B6.transform.position.z);
+                    spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
+                    spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
+                    spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = isNoteLabelled ? spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "B" : spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "";
+                    spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
+                    spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<BoxCollider2D>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
+                    spawnedNote.transform.position = new Vector3(spawnedNote.transform.position.x, spawnedNote.transform.position.y + (NOTE_SCALE * duration / 2), 0);
+                    spawnedNotes.Add(spawnedNote);
+                }
+                else
+                {
+                    GameObject spawnedNote = Instantiate(Note, new Vector3(B6.transform.position.x, B6.transform.position.y + noteHeight, B6.transform.position.z), Quaternion.identity);
+                    //spawnedNote.transform.GetChild(0).localScale = new Vector3(spawnedNote.transform.GetChild(0).localScale.x, spawnedNote.transform.GetChild(0).localScale.y * duration, 0);
+                    spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
+                    spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
+                    spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = isNoteLabelled ? spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "B" : spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "";
+                    spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
+                    spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<BoxCollider2D>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
+                    spawnedNote.transform.position = new Vector3(spawnedNote.transform.position.x, spawnedNote.transform.position.y + (NOTE_SCALE * duration / 2), 0);
+                    spawnedNotes.Add(spawnedNote);
+                }
+                
             }
 
             uid += 1;
