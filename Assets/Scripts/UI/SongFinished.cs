@@ -116,20 +116,6 @@ public class SongFinished : MonoBehaviour
 
         // Save data computer
         PersistentData.SaveJsonData(PersistentData.data);
-
-
-        // Save data to mongo
-        if (UserModel.user.isLoggedIn)
-        {
-            UpdateModel update = new UpdateModel();
-            update.username = PlayerPrefs.GetString("user_username");
-            update._id = PlayerPrefs.GetString("user_id");
-            update.level = PersistentData.data.level;
-            update.money = PersistentData.data.money;
-            update.exp = PersistentData.data.exp;
-            update.purchased = false;
-            API.api.PutUser(PlayerPrefs.GetString("user_id"), update);
-        }
        
     }
 

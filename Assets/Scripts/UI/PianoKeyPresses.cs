@@ -145,6 +145,7 @@ public class PianoKeyPresses : MonoBehaviour
                 each.GetComponent<Note_Mine>().initialPress = true;
 
                 currentPressedNotes.Add(each);
+
                 each.GetComponent<SpriteRenderer>().color = Color.red;
 
 
@@ -172,6 +173,8 @@ public class PianoKeyPresses : MonoBehaviour
                 each.GetComponent<Note_Mine>().initialPress = false;
 
                 currentPressedNotes.Remove(each);
+
+
                 if (notePressed.Contains("#"))
                 {
                     each.GetComponent<SpriteRenderer>().color = Color.black;

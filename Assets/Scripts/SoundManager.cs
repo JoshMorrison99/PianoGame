@@ -33,7 +33,7 @@ public class SoundManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        audioSource.volume = 0.5f;
+        audioSource.volume = 0.1f;
 
         buttonHitSound = Resources.Load<AudioClip>("buttonHitSound");
         buttonHitSoundError = Resources.Load<AudioClip>("buttonHitSoundError");
@@ -100,7 +100,7 @@ public class SoundManager : MonoBehaviour
     public void LevellingUpSoundStart()
     {
         audioSourceExp.loop = true;
-        audioSourceExp.volume = 50f;
+        audioSourceExp.volume = 0.1f;
         audioSourceExp.clip = LevellingUpSound;
         if (audioSourceExp.isPlaying == false)
         {

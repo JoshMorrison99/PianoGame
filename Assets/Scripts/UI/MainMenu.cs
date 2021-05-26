@@ -7,18 +7,13 @@ using TMPro;
 using System.IO;
 using System;
 using SFB;
-using UnityEngine.Networking;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 
 public class MainMenu : MonoBehaviour
 {
 
-	readonly string postSignupURL_Debug = "http://localhost:5000/api/signup";
-	readonly string postLoginURL_Debug = "http://localhost:5000/api/login";
-
 	public string converArrayStringToString;
 	public string covertWindowsStringToStandalone;
+
 
 	public delegate void ButtonClickedAction();
 	public static event ButtonClickedAction buttonClickedEvent;
@@ -32,26 +27,6 @@ public class MainMenu : MonoBehaviour
 	public delegate void ButtonClickedSuccessAction();
 	public static event ButtonClickedSuccessAction buttonClickedSuccessEvent;
 
-	// Account
-	public GameObject CreateAccountGameObject;
-	public GameObject LoginAccountGameObject;
-	public TextMeshProUGUI usernameUI;
-	public GameObject AccountInformationObject;
-
-	// Account Signup
-	public TMP_InputField usernameSignup;
-	public TMP_InputField emailSignup;
-	public TMP_InputField passwordSignup;
-	public TMP_InputField re_passwordSignup;
-	public TextMeshProUGUI usernameSignupErrorText;
-	public TextMeshProUGUI emailSignupErrorText;
-	public TextMeshProUGUI passwordSignupErrorText;
-
-	// Account Login
-	public TMP_InputField usernameLogin;
-	public TMP_InputField passwordLogin;
-	public TextMeshProUGUI usernameLoginError;
-	public TextMeshProUGUI passwordLoginError;
 
 	public Button songSelectionBtn;
 	public Button lessonsBtn;
@@ -94,28 +69,7 @@ public class MainMenu : MonoBehaviour
 		btn.onClick.AddListener(songSelectionClicked);
 
 		EXPSlideSetup();
-		AccountInformationObject.SetActive(false);
-		
-		usernameSignupErrorText.text = "";
-		emailSignupErrorText.text = "";
-		passwordSignupErrorText.text = "";
 
-		usernameLoginError.text = "";
-		passwordLoginError.text = "";
-
-        if (UserModel.user.isLoggedIn)
-        {
-			usernameUI.text = UserModel.user.username;
-			LoginAccountGameObject.SetActive(false);
-			CreateAccountGameObject.SetActive(false);
-		}
-        else
-        {
-			usernameUI.text = "local";
-			LoginAccountGameObject.SetActive(false);
-			CreateAccountGameObject.SetActive(true);
-		}
-		
 	}
 
 	public void showMainMenu()
@@ -217,23 +171,6 @@ public class MainMenu : MonoBehaviour
 
 	}
 
-	public void AccountButtonClicked()
-    {
-		AccountInformationObject.SetActive(true);
-		LoginAccountGameObject.SetActive(false);
-		CreateAccountGameObject.SetActive(false);
-	}
-
-	public void LogoutButtonClicked()
-    {
-		PlayerPrefs.DeleteKey("user_id");
-		PlayerPrefs.DeleteKey("user_username");
-		AccountInformationObject.SetActive(false);
-		LoginAccountGameObject.SetActive(false);
-		CreateAccountGameObject.SetActive(true);
-		usernameUI.text = "local";
-	}
-
 	public string ConvertStringArrToString(string[] stringArr)
     {
 		
@@ -262,18 +199,6 @@ public class MainMenu : MonoBehaviour
         }
 		Debug.Log(covertWindowsStringToStandalone);
 		return covertWindowsStringToStandalone;
-    }
-
-	public void DontHaveAccountSignUpClicked()
-    {
-		LoginAccountGameObject.SetActive(false);
-		CreateAccountGameObject.SetActive(true);
-    }
-
-	public void HaveAccountLoginClicked()
-    {
-		CreateAccountGameObject.SetActive(false);
-		LoginAccountGameObject.SetActive(true);
     }
 
 	public void ImportSongButtonClicked()
@@ -373,7 +298,6 @@ public class MainMenu : MonoBehaviour
 
 		
 	}
-
 	IEnumerator SpawnErrorMessage()
 	{
 		// suspend execution for 5 seconds
@@ -381,213 +305,7 @@ public class MainMenu : MonoBehaviour
 		SongImportErrorMessagePanel.SetActive(false);
 	}
 
-	public void LoginButtonClicked()
-    {
-		Debug.Log("Login user");
-		StartCoroutine(LoginRequest());
-	}
 
-	IEnumerator LoginRequest()
-    {
-		LoginModel loginModel = new LoginModel();
-		loginModel.username = usernameLogin.text;
-		loginModel.password = passwordLogin.text;
-
-		string json = JsonConvert.SerializeObject(loginModel);
-
-		Debug.Log(json);
-
-		using (UnityWebRequest www = UnityWebRequest.Post(postLoginURL_Debug, json))
-		{
-			var byteJSON = System.Text.Encoding.UTF8.GetBytes(json);
-			www.method = UnityWebRequest.kHttpVerbPOST;
-			www.uploadHandler = (UploadHandler)new UploadHandlerRaw(byteJSON);
-			www.SetRequestHeader("Content-Type", "application/json");
-			www.SetRequestHeader("Accept", "application/json");
-			yield return www.SendWebRequest();
-
-
-			if (www.result != UnityWebRequest.Result.Success)
-			{
-				Debug.Log(www.downloadHandler.text);
-				JObject o = JObject.Parse(www.downloadHandler.text);
-				Debug.Log(o["errors"]["username"]);
-				Debug.Log(o["errors"]["password"]);
-				if (o["errors"]["username"].ToString() != "")
-				{
-					usernameLoginError.text = o["errors"]["username"].ToString();
-
-				}
-				else
-				{
-					usernameLoginError.text = "";
-				}
-
-				if (o["errors"]["password"].ToString() != "")
-				{
-					passwordLoginError.text = o["errors"]["password"].ToString();
-				}
-				else
-				{
-					passwordLoginError.text = "";
-				}
-			}
-			else
-			{
-				Debug.Log("Form upload complete!");
-				CreateAccountGameObject.SetActive(false);
-				LoginAccountGameObject.SetActive(false);
-
-				// Store username and user id
-				Debug.Log(www.downloadHandler.text);
-				JObject o = JObject.Parse(www.downloadHandler.text);
-				PlayerPrefs.SetString("user_id", o["_id"].ToString());
-				PlayerPrefs.SetString("user_username", o["username"].ToString());
-
-				API.api.GetUser(o["_id"].ToString());
-
-				// Set ui
-				usernameUI.text = o["username"].ToString();
-
-				/*Debug.Log("GETTING USER");
-				API.api.GetUser(o["_id"].ToString());
-
-				Debug.Log("UPDATING USER");
-
-				UpdateModel update = new UpdateModel();
-				update.username = PlayerPrefs.GetString("user_username");
-				update._id = PlayerPrefs.GetString("user_id");
-				update.level = 12;
-				update.money = 12;
-				update.exp = 18;
-				update.purchased = false;
-				API.api.PutUser(o["_id"].ToString(), update);*/
-			}
-		}
-	}
-
-
-	public void SignUpButtonClicked()
-    {
-		bool error = false;
-        // Simple unity side error handling
-        if (usernameSignup.text == "")
-        {
-			error = true;
-			usernameSignupErrorText.text = "username cannot be empty";
-        }
-        else
-        {
-			usernameSignupErrorText.text = "";
-        }
-
-		if (emailSignup.text == "")
-        {
-			error = true;
-			emailSignupErrorText.text = "email cannot be empty";
-        }
-        else
-        {
-			emailSignupErrorText.text = "";
-		}
-
-
-		if (passwordSignup.text != re_passwordSignup.text)
-        {
-			error = true;
-			passwordSignupErrorText.text = "password must match the re-entered password";
-        }
-        else
-        {
-			passwordSignupErrorText.text = "";
-		}
-
-
-		Debug.Log(error);
-        if (error == false)
-        {
-			Debug.Log("Signing user up");
-			StartCoroutine(SignUpRequest());
-		}
-		
-    }
-
-	IEnumerator SignUpRequest()
-    {
-		SignupModel signupModel = new SignupModel();
-		signupModel.username = usernameSignup.text;
-		signupModel.email = emailSignup.text;
-		signupModel.password = passwordSignup.text;
-
-		string json = JsonConvert.SerializeObject(signupModel);
-
-		Debug.Log(json);
-		
-
-		using (UnityWebRequest www = UnityWebRequest.Post(postSignupURL_Debug, json))
-		{
-			var byteJSON = System.Text.Encoding.UTF8.GetBytes(json);
-			www.method = UnityWebRequest.kHttpVerbPOST;
-			www.uploadHandler = (UploadHandler)new UploadHandlerRaw(byteJSON);
-			www.SetRequestHeader("Content-Type", "application/json");
-			www.SetRequestHeader("Accept", "application/json");
-			yield return www.SendWebRequest();
-
-
-			if (www.result != UnityWebRequest.Result.Success)
-			{
-				Debug.Log(www.downloadHandler.text);
-				JObject o = JObject.Parse(www.downloadHandler.text);
-				Debug.Log(o["errors"]["username"]);
-				Debug.Log(o["errors"]["email"]);
-				Debug.Log(o["errors"]["password"]);
-                if (o["errors"]["username"].ToString() != "")
-                {
-					usernameSignupErrorText.text = o["errors"]["username"].ToString();
-
-				}
-                else
-                {
-					usernameSignupErrorText.text = "";
-				}
-
-                if (o["errors"]["email"].ToString() != "")
-                {
-					emailSignupErrorText.text = o["errors"]["email"].ToString();
-				}
-                else
-                {
-					emailSignupErrorText.text = "";
-				}
-
-                if (o["errors"]["password"].ToString() != "")
-                {
-					passwordSignupErrorText.text = o["errors"]["password"].ToString();
-                }
-                else
-                {
-					passwordSignupErrorText.text = "";
-				}
-			}
-			else
-			{
-				Debug.Log("Form upload complete!");
-				CreateAccountGameObject.SetActive(false);
-				LoginAccountGameObject.SetActive(false);
-
-				// Store username and user id
-				Debug.Log(www.downloadHandler.text);
-				JObject o = JObject.Parse(www.downloadHandler.text);
-				PlayerPrefs.SetString("user_id", o["_id"].ToString());
-				PlayerPrefs.SetString("user_username", o["username"].ToString());
-
-				API.api.GetUser(o["_id"].ToString());
-
-				// Set ui
-				usernameUI.text = o["username"].ToString();
-			}
-		}
-	}
 
 
 }
