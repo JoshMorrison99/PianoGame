@@ -167,7 +167,7 @@ public class SongFinished : MonoBehaviour
                 levelSlider.value = startExp / finalExp;
                 startExp += 1f;
                 levelTextStart.text = startExp.ToString();
-                yield return new WaitForSeconds(0.05f);
+                yield return new WaitForSeconds(0.01f);
             }
             PersistentData.data.isLevellingUp = false;
             startLevel += 1;
@@ -193,7 +193,7 @@ public class SongFinished : MonoBehaviour
             levelSlider.value = startExp / finalExp;
             startExp += 1f;
             levelTextStart.text = startExp.ToString();
-            yield return new WaitForSeconds(0.05f);
+            yield return new WaitForSeconds(0.01f);
         }
         PersistentData.data.isLevellingUp = false;
 
