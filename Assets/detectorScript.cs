@@ -32,53 +32,6 @@ public class detectorScript : MonoBehaviour
             AddDevices();
         }
 
-        /* foreach (var each in InputSystem.devices)
-     {
-         if (each.displayName != "Mouse")
-         {
-             midiDevice = each as Minis.MidiDevice;
-             Debug.Log("FOUND:" + midiDevice);
-             if (midiDevice == null) return;
-
-
-
-
-                 Debug.Log("CURRENT: " + SceneManager.GetActiveScene().name);
-                 midiDevice.onWillNoteOn += (note, velocity) =>
-                 {
-                     if (SceneManager.GetActiveScene().name == "Play")
-                     {
-                         PianoKeyPressedUI(note.shortDisplayName);
-                     }
-                 };
-
-                 midiDevice.onWillNoteOff += (note) =>
-                 {
-                     if (SceneManager.GetActiveScene().name == "Play")
-                     {
-                         PianoKeyLiftedUI(note.shortDisplayName);
-                     }
-                 };
-
-
-         }
-
-     }*/
-
-        /*InputSystem.onDeviceChange += (device, change) =>
-        {
-            if (change != InputDeviceChange.Added) return;
-
-            midiDevice = device as Minis.MidiDevice;
-            if (midiDevice == null) return;
-
-            
-                
-            
-
-            
-        };*/
-
         
     }
 
@@ -128,6 +81,7 @@ public class detectorScript : MonoBehaviour
         }
     }
 
+
     public void noteHitVFX(GameObject key)
     {
         //key.GetComponentInChildren<ParticleSystem>().Play();             IF YOU WERE TO SOMEHOW FIND A WAY TO MAKE THE PARTICLE SYSTEM NOT DISTRACTING TO THE USER, THIS IS WHERE YOU IMPLEMENT IT...
@@ -150,6 +104,38 @@ public class detectorScript : MonoBehaviour
 
     }
 
+    void Video(string note, int color)
+    {
+        if (color == 1)
+        {
+            foreach(GameObject key in PianoKeysObject.PianoKeys)
+            {
+                if (key.GetComponent<Note_Mine>().noteName == note)
+                {
+                    key.GetComponent<SpriteRenderer>().color = Color.red;
+                }
+            }
+        }
+        
+        if(color == 0)
+        {
+            foreach (GameObject key in PianoKeysObject.PianoKeys)
+            {
+                if (key.GetComponent<Note_Mine>().noteName == note)
+                {
+                    if (key.GetComponent<Note_Mine>().noteName.Contains("#"))
+                    {
+                        key.GetComponent<SpriteRenderer>().color = Color.black;
+                    }
+                    else
+                    {
+                        key.GetComponent<SpriteRenderer>().color = Color.white;
+                    }
+                }
+            }
+        }
+    }
+
     void PianoKeyLiftedUI(string notePressed)
     {
         foreach (GameObject each in PianoKeysObject.PianoKeys)
@@ -164,15 +150,13 @@ public class detectorScript : MonoBehaviour
         }
     }
 
-        private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-
-        
-
         if (collision.gameObject.tag == "Note")
         {
             overlapNote = true;
             currentOverlappedNotes.Add(collision.GetComponentInParent<Note_Falling>().gameObject);
+            Video(collision.GetComponentInParent<Note_Falling>().noteName, 1);
         }
     }
 
@@ -183,6 +167,7 @@ public class detectorScript : MonoBehaviour
             overlapNote = false;
             isPressed = false;
             currentOverlappedNotes.Remove(collision.GetComponentInParent<Note_Falling>().gameObject);
+            Video(collision.GetComponentInParent<Note_Falling>().noteName, 0);
         }
     }
 
