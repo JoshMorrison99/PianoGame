@@ -251,6 +251,10 @@ PrefabInstance:
       propertyPath: m_Color.r
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 506369488938204238, guid: b1a9cbf17f0bda14b9746b1539d0964e, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5869576602154264776, guid: b1a9cbf17f0bda14b9746b1539d0964e, type: 3}
       propertyPath: m_Name
       value: Note_Scale

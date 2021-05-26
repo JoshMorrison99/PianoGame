@@ -129,7 +129,8 @@ public class PianoNoteSpawner : MonoBehaviour
                 {
                     garbageNotes.Add(spawnedNotes[i]);
                 }
-                
+
+                spawnedNotes[i].SetActive(false);
                 spawnedNotes.RemoveAt(i);
                 i--;
             }
@@ -176,6 +177,7 @@ public class PianoNoteSpawner : MonoBehaviour
                 {
                     GameObject spawnedNote = garbageNotes[0];
                     garbageNotes.RemoveAt(0);
+                    spawnedNote.SetActive(true);
                     spawnedNote.transform.position = new Vector3(C2.transform.position.x, C2.transform.position.y + noteHeight, C2.transform.position.z);
                     spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
                     spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
@@ -204,6 +206,7 @@ public class PianoNoteSpawner : MonoBehaviour
                 {
                     GameObject spawnedNote = garbageNotesSharp[0];
                     garbageNotesSharp.RemoveAt(0);
+                    spawnedNote.SetActive(true);
                     spawnedNote.transform.position = new Vector3(Cs2.transform.position.x, Cs2.transform.position.y + noteSharpHeight, Cs2.transform.position.z);
                     spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
                     spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
@@ -234,6 +237,7 @@ public class PianoNoteSpawner : MonoBehaviour
                 {
                     GameObject spawnedNote = garbageNotes[0];
                     garbageNotes.RemoveAt(0);
+                    spawnedNote.SetActive(true);
                     spawnedNote.transform.position = new Vector3(D2.transform.position.x, D2.transform.position.y + noteHeight, D2.transform.position.z);
                     spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
                     spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
@@ -263,6 +267,7 @@ public class PianoNoteSpawner : MonoBehaviour
                 {
                     GameObject spawnedNote = garbageNotesSharp[0];
                     garbageNotesSharp.RemoveAt(0);
+                    spawnedNote.SetActive(true);
                     spawnedNote.transform.position = new Vector3(Ds2.transform.position.x, Ds2.transform.position.y + noteSharpHeight, Ds2.transform.position.z);
                     spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
                     spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
@@ -292,6 +297,7 @@ public class PianoNoteSpawner : MonoBehaviour
                 {
                     GameObject spawnedNote = garbageNotes[0];
                     garbageNotes.RemoveAt(0);
+                    spawnedNote.SetActive(true);
                     spawnedNote.transform.position = new Vector3(E2.transform.position.x, E2.transform.position.y + noteHeight, E2.transform.position.z);
                     spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
                     spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
@@ -321,6 +327,7 @@ public class PianoNoteSpawner : MonoBehaviour
                 {
                     GameObject spawnedNote = garbageNotes[0];
                     garbageNotes.RemoveAt(0);
+                    spawnedNote.SetActive(true);
                     spawnedNote.transform.position = new Vector3(F2.transform.position.x, F2.transform.position.y + noteHeight, F2.transform.position.z);
                     spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
                     spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
@@ -350,6 +357,7 @@ public class PianoNoteSpawner : MonoBehaviour
                 {
                     GameObject spawnedNote = garbageNotesSharp[0];
                     garbageNotesSharp.RemoveAt(0);
+                    spawnedNote.SetActive(true);
                     spawnedNote.transform.position = new Vector3(Fs2.transform.position.x, Fs2.transform.position.y + noteSharpHeight, Fs2.transform.position.z);
                     spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
                     spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
@@ -379,6 +387,7 @@ public class PianoNoteSpawner : MonoBehaviour
                 {
                     GameObject spawnedNote = garbageNotes[0];
                     garbageNotes.RemoveAt(0);
+                    spawnedNote.SetActive(true);
                     spawnedNote.transform.position = new Vector3(G2.transform.position.x, G2.transform.position.y + noteHeight, G2.transform.position.z);
                     spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
                     spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
@@ -408,6 +417,7 @@ public class PianoNoteSpawner : MonoBehaviour
                 {
                     GameObject spawnedNote = garbageNotesSharp[0];
                     garbageNotesSharp.RemoveAt(0);
+                    spawnedNote.SetActive(true);
                     spawnedNote.transform.position = new Vector3(Gs2.transform.position.x, Gs2.transform.position.y + noteSharpHeight, Gs2.transform.position.z);
                     spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
                     spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
@@ -437,6 +447,7 @@ public class PianoNoteSpawner : MonoBehaviour
                 {
                     GameObject spawnedNote = garbageNotes[0];
                     garbageNotes.RemoveAt(0);
+                    spawnedNote.SetActive(true);
                     spawnedNote.transform.position = new Vector3(A2.transform.position.x, A2.transform.position.y + noteHeight, A2.transform.position.z);
                     spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
                     spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
@@ -466,6 +477,7 @@ public class PianoNoteSpawner : MonoBehaviour
                 {
                     GameObject spawnedNote = garbageNotesSharp[0];
                     garbageNotesSharp.RemoveAt(0);
+                    spawnedNote.SetActive(true);
                     spawnedNote.transform.position = new Vector3(As2.transform.position.x, As2.transform.position.y + noteSharpHeight, As2.transform.position.z);
                     spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
                     spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
@@ -495,6 +507,7 @@ public class PianoNoteSpawner : MonoBehaviour
                 {
                     GameObject spawnedNote = garbageNotes[0];
                     garbageNotes.RemoveAt(0);
+                    spawnedNote.SetActive(true);
                     spawnedNote.transform.position = new Vector3(B2.transform.position.x, B2.transform.position.y + noteHeight, B2.transform.position.z);
                     spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
                     spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
@@ -524,6 +537,7 @@ public class PianoNoteSpawner : MonoBehaviour
                 {
                     GameObject spawnedNote = garbageNotes[0];
                     garbageNotes.RemoveAt(0);
+                    spawnedNote.SetActive(true);
                     spawnedNote.transform.position = new Vector3(C3.transform.position.x, C3.transform.position.y + noteHeight, C3.transform.position.z);
                     spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
                     spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
@@ -553,6 +567,7 @@ public class PianoNoteSpawner : MonoBehaviour
                 {
                     GameObject spawnedNote = garbageNotesSharp[0];
                     garbageNotesSharp.RemoveAt(0);
+                    spawnedNote.SetActive(true);
                     spawnedNote.transform.position = new Vector3(Cs3.transform.position.x, Cs3.transform.position.y + noteSharpHeight, Cs3.transform.position.z);
                     spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
                     spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
@@ -582,6 +597,7 @@ public class PianoNoteSpawner : MonoBehaviour
                 {
                     GameObject spawnedNote = garbageNotes[0];
                     garbageNotes.RemoveAt(0);
+                    spawnedNote.SetActive(true);
                     spawnedNote.transform.position = new Vector3(D3.transform.position.x, D3.transform.position.y + noteHeight, D3.transform.position.z);
                     spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
                     spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
@@ -611,6 +627,7 @@ public class PianoNoteSpawner : MonoBehaviour
                 {
                     GameObject spawnedNote = garbageNotesSharp[0];
                     garbageNotesSharp.RemoveAt(0);
+                    spawnedNote.SetActive(true);
                     spawnedNote.transform.position = new Vector3(Ds3.transform.position.x, Ds3.transform.position.y + noteSharpHeight, Ds3.transform.position.z);
                     spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
                     spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
@@ -640,6 +657,7 @@ public class PianoNoteSpawner : MonoBehaviour
                 {
                     GameObject spawnedNote = garbageNotes[0];
                     garbageNotes.RemoveAt(0);
+                    spawnedNote.SetActive(true);
                     spawnedNote.transform.position = new Vector3(E3.transform.position.x, E3.transform.position.y + noteHeight, E3.transform.position.z);
                     spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
                     spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
@@ -669,6 +687,7 @@ public class PianoNoteSpawner : MonoBehaviour
                 {
                     GameObject spawnedNote = garbageNotes[0];
                     garbageNotes.RemoveAt(0);
+                    spawnedNote.SetActive(true);
                     spawnedNote.transform.position = new Vector3(F3.transform.position.x, F3.transform.position.y + noteHeight, F3.transform.position.z);
                     spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
                     spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
@@ -698,6 +717,7 @@ public class PianoNoteSpawner : MonoBehaviour
                 {
                     GameObject spawnedNote = garbageNotesSharp[0];
                     garbageNotesSharp.RemoveAt(0);
+                    spawnedNote.SetActive(true);
                     spawnedNote.transform.position = new Vector3(Fs3.transform.position.x, Fs3.transform.position.y + noteSharpHeight, Fs3.transform.position.z);
                     spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
                     spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
@@ -727,6 +747,7 @@ public class PianoNoteSpawner : MonoBehaviour
                 {
                     GameObject spawnedNote = garbageNotes[0];
                     garbageNotes.RemoveAt(0);
+                    spawnedNote.SetActive(true);
                     spawnedNote.transform.position = new Vector3(G3.transform.position.x, G3.transform.position.y + noteHeight, G3.transform.position.z);
                     spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
                     spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
@@ -756,6 +777,7 @@ public class PianoNoteSpawner : MonoBehaviour
                 {
                     GameObject spawnedNote = garbageNotesSharp[0];
                     garbageNotesSharp.RemoveAt(0);
+                    spawnedNote.SetActive(true);
                     spawnedNote.transform.position = new Vector3(Gs3.transform.position.x, Gs3.transform.position.y + noteSharpHeight, Gs3.transform.position.z);
                     spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
                     spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
@@ -785,6 +807,7 @@ public class PianoNoteSpawner : MonoBehaviour
                 {
                     GameObject spawnedNote = garbageNotes[0];
                     garbageNotes.RemoveAt(0);
+                    spawnedNote.SetActive(true);
                     spawnedNote.transform.position = new Vector3(A3.transform.position.x, A3.transform.position.y + noteHeight, A3.transform.position.z);
                     spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
                     spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
@@ -814,6 +837,7 @@ public class PianoNoteSpawner : MonoBehaviour
                 {
                     GameObject spawnedNote = garbageNotesSharp[0];
                     garbageNotesSharp.RemoveAt(0);
+                    spawnedNote.SetActive(true);
                     spawnedNote.transform.position = new Vector3(As3.transform.position.x, As3.transform.position.y + noteSharpHeight, As3.transform.position.z);
                     spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
                     spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
@@ -843,6 +867,7 @@ public class PianoNoteSpawner : MonoBehaviour
                 {
                     GameObject spawnedNote = garbageNotes[0];
                     garbageNotes.RemoveAt(0);
+                    spawnedNote.SetActive(true);
                     spawnedNote.transform.position = new Vector3(B3.transform.position.x, B3.transform.position.y + noteHeight, B3.transform.position.z);
                     spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
                     spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
@@ -872,6 +897,7 @@ public class PianoNoteSpawner : MonoBehaviour
                 {
                     GameObject spawnedNote = garbageNotes[0];
                     garbageNotes.RemoveAt(0);
+                    spawnedNote.SetActive(true);
                     spawnedNote.transform.position = new Vector3(C4.transform.position.x, C4.transform.position.y + noteHeight, C4.transform.position.z);
                     spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
                     spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
@@ -901,6 +927,7 @@ public class PianoNoteSpawner : MonoBehaviour
                 {
                     GameObject spawnedNote = garbageNotesSharp[0];
                     garbageNotesSharp.RemoveAt(0);
+                    spawnedNote.SetActive(true);
                     spawnedNote.transform.position = new Vector3(Cs4.transform.position.x, Cs4.transform.position.y + noteSharpHeight, Cs4.transform.position.z);
                     spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
                     spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
@@ -930,6 +957,7 @@ public class PianoNoteSpawner : MonoBehaviour
                 {
                     GameObject spawnedNote = garbageNotes[0];
                     garbageNotes.RemoveAt(0);
+                    spawnedNote.SetActive(true);
                     spawnedNote.transform.position = new Vector3(D4.transform.position.x, D4.transform.position.y + noteHeight, D4.transform.position.z);
                     spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
                     spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
@@ -959,6 +987,7 @@ public class PianoNoteSpawner : MonoBehaviour
                 {
                     GameObject spawnedNote = garbageNotesSharp[0];
                     garbageNotesSharp.RemoveAt(0);
+                    spawnedNote.SetActive(true);
                     spawnedNote.transform.position = new Vector3(Ds4.transform.position.x, Ds4.transform.position.y + noteSharpHeight, Ds4.transform.position.z);
                     spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
                     spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
@@ -988,6 +1017,7 @@ public class PianoNoteSpawner : MonoBehaviour
                 {
                     GameObject spawnedNote = garbageNotes[0];
                     garbageNotes.RemoveAt(0);
+                    spawnedNote.SetActive(true);
                     spawnedNote.transform.position = new Vector3(E4.transform.position.x, E4.transform.position.y + noteHeight, E4.transform.position.z);
                     spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
                     spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
@@ -1017,6 +1047,7 @@ public class PianoNoteSpawner : MonoBehaviour
                 {
                     GameObject spawnedNote = garbageNotes[0];
                     garbageNotes.RemoveAt(0);
+                    spawnedNote.SetActive(true);
                     spawnedNote.transform.position = new Vector3(F4.transform.position.x, F4.transform.position.y + noteHeight, F4.transform.position.z);
                     spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
                     spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
@@ -1046,6 +1077,7 @@ public class PianoNoteSpawner : MonoBehaviour
                 {
                     GameObject spawnedNote = garbageNotesSharp[0];
                     garbageNotesSharp.RemoveAt(0);
+                    spawnedNote.SetActive(true);
                     spawnedNote.transform.position = new Vector3(Fs4.transform.position.x, Fs4.transform.position.y + noteSharpHeight, Fs4.transform.position.z);
                     spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
                     spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
@@ -1075,6 +1107,7 @@ public class PianoNoteSpawner : MonoBehaviour
                 {
                     GameObject spawnedNote = garbageNotes[0];
                     garbageNotes.RemoveAt(0);
+                    spawnedNote.SetActive(true);
                     spawnedNote.transform.position = new Vector3(G4.transform.position.x, G4.transform.position.y + noteHeight, G4.transform.position.z);
                     spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
                     spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
@@ -1104,6 +1137,7 @@ public class PianoNoteSpawner : MonoBehaviour
                 {
                     GameObject spawnedNote = garbageNotesSharp[0];
                     garbageNotesSharp.RemoveAt(0);
+                    spawnedNote.SetActive(true);
                     spawnedNote.transform.position = new Vector3(Gs4.transform.position.x, Gs4.transform.position.y + noteSharpHeight, Gs4.transform.position.z);
                     spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
                     spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
@@ -1133,6 +1167,7 @@ public class PianoNoteSpawner : MonoBehaviour
                 {
                     GameObject spawnedNote = garbageNotes[0];
                     garbageNotes.RemoveAt(0);
+                    spawnedNote.SetActive(true);
                     spawnedNote.transform.position = new Vector3(A4.transform.position.x, A4.transform.position.y + noteHeight, A4.transform.position.z);
                     spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
                     spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
@@ -1162,6 +1197,7 @@ public class PianoNoteSpawner : MonoBehaviour
                 {
                     GameObject spawnedNote = garbageNotesSharp[0];
                     garbageNotesSharp.RemoveAt(0);
+                    spawnedNote.SetActive(true);
                     spawnedNote.transform.position = new Vector3(As4.transform.position.x, As4.transform.position.y + noteSharpHeight, As4.transform.position.z);
                     spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
                     spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
@@ -1191,6 +1227,7 @@ public class PianoNoteSpawner : MonoBehaviour
                 {
                     GameObject spawnedNote = garbageNotes[0];
                     garbageNotes.RemoveAt(0);
+                    spawnedNote.SetActive(true);
                     spawnedNote.transform.position = new Vector3(B4.transform.position.x, B4.transform.position.y + noteHeight, B4.transform.position.z);
                     spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
                     spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
@@ -1220,6 +1257,7 @@ public class PianoNoteSpawner : MonoBehaviour
                 {
                     GameObject spawnedNote = garbageNotes[0];
                     garbageNotes.RemoveAt(0);
+                    spawnedNote.SetActive(true);
                     spawnedNote.transform.position = new Vector3(C5.transform.position.x, C5.transform.position.y + noteHeight, C5.transform.position.z);
                     spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
                     spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
@@ -1249,6 +1287,7 @@ public class PianoNoteSpawner : MonoBehaviour
                 {
                     GameObject spawnedNote = garbageNotesSharp[0];
                     garbageNotesSharp.RemoveAt(0);
+                    spawnedNote.SetActive(true);
                     spawnedNote.transform.position = new Vector3(Cs5.transform.position.x, Cs5.transform.position.y + noteSharpHeight, Cs5.transform.position.z);
                     spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
                     spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
@@ -1278,6 +1317,7 @@ public class PianoNoteSpawner : MonoBehaviour
                 {
                     GameObject spawnedNote = garbageNotes[0];
                     garbageNotes.RemoveAt(0);
+                    spawnedNote.SetActive(true);
                     spawnedNote.transform.position = new Vector3(D5.transform.position.x, D5.transform.position.y + noteHeight, D5.transform.position.z);
                     spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
                     spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
@@ -1307,6 +1347,7 @@ public class PianoNoteSpawner : MonoBehaviour
                 {
                     GameObject spawnedNote = garbageNotesSharp[0];
                     garbageNotesSharp.RemoveAt(0);
+                    spawnedNote.SetActive(true);
                     spawnedNote.transform.position = new Vector3(Ds5.transform.position.x, Ds5.transform.position.y + noteSharpHeight, Ds5.transform.position.z);
                     spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
                     spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
@@ -1336,6 +1377,7 @@ public class PianoNoteSpawner : MonoBehaviour
                 {
                     GameObject spawnedNote = garbageNotes[0];
                     garbageNotes.RemoveAt(0);
+                    spawnedNote.SetActive(true);
                     spawnedNote.transform.position = new Vector3(E5.transform.position.x, E5.transform.position.y + noteHeight, E5.transform.position.z);
                     spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
                     spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
@@ -1365,6 +1407,7 @@ public class PianoNoteSpawner : MonoBehaviour
                 {
                     GameObject spawnedNote = garbageNotes[0];
                     garbageNotes.RemoveAt(0);
+                    spawnedNote.SetActive(true);
                     spawnedNote.transform.position = new Vector3(F5.transform.position.x, F5.transform.position.y + noteHeight, F5.transform.position.z);
                     spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
                     spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
@@ -1394,6 +1437,7 @@ public class PianoNoteSpawner : MonoBehaviour
                 {
                     GameObject spawnedNote = garbageNotesSharp[0];
                     garbageNotesSharp.RemoveAt(0);
+                    spawnedNote.SetActive(true);
                     spawnedNote.transform.position = new Vector3(Fs5.transform.position.x, Fs5.transform.position.y + noteSharpHeight, Fs5.transform.position.z);
                     spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
                     spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
@@ -1423,6 +1467,7 @@ public class PianoNoteSpawner : MonoBehaviour
                 {
                     GameObject spawnedNote = garbageNotes[0];
                     garbageNotes.RemoveAt(0);
+                    spawnedNote.SetActive(true);
                     spawnedNote.transform.position = new Vector3(G5.transform.position.x, G5.transform.position.y + noteHeight, G5.transform.position.z);
                     spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
                     spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
@@ -1452,6 +1497,7 @@ public class PianoNoteSpawner : MonoBehaviour
                 {
                     GameObject spawnedNote = garbageNotesSharp[0];
                     garbageNotesSharp.RemoveAt(0);
+                    spawnedNote.SetActive(true);
                     spawnedNote.transform.position = new Vector3(Gs5.transform.position.x, Gs5.transform.position.y + noteSharpHeight, Gs5.transform.position.z);
                     spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
                     spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
@@ -1481,6 +1527,7 @@ public class PianoNoteSpawner : MonoBehaviour
                 {
                     GameObject spawnedNote = garbageNotes[0];
                     garbageNotes.RemoveAt(0);
+                    spawnedNote.SetActive(true);
                     spawnedNote.transform.position = new Vector3(A5.transform.position.x, A5.transform.position.y + noteHeight, A5.transform.position.z);
                     spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
                     spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
@@ -1510,6 +1557,7 @@ public class PianoNoteSpawner : MonoBehaviour
                 {
                     GameObject spawnedNote = garbageNotesSharp[0];
                     garbageNotesSharp.RemoveAt(0);
+                    spawnedNote.SetActive(true);
                     spawnedNote.transform.position = new Vector3(As5.transform.position.x, As5.transform.position.y + noteSharpHeight, As5.transform.position.z);
                     spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
                     spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
@@ -1539,6 +1587,7 @@ public class PianoNoteSpawner : MonoBehaviour
                 {
                     GameObject spawnedNote = garbageNotes[0];
                     garbageNotes.RemoveAt(0);
+                    spawnedNote.SetActive(true);
                     spawnedNote.transform.position = new Vector3(B5.transform.position.x, B5.transform.position.y + noteHeight, B5.transform.position.z);
                     spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
                     spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
@@ -1568,6 +1617,7 @@ public class PianoNoteSpawner : MonoBehaviour
                 {
                     GameObject spawnedNote = garbageNotes[0];
                     garbageNotes.RemoveAt(0);
+                    spawnedNote.SetActive(true);
                     spawnedNote.transform.position = new Vector3(C6.transform.position.x, C6.transform.position.y + noteHeight, C6.transform.position.z);
                     spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
                     spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
@@ -1597,6 +1647,7 @@ public class PianoNoteSpawner : MonoBehaviour
                 {
                     GameObject spawnedNote = garbageNotesSharp[0];
                     garbageNotesSharp.RemoveAt(0);
+                    spawnedNote.SetActive(true);
                     spawnedNote.transform.position = new Vector3(Cs6.transform.position.x, Cs6.transform.position.y + noteSharpHeight, Cs6.transform.position.z);
                     spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
                     spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
@@ -1626,6 +1677,7 @@ public class PianoNoteSpawner : MonoBehaviour
                 {
                     GameObject spawnedNote = garbageNotes[0];
                     garbageNotes.RemoveAt(0);
+                    spawnedNote.SetActive(true);
                     spawnedNote.transform.position = new Vector3(D6.transform.position.x, D6.transform.position.y + noteHeight, D6.transform.position.z);
                     spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
                     spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
@@ -1655,6 +1707,7 @@ public class PianoNoteSpawner : MonoBehaviour
                 {
                     GameObject spawnedNote = garbageNotesSharp[0];
                     garbageNotesSharp.RemoveAt(0);
+                    spawnedNote.SetActive(true);
                     spawnedNote.transform.position = new Vector3(Ds6.transform.position.x, Ds6.transform.position.y + noteSharpHeight, Ds6.transform.position.z);
                     spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
                     spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
@@ -1684,6 +1737,7 @@ public class PianoNoteSpawner : MonoBehaviour
                 {
                     GameObject spawnedNote = garbageNotes[0];
                     garbageNotes.RemoveAt(0);
+                    spawnedNote.SetActive(true);
                     spawnedNote.transform.position = new Vector3(E6.transform.position.x, E6.transform.position.y + noteHeight, E6.transform.position.z);
                     spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
                     spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
@@ -1713,6 +1767,7 @@ public class PianoNoteSpawner : MonoBehaviour
                 {
                     GameObject spawnedNote = garbageNotes[0];
                     garbageNotes.RemoveAt(0);
+                    spawnedNote.SetActive(true);
                     spawnedNote.transform.position = new Vector3(F6.transform.position.x, F6.transform.position.y + noteHeight, F6.transform.position.z);
                     spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
                     spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
@@ -1742,6 +1797,7 @@ public class PianoNoteSpawner : MonoBehaviour
                 {
                     GameObject spawnedNote = garbageNotesSharp[0];
                     garbageNotesSharp.RemoveAt(0);
+                    spawnedNote.SetActive(true);
                     spawnedNote.transform.position = new Vector3(Fs6.transform.position.x, Fs6.transform.position.y + noteSharpHeight, Fs6.transform.position.z);
                     spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
                     spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
@@ -1771,6 +1827,7 @@ public class PianoNoteSpawner : MonoBehaviour
                 {
                     GameObject spawnedNote = garbageNotes[0];
                     garbageNotes.RemoveAt(0);
+                    spawnedNote.SetActive(true);
                     spawnedNote.transform.position = new Vector3(G6.transform.position.x, G6.transform.position.y + noteHeight, G6.transform.position.z);
                     spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
                     spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
@@ -1800,6 +1857,7 @@ public class PianoNoteSpawner : MonoBehaviour
                 {
                     GameObject spawnedNote = garbageNotesSharp[0];
                     garbageNotesSharp.RemoveAt(0);
+                    spawnedNote.SetActive(true);
                     spawnedNote.transform.position = new Vector3(Gs6.transform.position.x, Gs6.transform.position.y + noteSharpHeight, Gs6.transform.position.z);
                     spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
                     spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
@@ -1829,6 +1887,7 @@ public class PianoNoteSpawner : MonoBehaviour
                 {
                     GameObject spawnedNote = garbageNotes[0];
                     garbageNotes.RemoveAt(0);
+                    spawnedNote.SetActive(true);
                     spawnedNote.transform.position = new Vector3(A6.transform.position.x, A6.transform.position.y + noteHeight, A6.transform.position.z);
                     spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
                     spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
@@ -1858,6 +1917,7 @@ public class PianoNoteSpawner : MonoBehaviour
                 {
                     GameObject spawnedNote = garbageNotesSharp[0];
                     garbageNotesSharp.RemoveAt(0);
+                    spawnedNote.SetActive(true);
                     spawnedNote.transform.position = new Vector3(As6.transform.position.x, As6.transform.position.y + noteSharpHeight, As6.transform.position.z);
                     spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
                     spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
@@ -1887,6 +1947,7 @@ public class PianoNoteSpawner : MonoBehaviour
                 {
                     GameObject spawnedNote = garbageNotes[0];
                     garbageNotes.RemoveAt(0);
+                    spawnedNote.SetActive(true);
                     spawnedNote.transform.position = new Vector3(B6.transform.position.x, B6.transform.position.y + noteHeight, B6.transform.position.z);
                     spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
                     spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
