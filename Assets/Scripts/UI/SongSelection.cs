@@ -20,15 +20,10 @@ public class SongSelection : MonoBehaviour
     public bool isFilterON;
     public GameObject SongFilterPanel;
     public Button UserSongFilterButton;
-    public Image UserSongFilterImage;
     public Button BeginnerSongFilterButton;
-    public Image BeginnerSongFilterImage;
     public Button MediumSongFilterButton;
-    public Image MediumSongFilterImage;
     public Button HardSongFilterButton;
-    public Image HardSongFilterImage;
     public Button NoneSongFilterButton;
-    public Image NoneSongFilterImage;
     public string currentFilter;
     public GameObject bgDark;
 
@@ -84,7 +79,6 @@ public class SongSelection : MonoBehaviour
         currentAppliedFilterButton.GetComponentInChildren<TextMeshProUGUI>().text = "";
         SongFilterPanel.SetActive(false);
         currentFilter = "all";
-        NoneSongFilterImage.color = COLOR_PALLETE.LIGHT_BLUE;
     }
 
 
@@ -252,6 +246,7 @@ public class SongSelection : MonoBehaviour
         PersistentData.data.selectedSong = index + 1;
         PersistentData.data.userSongSelected = PersistentData.data._SongList[index]._FileName;
         PersistentData.data.songStartPlayerExp = PersistentData.data.exp;
+        SoundManager.soundManager.MainMenuMusic.Pause();
         SceneManager.LoadScene("Play");
 
         // Play button click sfx
@@ -361,11 +356,6 @@ public class SongSelection : MonoBehaviour
 
     public void NoneSongFilterButtonClicked()
     {
-        NoneSongFilterImage.color = COLOR_PALLETE.LIGHT_BLUE;
-        UserSongFilterImage.color = Color.white;
-        BeginnerSongFilterImage.color = Color.white;
-        MediumSongFilterImage.color = Color.white;
-        HardSongFilterImage.color = Color.white;
         currentAppliedFilterButton.GetComponentInChildren<TextMeshProUGUI>().text = "";
         SongFilterPanel.SetActive(false);
         isFilterON = false;
@@ -381,11 +371,6 @@ public class SongSelection : MonoBehaviour
 
     public void UserSongFilterButtonClicked()
     {
-        NoneSongFilterImage.color = Color.white;
-        UserSongFilterImage.color = COLOR_PALLETE.LIGHT_BLUE;
-        BeginnerSongFilterImage.color = Color.white;
-        MediumSongFilterImage.color = Color.white;
-        HardSongFilterImage.color = Color.white;
         currentAppliedFilterButton.GetComponentInChildren<TextMeshProUGUI>().text = "[ User Songs ]";
         SongFilterPanel.SetActive(false);
         isFilterON = false;
@@ -401,11 +386,6 @@ public class SongSelection : MonoBehaviour
 
     public void BeginnerSongFilterButtonClicked()
     {
-        NoneSongFilterImage.color = Color.white;
-        UserSongFilterImage.color = Color.white;
-        BeginnerSongFilterImage.color = COLOR_PALLETE.LIGHT_BLUE;
-        MediumSongFilterImage.color = Color.white;
-        HardSongFilterImage.color = Color.white;
         currentAppliedFilterButton.GetComponentInChildren<TextMeshProUGUI>().text = "[ Beginner Difficulty ]";
         SongFilterPanel.SetActive(false);
         isFilterON = false;
@@ -421,11 +401,6 @@ public class SongSelection : MonoBehaviour
 
     public void MediumSongFilterButtonClicked()
     {
-        NoneSongFilterImage.color = Color.white;
-        UserSongFilterImage.color = Color.white;
-        BeginnerSongFilterImage.color = Color.white;
-        MediumSongFilterImage.color = COLOR_PALLETE.LIGHT_BLUE;
-        HardSongFilterImage.color = Color.white;
         currentAppliedFilterButton.GetComponentInChildren<TextMeshProUGUI>().text = "[ Medium Difficulty ]";
         SongFilterPanel.SetActive(false);
         isFilterON = false;
@@ -441,11 +416,6 @@ public class SongSelection : MonoBehaviour
 
     public void HardSongFilterButtonClicked()
     {
-        NoneSongFilterImage.color = Color.white;
-        UserSongFilterImage.color = Color.white;
-        BeginnerSongFilterImage.color = Color.white;
-        MediumSongFilterImage.color = Color.white;
-        HardSongFilterImage.color = COLOR_PALLETE.LIGHT_BLUE;
         currentAppliedFilterButton.GetComponentInChildren<TextMeshProUGUI>().text = "[ Hard Difficulty ]";
         SongFilterPanel.SetActive(false);
         isFilterON = false;
@@ -461,11 +431,6 @@ public class SongSelection : MonoBehaviour
 
     public void ClearFilterButtonClicked()
     {
-        NoneSongFilterImage.color = COLOR_PALLETE.LIGHT_BLUE;
-        UserSongFilterImage.color = Color.white;
-        BeginnerSongFilterImage.color = Color.white;
-        MediumSongFilterImage.color = Color.white;
-        HardSongFilterImage.color = Color.white;
         currentAppliedFilterButton.GetComponentInChildren<TextMeshProUGUI>().text = "";
         SongFilterPanel.SetActive(false);
         isFilterON = false;
