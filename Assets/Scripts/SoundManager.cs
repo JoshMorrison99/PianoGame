@@ -17,6 +17,8 @@ public class SoundManager : MonoBehaviour
     public AudioClip LevelUpSound;
     public AudioClip LevellingUpSound;
 
+    public AudioSource MainMenuMusic;
+
     private void Awake()
     {
         if (soundManager != null && soundManager != this)

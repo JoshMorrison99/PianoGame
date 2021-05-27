@@ -57,8 +57,6 @@ public class SongSelection : MonoBehaviour
     public TextMeshProUGUI NotesHit_Text;
     public TextMeshProUGUI Difficulty_Text;
 
-    public TextMeshProUGUI playerLevelUI;
-    public TextMeshProUGUI playerMoneyUI;
 
     public List<Button> myButtonSongs;
 
@@ -77,10 +75,6 @@ public class SongSelection : MonoBehaviour
         setDefaultSongSelection();
         //Button firstBtn = buttonHolder.transform.GetChild(0).GetComponent<Button>();
         //firstBtn.onClick.Invoke();
-
-        // Player persistent data UI
-        playerLevelUI.text = PersistentData.data.level.ToString();
-        playerMoneyUI.text = PersistentData.data.money.ToString();
 
         
         updatePercentageUI();
