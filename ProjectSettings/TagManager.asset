@@ -40,12 +40,6 @@ TagManager:
   - 
   - 
   m_SortingLayers:
-  - name: Default
-    uniqueID: 0
-    locked: 0
-  - name: Piano
-    uniqueID: 2021614691
-    locked: 0
   - name: Background
     uniqueID: 52967983
     locked: 0
@@ -54,4 +48,10 @@ TagManager:
     locked: 0
   - name: UI
     uniqueID: 3798230847
+    locked: 0
+  - name: Piano
+    uniqueID: 2021614691
+    locked: 0
+  - name: Default
+    uniqueID: 0
     locked: 0

@@ -198,6 +198,7 @@ public class PlayUILogic : MonoBehaviour
         }
 
         midi.ReplaySong();
+        SoundManager.soundManager.MainMenuMusic.UnPause();
         SceneManager.LoadScene("MainMenu");
         Debug.Log("REPLAY");
     }

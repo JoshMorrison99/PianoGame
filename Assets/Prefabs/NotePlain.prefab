@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7833212401141378880}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Note_Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -40,7 +40,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3340733260365428890}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: NotePlain
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -74,7 +74,7 @@ GameObject:
   - component: {fileID: 3147196661307571363}
   - component: {fileID: 353190558821416160}
   - component: {fileID: 7442750704126321530}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -266,6 +266,10 @@ PrefabInstance:
     - target: {fileID: 5869576602154264776, guid: b1a9cbf17f0bda14b9746b1539d0964e, type: 3}
       propertyPath: m_Name
       value: Note_Scale
+      objectReference: {fileID: 0}
+    - target: {fileID: 5869576602154264776, guid: b1a9cbf17f0bda14b9746b1539d0964e, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 6269557313827323859, guid: b1a9cbf17f0bda14b9746b1539d0964e, type: 3}
       propertyPath: m_RootOrder
