@@ -241,11 +241,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 506369488938204238, guid: b1a9cbf17f0bda14b9746b1539d0964e, type: 3}
       propertyPath: m_Color.b
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 506369488938204238, guid: b1a9cbf17f0bda14b9746b1539d0964e, type: 3}
       propertyPath: m_Color.g
-      value: 0.6938923
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 506369488938204238, guid: b1a9cbf17f0bda14b9746b1539d0964e, type: 3}
       propertyPath: m_Color.r
@@ -253,6 +253,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 506369488938204238, guid: b1a9cbf17f0bda14b9746b1539d0964e, type: 3}
       propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 679948076540561595, guid: b1a9cbf17f0bda14b9746b1539d0964e, type: 3}
+      propertyPath: m_MaskAlphaCutoff
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5869576602154264776, guid: b1a9cbf17f0bda14b9746b1539d0964e, type: 3}
@@ -326,17 +330,21 @@ PrefabInstance:
     - target: {fileID: 8044469202920761417, guid: b1a9cbf17f0bda14b9746b1539d0964e, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: -5177388603050735206, guid: cc35afd292fc349128b36a291fb3a165, type: 3}
+      objectReference: {fileID: -5177388603050735206, guid: e3d0023a5c473244f9c73f2309c2f85f, type: 3}
     - target: {fileID: 8044469202920761417, guid: b1a9cbf17f0bda14b9746b1539d0964e, type: 3}
       propertyPath: m_Color.b
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8044469202920761417, guid: b1a9cbf17f0bda14b9746b1539d0964e, type: 3}
       propertyPath: m_Color.g
-      value: 0.6443304
+      value: 0.81539816
       objectReference: {fileID: 0}
     - target: {fileID: 8044469202920761417, guid: b1a9cbf17f0bda14b9746b1539d0964e, type: 3}
       propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8044469202920761417, guid: b1a9cbf17f0bda14b9746b1539d0964e, type: 3}
+      propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8044469202920761417, guid: b1a9cbf17f0bda14b9746b1539d0964e, type: 3}
@@ -361,19 +369,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8044469202920761419, guid: b1a9cbf17f0bda14b9746b1539d0964e, type: 3}
       propertyPath: m_SpriteTilingProperty.border.w
-      value: 0.25
+      value: 0.23046875
       objectReference: {fileID: 0}
     - target: {fileID: 8044469202920761419, guid: b1a9cbf17f0bda14b9746b1539d0964e, type: 3}
       propertyPath: m_SpriteTilingProperty.border.x
-      value: 0.25
+      value: 0.23828125
       objectReference: {fileID: 0}
     - target: {fileID: 8044469202920761419, guid: b1a9cbf17f0bda14b9746b1539d0964e, type: 3}
       propertyPath: m_SpriteTilingProperty.border.y
-      value: 0.25
+      value: 0.2421875
       objectReference: {fileID: 0}
     - target: {fileID: 8044469202920761419, guid: b1a9cbf17f0bda14b9746b1539d0964e, type: 3}
       propertyPath: m_SpriteTilingProperty.border.z
-      value: 0.25
+      value: 0.23828125
       objectReference: {fileID: 0}
     - target: {fileID: 8044469202920761419, guid: b1a9cbf17f0bda14b9746b1539d0964e, type: 3}
       propertyPath: m_SpriteTilingProperty.drawMode

@@ -51,6 +51,9 @@ ExportedObj/
 /Assets/MidiFiles
 /Assets/StandaloneFileBrowser
 /Assets/StreamingAssets
+/Assets/Plugins
+/Assets/Plugin.meta
+/Assets/Resources
 
 # Unity3D generated meta files
 *.pidb.meta
