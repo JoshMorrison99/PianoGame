@@ -37,6 +37,8 @@ public class MainMenu : MonoBehaviour
 
 	public GameObject Title;
 
+	public GameObject ShopPanel;
+
 	public GameObject SongSelectionPanel;
 	public GameObject SettingsMenuPanel;
 
@@ -66,6 +68,10 @@ public class MainMenu : MonoBehaviour
 
 		EXPSlideSetup();
 
+		EnableMainMenuButtons();
+		Title.SetActive(true);
+		ShopPanel.SetActive(false);
+
 	}
 
 	public void showMainMenu()
@@ -73,6 +79,7 @@ public class MainMenu : MonoBehaviour
 		SongSelectionPanel.SetActive(false);
 		Title.SetActive(true);
 		EnableMainMenuButtons();
+		ShopPanel.SetActive(false);
 
 		// play button clcik sfx
 		if (buttonClickedEvent != null)
@@ -125,6 +132,13 @@ public class MainMenu : MonoBehaviour
 
 	}
 
+	public void OnShopButtonClicked()
+    {
+		ShopPanel.SetActive(true);
+		DisableMainMenuButtons();
+		Title.SetActive(false);
+	}
+
 	public void HelpImportSongBtnClicked()
     {
 		string website = "http://localhost:3000/tutorial";
@@ -136,6 +150,7 @@ public class MainMenu : MonoBehaviour
 			buttonClickedEvent();
 		}
 	}
+
 
 	private void PlayerStatsLoad()
     {

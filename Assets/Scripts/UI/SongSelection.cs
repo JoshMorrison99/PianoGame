@@ -52,6 +52,8 @@ public class SongSelection : MonoBehaviour
     public TextMeshProUGUI NotesHit_Text;
     public TextMeshProUGUI Difficulty_Text;
 
+    // Check if user purchased full game
+
 
     public List<Button> myButtonSongs;
 
@@ -95,8 +97,10 @@ public class SongSelection : MonoBehaviour
 
         if(filter == "all")
         {
+            int numSongCounter = 0;
             foreach (SongInfo each in PersistentData.data._SongList)
             {
+
                 //Debug.Log(each._SongTitle);
                 GameObject newSong = Instantiate(songObjectTemplate);
                 newSong.GetComponent<SongInfo>()._SongTitle = each._SongTitle;
@@ -125,9 +129,7 @@ public class SongSelection : MonoBehaviour
                 {
                     newSong.transform.GetChild(5).gameObject.SetActive(false);
                 }
-
                 
-
             }
         }else
         {
