@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using TMPro;
 using UnityEngine.Events;
+using UnityEngine.Video;
 
 public class SongFinished : MonoBehaviour
 {
@@ -17,6 +18,9 @@ public class SongFinished : MonoBehaviour
 
     public delegate void ButtonClickedAction();
     public static event ButtonClickedAction buttonClickedEvent;
+
+    public VideoPlayer videoPlayer;
+    public GameObject topBar;
 
     // level system ui
     public TextMeshProUGUI levelTextStart;
@@ -101,6 +105,8 @@ public class SongFinished : MonoBehaviour
 
     void UpdateUserScore()
     {
+        videoPlayer.Play();
+        topBar.SetActive(false);
         updatePercentage();
         UpdateStars();
         UpdateHighScore();
