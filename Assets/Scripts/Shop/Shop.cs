@@ -58,14 +58,22 @@ public class Shop : MonoBehaviour
         ShopMenu_BackButton.gameObject.SetActive(false);
         itemIndex = 0;
         NoteItems[itemIndex].gameObject.SetActive(true);
-        PurchaseButtonTextLogic(NoteItems[itemIndex].GetComponent<Item>());
+        SetCurrentlySelectedItem();
     }
 
     public void PurchaseButtonTextLogic(Item _item)
     {
         if (_item.isPurchased)
         {
-            PurchaseButton.text = "Select";
+            if (_item.isCurrentlySelected)
+            {
+                PurchaseButton.text = "Selected";
+            }
+            else
+            {
+                PurchaseButton.text = "Select";
+            }
+            
         }
         else
         {
@@ -152,21 +160,45 @@ public class Shop : MonoBehaviour
             {
                 PersistentData.data.money -= NoteItems[itemIndex].GetComponent<Item>().price;
                 NoteItems[itemIndex].GetComponent<Item>().isPurchased = true;
+                ClearCurrentlySelectedItem();
+                NoteItems[itemIndex].GetComponent<Item>().isCurrentlySelected = true;
                 PersistentData.SaveJsonData(PersistentData.data);
 
                 // Update UI
                 PlayerMoney.text = PersistentData.data.money.ToString();
-                PurchaseButton.text = "Select";
+                PurchaseButtonTextLogic(NoteItems[itemIndex].GetComponent<Item>());
+
+
             }
             else
             {
                 Debug.Log("Selecting " + NoteItems[itemIndex].GetComponent<Item>().item);
+                ClearCurrentlySelectedItem();
+                NoteItems[itemIndex].GetComponent<Item>().isCurrentlySelected = true;
+                PurchaseButtonTextLogic(NoteItems[itemIndex].GetComponent<Item>());
+                PersistentData.SaveJsonData(PersistentData.data);
             }
             
         }
         else
         {
             Debug.Log("Insufficient Funds");
+        }
+    }
+
+    public void SetCurrentlySelectedItem()
+    {
+        foreach (var item in NoteItems)
+        {
+            PurchaseButtonTextLogic(item.GetComponent<Item>());
+        }
+    }
+
+    public void ClearCurrentlySelectedItem()
+    {
+        foreach (var item in NoteItems)
+        {
+            item.GetComponent<Item>().isCurrentlySelected = false;
         }
     }
 

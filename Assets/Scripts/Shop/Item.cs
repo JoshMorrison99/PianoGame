@@ -8,6 +8,7 @@ public class Item : MonoBehaviour, ISaveable
     public string item;
     public int price;
     public bool isPurchased;
+    public bool isCurrentlySelected;
 
 
     public void LoadFromSaveData(PersistentDataInformation a_SaveData)
@@ -20,6 +21,7 @@ public class Item : MonoBehaviour, ISaveable
                 item = myItemData.m_itemName;
                 price = myItemData.m_price;
                 isPurchased = myItemData.m_isPurchased;
+                isCurrentlySelected = myItemData.m_isCurrentlySelected;
                 break;
             }
         }
@@ -33,6 +35,7 @@ public class Item : MonoBehaviour, ISaveable
         myItemData.m_itemName = item;
         myItemData.m_price = price;
         myItemData.m_isPurchased = isPurchased;
+        myItemData.m_isCurrentlySelected = isCurrentlySelected;
 
         a_SaveData.m_ItemList.Add(myItemData);
     }
