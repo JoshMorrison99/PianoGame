@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Video;
+using TMPro;
 
 public class Shop : MonoBehaviour
 {
@@ -23,16 +24,35 @@ public class Shop : MonoBehaviour
     public bool ParticlesButton_isCurrent = false;
     public bool PianoBarButton_isCurrent = false;
     public bool LightsButton_isCurrent = false;
-    
+
+    // SHOP LOGIC
+    public Button RightArrow;
+    public Button LeftArrow;
+
+    // SHOP TITLES
+    public TextMeshProUGUI NotesTitle;
+    public TextMeshProUGUI ParticlesTitle;
+    public TextMeshProUGUI PianoBarTitle;
+    public TextMeshProUGUI LightsTitle;
+
+    private void Start()
+    {
+        main_NotesShop.SetActive(false);
+        main_ParticlesShop.SetActive(false);
+        main_PianoBarShop.SetActive(false);
+        main_LightsShop.SetActive(false);
+    }
+
     public void NotesShopButtonClicked()
     {
         if (NotesButton_isCurrent)
         {
+            NotesTitle.gameObject.LeanMoveLocal(new Vector3(-1000, 400,0),1).setEaseOutSine();
             main_NotesButton.gameObject.LeanMoveLocal(new Vector3(-600, 0, 0), 1).setEaseOutSine();
             main_ParticlesButton.gameObject.LeanMoveLocal(new Vector3(-200, 0, 0), 1).setEaseOutSine();
             main_PianoBarButton.gameObject.LeanMoveLocal(new Vector3(200, 0, 0), 1).setEaseOutSine();
             main_LightsButton.gameObject.LeanMoveLocal(new Vector3(600, 0, 0), 1).setEaseOutSine();
-            main_NotesShop.SetActive(true);
+            main_NotesShop.SetActive(false);
             main_ParticlesShop.SetActive(false);
             main_PianoBarShop.SetActive(false);
             main_LightsShop.SetActive(false);
@@ -41,7 +61,8 @@ public class Shop : MonoBehaviour
         }
         else
         {
-            main_NotesButton.gameObject.LeanMoveLocal(new Vector3(0, -400, 0), 1).setEaseOutSine();
+            NotesTitle.gameObject.LeanMoveLocal(new Vector3(-300, 400, 0), 1).setEaseOutSine();
+            main_NotesButton.gameObject.LeanMoveLocal(new Vector3(0, -800, 0), 1).setEaseOutSine();
             main_ParticlesButton.gameObject.LeanMoveLocal(new Vector3(1200, 0, 0), 1).setEaseOutSine();
             main_PianoBarButton.gameObject.LeanMoveLocal(new Vector3(1200, 0, 0), 1).setEaseOutSine();
             main_LightsButton.gameObject.LeanMoveLocal(new Vector3(1200, 0, 0), 1).setEaseOutSine();
@@ -63,7 +84,7 @@ public class Shop : MonoBehaviour
             main_ParticlesButton.gameObject.LeanMoveLocal(new Vector3(-200, 0, 0), 1).setEaseOutSine();
             main_PianoBarButton.gameObject.LeanMoveLocal(new Vector3(200, 0, 0), 1).setEaseOutSine();
             main_LightsButton.gameObject.LeanMoveLocal(new Vector3(600, 0, 0), 1).setEaseOutSine();
-            main_NotesShop.SetActive(true);
+            main_NotesShop.SetActive(false);
             main_ParticlesShop.SetActive(false);
             main_PianoBarShop.SetActive(false);
             main_LightsShop.SetActive(false);
@@ -72,7 +93,7 @@ public class Shop : MonoBehaviour
         }
         else{
             main_NotesButton.gameObject.LeanMoveLocal(new Vector3(-1200, 0, 0), 1).setEaseOutSine();
-            main_ParticlesButton.gameObject.LeanMoveLocal(new Vector3(0, -400, 0), 1).setEaseOutSine();
+            main_ParticlesButton.gameObject.LeanMoveLocal(new Vector3(0, -800, 0), 1).setEaseOutSine();
             main_PianoBarButton.gameObject.LeanMoveLocal(new Vector3(1200, 0, 0), 1).setEaseOutSine();
             main_LightsButton.gameObject.LeanMoveLocal(new Vector3(1200, 0, 0), 1).setEaseOutSine();
             main_NotesShop.SetActive(false);
@@ -93,7 +114,7 @@ public class Shop : MonoBehaviour
             main_ParticlesButton.gameObject.LeanMoveLocal(new Vector3(-200, 0, 0), 1).setEaseOutSine();
             main_PianoBarButton.gameObject.LeanMoveLocal(new Vector3(200, 0, 0), 1).setEaseOutSine();
             main_LightsButton.gameObject.LeanMoveLocal(new Vector3(600, 0, 0), 1).setEaseOutSine();
-            main_NotesShop.SetActive(true);
+            main_NotesShop.SetActive(false);
             main_ParticlesShop.SetActive(false);
             main_PianoBarShop.SetActive(false);
             main_LightsShop.SetActive(false);
@@ -104,7 +125,7 @@ public class Shop : MonoBehaviour
         {
             main_NotesButton.gameObject.LeanMoveLocal(new Vector3(-1200, 0, 0), 1).setEaseOutSine();
             main_ParticlesButton.gameObject.LeanMoveLocal(new Vector3(-1200, 0, 0), 1).setEaseOutSine();
-            main_PianoBarButton.gameObject.LeanMoveLocal(new Vector3(0, -400, 0), 1).setEaseOutSine();
+            main_PianoBarButton.gameObject.LeanMoveLocal(new Vector3(0, -800, 0), 1).setEaseOutSine();
             main_LightsButton.gameObject.LeanMoveLocal(new Vector3(1200, 0, 0), 1).setEaseOutSine();
             main_NotesShop.SetActive(false);
             main_ParticlesShop.SetActive(false);
@@ -124,7 +145,7 @@ public class Shop : MonoBehaviour
             main_ParticlesButton.gameObject.LeanMoveLocal(new Vector3(-200, 0, 0), 1).setEaseOutSine();
             main_PianoBarButton.gameObject.LeanMoveLocal(new Vector3(200, 0, 0), 1).setEaseOutSine();
             main_LightsButton.gameObject.LeanMoveLocal(new Vector3(600, 0, 0), 1).setEaseOutSine();
-            main_NotesShop.SetActive(true);
+            main_NotesShop.SetActive(false);
             main_ParticlesShop.SetActive(false);
             main_PianoBarShop.SetActive(false);
             main_LightsShop.SetActive(false);
@@ -136,7 +157,7 @@ public class Shop : MonoBehaviour
             main_NotesButton.gameObject.LeanMoveLocal(new Vector3(-1200, 0, 0), 1).setEaseOutSine();
             main_ParticlesButton.gameObject.LeanMoveLocal(new Vector3(-1200, 0, 0), 1).setEaseOutSine();
             main_PianoBarButton.gameObject.LeanMoveLocal(new Vector3(-1200, 0, 0), 1).setEaseOutSine();
-            main_LightsButton.gameObject.LeanMoveLocal(new Vector3(0, -400, 0), 1).setEaseOutSine();
+            main_LightsButton.gameObject.LeanMoveLocal(new Vector3(0, -800, 0), 1).setEaseOutSine();
             main_NotesShop.SetActive(false);
             main_ParticlesShop.SetActive(false);
             main_PianoBarShop.SetActive(false);
