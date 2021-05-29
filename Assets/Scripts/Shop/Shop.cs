@@ -162,6 +162,7 @@ public class Shop : MonoBehaviour
                 NoteItems[itemIndex].GetComponent<Item>().isPurchased = true;
                 ClearCurrentlySelectedItem();
                 NoteItems[itemIndex].GetComponent<Item>().isCurrentlySelected = true;
+                PersistentData.data.currentNoteItem = NoteItems[itemIndex].GetComponent<NoteItem>();
                 PersistentData.SaveJsonData(PersistentData.data);
 
                 // Update UI
@@ -175,6 +176,7 @@ public class Shop : MonoBehaviour
                 Debug.Log("Selecting " + NoteItems[itemIndex].GetComponent<Item>().item);
                 ClearCurrentlySelectedItem();
                 NoteItems[itemIndex].GetComponent<Item>().isCurrentlySelected = true;
+                PersistentData.data.currentNoteItem = NoteItems[itemIndex].GetComponent<NoteItem>();
                 PurchaseButtonTextLogic(NoteItems[itemIndex].GetComponent<Item>());
                 PersistentData.SaveJsonData(PersistentData.data);
             }
@@ -218,6 +220,9 @@ public class Shop : MonoBehaviour
             main_LightsShop.SetActive(false);
 
             NotesButton_isCurrent = false;
+
+            ShopMenu_BackButton.gameObject.SetActive(false);
+            MainMenu_BackButton.gameObject.SetActive(true);
         }
         else
         {
@@ -232,10 +237,12 @@ public class Shop : MonoBehaviour
             main_LightsShop.SetActive(false);
 
             NotesButton_isCurrent = true;
+
+            ShopMenu_BackButton.gameObject.SetActive(true);
+            MainMenu_BackButton.gameObject.SetActive(false);
         }
 
-        ShopMenu_BackButton.gameObject.SetActive(true);
-        MainMenu_BackButton.gameObject.SetActive(false);
+        
         
     }
 
@@ -253,6 +260,9 @@ public class Shop : MonoBehaviour
             main_LightsShop.SetActive(false);
 
             ParticlesButton_isCurrent = false;
+
+            ShopMenu_BackButton.gameObject.SetActive(false);
+            MainMenu_BackButton.gameObject.SetActive(true);
         }
         else{
             main_NotesButton.gameObject.LeanMoveLocal(new Vector3(-1200, 0, 0), 1).setEaseOutSine();
@@ -265,10 +275,12 @@ public class Shop : MonoBehaviour
             main_LightsShop.SetActive(false);
 
             ParticlesButton_isCurrent = true;
+
+            ShopMenu_BackButton.gameObject.SetActive(true);
+            MainMenu_BackButton.gameObject.SetActive(false);
         }
 
-        ShopMenu_BackButton.gameObject.SetActive(true);
-        MainMenu_BackButton.gameObject.SetActive(false);
+        
 
     }
 
@@ -286,6 +298,9 @@ public class Shop : MonoBehaviour
             main_LightsShop.SetActive(false);
 
             PianoBarButton_isCurrent = false;
+
+            ShopMenu_BackButton.gameObject.SetActive(false);
+            MainMenu_BackButton.gameObject.SetActive(true);
         }
         else
         {
@@ -299,10 +314,12 @@ public class Shop : MonoBehaviour
             main_LightsShop.SetActive(false);
 
             PianoBarButton_isCurrent = true;
+
+            ShopMenu_BackButton.gameObject.SetActive(true);
+            MainMenu_BackButton.gameObject.SetActive(false);
         }
 
-        ShopMenu_BackButton.gameObject.SetActive(true);
-        MainMenu_BackButton.gameObject.SetActive(false);
+        
     }
 
     public void LightsButtonClicked()
@@ -319,6 +336,9 @@ public class Shop : MonoBehaviour
             main_LightsShop.SetActive(false);
 
             LightsButton_isCurrent = false;
+
+            ShopMenu_BackButton.gameObject.SetActive(false);
+            MainMenu_BackButton.gameObject.SetActive(true);
         }
         else
         {
@@ -332,10 +352,12 @@ public class Shop : MonoBehaviour
             main_LightsShop.SetActive(true);
 
             LightsButton_isCurrent = true;
+
+            ShopMenu_BackButton.gameObject.SetActive(true);
+            MainMenu_BackButton.gameObject.SetActive(false);
         }
 
-        ShopMenu_BackButton.gameObject.SetActive(true);
-        MainMenu_BackButton.gameObject.SetActive(false);
+        
     }
 
 

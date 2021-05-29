@@ -22,6 +22,8 @@ public class PersistentData : MonoBehaviour, ISaveable
 
     public GameObject templateSong;
 
+    public NoteItem currentNoteItem;
+
     public MidiFile myMidi;
     public Playback myPlayback;
     public Playback myPlaybackAudio;
@@ -80,6 +82,14 @@ public class PersistentData : MonoBehaviour, ISaveable
             PlayerPrefs.SetString("installed", "true"); 
         }
 
+        // Set currently Selected Note
+        foreach (var item in _ItemList)
+        {
+            if (item.isCurrentlySelected)
+            {
+                currentNoteItem = item.GetComponent<NoteItem>();
+            }
+        }
         
     }
 

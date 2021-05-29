@@ -105,6 +105,9 @@ public class PianoNoteSpawner : MonoBehaviour
         uid = 0;
         setupUI();
 
+        Note.transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().color = new Color(PersistentData.data.currentNoteItem.whiteNoteColor.r, PersistentData.data.currentNoteItem.whiteNoteColor.g, PersistentData.data.currentNoteItem.whiteNoteColor.b, 255);
+        SharpNote.transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().color = new Color(PersistentData.data.currentNoteItem.blackNoteColor.r, PersistentData.data.currentNoteItem.blackNoteColor.g, PersistentData.data.currentNoteItem.blackNoteColor.b, 255);
+        
     }
 
     
