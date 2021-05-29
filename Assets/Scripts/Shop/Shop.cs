@@ -25,9 +25,11 @@ public class Shop : MonoBehaviour
     public bool PianoBarButton_isCurrent = false;
     public bool LightsButton_isCurrent = false;
 
-    // SHOP LOGIC
+    // SHOP NOTES LOGIC
     public Button RightArrow;
     public Button LeftArrow;
+    public GameObject[] NoteItems;
+    public int itemIndex;
 
     // SHOP TITLES
     public TextMeshProUGUI NotesTitle;
@@ -35,13 +37,93 @@ public class Shop : MonoBehaviour
     public TextMeshProUGUI PianoBarTitle;
     public TextMeshProUGUI LightsTitle;
 
+    // BACK BUTTONS
+    public Button MainMenu_BackButton;
+    public Button ShopMenu_BackButton;
+
+    // SHOP LOGIC
+    public TextMeshProUGUI ItemName;
+    public TextMeshProUGUI ItemPrice;
+    public Button PurchaseButton;
+
     private void Start()
     {
         main_NotesShop.SetActive(false);
         main_ParticlesShop.SetActive(false);
         main_PianoBarShop.SetActive(false);
         main_LightsShop.SetActive(false);
+        ShopMenu_BackButton.gameObject.SetActive(false);
+        itemIndex = 0;
+        NoteItems[itemIndex].gameObject.SetActive(true);
     }
+
+    public void LeftButtonClicked()
+    {
+        Debug.Log("Left Clicked");
+        if (itemIndex == 0)
+        {
+            NoteItems[itemIndex].SetActive(false);
+            itemIndex = NoteItems.Length - 1;
+            NoteItems[itemIndex].SetActive(true);
+            ItemName.text = NoteItems[itemIndex].GetComponent<Item>().item;
+            ItemPrice.text = NoteItems[itemIndex].GetComponent<Item>().price.ToString();
+            return;
+        }
+
+        NoteItems[itemIndex].SetActive(false);
+        itemIndex -= 1;
+        NoteItems[itemIndex].SetActive(true);
+        ItemName.text = NoteItems[itemIndex].GetComponent<Item>().item;
+        ItemPrice.text = NoteItems[itemIndex].GetComponent<Item>().price.ToString();
+
+    }
+
+    public void RightButtonClicked()
+    {
+        Debug.Log("Right Clicked");
+        if (itemIndex == NoteItems.Length - 1)
+        {
+            NoteItems[itemIndex].SetActive(false);
+            itemIndex = 0;
+            NoteItems[itemIndex].SetActive(true);
+            ItemName.text = NoteItems[itemIndex].GetComponent<Item>().item;
+            ItemPrice.text = NoteItems[itemIndex].GetComponent<Item>().price.ToString();
+            return;
+        }
+
+        NoteItems[itemIndex].SetActive(false);
+        itemIndex += 1;
+        NoteItems[itemIndex].SetActive(true);
+        ItemName.text = NoteItems[itemIndex].GetComponent<Item>().item;
+        ItemPrice.text = NoteItems[itemIndex].GetComponent<Item>().price.ToString();
+    }
+
+
+    public void ShopMenuBackButtonClicked()
+    {
+        if (NotesButton_isCurrent)
+        {
+            NotesShopButtonClicked();
+        }else if (ParticlesButton_isCurrent)
+        {
+            ParticlesShopButtonClicked();
+        }else if (PianoBarButton_isCurrent)
+        {
+            PianoBarButtonClicked();
+        }
+        else if(LightsButton_isCurrent)
+        {
+            LightsButtonClicked();
+        }
+        else
+        {
+            Debug.Log("Error in the shop menu back button logic.");
+        }
+
+        ShopMenu_BackButton.gameObject.SetActive(false);
+        MainMenu_BackButton.gameObject.SetActive(true);
+    }
+
 
     public void NotesShopButtonClicked()
     {
@@ -73,6 +155,9 @@ public class Shop : MonoBehaviour
 
             NotesButton_isCurrent = true;
         }
+
+        ShopMenu_BackButton.gameObject.SetActive(true);
+        MainMenu_BackButton.gameObject.SetActive(false);
         
     }
 
@@ -103,7 +188,10 @@ public class Shop : MonoBehaviour
 
             ParticlesButton_isCurrent = true;
         }
-        
+
+        ShopMenu_BackButton.gameObject.SetActive(true);
+        MainMenu_BackButton.gameObject.SetActive(false);
+
     }
 
     public void PianoBarButtonClicked()
@@ -134,7 +222,9 @@ public class Shop : MonoBehaviour
 
             PianoBarButton_isCurrent = true;
         }
-        
+
+        ShopMenu_BackButton.gameObject.SetActive(true);
+        MainMenu_BackButton.gameObject.SetActive(false);
     }
 
     public void LightsButtonClicked()
@@ -165,7 +255,9 @@ public class Shop : MonoBehaviour
 
             LightsButton_isCurrent = true;
         }
-        
+
+        ShopMenu_BackButton.gameObject.SetActive(true);
+        MainMenu_BackButton.gameObject.SetActive(false);
     }
 
 
