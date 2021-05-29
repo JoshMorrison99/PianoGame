@@ -4,5 +4,6 @@ using UnityEngine;
 
 public class NoteItem : Item
 {
-    
+    public Color whiteNoteColor = new Color();
+    public Color blackNoteColor = new Color();
 }

@@ -3227,7 +3227,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 169063012}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1568627044}
+        m_TargetAssemblyTypeName: Shop, Assembly-CSharp
+        m_MethodName: PurchaseButtonClicked
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &169063012
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6765,6 +6777,18 @@ MonoBehaviour:
   - {fileID: 1874461048}
   - {fileID: 851414459}
   - {fileID: 1905779081}
+  _ItemList:
+  - {fileID: 1413372042}
+  - {fileID: 1770611535}
+  - {fileID: 1154196536}
+  - {fileID: 1724211406}
+  - {fileID: 581688109}
+  - {fileID: 466816497}
+  - {fileID: 1413408418}
+  - {fileID: 693293069}
+  - {fileID: 1913470685}
+  - {fileID: 557008737}
+  - {fileID: 1580481720}
 --- !u!4 &368203422
 Transform:
   m_ObjectHideFlags: 0
@@ -8048,6 +8072,9 @@ MonoBehaviour:
   id: 5
   item: Orange
   price: 4000
+  isPurchased: 0
+  whiteNoteColor: {r: 0.9921569, g: 0.6431373, b: 0.06666667, a: 0}
+  blackNoteColor: {r: 0.9960785, g: 0.69411767, b: 0.20784315, a: 0}
 --- !u!1 &469161589
 GameObject:
   m_ObjectHideFlags: 0
@@ -9818,6 +9845,9 @@ MonoBehaviour:
   id: 9
   item: Red2
   price: 4000
+  isPurchased: 0
+  whiteNoteColor: {r: 0.32941177, g: 0.007843138, b: 0, a: 0}
+  blackNoteColor: {r: 0.5294118, g: 0.027450982, b: 0, a: 0}
 --- !u!1 &564375037
 GameObject:
   m_ObjectHideFlags: 0
@@ -10455,6 +10485,9 @@ MonoBehaviour:
   id: 4
   item: LightBlue
   price: 4000
+  isPurchased: 0
+  whiteNoteColor: {r: 0.003921569, g: 0.9921569, b: 0.97647065, a: 0}
+  blackNoteColor: {r: 0.20000002, g: 0.9921569, b: 0.9803922, a: 0}
 --- !u!1 &582793623
 GameObject:
   m_ObjectHideFlags: 0
@@ -13756,6 +13789,9 @@ MonoBehaviour:
   id: 7
   item: Purple
   price: 4000
+  isPurchased: 0
+  whiteNoteColor: {r: 0.30588236, g: 0.121568635, b: 0.87843144, a: 0}
+  blackNoteColor: {r: 0.4431373, g: 0.3019608, b: 0.882353, a: 0}
 --- !u!1 &694753388
 GameObject:
   m_ObjectHideFlags: 0
@@ -23659,6 +23695,9 @@ MonoBehaviour:
   id: 2
   item: Brown
   price: 4000
+  isPurchased: 0
+  whiteNoteColor: {r: 0.5568628, g: 0.38823533, b: 0.011764707, a: 0}
+  blackNoteColor: {r: 0.6313726, g: 0.43137258, b: 0.003921569, a: 0}
 --- !u!1 &1154903933
 GameObject:
   m_ObjectHideFlags: 0
@@ -28559,7 +28598,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1413372041
 RectTransform:
   m_ObjectHideFlags: 0
@@ -28596,6 +28635,9 @@ MonoBehaviour:
   id: 0
   item: Blue
   price: 4000
+  isPurchased: 0
+  whiteNoteColor: {r: 0.24705884, g: 0.5882353, b: 0.7607844, a: 0}
+  blackNoteColor: {r: 0.38823533, g: 0.67058825, b: 0.79215693, a: 0}
 --- !u!1 &1413408416
 GameObject:
   m_ObjectHideFlags: 0
@@ -28649,6 +28691,9 @@ MonoBehaviour:
   id: 6
   item: OrangeBlue
   price: 10000
+  isPurchased: 0
+  whiteNoteColor: {r: 0, g: 0.8000001, b: 0.8745099, a: 0}
+  blackNoteColor: {r: 0.8745099, g: 0.70980394, b: 0, a: 0}
 --- !u!1 &1417577617
 GameObject:
   m_ObjectHideFlags: 0
@@ -32564,7 +32609,8 @@ MonoBehaviour:
   ShopMenu_BackButton: {fileID: 1219074428}
   ItemName: {fileID: 943619677}
   ItemPrice: {fileID: 2042124951}
-  PurchaseButton: {fileID: 169063011}
+  PurchaseButton: {fileID: 210947250}
+  PlayerMoney: {fileID: 1496982972}
 --- !u!1 &1571754590
 GameObject:
   m_ObjectHideFlags: 0
@@ -32830,6 +32876,9 @@ MonoBehaviour:
   id: 10
   item: Yellow
   price: 4000
+  isPurchased: 0
+  whiteNoteColor: {r: 0.92549026, g: 0.9921569, b: 0.03137255, a: 0}
+  blackNoteColor: {r: 0.93725497, g: 0.9960785, b: 0.18823531, a: 0}
 --- !u!1 &1597488208
 GameObject:
   m_ObjectHideFlags: 0
@@ -35538,6 +35587,9 @@ MonoBehaviour:
   id: 3
   item: Green
   price: 4000
+  isPurchased: 0
+  whiteNoteColor: {r: 0, g: 0.9921569, b: 0.007843138, a: 0}
+  blackNoteColor: {r: 0.20000002, g: 0.98823535, b: 0.19607845, a: 0}
 --- !u!1 &1738912360
 GameObject:
   m_ObjectHideFlags: 0
@@ -36077,6 +36129,9 @@ MonoBehaviour:
   id: 1
   item: Blue2
   price: 4000
+  isPurchased: 0
+  whiteNoteColor: {r: 0, g: 0.4431373, b: 0.4666667, a: 0}
+  blackNoteColor: {r: 0.003921569, g: 0.627451, b: 0.654902, a: 0}
 --- !u!1 &1770734581
 GameObject:
   m_ObjectHideFlags: 0
@@ -39909,6 +39964,9 @@ MonoBehaviour:
   id: 8
   item: Red
   price: 4000
+  isPurchased: 0
+  whiteNoteColor: {r: 0.9960785, g: 0.03137255, b: 0, a: 0}
+  blackNoteColor: {r: 0.9921569, g: 0.21960786, b: 0.19215688, a: 0}
 --- !u!1 &1913753858
 GameObject:
   m_ObjectHideFlags: 0

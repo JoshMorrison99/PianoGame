@@ -20,6 +20,9 @@ public class PersistentDataInformation
     // Song List
     public List<SongData> m_SongList = new List<SongData>();
 
+    // Item List
+    public List<ItemData> m_ItemList = new List<ItemData>();
+
     [System.Serializable]
     public struct SongData
     {
@@ -34,6 +37,15 @@ public class PersistentDataInformation
         public int m_notesHit;
         public float m_songCompletionPercentage;
         public string _Difficulty;
+    }
+
+    [System.Serializable]
+    public struct ItemData
+    {
+        public int m_id;
+        public int m_price;
+        public bool m_isPurchased;
+        public string m_itemName;
     }
 
     public string ToJson()

@@ -49,6 +49,9 @@ public class PersistentData : MonoBehaviour, ISaveable
     // Persistent Song Information
     public List<SongInfo> _SongList = new List<SongInfo>();
 
+    // Persistent Item Information
+    public List<Item> _ItemList = new List<Item>();
+
 
 
     public static PersistentData data;
@@ -195,6 +198,13 @@ public class PersistentData : MonoBehaviour, ISaveable
             song.PopulateSaveData(a_SaveData);
         }
 
+        // Item Information
+        foreach (Item item in _ItemList)
+        {
+            Debug.Log("item.LoadFromSaveData: " + item);
+            item.PopulateSaveData(a_SaveData);
+        }
+
     }
 
     public void LoadFromSaveData(PersistentDataInformation a_SaveData)
@@ -244,6 +254,13 @@ public class PersistentData : MonoBehaviour, ISaveable
             Debug.Log("song.LoadFromSaveData: " + song);
             song.LoadFromSaveData(a_SaveData);
         }*/
+
+        foreach (Item item in _ItemList)
+        {
+            Debug.Log("item.LoadFromSaveData: " + item);
+            item.LoadFromSaveData(a_SaveData);
+        }
+        
     }
 }
 

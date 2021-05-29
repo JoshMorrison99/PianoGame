@@ -44,7 +44,10 @@ public class Shop : MonoBehaviour
     // SHOP LOGIC
     public TextMeshProUGUI ItemName;
     public TextMeshProUGUI ItemPrice;
-    public Button PurchaseButton;
+    public TextMeshProUGUI PurchaseButton;
+
+    // PLAYER STATS
+    public TextMeshProUGUI PlayerMoney;
 
     private void Start()
     {
@@ -55,6 +58,19 @@ public class Shop : MonoBehaviour
         ShopMenu_BackButton.gameObject.SetActive(false);
         itemIndex = 0;
         NoteItems[itemIndex].gameObject.SetActive(true);
+        PurchaseButtonTextLogic(NoteItems[itemIndex].GetComponent<Item>());
+    }
+
+    public void PurchaseButtonTextLogic(Item _item)
+    {
+        if (_item.isPurchased)
+        {
+            PurchaseButton.text = "Select";
+        }
+        else
+        {
+            PurchaseButton.text = "Purchase";
+        }
     }
 
     public void LeftButtonClicked()
@@ -67,6 +83,7 @@ public class Shop : MonoBehaviour
             NoteItems[itemIndex].SetActive(true);
             ItemName.text = NoteItems[itemIndex].GetComponent<Item>().item;
             ItemPrice.text = NoteItems[itemIndex].GetComponent<Item>().price.ToString();
+            PurchaseButtonTextLogic(NoteItems[itemIndex].GetComponent<Item>());
             return;
         }
 
@@ -75,6 +92,7 @@ public class Shop : MonoBehaviour
         NoteItems[itemIndex].SetActive(true);
         ItemName.text = NoteItems[itemIndex].GetComponent<Item>().item;
         ItemPrice.text = NoteItems[itemIndex].GetComponent<Item>().price.ToString();
+        PurchaseButtonTextLogic(NoteItems[itemIndex].GetComponent<Item>());
 
     }
 
@@ -88,6 +106,7 @@ public class Shop : MonoBehaviour
             NoteItems[itemIndex].SetActive(true);
             ItemName.text = NoteItems[itemIndex].GetComponent<Item>().item;
             ItemPrice.text = NoteItems[itemIndex].GetComponent<Item>().price.ToString();
+            PurchaseButtonTextLogic(NoteItems[itemIndex].GetComponent<Item>());
             return;
         }
 
@@ -96,6 +115,7 @@ public class Shop : MonoBehaviour
         NoteItems[itemIndex].SetActive(true);
         ItemName.text = NoteItems[itemIndex].GetComponent<Item>().item;
         ItemPrice.text = NoteItems[itemIndex].GetComponent<Item>().price.ToString();
+        PurchaseButtonTextLogic(NoteItems[itemIndex].GetComponent<Item>());
     }
 
 
@@ -122,6 +142,32 @@ public class Shop : MonoBehaviour
 
         ShopMenu_BackButton.gameObject.SetActive(false);
         MainMenu_BackButton.gameObject.SetActive(true);
+    }
+
+    public void PurchaseButtonClicked()
+    {
+        if (NoteItems[itemIndex].GetComponent<Item>().price < PersistentData.data.money)
+        {
+            if (NoteItems[itemIndex].GetComponent<Item>().isPurchased == false)
+            {
+                PersistentData.data.money -= NoteItems[itemIndex].GetComponent<Item>().price;
+                NoteItems[itemIndex].GetComponent<Item>().isPurchased = true;
+                PersistentData.SaveJsonData(PersistentData.data);
+
+                // Update UI
+                PlayerMoney.text = PersistentData.data.money.ToString();
+                PurchaseButton.text = "Select";
+            }
+            else
+            {
+                Debug.Log("Selecting " + NoteItems[itemIndex].GetComponent<Item>().item);
+            }
+            
+        }
+        else
+        {
+            Debug.Log("Insufficient Funds");
+        }
     }
 
 
