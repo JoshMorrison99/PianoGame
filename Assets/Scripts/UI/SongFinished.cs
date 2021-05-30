@@ -87,7 +87,8 @@ public class SongFinished : MonoBehaviour
 
         SoundManager.soundManager.MainMenuMusic.UnPause();
         midi.ReplaySong();
-        
+        Time.timeScale = 1;
+
         SceneManager.LoadScene("MainMenu");
     }
 

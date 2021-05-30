@@ -268,7 +268,7 @@ public class PersistentData : MonoBehaviour, ISaveable
 
         foreach (Item item in _ItemList)
         {
-            //Debug.Log("item.LoadFromSaveData: " + item);
+            Debug.Log("item.LoadFromSaveData: " + item);
             item.LoadFromSaveData(a_SaveData);
         }
         

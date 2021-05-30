@@ -204,6 +204,7 @@ public class PlayUILogic : MonoBehaviour
         }
 
         midi.ReplaySong();
+        Time.timeScale = 1;
         SoundManager.soundManager.MainMenuMusic.UnPause();
         SceneManager.LoadScene("MainMenu");
         Debug.Log("REPLAY");
