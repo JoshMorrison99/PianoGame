@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using TMPro;
 using UnityEngine.SceneManagement;
 using UnityEngine.InputSystem;
+using UnityEngine.Video;
 
 public class PlayUILogic : MonoBehaviour
 {
@@ -49,6 +50,9 @@ public class PlayUILogic : MonoBehaviour
 
     public int songPercentage;
 
+    // PIANO BAR VIDEO
+    public VideoPlayer pianoBarVideo;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -76,6 +80,8 @@ public class PlayUILogic : MonoBehaviour
         pauseManuPanel.SetActive(false);
         settingsPanel.SetActive(false);
         pauseBtn.gameObject.SetActive(true);
+
+        pianoBarVideo.clip = PersistentData.data.currentPianoBarItem.video;
 
 
         //PauseMenuPressed();

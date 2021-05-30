@@ -23,6 +23,7 @@ public class PersistentData : MonoBehaviour, ISaveable
     public GameObject templateSong;
 
     public NoteItem currentNoteItem;
+    public PianoBarItem currentPianoBarItem;
 
     public MidiFile myMidi;
     public Playback myPlayback;

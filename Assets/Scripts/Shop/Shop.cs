@@ -31,11 +31,10 @@ public class Shop : MonoBehaviour
     public GameObject[] NoteItems;
     public int itemIndex;
 
+    
+
     // SHOP TITLES
-    public TextMeshProUGUI NotesTitle;
-    public TextMeshProUGUI ParticlesTitle;
-    public TextMeshProUGUI PianoBarTitle;
-    public TextMeshProUGUI LightsTitle;
+    public TextMeshProUGUI ShopTitle;
 
     // BACK BUTTONS
     public Button MainMenu_BackButton;
@@ -126,6 +125,7 @@ public class Shop : MonoBehaviour
         PurchaseButtonTextLogic(NoteItems[itemIndex].GetComponent<Item>());
     }
 
+    
 
     public void ShopMenuBackButtonClicked()
     {
@@ -209,7 +209,8 @@ public class Shop : MonoBehaviour
     {
         if (NotesButton_isCurrent)
         {
-            NotesTitle.gameObject.LeanMoveLocal(new Vector3(-1000, 400,0),1).setEaseOutSine();
+            ShopTitle.gameObject.LeanMoveLocal(new Vector3(-1000, 400,0),1).setEaseOutSine();
+            ShopTitle.text = "Notes Shop";
             main_NotesButton.gameObject.LeanMoveLocal(new Vector3(-600, 0, 0), 1).setEaseOutSine();
             main_ParticlesButton.gameObject.LeanMoveLocal(new Vector3(-200, 0, 0), 1).setEaseOutSine();
             main_PianoBarButton.gameObject.LeanMoveLocal(new Vector3(200, 0, 0), 1).setEaseOutSine();
@@ -226,7 +227,8 @@ public class Shop : MonoBehaviour
         }
         else
         {
-            NotesTitle.gameObject.LeanMoveLocal(new Vector3(-300, 400, 0), 1).setEaseOutSine();
+            ShopTitle.gameObject.LeanMoveLocal(new Vector3(-300, 400, 0), 1).setEaseOutSine();
+            ShopTitle.text = "Notes Shop";
             main_NotesButton.gameObject.LeanMoveLocal(new Vector3(0, -800, 0), 1).setEaseOutSine();
             main_ParticlesButton.gameObject.LeanMoveLocal(new Vector3(1200, 0, 0), 1).setEaseOutSine();
             main_PianoBarButton.gameObject.LeanMoveLocal(new Vector3(1200, 0, 0), 1).setEaseOutSine();
@@ -250,6 +252,8 @@ public class Shop : MonoBehaviour
     {
         if (ParticlesButton_isCurrent)
         {
+            ShopTitle.gameObject.LeanMoveLocal(new Vector3(-1000, 400, 0), 1).setEaseOutSine();
+            ShopTitle.text = "Particle Shop";
             main_NotesButton.gameObject.LeanMoveLocal(new Vector3(-600, 0, 0), 1).setEaseOutSine();
             main_ParticlesButton.gameObject.LeanMoveLocal(new Vector3(-200, 0, 0), 1).setEaseOutSine();
             main_PianoBarButton.gameObject.LeanMoveLocal(new Vector3(200, 0, 0), 1).setEaseOutSine();
@@ -265,6 +269,8 @@ public class Shop : MonoBehaviour
             MainMenu_BackButton.gameObject.SetActive(true);
         }
         else{
+            ShopTitle.gameObject.LeanMoveLocal(new Vector3(-300, 400, 0), 1).setEaseOutSine();
+            ShopTitle.text = "Particle Shop";
             main_NotesButton.gameObject.LeanMoveLocal(new Vector3(-1200, 0, 0), 1).setEaseOutSine();
             main_ParticlesButton.gameObject.LeanMoveLocal(new Vector3(0, -800, 0), 1).setEaseOutSine();
             main_PianoBarButton.gameObject.LeanMoveLocal(new Vector3(1200, 0, 0), 1).setEaseOutSine();
@@ -288,6 +294,8 @@ public class Shop : MonoBehaviour
     {
         if (PianoBarButton_isCurrent)
         {
+            ShopTitle.gameObject.LeanMoveLocal(new Vector3(-1000, 400, 0), 1).setEaseOutSine();
+            ShopTitle.text = "Piano Bar Shop";
             main_NotesButton.gameObject.LeanMoveLocal(new Vector3(-600, 0, 0), 1).setEaseOutSine();
             main_ParticlesButton.gameObject.LeanMoveLocal(new Vector3(-200, 0, 0), 1).setEaseOutSine();
             main_PianoBarButton.gameObject.LeanMoveLocal(new Vector3(200, 0, 0), 1).setEaseOutSine();
@@ -304,6 +312,8 @@ public class Shop : MonoBehaviour
         }
         else
         {
+            ShopTitle.gameObject.LeanMoveLocal(new Vector3(-300, 400, 0), 1).setEaseOutSine();
+            ShopTitle.text = "Piano Bar Shop";
             main_NotesButton.gameObject.LeanMoveLocal(new Vector3(-1200, 0, 0), 1).setEaseOutSine();
             main_ParticlesButton.gameObject.LeanMoveLocal(new Vector3(-1200, 0, 0), 1).setEaseOutSine();
             main_PianoBarButton.gameObject.LeanMoveLocal(new Vector3(0, -800, 0), 1).setEaseOutSine();
@@ -326,6 +336,8 @@ public class Shop : MonoBehaviour
     {
         if (LightsButton_isCurrent)
         {
+            ShopTitle.gameObject.LeanMoveLocal(new Vector3(-1000, 400, 0), 1).setEaseOutSine();
+            ShopTitle.text = "Lights Shop";
             main_NotesButton.gameObject.LeanMoveLocal(new Vector3(-600, 0, 0), 1).setEaseOutSine();
             main_ParticlesButton.gameObject.LeanMoveLocal(new Vector3(-200, 0, 0), 1).setEaseOutSine();
             main_PianoBarButton.gameObject.LeanMoveLocal(new Vector3(200, 0, 0), 1).setEaseOutSine();
@@ -342,6 +354,8 @@ public class Shop : MonoBehaviour
         }
         else
         {
+            ShopTitle.gameObject.LeanMoveLocal(new Vector3(-300, 400, 0), 1).setEaseOutSine();
+            ShopTitle.text = "Lights Shop";
             main_NotesButton.gameObject.LeanMoveLocal(new Vector3(-1200, 0, 0), 1).setEaseOutSine();
             main_ParticlesButton.gameObject.LeanMoveLocal(new Vector3(-1200, 0, 0), 1).setEaseOutSine();
             main_PianoBarButton.gameObject.LeanMoveLocal(new Vector3(-1200, 0, 0), 1).setEaseOutSine();
