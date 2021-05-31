@@ -85,7 +85,6 @@ public class PianoKeyShop : MonoBehaviour
 
     public void LeftPianoKeyButtonClicked()
     {
-        Debug.Log("Left Clicked");
         if (itemIndex == 0)
         {
             KeyItems[itemIndex].SetActive(false);
@@ -108,7 +107,6 @@ public class PianoKeyShop : MonoBehaviour
 
     public void RightPianoKeyButtonClicked()
     {
-        Debug.Log("Right Clicked");
         if (itemIndex == KeyItems.Length - 1)
         {
             KeyItems[itemIndex].SetActive(false);

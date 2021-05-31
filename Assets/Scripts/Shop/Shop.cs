@@ -78,7 +78,6 @@ public class Shop : MonoBehaviour
 
     public void LeftButtonClicked()
     {
-        Debug.Log("Left Clicked");
         if (itemIndex == 0)
         {
             NoteItems[itemIndex].SetActive(false);
@@ -101,7 +100,6 @@ public class Shop : MonoBehaviour
 
     public void RightButtonClicked()
     {
-        Debug.Log("Right Clicked");
         if (itemIndex == NoteItems.Length - 1)
         {
             NoteItems[itemIndex].SetActive(false);

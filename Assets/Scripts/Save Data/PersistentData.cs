@@ -74,16 +74,17 @@ public class PersistentData : MonoBehaviour, ISaveable
             Debug.Log("NOT EXISTS " + Application.persistentDataPath + "/SaveData01.dat");
             SaveJsonData(this);
         }
-        LoadJsonData(this);
+        //LoadJsonData(this);
 
         //ReInitializeData();
 
-        //SaveJsonData(this);             // During development Activate this function first to reset the song list
+        SaveJsonData(this);             // During development Activate this function first to reset the song list
 
-        //PlayerPrefs.DeleteKey("installed"); // During development Activate this function first to reset the song list
+        PlayerPrefs.DeleteKey("installed"); // During development Activate this function first to reset the song list
 
         if (PlayerPrefs.HasKey("installed") == false)
         {
+            Debug.Log("Not installed");
             SetTotalSongNotes();
             PlayerPrefs.SetString("installed", "true");
 
@@ -160,7 +161,7 @@ public class PersistentData : MonoBehaviour, ISaveable
         {
             try{
                 string currentSong = song.GetComponent<SongInfo>()._FileName;
-                MidiFile midiFile = MidiFile.Read("./Assets/MidiFiles/" + currentSong);
+                MidiFile midiFile = MidiFile.Read(Application.dataPath + "/StreamingAssets/MidiFiles/" + currentSong);
                 int numNotesTotal = midiFile.GetNotes().Count;
                 song.GetComponent<SongInfo>()._totalNote = numNotesTotal;
                 SaveJsonData(this);
@@ -344,7 +345,6 @@ public class PersistentData : MonoBehaviour, ISaveable
                 {
                     if (a_SaveData.m_ItemList[i].m_id == item.gameObject.GetComponent<Item>().id)
                     {
-                        Debug.Log("note: " + a_SaveData.m_ItemList[i].m_id + " is Purchased - : " + a_SaveData.m_ItemList[i].m_isPurchased);
                         item.GetComponent<Item>().id = a_SaveData.m_ItemList[i].m_id;
                         item.GetComponent<Item>().item = a_SaveData.m_ItemList[i].m_itemName;
                         item.GetComponent<Item>().itemType = a_SaveData.m_ItemList[i].m_itemType;
@@ -359,7 +359,6 @@ public class PersistentData : MonoBehaviour, ISaveable
                 {
                     if (a_SaveData.m_ItemList[i].m_id == item.gameObject.GetComponent<Item>().id)
                     {
-                        Debug.Log("pianobar: " + a_SaveData.m_ItemList[i].m_id + " is Purchased - : " + a_SaveData.m_ItemList[i].m_isPurchased);
                         item.GetComponent<Item>().id = a_SaveData.m_ItemList[i].m_id;
                         item.GetComponent<Item>().item = a_SaveData.m_ItemList[i].m_itemName;
                         item.GetComponent<Item>().itemType = a_SaveData.m_ItemList[i].m_itemType;
@@ -374,7 +373,6 @@ public class PersistentData : MonoBehaviour, ISaveable
                 {
                     if (a_SaveData.m_ItemList[i].m_id == item.gameObject.GetComponent<Item>().id)
                     {
-                        Debug.Log("key: " + a_SaveData.m_ItemList[i].m_id + " is Purchased - : " + a_SaveData.m_ItemList[i].m_isPurchased);
                         item.GetComponent<Item>().id = a_SaveData.m_ItemList[i].m_id;
                         item.GetComponent<Item>().item = a_SaveData.m_ItemList[i].m_itemName;
                         item.GetComponent<Item>().itemType = a_SaveData.m_ItemList[i].m_itemType;

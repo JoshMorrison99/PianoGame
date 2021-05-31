@@ -16,7 +16,6 @@ public class Item : MonoBehaviour, ISaveable
     {
         foreach (PersistentDataInformation.ItemData myItemData in a_SaveData.m_ItemList)
         {
-            Debug.Log("ID: " + myItemData.m_id + " is Purchased? " + myItemData.m_isPurchased);
             id = myItemData.m_id;
             item = myItemData.m_itemName;
             price = myItemData.m_price;
@@ -40,7 +39,6 @@ public class Item : MonoBehaviour, ISaveable
         myItemData.m_isCurrentlySelected = isCurrentlySelected;
         myItemData.m_itemType = itemType;
 
-        Debug.Log("ID: " + myItemData.m_id + " is Purchased? " + myItemData.m_isPurchased);
 
         a_SaveData.m_ItemList.Add(myItemData);
     }

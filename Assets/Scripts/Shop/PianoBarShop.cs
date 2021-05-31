@@ -85,7 +85,6 @@ public class PianoBarShop : MonoBehaviour
 
     public void LeftPianoBarButtonClicked()
     {
-        Debug.Log("Left Clicked");
         if (itemIndex == 0)
         {
             PianoBarItems[itemIndex].SetActive(false);
@@ -108,7 +107,6 @@ public class PianoBarShop : MonoBehaviour
 
     public void RightPianoBarButtonClicked()
     {
-        Debug.Log("Right Clicked");
         if (itemIndex == PianoBarItems.Length - 1)
         {
             PianoBarItems[itemIndex].SetActive(false);
