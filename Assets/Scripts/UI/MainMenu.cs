@@ -80,7 +80,7 @@ public class MainMenu : MonoBehaviour
 		Title.SetActive(true);
 		ShopPanel.SetActive(false);
 
-		
+		PersistentData.LoadJsonData(PersistentData.data);
 
 	}
 

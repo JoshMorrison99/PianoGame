@@ -22,6 +22,8 @@ public class PersistentData : MonoBehaviour, ISaveable
     public float songStartPlayerExp;
     public bool isLevellingUp;
 
+    public bool startup = true;
+
     public GameObject templateSong;
 
     public Color currentNoteItemWhite;
@@ -65,7 +67,6 @@ public class PersistentData : MonoBehaviour, ISaveable
 
     private void Start()
     {
-
         songImportIndex = 0;
 
         if (!File.Exists(Application.persistentDataPath + "/SaveData01.dat"))
@@ -242,42 +243,48 @@ public class PersistentData : MonoBehaviour, ISaveable
     {
         Debug.Log("LoadFromSaveData                 ->>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>><");
 
-        // Player Info
-        level = a_SaveData.m_level;
-        exp = a_SaveData.m_exp;
-        musicNotes = a_SaveData.m_musicNotes;
-        songsComplete = a_SaveData.m_songsComplete;
-        songsUnlocked = a_SaveData.m_songsUnlocked;
-        username = a_SaveData.m_username;
-        money = a_SaveData.m_money;
-
-        songImportIndex = a_SaveData.m_songImportIndex;
-
-
-        _SongList.Clear();
-
-        GameObject SongHolder = GameObject.Find("Songs");
-
-        // Song Information
-        //Debug.Log(a_SaveData.m_SongList.Count);
-        for(int i = 0; i < a_SaveData.m_SongList.Count; i++)
+        if (startup)
         {
-            GameObject newSong = Instantiate(templateSong);
-            newSong.GetComponent<SongInfo>()._SongTitle = a_SaveData.m_SongList[i].m_SongTitle;
-            newSong.GetComponent<SongInfo>()._SongAuthor = a_SaveData.m_SongList[i].m_SongAuthor;
-            newSong.GetComponent<SongInfo>()._FileName = a_SaveData.m_SongList[i].m_FileName;
-            newSong.GetComponent<SongInfo>()._plays = a_SaveData.m_SongList[i].m_plays;
-            newSong.GetComponent<SongInfo>()._notesHit = a_SaveData.m_SongList[i].m_notesHit;
-            newSong.GetComponent<SongInfo>()._highScore = a_SaveData.m_SongList[i].m_highScore;
-            newSong.GetComponent<SongInfo>()._Difficulty = a_SaveData.m_SongList[i]._Difficulty;
-            newSong.GetComponent<SongInfo>()._songID = a_SaveData.m_SongList[i].m_songID;
-            newSong.GetComponent<SongInfo>()._stars = a_SaveData.m_SongList[i].m_stars;
-            newSong.GetComponent<SongInfo>()._songCompletionPercentage = a_SaveData.m_SongList[i].m_songCompletionPercentage;
-            newSong.GetComponent<SongInfo>()._totalNote = a_SaveData.m_SongList[i].m_totalNote;
-            _SongList.Add(newSong.GetComponent<SongInfo>());
+            Debug.Log("STARTUP =========================");
+            startup = false;
+            // Player Info
+            level = a_SaveData.m_level;
+            exp = a_SaveData.m_exp;
+            musicNotes = a_SaveData.m_musicNotes;
+            songsComplete = a_SaveData.m_songsComplete;
+            songsUnlocked = a_SaveData.m_songsUnlocked;
+            username = a_SaveData.m_username;
+            money = a_SaveData.m_money;
 
-            newSong.transform.SetParent(SongHolder.transform);
+            songImportIndex = a_SaveData.m_songImportIndex;
+
+
+            _SongList.Clear();
+
+            GameObject SongHolder = GameObject.Find("Songs");
+
+            // Song Information
+            //Debug.Log(a_SaveData.m_SongList.Count);
+            for (int i = 0; i < a_SaveData.m_SongList.Count; i++)
+            {
+                GameObject newSong = Instantiate(templateSong);
+                newSong.GetComponent<SongInfo>()._SongTitle = a_SaveData.m_SongList[i].m_SongTitle;
+                newSong.GetComponent<SongInfo>()._SongAuthor = a_SaveData.m_SongList[i].m_SongAuthor;
+                newSong.GetComponent<SongInfo>()._FileName = a_SaveData.m_SongList[i].m_FileName;
+                newSong.GetComponent<SongInfo>()._plays = a_SaveData.m_SongList[i].m_plays;
+                newSong.GetComponent<SongInfo>()._notesHit = a_SaveData.m_SongList[i].m_notesHit;
+                newSong.GetComponent<SongInfo>()._highScore = a_SaveData.m_SongList[i].m_highScore;
+                newSong.GetComponent<SongInfo>()._Difficulty = a_SaveData.m_SongList[i]._Difficulty;
+                newSong.GetComponent<SongInfo>()._songID = a_SaveData.m_SongList[i].m_songID;
+                newSong.GetComponent<SongInfo>()._stars = a_SaveData.m_SongList[i].m_stars;
+                newSong.GetComponent<SongInfo>()._songCompletionPercentage = a_SaveData.m_SongList[i].m_songCompletionPercentage;
+                newSong.GetComponent<SongInfo>()._totalNote = a_SaveData.m_SongList[i].m_totalNote;
+                _SongList.Add(newSong.GetComponent<SongInfo>());
+
+                newSong.transform.SetParent(SongHolder.transform);
+            }
         }
+        
 
         GameObject Notes = GameObject.Find("NotesHolder");
         GameObject PianoBar = GameObject.Find("PianoBarHolder");
@@ -285,7 +292,7 @@ public class PersistentData : MonoBehaviour, ISaveable
 
         for (int i = 0; i < a_SaveData.m_ItemList.Count; i++)
         {
-            Debug.Log("item.LoadFromSaveData: " + a_SaveData.m_ItemList[i].m_id + " is Purchased - : " + a_SaveData.m_ItemList[i].m_isPurchased);
+            
 
             if (a_SaveData.m_ItemList[i].m_itemType == "note")
             {
@@ -293,6 +300,10 @@ public class PersistentData : MonoBehaviour, ISaveable
                 {
                     if (a_SaveData.m_ItemList[i].m_id == item.gameObject.GetComponent<Item>().id)
                     {
+                        Debug.Log("note: " + a_SaveData.m_ItemList[i].m_id + " is Purchased - : " + a_SaveData.m_ItemList[i].m_isPurchased);
+                        item.GetComponent<Item>().id = a_SaveData.m_ItemList[i].m_id;
+                        item.GetComponent<Item>().item = a_SaveData.m_ItemList[i].m_itemName;
+                        item.GetComponent<Item>().itemType = a_SaveData.m_ItemList[i].m_itemType;
                         item.GetComponent<Item>().isPurchased = a_SaveData.m_ItemList[i].m_isPurchased;
                         item.GetComponent<Item>().isCurrentlySelected = a_SaveData.m_ItemList[i].m_isCurrentlySelected;
                     }
@@ -303,6 +314,10 @@ public class PersistentData : MonoBehaviour, ISaveable
                 {
                     if (a_SaveData.m_ItemList[i].m_id == item.gameObject.GetComponent<Item>().id)
                     {
+                        Debug.Log("pianobar: " + a_SaveData.m_ItemList[i].m_id + " is Purchased - : " + a_SaveData.m_ItemList[i].m_isPurchased);
+                        item.GetComponent<Item>().id = a_SaveData.m_ItemList[i].m_id;
+                        item.GetComponent<Item>().item = a_SaveData.m_ItemList[i].m_itemName;
+                        item.GetComponent<Item>().itemType = a_SaveData.m_ItemList[i].m_itemType;
                         item.GetComponent<Item>().isPurchased = a_SaveData.m_ItemList[i].m_isPurchased;
                         item.GetComponent<Item>().isCurrentlySelected = a_SaveData.m_ItemList[i].m_isCurrentlySelected;
                     }
@@ -313,6 +328,10 @@ public class PersistentData : MonoBehaviour, ISaveable
                 {
                     if (a_SaveData.m_ItemList[i].m_id == item.gameObject.GetComponent<Item>().id)
                     {
+                        Debug.Log("key: " + a_SaveData.m_ItemList[i].m_id + " is Purchased - : " + a_SaveData.m_ItemList[i].m_isPurchased);
+                        item.GetComponent<Item>().id = a_SaveData.m_ItemList[i].m_id;
+                        item.GetComponent<Item>().item = a_SaveData.m_ItemList[i].m_itemName;
+                        item.GetComponent<Item>().itemType = a_SaveData.m_ItemList[i].m_itemType;
                         item.GetComponent<Item>().isPurchased = a_SaveData.m_ItemList[i].m_isPurchased;
                         item.GetComponent<Item>().isCurrentlySelected = a_SaveData.m_ItemList[i].m_isCurrentlySelected;
                     }
