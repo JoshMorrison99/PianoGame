@@ -208,6 +208,9 @@ public class MainMenu : MonoBehaviour
 			buttonClickedEvent();
 		}
 
+		Title.SetActive(false);
+		DisableMainMenuButtons();
+
 	}
 
 	public void QuitApplication()

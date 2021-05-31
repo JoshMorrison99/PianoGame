@@ -19,12 +19,13 @@ public class Settings : MonoBehaviour
     public delegate void ButtonClickedAction();
     public static event ButtonClickedAction buttonClickedEvent;
 
-    // Display Quality
-    public int currentQualityIndex = 0;
-    public Button LeftQualityButton;
-    public Button RightQualityButton;
-    public TextMeshProUGUI qualityText;
-    public string[] qualityOptions = new string[] { "Very Low", "Low", "Medium", "High", "Very High", "Ultra" };
+    // Main Menu
+    public GameObject mainMenuTitle;
+    public GameObject MainMenuShopButton;
+    public GameObject MainMenuSelectionButton;
+    public GameObject MainMenuSettingsButton;
+    public GameObject MainMenuAccountButton;
+    public GameObject MainMenuQuitButton;
 
     // Apply
     public GameObject ApplySettingsPanel;
@@ -36,10 +37,6 @@ public class Settings : MonoBehaviour
     public GameObject ResetPanel;
     public Button Reset_YES_button;
     public Button Reset_NO_button;
-
-    // Language
-    public TMP_Dropdown languageDropdown;
-    public List<string> languages = new List<string>();
 
     // Gameplay
     const string speed_Pref = "Speed";
@@ -98,10 +95,8 @@ public class Settings : MonoBehaviour
     {
         isFirstLoad = true;
         Debug.Log("Start......................................");
-        GetInputDevices();
         GetDeviceResolutions();
         LoadSettings();
-        SetupLanguageDropdown();
         StartupResetSettings();
         StartupApplyButton();
     }
@@ -238,26 +233,6 @@ public class Settings : MonoBehaviour
         }
     }
 
-    public void GetInputDevices()
-    {
-        var devices = InputSystem.devices;
-        foreach (var device in devices)
-        {
-            KeyboardSelect.AddOptions(new List<string> { device.displayName } );
-            KeyboardSelect.itemText.font = Resources.Load("Roboto-Regular SDF") as TMP_FontAsset;
-        }
-
-        InputSystem.onDeviceChange += (device, change) =>
-        {
-            if (change != InputDeviceChange.Added) return;
-
-            KeyboardSelect.AddOptions(new List<string> { device.displayName });
-            KeyboardSelect.itemText.font = Resources.Load("Roboto-Regular SDF") as TMP_FontAsset;
-
-        };
-
-    }
-
     public void LanguageDropdownChanged(TMP_Dropdown dropdownElement)
     {
         int index = dropdownElement.value;
@@ -265,31 +240,7 @@ public class Settings : MonoBehaviour
         LocalizationSettings.SelectedLocale = LocalizationSettings.AvailableLocales.Locales[index];
     }
 
-    public void SetupLanguageDropdown()
-    {
-        Debug.Log("SETUP LANGUAGE DROPDOWN");
-        languages.Add("English");
-        languages.Add("French");
-        languages.Add("Spanish");
-
-        TMP_Dropdown myDropdown = languageDropdown.GetComponent<TMP_Dropdown>();
-        myDropdown.RefreshShownValue();
-
-
-        myDropdown.options.Clear();
-
-        foreach (var language in languages)
-        {
-            myDropdown.options.Add(new TMP_Dropdown.OptionData() { text = language});
-            myDropdown.itemText.font = Resources.Load("Roboto-Regular SDF") as TMP_FontAsset;
-            //Debug.Log("Adding Option: " + language);
-        }
-
-        myDropdown.RefreshShownValue();
-        myDropdown.onValueChanged.AddListener(delegate { LanguageDropdownChanged(languageDropdown); });
-
-    }
-
+    
     public void PlayScene_BackButtonPressed(GameObject pauseMenu)
     {
         if (ApplyButton.IsActive() == false)
@@ -345,6 +296,12 @@ public class Settings : MonoBehaviour
         if (ApplyButton.IsActive() == false)
         {
             this.gameObject.SetActive(false);
+            mainMenuTitle.SetActive(true);
+            MainMenuShopButton.SetActive(true);
+            MainMenuSelectionButton.SetActive(true);
+            MainMenuSettingsButton.SetActive(true);
+            MainMenuAccountButton.SetActive(true);
+            MainMenuQuitButton.SetActive(true);
         }
         else
         {
@@ -362,8 +319,8 @@ public class Settings : MonoBehaviour
     public void KeyPressLabel_ON_Clicked()
     {
         // Change UI Color
-        ON_Button_KeyPressLabel.GetComponent<Image>().color = COLOR_PALLETE.LIGHT_BLUE;
-        OFF_Button_KeyPressLabel.GetComponent<Image>().color = COLOR_PALLETE.GRAY;
+        ON_Button_KeyPressLabel.GetComponent<Image>().color = COLOR_PALLETE.ON;
+        OFF_Button_KeyPressLabel.GetComponent<Image>().color = COLOR_PALLETE.OFF;
 
         // Apply button logic
         if (isKeyPressLabel == 0)
@@ -385,8 +342,8 @@ public class Settings : MonoBehaviour
     public void KeyPressLabel_OFF_Clicked()
     {
         // Change UI Color
-        ON_Button_KeyPressLabel.GetComponent<Image>().color = COLOR_PALLETE.GRAY;
-        OFF_Button_KeyPressLabel.GetComponent<Image>().color = COLOR_PALLETE.LIGHT_BLUE;
+        ON_Button_KeyPressLabel.GetComponent<Image>().color = COLOR_PALLETE.OFF;
+        OFF_Button_KeyPressLabel.GetComponent<Image>().color = COLOR_PALLETE.ON;
 
         // Apply button logic
         if (isKeyPressLabel == 1)
@@ -410,20 +367,20 @@ public class Settings : MonoBehaviour
     public void ResetButtonPressedUI() // Restore all options to default UI
     {
         // Turn off VFX by default
-        ON_Button_VFX.GetComponent<Image>().color = COLOR_PALLETE.GRAY;
-        OFF_Button_VFX.GetComponent<Image>().color = COLOR_PALLETE.LIGHT_BLUE;
+        ON_Button_VFX.GetComponent<Image>().color = COLOR_PALLETE.OFF;
+        OFF_Button_VFX.GetComponent<Image>().color = COLOR_PALLETE.ON;
 
         // Turn off Note labels by default
-        ON_Button_NoteLabels.GetComponent<Image>().color = COLOR_PALLETE.GRAY;
-        OFF_Button_NoteLabels.GetComponent<Image>().color = COLOR_PALLETE.LIGHT_BLUE;
+        ON_Button_NoteLabels.GetComponent<Image>().color = COLOR_PALLETE.OFF;
+        OFF_Button_NoteLabels.GetComponent<Image>().color = COLOR_PALLETE.ON;
 
         // Turn off pinao labels by default
-        ON_Button_PianoLabels.GetComponent<Image>().color = COLOR_PALLETE.GRAY;
-        OFF_Button_PianoLabels.GetComponent<Image>().color = COLOR_PALLETE.LIGHT_BLUE;
+        ON_Button_PianoLabels.GetComponent<Image>().color = COLOR_PALLETE.OFF;
+        OFF_Button_PianoLabels.GetComponent<Image>().color = COLOR_PALLETE.ON;
 
         // Turn on key press labels by default
-        ON_Button_KeyPressLabel.GetComponent<Image>().color = COLOR_PALLETE.LIGHT_BLUE;
-        OFF_Button_KeyPressLabel.GetComponent<Image>().color = COLOR_PALLETE.GRAY;
+        ON_Button_KeyPressLabel.GetComponent<Image>().color = COLOR_PALLETE.ON;
+        OFF_Button_KeyPressLabel.GetComponent<Image>().color = COLOR_PALLETE.OFF;
 
         // Sound volume at 50% by default
         MasterVolume.value = 0.5f;
@@ -437,48 +394,6 @@ public class Settings : MonoBehaviour
        
     }
 
-    public void LeftButtonChangeQuality()
-    {
-        if (currentQualityIndex == 0)
-        {
-            currentQualityIndex = qualityOptions.Length - 1;
-            QualitySettings.SetQualityLevel(currentQualityIndex, false);
-            qualityText.text = "Quality " + qualityOptions[currentQualityIndex];
-        }else if (currentQualityIndex > 0)
-        {
-            currentQualityIndex -= 1;
-            QualitySettings.SetQualityLevel(currentQualityIndex, false);
-            qualityText.text = "Quality " + qualityOptions[currentQualityIndex];
-        }
-
-        // Play button clicked SFX
-        if (buttonClickedEvent != null)
-        {
-            buttonClickedEvent();
-        }
-    }
-
-    public void RightButtonChangeQuality()
-    {
-        if (currentQualityIndex == qualityOptions.Length - 1)
-        {
-            currentQualityIndex = 0;
-            QualitySettings.SetQualityLevel(currentQualityIndex, false);
-            qualityText.text = "Quality " + qualityOptions[currentQualityIndex];
-        }
-        else if (currentQualityIndex < qualityOptions.Length - 1)
-        {
-            currentQualityIndex += 1;
-            QualitySettings.SetQualityLevel(currentQualityIndex, false);
-            qualityText.text = "Quality " + qualityOptions[currentQualityIndex];
-        }
-
-        // Play button clicked SFX
-        if (buttonClickedEvent != null)
-        {
-            buttonClickedEvent();
-        }
-    }
 
     public void SetResolutionSetting()
     {
@@ -504,8 +419,8 @@ public class Settings : MonoBehaviour
     public void VFX_ON_Clicked()
     {
         // Change UI Color
-        ON_Button_VFX.GetComponent<Image>().color = COLOR_PALLETE.LIGHT_BLUE;
-        OFF_Button_VFX.GetComponent<Image>().color = COLOR_PALLETE.GRAY;
+        ON_Button_VFX.GetComponent<Image>().color = COLOR_PALLETE.ON;
+        OFF_Button_VFX.GetComponent<Image>().color = COLOR_PALLETE.OFF;
 
         // Apply button logic
         if (isVFX == 0)
@@ -527,8 +442,8 @@ public class Settings : MonoBehaviour
     public void VFX_OFF_Clicked()
     {
         // Change UI Color
-        ON_Button_VFX.GetComponent<Image>().color = COLOR_PALLETE.GRAY;
-        OFF_Button_VFX.GetComponent<Image>().color = COLOR_PALLETE.LIGHT_BLUE;
+        ON_Button_VFX.GetComponent<Image>().color = COLOR_PALLETE.OFF;
+        OFF_Button_VFX.GetComponent<Image>().color = COLOR_PALLETE.ON;
 
         // Apply button logic
         if (isVFX == 1)
@@ -550,8 +465,8 @@ public class Settings : MonoBehaviour
     public void NoteLabel_ON_Clicked()
     {
         // Change UI Color
-        ON_Button_NoteLabels.GetComponent<Image>().color = COLOR_PALLETE.LIGHT_BLUE;
-        OFF_Button_NoteLabels.GetComponent<Image>().color = COLOR_PALLETE.GRAY;
+        ON_Button_NoteLabels.GetComponent<Image>().color = COLOR_PALLETE.ON;
+        OFF_Button_NoteLabels.GetComponent<Image>().color = COLOR_PALLETE.OFF;
 
         // Apply button logic
         if (isNoteLabelled == 0)
@@ -573,8 +488,8 @@ public class Settings : MonoBehaviour
     public void NoteLabel_OFF_Clicked()
     {
         // Change UI Color
-        ON_Button_NoteLabels.GetComponent<Image>().color = COLOR_PALLETE.GRAY;
-        OFF_Button_NoteLabels.GetComponent<Image>().color = COLOR_PALLETE.LIGHT_BLUE;
+        ON_Button_NoteLabels.GetComponent<Image>().color = COLOR_PALLETE.OFF;
+        OFF_Button_NoteLabels.GetComponent<Image>().color = COLOR_PALLETE.ON;
 
         // Apply button logic
         if (isNoteLabelled == 1)
@@ -596,8 +511,8 @@ public class Settings : MonoBehaviour
     public void PianoLabel_ON_Clicked()
     {
         // Change UI Color
-        ON_Button_PianoLabels.GetComponent<Image>().color = COLOR_PALLETE.LIGHT_BLUE;
-        OFF_Button_PianoLabels.GetComponent<Image>().color = COLOR_PALLETE.GRAY;
+        ON_Button_PianoLabels.GetComponent<Image>().color = COLOR_PALLETE.ON;
+        OFF_Button_PianoLabels.GetComponent<Image>().color = COLOR_PALLETE.OFF;
 
         // Apply button logic
         if (isPianoLabelled == 0)
@@ -618,8 +533,8 @@ public class Settings : MonoBehaviour
     public void PianoLabel_OFF_Clicked()
     {
         // Change UI Color
-        ON_Button_PianoLabels.GetComponent<Image>().color = COLOR_PALLETE.GRAY;
-        OFF_Button_PianoLabels.GetComponent<Image>().color = COLOR_PALLETE.LIGHT_BLUE;
+        ON_Button_PianoLabels.GetComponent<Image>().color = COLOR_PALLETE.OFF;
+        OFF_Button_PianoLabels.GetComponent<Image>().color = COLOR_PALLETE.ON;
 
         // Apply button logic
         if (isPianoLabelled == 1)
@@ -772,6 +687,12 @@ public class Settings : MonoBehaviour
         SaveSettings();
         ApplySettingsPanel.SetActive(false);
         this.gameObject.SetActive(false);
+        mainMenuTitle.SetActive(true);
+        MainMenuShopButton.SetActive(true);
+        MainMenuSelectionButton.SetActive(true);
+        MainMenuSettingsButton.SetActive(true);
+        MainMenuAccountButton.SetActive(true);
+        MainMenuQuitButton.SetActive(true);
 
         // Play button clicked SFX
         if (buttonClickedEvent != null)
