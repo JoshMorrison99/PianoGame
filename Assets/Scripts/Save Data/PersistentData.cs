@@ -6,6 +6,8 @@ using System.IO;
 using Melanchall.DryWetMidi.Devices;
 using Melanchall.DryWetMidi.Core;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+using UnityEngine.Video;
 using Melanchall.DryWetMidi.Interaction;
 //Gets all the data into one class and one constructor
 //From Brackeys Save and Load System in Unity
@@ -22,8 +24,10 @@ public class PersistentData : MonoBehaviour, ISaveable
 
     public GameObject templateSong;
 
-    public NoteItem currentNoteItem;
-    public PianoBarItem currentPianoBarItem;
+    public Color currentNoteItemWhite;
+    public Color currentNoteItemBlack;
+    public VideoClip currentPianoBarItem;
+    public Color currentKeyItem;
 
     public MidiFile myMidi;
     public Playback myPlayback;
@@ -86,12 +90,22 @@ public class PersistentData : MonoBehaviour, ISaveable
         // Set currently Selected Note
         foreach (var item in _ItemList)
         {
-            if (item.isCurrentlySelected)
+            if (item.isCurrentlySelected && item.itemType == "note")
             {
-                currentNoteItem = item.GetComponent<NoteItem>();
+                currentNoteItemWhite = item.GetComponent<NoteItem>().whiteNoteColor;
+                currentNoteItemBlack = item.GetComponent<NoteItem>().blackNoteColor;
             }
         }
-        
+
+        // Set currently Selected PianoBar
+        foreach (var item in _ItemList)
+        {
+            if (item.isCurrentlySelected && item.itemType == "pianobar")
+            {
+                currentPianoBarItem = item.GetComponent<PianoBarItem>().video;
+            }
+        }
+
     }
 
     public void SetTotalSongNotes()
@@ -189,6 +203,7 @@ public class PersistentData : MonoBehaviour, ISaveable
 
     public void PopulateSaveData(PersistentDataInformation a_SaveData)
     {
+        Debug.Log("Saving");
         // Player Info
         a_SaveData.m_level = level;
         a_SaveData.m_exp = exp;
@@ -209,18 +224,23 @@ public class PersistentData : MonoBehaviour, ISaveable
             song.PopulateSaveData(a_SaveData);
         }
 
-        // Item Information
-        foreach (Item item in _ItemList)
+        if (SceneManager.GetActiveScene().name == "MainMenu")
         {
-            //Debug.Log("item.LoadFromSaveData: " + item);
-            item.PopulateSaveData(a_SaveData);
+            Debug.Log("Main Menu Scene populate");
+            // Item Information
+            foreach (Item item in _ItemList)
+            {
+                //Debug.Log("item.LoadFromSaveData: " + item);
+                item.PopulateSaveData(a_SaveData);
+            }
         }
+        
 
     }
 
     public void LoadFromSaveData(PersistentDataInformation a_SaveData)
     {
-        //Debug.Log("LoadFromSaveData");
+        Debug.Log("LoadFromSaveData                 ->>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>><");
 
         // Player Info
         level = a_SaveData.m_level;
@@ -259,6 +279,63 @@ public class PersistentData : MonoBehaviour, ISaveable
             newSong.transform.SetParent(SongHolder.transform);
         }
 
+        GameObject Notes = GameObject.Find("NotesHolder");
+        GameObject PianoBar = GameObject.Find("PianoBarHolder");
+        GameObject Keys = GameObject.Find("KeysHolder");
+
+        for (int i = 0; i < a_SaveData.m_ItemList.Count; i++)
+        {
+            Debug.Log("item.LoadFromSaveData: " + a_SaveData.m_ItemList[i].m_id + " is Purchased - : " + a_SaveData.m_ItemList[i].m_isPurchased);
+
+            if (a_SaveData.m_ItemList[i].m_itemType == "note")
+            {
+                foreach (Transform item in Notes.transform)
+                {
+                    if (a_SaveData.m_ItemList[i].m_id == item.gameObject.GetComponent<Item>().id)
+                    {
+                        item.GetComponent<Item>().isPurchased = a_SaveData.m_ItemList[i].m_isPurchased;
+                        item.GetComponent<Item>().isCurrentlySelected = a_SaveData.m_ItemList[i].m_isCurrentlySelected;
+                    }
+                }
+            }else if (a_SaveData.m_ItemList[i].m_itemType == "pianobar")
+            {
+                foreach (Transform item in PianoBar.transform)
+                {
+                    if (a_SaveData.m_ItemList[i].m_id == item.gameObject.GetComponent<Item>().id)
+                    {
+                        item.GetComponent<Item>().isPurchased = a_SaveData.m_ItemList[i].m_isPurchased;
+                        item.GetComponent<Item>().isCurrentlySelected = a_SaveData.m_ItemList[i].m_isCurrentlySelected;
+                    }
+                }
+            }else if (a_SaveData.m_ItemList[i].m_itemType == "key")
+            {
+                foreach (Transform item in Keys.transform)
+                {
+                    if (a_SaveData.m_ItemList[i].m_id == item.gameObject.GetComponent<Item>().id)
+                    {
+                        item.GetComponent<Item>().isPurchased = a_SaveData.m_ItemList[i].m_isPurchased;
+                        item.GetComponent<Item>().isCurrentlySelected = a_SaveData.m_ItemList[i].m_isCurrentlySelected;
+                    }
+                }
+            }
+            else
+            {
+                Debug.Log("ERROR: itemType not present");
+            }
+            
+            
+
+            
+            
+
+            
+            
+
+        }
+
+        
+
+
         /*Debug.Log("Song List Count: " + _SongList.Count);
         foreach (SongInfo song in _SongList)
         {
@@ -266,12 +343,8 @@ public class PersistentData : MonoBehaviour, ISaveable
             song.LoadFromSaveData(a_SaveData);
         }*/
 
-        foreach (Item item in _ItemList)
-        {
-            Debug.Log("item.LoadFromSaveData: " + item);
-            item.LoadFromSaveData(a_SaveData);
-        }
-        
+
+
     }
 }
 

@@ -47,6 +47,7 @@ public class PersistentDataInformation
         public bool m_isPurchased;
         public string m_itemName;
         public bool m_isCurrentlySelected;
+        public string m_itemType;
     }
 
     public string ToJson()

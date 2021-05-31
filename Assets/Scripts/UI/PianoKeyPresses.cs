@@ -146,7 +146,7 @@ public class PianoKeyPresses : MonoBehaviour
 
                 currentPressedNotes.Add(each);
 
-                each.GetComponent<SpriteRenderer>().color = Color.red;
+                each.GetComponent<SpriteRenderer>().color = new Color(PersistentData.data.currentKeyItem.r, PersistentData.data.currentKeyItem.g, PersistentData.data.currentKeyItem.b, 255);
 
 
                 if(PlayerPrefs.GetInt("isVFX") == 1)

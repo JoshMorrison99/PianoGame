@@ -81,7 +81,7 @@ public class PlayUILogic : MonoBehaviour
         settingsPanel.SetActive(false);
         pauseBtn.gameObject.SetActive(true);
 
-        pianoBarVideo.clip = PersistentData.data.currentPianoBarItem.video;
+        pianoBarVideo.clip = PersistentData.data.currentPianoBarItem;
 
 
         //PauseMenuPressed();

@@ -141,7 +141,7 @@ public class Shop : MonoBehaviour
         }
         else if(LightsButton_isCurrent)
         {
-            LightsButtonClicked();
+            KeysButtonClicked();
         }
         else
         {
@@ -162,7 +162,14 @@ public class Shop : MonoBehaviour
                 NoteItems[itemIndex].GetComponent<Item>().isPurchased = true;
                 ClearCurrentlySelectedItem();
                 NoteItems[itemIndex].GetComponent<Item>().isCurrentlySelected = true;
-                PersistentData.data.currentNoteItem = NoteItems[itemIndex].GetComponent<NoteItem>();
+
+
+                PersistentData.data._ItemList[itemIndex].isPurchased = true;
+                PersistentData.data._ItemList[itemIndex].isCurrentlySelected = true;
+
+
+                PersistentData.data.currentNoteItemWhite = NoteItems[itemIndex].GetComponent<NoteItem>().whiteNoteColor;
+                PersistentData.data.currentNoteItemBlack = NoteItems[itemIndex].GetComponent<NoteItem>().blackNoteColor;
                 PersistentData.SaveJsonData(PersistentData.data);
 
                 // Update UI
@@ -176,7 +183,11 @@ public class Shop : MonoBehaviour
                 Debug.Log("Selecting " + NoteItems[itemIndex].GetComponent<Item>().item);
                 ClearCurrentlySelectedItem();
                 NoteItems[itemIndex].GetComponent<Item>().isCurrentlySelected = true;
-                PersistentData.data.currentNoteItem = NoteItems[itemIndex].GetComponent<NoteItem>();
+
+                PersistentData.data._ItemList[itemIndex].isCurrentlySelected = true;
+
+                PersistentData.data.currentNoteItemWhite = NoteItems[itemIndex].GetComponent<NoteItem>().whiteNoteColor;
+                PersistentData.data.currentNoteItemBlack = NoteItems[itemIndex].GetComponent<NoteItem>().blackNoteColor;
                 PurchaseButtonTextLogic(NoteItems[itemIndex].GetComponent<Item>());
                 PersistentData.SaveJsonData(PersistentData.data);
             }
@@ -332,12 +343,12 @@ public class Shop : MonoBehaviour
         
     }
 
-    public void LightsButtonClicked()
+    public void KeysButtonClicked()
     {
         if (LightsButton_isCurrent)
         {
             ShopTitle.gameObject.LeanMoveLocal(new Vector3(-1000, 400, 0), 1).setEaseOutSine();
-            ShopTitle.text = "Lights Shop";
+            ShopTitle.text = "Keys Shop";
             main_NotesButton.gameObject.LeanMoveLocal(new Vector3(-600, 0, 0), 1).setEaseOutSine();
             main_ParticlesButton.gameObject.LeanMoveLocal(new Vector3(-200, 0, 0), 1).setEaseOutSine();
             main_PianoBarButton.gameObject.LeanMoveLocal(new Vector3(200, 0, 0), 1).setEaseOutSine();
@@ -355,7 +366,7 @@ public class Shop : MonoBehaviour
         else
         {
             ShopTitle.gameObject.LeanMoveLocal(new Vector3(-300, 400, 0), 1).setEaseOutSine();
-            ShopTitle.text = "Lights Shop";
+            ShopTitle.text = "Keys Shop";
             main_NotesButton.gameObject.LeanMoveLocal(new Vector3(-1200, 0, 0), 1).setEaseOutSine();
             main_ParticlesButton.gameObject.LeanMoveLocal(new Vector3(-1200, 0, 0), 1).setEaseOutSine();
             main_PianoBarButton.gameObject.LeanMoveLocal(new Vector3(-1200, 0, 0), 1).setEaseOutSine();

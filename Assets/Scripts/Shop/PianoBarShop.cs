@@ -50,7 +50,11 @@ public class PianoBarShop : MonoBehaviour
                 PianoBarItems[itemIndex].GetComponent<Item>().isPurchased = true;
                 ClearCurrentlySelectedItem();
                 PianoBarItems[itemIndex].GetComponent<Item>().isCurrentlySelected = true;
-                PersistentData.data.currentPianoBarItem = PianoBarItems[itemIndex].GetComponent<PianoBarItem>();
+
+                PersistentData.data._ItemList[itemIndex].isPurchased = true;
+                PersistentData.data._ItemList[itemIndex].isCurrentlySelected = true;
+
+                PersistentData.data.currentPianoBarItem = PianoBarItems[itemIndex].GetComponent<PianoBarItem>().video;
                 PersistentData.SaveJsonData(PersistentData.data);
 
                 // Update UI
@@ -64,7 +68,10 @@ public class PianoBarShop : MonoBehaviour
                 Debug.Log("Selecting " + PianoBarItems[itemIndex].GetComponent<Item>().item);
                 ClearCurrentlySelectedItem();
                 PianoBarItems[itemIndex].GetComponent<Item>().isCurrentlySelected = true;
-                PersistentData.data.currentPianoBarItem = PianoBarItems[itemIndex].GetComponent<PianoBarItem>();
+
+                PersistentData.data._ItemList[itemIndex].isCurrentlySelected = true;
+
+                PersistentData.data.currentPianoBarItem = PianoBarItems[itemIndex].GetComponent<PianoBarItem>().video;
                 PurchaseButtonTextLogic(PianoBarItems[itemIndex].GetComponent<Item>());
                 PersistentData.SaveJsonData(PersistentData.data);
             }
