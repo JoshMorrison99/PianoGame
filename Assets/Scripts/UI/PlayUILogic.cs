@@ -232,7 +232,7 @@ public class PlayUILogic : MonoBehaviour
         progressSong.gameObject.SetActive(false);
         pauseManuPanel.SetActive(false);
         pauseBtn.gameObject.SetActive(false);
-
+        pianoBarVideo.gameObject.SetActive(false);
         settingsPanel.GetComponent<Settings>().StartupApplyButton();
 
         // play button clicked sfx
@@ -251,6 +251,7 @@ public class PlayUILogic : MonoBehaviour
         progressSong.gameObject.SetActive(true);
         pauseManuPanel.SetActive(true);
         pauseBtn.gameObject.SetActive(true);
+        pianoBarVideo.gameObject.SetActive(true);
 
         InitSettings();
 
