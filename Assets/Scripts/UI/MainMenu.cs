@@ -35,6 +35,10 @@ public class MainMenu : MonoBehaviour
 	public GameObject PianoBarRootHolder;
 	public GameObject KeysRootHolder;
 
+	public GameObject NotesHolderHolder;
+	public GameObject PianoBarHolderHolder;
+	public GameObject KeysHolderHolder;
+
 
 	public Button songSelectionBtn;
 	public Button lessonsBtn;
@@ -80,6 +84,8 @@ public class MainMenu : MonoBehaviour
 		Title.SetActive(true);
 		ShopPanel.SetActive(false);
 
+
+		Debug.Log("LOADING DATA MAIN MENU AGAIN");
 		PersistentData.LoadJsonData(PersistentData.data);
 
 	}
@@ -97,12 +103,12 @@ public class MainMenu : MonoBehaviour
 			buttonClickedEvent();
 		}
 
-		NotesRootHolder.transform.SetParent(null);
+		NotesRootHolder.transform.SetParent(NotesHolderHolder.transform);
 
 
-		PianoBarRootHolder.transform.SetParent(null);
+		PianoBarRootHolder.transform.SetParent(PianoBarHolderHolder.transform);
 
-		KeysRootHolder.transform.SetParent(null);
+		KeysRootHolder.transform.SetParent(KeysHolderHolder.transform);
 	}
 
 	public void songSelectionClicked()

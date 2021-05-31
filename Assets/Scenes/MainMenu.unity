@@ -27097,6 +27097,9 @@ MonoBehaviour:
   NotesRootHolder: {fileID: 762386643}
   PianoBarRootHolder: {fileID: 433234487}
   KeysRootHolder: {fileID: 2079982384}
+  NotesHolderHolder: {fileID: 2034868614}
+  PianoBarHolderHolder: {fileID: 260078032}
+  KeysHolderHolder: {fileID: 790628736}
   songSelectionBtn: {fileID: 537082617}
   lessonsBtn: {fileID: 1255211382}
   settingsBtn: {fileID: 350843405}

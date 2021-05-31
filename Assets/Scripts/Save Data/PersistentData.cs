@@ -85,7 +85,11 @@ public class PersistentData : MonoBehaviour, ISaveable
         if (PlayerPrefs.HasKey("installed") == false)
         {
             SetTotalSongNotes();
-            PlayerPrefs.SetString("installed", "true"); 
+            PlayerPrefs.SetString("installed", "true");
+
+            SetDefaultShop();
+
+            SaveJsonData(this);
         }
 
         // Set currently Selected Note
@@ -107,6 +111,46 @@ public class PersistentData : MonoBehaviour, ISaveable
             }
         }
 
+        // Set currently Selected PianoBar
+        foreach (var item in _ItemList)
+        {
+            if (item.isCurrentlySelected && item.itemType == "key")
+            {
+                currentKeyItem = item.GetComponent<KeyItem>().color;
+            }
+        }
+
+    }
+
+    public void SetDefaultShop() // SET DEFAULTS TO ALL RED
+    {
+        foreach (var item in _ItemList)
+        {
+            if (item.id == 8)
+            {
+                currentNoteItemWhite = item.GetComponent<NoteItem>().whiteNoteColor;
+                currentNoteItemBlack = item.GetComponent<NoteItem>().blackNoteColor;
+
+                item.isPurchased = true;
+                item.isCurrentlySelected = true;
+            }
+
+            if (item.id == 207)
+            {
+                currentPianoBarItem = item.GetComponent<PianoBarItem>().video;
+
+                item.isPurchased = true;
+                item.isCurrentlySelected = true;
+            }
+
+            if (item.id == 306)
+            {
+                currentKeyItem = item.GetComponent<KeyItem>().color;
+
+                item.isPurchased = true;
+                item.isCurrentlySelected = true;
+            }
+        }
     }
 
     public void SetTotalSongNotes()
@@ -242,12 +286,11 @@ public class PersistentData : MonoBehaviour, ISaveable
     public void LoadFromSaveData(PersistentDataInformation a_SaveData)
     {
         Debug.Log("LoadFromSaveData                 ->>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>><");
-
         if (startup)
         {
             Debug.Log("STARTUP =========================");
-            startup = false;
             // Player Info
+            startup = false;
             level = a_SaveData.m_level;
             exp = a_SaveData.m_exp;
             musicNotes = a_SaveData.m_musicNotes;
@@ -284,7 +327,8 @@ public class PersistentData : MonoBehaviour, ISaveable
                 newSong.transform.SetParent(SongHolder.transform);
             }
         }
-        
+
+        _ItemList.Clear();
 
         GameObject Notes = GameObject.Find("NotesHolder");
         GameObject PianoBar = GameObject.Find("PianoBarHolder");
@@ -306,6 +350,7 @@ public class PersistentData : MonoBehaviour, ISaveable
                         item.GetComponent<Item>().itemType = a_SaveData.m_ItemList[i].m_itemType;
                         item.GetComponent<Item>().isPurchased = a_SaveData.m_ItemList[i].m_isPurchased;
                         item.GetComponent<Item>().isCurrentlySelected = a_SaveData.m_ItemList[i].m_isCurrentlySelected;
+                        _ItemList.Add(item.GetComponent<Item>());
                     }
                 }
             }else if (a_SaveData.m_ItemList[i].m_itemType == "pianobar")
@@ -320,6 +365,7 @@ public class PersistentData : MonoBehaviour, ISaveable
                         item.GetComponent<Item>().itemType = a_SaveData.m_ItemList[i].m_itemType;
                         item.GetComponent<Item>().isPurchased = a_SaveData.m_ItemList[i].m_isPurchased;
                         item.GetComponent<Item>().isCurrentlySelected = a_SaveData.m_ItemList[i].m_isCurrentlySelected;
+                        _ItemList.Add(item.GetComponent<Item>());
                     }
                 }
             }else if (a_SaveData.m_ItemList[i].m_itemType == "key")
@@ -334,6 +380,7 @@ public class PersistentData : MonoBehaviour, ISaveable
                         item.GetComponent<Item>().itemType = a_SaveData.m_ItemList[i].m_itemType;
                         item.GetComponent<Item>().isPurchased = a_SaveData.m_ItemList[i].m_isPurchased;
                         item.GetComponent<Item>().isCurrentlySelected = a_SaveData.m_ItemList[i].m_isCurrentlySelected;
+                        _ItemList.Add(item.GetComponent<Item>());
                     }
                 }
             }
@@ -341,18 +388,9 @@ public class PersistentData : MonoBehaviour, ISaveable
             {
                 Debug.Log("ERROR: itemType not present");
             }
-            
-            
-
-            
-            
-
-            
-            
-
         }
 
-        
+
 
 
         /*Debug.Log("Song List Count: " + _SongList.Count);
@@ -361,7 +399,6 @@ public class PersistentData : MonoBehaviour, ISaveable
             Debug.Log("song.LoadFromSaveData: " + song);
             song.LoadFromSaveData(a_SaveData);
         }*/
-
 
 
     }

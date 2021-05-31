@@ -8,14 +8,12 @@ public class PersistAllItems : MonoBehaviour
 
     private void Awake()
     {
-        if (data != null && data != this)
+        if (data != null)
         {
-            Destroy(this.gameObject);
+            Debug.LogError("An instance already exists");
+            Destroy(this);
+            return;
         }
-        else
-        {
-            data = this;
-            DontDestroyOnLoad(gameObject);
-        }
+        data = this;
     }
 }
