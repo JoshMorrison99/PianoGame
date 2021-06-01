@@ -5856,6 +5856,12 @@ MonoBehaviour:
   isNoteLabelled: 0
   isVFX: 0
   isKeyPressLabel: 1
+  start_pianoLabel: 0
+  start_noteLabel: 0
+  start_vfx: 0
+  start_keyPress: 0
+  start_volume: 0
+  start_speed: 0
   MasterVolume: {fileID: 1821848703}
   ON_Button_VFX: {fileID: 1760277634}
   OFF_Button_VFX: {fileID: 124692954}
@@ -32164,7 +32170,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1539187471
 RectTransform:
   m_ObjectHideFlags: 0
