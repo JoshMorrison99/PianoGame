@@ -74,13 +74,13 @@ public class PersistentData : MonoBehaviour, ISaveable
             Debug.Log("NOT EXISTS " + Application.persistentDataPath + "/SaveData01.dat");
             SaveJsonData(this);
         }
-        //LoadJsonData(this);
+        LoadJsonData(this);
 
         //ReInitializeData();
 
-        SaveJsonData(this);             // During development Activate this function first to reset the song list
+        //SaveJsonData(this);             // During development Activate this function first to reset the song list
 
-        PlayerPrefs.DeleteKey("installed"); // During development Activate this function first to reset the song list
+        //PlayerPrefs.DeleteKey("installed"); // During development Activate this function first to reset the song list
 
         if (PlayerPrefs.HasKey("installed") == false)
         {

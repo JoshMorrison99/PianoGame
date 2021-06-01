@@ -55,6 +55,14 @@ public class Settings : MonoBehaviour
     public int isVFX = 1;
     public int isKeyPressLabel = 1;
 
+    // Save start settings
+    public int start_pianoLabel;
+    public int start_noteLabel;
+    public int start_vfx;
+    public int start_keyPress;
+    public float start_volume;
+    public float start_speed;
+
     public Slider MasterVolume;
     public Button ON_Button_VFX;
     public Button OFF_Button_VFX;
@@ -99,6 +107,7 @@ public class Settings : MonoBehaviour
         LoadSettings();
         StartupResetSettings();
         StartupApplyButton();
+        SaveStartSettings();
     }
 
     public void GetDeviceResolutions()
@@ -160,6 +169,16 @@ public class Settings : MonoBehaviour
         {
             SettingsChanged();
         }
+    }
+
+    public void SaveStartSettings()
+    {
+        start_volume = PlayerPrefs.GetFloat(volume_Pref);
+        start_speed = PlayerPrefs.GetFloat(speed_Pref);
+        start_pianoLabel = PlayerPrefs.GetInt(pianoLabel_Pref);
+        start_pianoLabel = PlayerPrefs.GetInt(noteLabel_Pref);
+        start_vfx = PlayerPrefs.GetInt(vfx_Pref);
+        start_keyPress = PlayerPrefs.GetInt(keyPress_Pref);
     }
 
     public void LoadSettings()
@@ -231,13 +250,6 @@ public class Settings : MonoBehaviour
         {
             buttonClickedEvent();
         }
-    }
-
-    public void LanguageDropdownChanged(TMP_Dropdown dropdownElement)
-    {
-        int index = dropdownElement.value;
-
-        LocalizationSettings.SelectedLocale = LocalizationSettings.AvailableLocales.Locales[index];
     }
 
     
@@ -717,6 +729,22 @@ public class Settings : MonoBehaviour
     public void ApplyNOButtonPressed()
     {
         ApplySettingsPanel.SetActive(false);
+        this.gameObject.SetActive(false);
+        mainMenuTitle.SetActive(true);
+        MainMenuShopButton.SetActive(true);
+        MainMenuSelectionButton.SetActive(true);
+        MainMenuSettingsButton.SetActive(true);
+        MainMenuAccountButton.SetActive(true);
+        MainMenuQuitButton.SetActive(true);
+
+        MasterVolume.value = start_volume;
+        speedSlider.value = start_speed;
+        isVFX = start_vfx;
+        isKeyPressLabel = start_keyPress;
+        isPianoLabelled = start_pianoLabel;
+        isNoteLabelled = start_noteLabel;
+
+        LoadSettings();
 
         // Play button clicked SFX
         if (buttonClickedEvent != null)
