@@ -344,7 +344,6 @@ GameObject:
   - component: {fileID: 18355645}
   - component: {fileID: 18355644}
   - component: {fileID: 18355643}
-  - component: {fileID: 18355642}
   m_Layer: 5
   m_Name: Video Player
   m_TagString: Untagged
@@ -371,18 +370,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 350, y: 350}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &18355642
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 18355640}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9e0422c0006cc9c4e9cc099cf26d5468, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &18355643
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -447,7 +434,7 @@ VideoPlayer:
   m_ControlledAudioTrackCount: 0
   m_PlayOnAwake: 1
   m_SkipOnDrop: 1
-  m_Looping: 0
+  m_Looping: 1
   m_WaitForFirstFrame: 1
   m_FrameReadyEventEnabled: 0
   m_VideoShaders: []
@@ -1686,7 +1673,6 @@ GameObject:
   - component: {fileID: 74846749}
   - component: {fileID: 74846748}
   - component: {fileID: 74846747}
-  - component: {fileID: 74846746}
   m_Layer: 5
   m_Name: Video Player
   m_TagString: Untagged
@@ -1713,18 +1699,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 45}
   m_SizeDelta: {x: 350, y: 350}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &74846746
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 74846744}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9e0422c0006cc9c4e9cc099cf26d5468, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &74846747
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1789,7 +1763,7 @@ VideoPlayer:
   m_ControlledAudioTrackCount: 0
   m_PlayOnAwake: 1
   m_SkipOnDrop: 1
-  m_Looping: 0
+  m_Looping: 1
   m_WaitForFirstFrame: 1
   m_FrameReadyEventEnabled: 0
   m_VideoShaders: []
@@ -1934,7 +1908,6 @@ GameObject:
   - component: {fileID: 86382483}
   - component: {fileID: 86382482}
   - component: {fileID: 86382481}
-  - component: {fileID: 86382480}
   m_Layer: 5
   m_Name: Video Player
   m_TagString: Untagged
@@ -1961,18 +1934,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 45}
   m_SizeDelta: {x: 350, y: 350}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &86382480
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 86382478}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9e0422c0006cc9c4e9cc099cf26d5468, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &86382481
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2037,7 +1998,7 @@ VideoPlayer:
   m_ControlledAudioTrackCount: 0
   m_PlayOnAwake: 1
   m_SkipOnDrop: 1
-  m_Looping: 0
+  m_Looping: 1
   m_WaitForFirstFrame: 1
   m_FrameReadyEventEnabled: 0
   m_VideoShaders: []
@@ -3830,7 +3791,6 @@ GameObject:
   - component: {fileID: 209164288}
   - component: {fileID: 209164287}
   - component: {fileID: 209164286}
-  - component: {fileID: 209164285}
   m_Layer: 5
   m_Name: Video Player
   m_TagString: Untagged
@@ -3857,18 +3817,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 45}
   m_SizeDelta: {x: 350, y: 350}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &209164285
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 209164283}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9e0422c0006cc9c4e9cc099cf26d5468, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &209164286
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3933,7 +3881,7 @@ VideoPlayer:
   m_ControlledAudioTrackCount: 0
   m_PlayOnAwake: 1
   m_SkipOnDrop: 1
-  m_Looping: 0
+  m_Looping: 1
   m_WaitForFirstFrame: 1
   m_FrameReadyEventEnabled: 0
   m_VideoShaders: []
@@ -4989,7 +4937,6 @@ GameObject:
   - component: {fileID: 284363874}
   - component: {fileID: 284363873}
   - component: {fileID: 284363872}
-  - component: {fileID: 284363871}
   m_Layer: 5
   m_Name: Video Player
   m_TagString: Untagged
@@ -5016,18 +4963,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 350, y: 350}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &284363871
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 284363869}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9e0422c0006cc9c4e9cc099cf26d5468, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &284363872
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5092,7 +5027,7 @@ VideoPlayer:
   m_ControlledAudioTrackCount: 0
   m_PlayOnAwake: 1
   m_SkipOnDrop: 1
-  m_Looping: 0
+  m_Looping: 1
   m_WaitForFirstFrame: 1
   m_FrameReadyEventEnabled: 0
   m_VideoShaders: []
@@ -5733,10 +5668,10 @@ RectTransform:
   m_Father: {fileID: 1442315908}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 70}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 559, y: -385}
+  m_SizeDelta: {x: 1118, y: 70}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &302945353
 MonoBehaviour:
@@ -5793,7 +5728,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &313836941
 RectTransform:
   m_ObjectHideFlags: 0
@@ -7406,7 +7341,6 @@ GameObject:
   - component: {fileID: 376541215}
   - component: {fileID: 376541214}
   - component: {fileID: 376541213}
-  - component: {fileID: 376541212}
   m_Layer: 5
   m_Name: Video Player
   m_TagString: Untagged
@@ -7433,18 +7367,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 45}
   m_SizeDelta: {x: 350, y: 350}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &376541212
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 376541210}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9e0422c0006cc9c4e9cc099cf26d5468, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &376541213
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7509,7 +7431,7 @@ VideoPlayer:
   m_ControlledAudioTrackCount: 0
   m_PlayOnAwake: 1
   m_SkipOnDrop: 1
-  m_Looping: 0
+  m_Looping: 1
   m_WaitForFirstFrame: 1
   m_FrameReadyEventEnabled: 0
   m_VideoShaders: []
@@ -8422,7 +8344,6 @@ GameObject:
   - component: {fileID: 453320419}
   - component: {fileID: 453320418}
   - component: {fileID: 453320417}
-  - component: {fileID: 453320416}
   m_Layer: 5
   m_Name: Video Player
   m_TagString: Untagged
@@ -8449,18 +8370,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 45}
   m_SizeDelta: {x: 350, y: 350}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &453320416
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 453320414}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9e0422c0006cc9c4e9cc099cf26d5468, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &453320417
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8525,7 +8434,7 @@ VideoPlayer:
   m_ControlledAudioTrackCount: 0
   m_PlayOnAwake: 1
   m_SkipOnDrop: 1
-  m_Looping: 0
+  m_Looping: 1
   m_WaitForFirstFrame: 1
   m_FrameReadyEventEnabled: 0
   m_VideoShaders: []
@@ -10015,10 +9924,10 @@ RectTransform:
   m_Father: {fileID: 1442315908}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 70}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 559, y: -35}
+  m_SizeDelta: {x: 1118, y: 70}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &533985635
 MonoBehaviour:
@@ -11372,7 +11281,6 @@ GameObject:
   - component: {fileID: 584581392}
   - component: {fileID: 584581391}
   - component: {fileID: 584581390}
-  - component: {fileID: 584581389}
   m_Layer: 5
   m_Name: Video Player
   m_TagString: Untagged
@@ -11399,18 +11307,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 45}
   m_SizeDelta: {x: 350, y: 350}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &584581389
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 584581387}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9e0422c0006cc9c4e9cc099cf26d5468, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &584581390
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11475,7 +11371,7 @@ VideoPlayer:
   m_ControlledAudioTrackCount: 0
   m_PlayOnAwake: 1
   m_SkipOnDrop: 1
-  m_Looping: 0
+  m_Looping: 1
   m_WaitForFirstFrame: 1
   m_FrameReadyEventEnabled: 0
   m_VideoShaders: []
@@ -15507,10 +15403,10 @@ RectTransform:
   m_Father: {fileID: 1442315908}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 70}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 559, y: -455}
+  m_SizeDelta: {x: 1118, y: 70}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &732044516
 MonoBehaviour:
@@ -15972,7 +15868,6 @@ GameObject:
   - component: {fileID: 753374375}
   - component: {fileID: 753374374}
   - component: {fileID: 753374373}
-  - component: {fileID: 753374372}
   m_Layer: 5
   m_Name: Video Player
   m_TagString: Untagged
@@ -15999,18 +15894,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 350, y: 350}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &753374372
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 753374370}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9e0422c0006cc9c4e9cc099cf26d5468, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &753374373
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16075,7 +15958,7 @@ VideoPlayer:
   m_ControlledAudioTrackCount: 0
   m_PlayOnAwake: 1
   m_SkipOnDrop: 1
-  m_Looping: 0
+  m_Looping: 1
   m_WaitForFirstFrame: 1
   m_FrameReadyEventEnabled: 0
   m_VideoShaders: []
@@ -17049,7 +16932,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -17237,7 +17120,6 @@ GameObject:
   - component: {fileID: 828525238}
   - component: {fileID: 828525237}
   - component: {fileID: 828525236}
-  - component: {fileID: 828525235}
   m_Layer: 5
   m_Name: Video Player
   m_TagString: Untagged
@@ -17264,18 +17146,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 350, y: 350}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &828525235
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 828525233}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9e0422c0006cc9c4e9cc099cf26d5468, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &828525236
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17340,7 +17210,7 @@ VideoPlayer:
   m_ControlledAudioTrackCount: 0
   m_PlayOnAwake: 1
   m_SkipOnDrop: 1
-  m_Looping: 0
+  m_Looping: 1
   m_WaitForFirstFrame: 1
   m_FrameReadyEventEnabled: 0
   m_VideoShaders: []
@@ -17490,7 +17360,6 @@ GameObject:
   - component: {fileID: 838971325}
   - component: {fileID: 838971324}
   - component: {fileID: 838971323}
-  - component: {fileID: 838971322}
   m_Layer: 5
   m_Name: Video Player
   m_TagString: Untagged
@@ -17517,18 +17386,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 350, y: 350}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &838971322
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 838971320}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9e0422c0006cc9c4e9cc099cf26d5468, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &838971323
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17593,7 +17450,7 @@ VideoPlayer:
   m_ControlledAudioTrackCount: 0
   m_PlayOnAwake: 1
   m_SkipOnDrop: 1
-  m_Looping: 0
+  m_Looping: 1
   m_WaitForFirstFrame: 1
   m_FrameReadyEventEnabled: 0
   m_VideoShaders: []
@@ -17663,7 +17520,6 @@ GameObject:
   - component: {fileID: 842343822}
   - component: {fileID: 842343821}
   - component: {fileID: 842343820}
-  - component: {fileID: 842343819}
   m_Layer: 5
   m_Name: Video Player
   m_TagString: Untagged
@@ -17690,18 +17546,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 350, y: 350}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &842343819
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 842343817}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9e0422c0006cc9c4e9cc099cf26d5468, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &842343820
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17766,7 +17610,7 @@ VideoPlayer:
   m_ControlledAudioTrackCount: 0
   m_PlayOnAwake: 1
   m_SkipOnDrop: 1
-  m_Looping: 0
+  m_Looping: 1
   m_WaitForFirstFrame: 1
   m_FrameReadyEventEnabled: 0
   m_VideoShaders: []
@@ -18195,7 +18039,6 @@ GameObject:
   - component: {fileID: 854745230}
   - component: {fileID: 854745229}
   - component: {fileID: 854745228}
-  - component: {fileID: 854745227}
   m_Layer: 5
   m_Name: Video Player
   m_TagString: Untagged
@@ -18222,18 +18065,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 45}
   m_SizeDelta: {x: 350, y: 350}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &854745227
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 854745225}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9e0422c0006cc9c4e9cc099cf26d5468, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &854745228
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18298,7 +18129,7 @@ VideoPlayer:
   m_ControlledAudioTrackCount: 0
   m_PlayOnAwake: 1
   m_SkipOnDrop: 1
-  m_Looping: 0
+  m_Looping: 1
   m_WaitForFirstFrame: 1
   m_FrameReadyEventEnabled: 0
   m_VideoShaders: []
@@ -19282,7 +19113,6 @@ GameObject:
   - component: {fileID: 910288620}
   - component: {fileID: 910288619}
   - component: {fileID: 910288618}
-  - component: {fileID: 910288617}
   m_Layer: 5
   m_Name: Video Player
   m_TagString: Untagged
@@ -19309,18 +19139,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 45}
   m_SizeDelta: {x: 350, y: 350}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &910288617
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 910288615}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9e0422c0006cc9c4e9cc099cf26d5468, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &910288618
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19385,7 +19203,7 @@ VideoPlayer:
   m_ControlledAudioTrackCount: 0
   m_PlayOnAwake: 1
   m_SkipOnDrop: 1
-  m_Looping: 0
+  m_Looping: 1
   m_WaitForFirstFrame: 1
   m_FrameReadyEventEnabled: 0
   m_VideoShaders: []
@@ -21493,7 +21311,6 @@ GameObject:
   - component: {fileID: 1023619085}
   - component: {fileID: 1023619084}
   - component: {fileID: 1023619083}
-  - component: {fileID: 1023619082}
   m_Layer: 5
   m_Name: Video Player
   m_TagString: Untagged
@@ -21520,18 +21337,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 45}
   m_SizeDelta: {x: 350, y: 350}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1023619082
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1023619080}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9e0422c0006cc9c4e9cc099cf26d5468, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1023619083
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21596,7 +21401,7 @@ VideoPlayer:
   m_ControlledAudioTrackCount: 0
   m_PlayOnAwake: 1
   m_SkipOnDrop: 1
-  m_Looping: 0
+  m_Looping: 1
   m_WaitForFirstFrame: 1
   m_FrameReadyEventEnabled: 0
   m_VideoShaders: []
@@ -22930,10 +22735,10 @@ RectTransform:
   m_Father: {fileID: 1442315908}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 70}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 559, y: -105}
+  m_SizeDelta: {x: 1118, y: 70}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1093895251
 MonoBehaviour:
@@ -23829,10 +23634,10 @@ RectTransform:
   m_Father: {fileID: 1442315908}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 70}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 559, y: -595}
+  m_SizeDelta: {x: 1118, y: 70}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1146422727
 MonoBehaviour:
@@ -26137,10 +25942,10 @@ RectTransform:
   m_Father: {fileID: 1442315908}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 70}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 559, y: -665}
+  m_SizeDelta: {x: 1118, y: 70}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1276302409
 MonoBehaviour:
@@ -27439,7 +27244,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 0.327, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -30260,7 +30065,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 770}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1442315909
 MonoBehaviour:
@@ -30524,10 +30329,10 @@ RectTransform:
   m_Father: {fileID: 1442315908}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 70}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 559, y: -735}
+  m_SizeDelta: {x: 1118, y: 70}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1447787131
 MonoBehaviour:
@@ -30577,7 +30382,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1452009951}
   - component: {fileID: 1452009952}
-  - component: {fileID: 1452009953}
   - component: {fileID: 1452009956}
   - component: {fileID: 1452009955}
   m_Layer: 5
@@ -30633,24 +30437,12 @@ VideoPlayer:
   m_EnabledAudioTracks: 
   m_DirectAudioMutes: 
   m_ControlledAudioTrackCount: 0
-  m_PlayOnAwake: 0
+  m_PlayOnAwake: 1
   m_SkipOnDrop: 0
   m_Looping: 1
   m_WaitForFirstFrame: 1
   m_FrameReadyEventEnabled: 0
   m_VideoShaders: []
---- !u!114 &1452009953
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1452009950}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9e0422c0006cc9c4e9cc099cf26d5468, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1452009955
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -31400,9 +31192,9 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: -2, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1483927394
 MonoBehaviour:
@@ -32263,10 +32055,10 @@ RectTransform:
   m_Father: {fileID: 1442315908}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 70}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 559, y: -315}
+  m_SizeDelta: {x: 1118, y: 70}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1541933943
 MonoBehaviour:
@@ -33104,7 +32896,6 @@ GameObject:
   - component: {fileID: 1555405932}
   - component: {fileID: 1555405931}
   - component: {fileID: 1555405930}
-  - component: {fileID: 1555405929}
   m_Layer: 5
   m_Name: Video Player
   m_TagString: Untagged
@@ -33131,18 +32922,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 350, y: 350}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1555405929
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1555405927}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9e0422c0006cc9c4e9cc099cf26d5468, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1555405930
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -33207,7 +32986,7 @@ VideoPlayer:
   m_ControlledAudioTrackCount: 0
   m_PlayOnAwake: 1
   m_SkipOnDrop: 1
-  m_Looping: 0
+  m_Looping: 1
   m_WaitForFirstFrame: 1
   m_FrameReadyEventEnabled: 0
   m_VideoShaders: []
@@ -33227,7 +33006,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1568627043
 RectTransform:
   m_ObjectHideFlags: 0
@@ -33727,7 +33506,6 @@ GameObject:
   - component: {fileID: 1606102875}
   - component: {fileID: 1606102874}
   - component: {fileID: 1606102873}
-  - component: {fileID: 1606102872}
   m_Layer: 5
   m_Name: Video Player
   m_TagString: Untagged
@@ -33754,18 +33532,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 350, y: 350}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1606102872
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1606102870}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9e0422c0006cc9c4e9cc099cf26d5468, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1606102873
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -33830,7 +33596,7 @@ VideoPlayer:
   m_ControlledAudioTrackCount: 0
   m_PlayOnAwake: 1
   m_SkipOnDrop: 1
-  m_Looping: 0
+  m_Looping: 1
   m_WaitForFirstFrame: 1
   m_FrameReadyEventEnabled: 0
   m_VideoShaders: []
@@ -34358,7 +34124,6 @@ GameObject:
   - component: {fileID: 1639801196}
   - component: {fileID: 1639801195}
   - component: {fileID: 1639801194}
-  - component: {fileID: 1639801193}
   m_Layer: 5
   m_Name: Video Player
   m_TagString: Untagged
@@ -34385,18 +34150,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 45}
   m_SizeDelta: {x: 350, y: 350}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1639801193
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1639801191}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9e0422c0006cc9c4e9cc099cf26d5468, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1639801194
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -34461,7 +34214,7 @@ VideoPlayer:
   m_ControlledAudioTrackCount: 0
   m_PlayOnAwake: 1
   m_SkipOnDrop: 1
-  m_Looping: 0
+  m_Looping: 1
   m_WaitForFirstFrame: 1
   m_FrameReadyEventEnabled: 0
   m_VideoShaders: []
@@ -34761,10 +34514,10 @@ RectTransform:
   m_Father: {fileID: 1442315908}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 70}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 559, y: -175}
+  m_SizeDelta: {x: 1118, y: 70}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1647937879
 MonoBehaviour:
@@ -35132,10 +34885,10 @@ RectTransform:
   m_Father: {fileID: 1442315908}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 70}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 559, y: -245}
+  m_SizeDelta: {x: 1118, y: 70}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1686736669
 MonoBehaviour:
@@ -36693,7 +36446,6 @@ GameObject:
   - component: {fileID: 1766396305}
   - component: {fileID: 1766396304}
   - component: {fileID: 1766396303}
-  - component: {fileID: 1766396302}
   m_Layer: 5
   m_Name: Video Player
   m_TagString: Untagged
@@ -36720,18 +36472,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 350, y: 350}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1766396302
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1766396300}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9e0422c0006cc9c4e9cc099cf26d5468, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1766396303
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -36796,7 +36536,7 @@ VideoPlayer:
   m_ControlledAudioTrackCount: 0
   m_PlayOnAwake: 1
   m_SkipOnDrop: 1
-  m_Looping: 0
+  m_Looping: 1
   m_WaitForFirstFrame: 1
   m_FrameReadyEventEnabled: 0
   m_VideoShaders: []
@@ -37226,7 +36966,6 @@ GameObject:
   - component: {fileID: 1780014320}
   - component: {fileID: 1780014319}
   - component: {fileID: 1780014318}
-  - component: {fileID: 1780014317}
   m_Layer: 5
   m_Name: Video Player
   m_TagString: Untagged
@@ -37253,18 +36992,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 350, y: 350}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1780014317
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1780014315}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9e0422c0006cc9c4e9cc099cf26d5468, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1780014318
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -37329,7 +37056,7 @@ VideoPlayer:
   m_ControlledAudioTrackCount: 0
   m_PlayOnAwake: 1
   m_SkipOnDrop: 1
-  m_Looping: 0
+  m_Looping: 1
   m_WaitForFirstFrame: 1
   m_FrameReadyEventEnabled: 0
   m_VideoShaders: []
@@ -41075,7 +40802,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1913280130}
   - component: {fileID: 1913280134}
-  - component: {fileID: 1913280133}
   - component: {fileID: 1913280132}
   - component: {fileID: 1913280131}
   m_Layer: 5
@@ -41139,18 +40865,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1913280129}
   m_CullTransparentMesh: 1
---- !u!114 &1913280133
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1913280129}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9e0422c0006cc9c4e9cc099cf26d5468, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!328 &1913280134
 VideoPlayer:
   m_ObjectHideFlags: 0
@@ -41178,7 +40892,7 @@ VideoPlayer:
   m_EnabledAudioTracks: 
   m_DirectAudioMutes: 
   m_ControlledAudioTrackCount: 0
-  m_PlayOnAwake: 0
+  m_PlayOnAwake: 1
   m_SkipOnDrop: 0
   m_Looping: 1
   m_WaitForFirstFrame: 1
@@ -41483,7 +41197,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 0.327, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -43522,7 +43236,6 @@ GameObject:
   - component: {fileID: 2041544514}
   - component: {fileID: 2041544513}
   - component: {fileID: 2041544512}
-  - component: {fileID: 2041544511}
   m_Layer: 5
   m_Name: Video Player
   m_TagString: Untagged
@@ -43549,18 +43262,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 45}
   m_SizeDelta: {x: 350, y: 350}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &2041544511
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2041544509}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9e0422c0006cc9c4e9cc099cf26d5468, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &2041544512
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -43625,7 +43326,7 @@ VideoPlayer:
   m_ControlledAudioTrackCount: 0
   m_PlayOnAwake: 1
   m_SkipOnDrop: 1
-  m_Looping: 0
+  m_Looping: 1
   m_WaitForFirstFrame: 1
   m_FrameReadyEventEnabled: 0
   m_VideoShaders: []
@@ -44666,10 +44367,10 @@ RectTransform:
   m_Father: {fileID: 1442315908}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 70}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 559, y: -525}
+  m_SizeDelta: {x: 1118, y: 70}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2085122997
 MonoBehaviour:
@@ -45638,7 +45339,6 @@ GameObject:
   - component: {fileID: 2138060362}
   - component: {fileID: 2138060361}
   - component: {fileID: 2138060360}
-  - component: {fileID: 2138060359}
   m_Layer: 5
   m_Name: Video Player
   m_TagString: Untagged
@@ -45665,18 +45365,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 350, y: 350}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &2138060359
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2138060357}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9e0422c0006cc9c4e9cc099cf26d5468, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &2138060360
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -45741,7 +45429,7 @@ VideoPlayer:
   m_ControlledAudioTrackCount: 0
   m_PlayOnAwake: 1
   m_SkipOnDrop: 1
-  m_Looping: 0
+  m_Looping: 1
   m_WaitForFirstFrame: 1
   m_FrameReadyEventEnabled: 0
   m_VideoShaders: []
