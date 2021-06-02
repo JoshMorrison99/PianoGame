@@ -11,9 +11,12 @@ public class PianoKeyShop : MonoBehaviour
     public TextMeshProUGUI ItemName;
     public TextMeshProUGUI ItemPrice;
     public TextMeshProUGUI PurchaseButton;
+    private int listOffset = 22;
 
     // PLAYER STATS
     public TextMeshProUGUI PlayerMoney;
+
+    public TextMeshProUGUI InsufficientFundsText;
 
     public int itemIndex;
 
@@ -42,7 +45,9 @@ public class PianoKeyShop : MonoBehaviour
 
     public void PurchaseButtonClicked()
     {
-        if (KeyItems[itemIndex].GetComponent<Item>().price < PersistentData.data.money)
+        Debug.Log("List Index: " + KeyItems[itemIndex]);
+        Debug.Log("Persistent Index: " + PersistentData.data._ItemList[itemIndex + listOffset]);
+        if (KeyItems[itemIndex].GetComponent<Item>().price <= PersistentData.data.money || KeyItems[itemIndex].GetComponent<Item>().isPurchased)
         {
             if (KeyItems[itemIndex].GetComponent<Item>().isPurchased == false)
             {
@@ -51,8 +56,8 @@ public class PianoKeyShop : MonoBehaviour
                 ClearCurrentlySelectedItem();
                 KeyItems[itemIndex].GetComponent<Item>().isCurrentlySelected = true;
 
-                PersistentData.data._ItemList[itemIndex].isPurchased = true;
-                PersistentData.data._ItemList[itemIndex].isCurrentlySelected = true;
+                PersistentData.data._ItemList[itemIndex + listOffset].isPurchased = true;
+                PersistentData.data._ItemList[itemIndex + listOffset].isCurrentlySelected = true;
 
                 PersistentData.data.currentKeyItem = KeyItems[itemIndex].GetComponent<KeyItem>().color;
                 PersistentData.SaveJsonData(PersistentData.data);
@@ -61,6 +66,7 @@ public class PianoKeyShop : MonoBehaviour
                 PlayerMoney.text = PersistentData.data.money.ToString();
                 PurchaseButtonTextLogic(KeyItems[itemIndex].GetComponent<Item>());
 
+                StartCoroutine(ShopTextAnimation("Purchase Complete"));
 
             }
             else
@@ -69,7 +75,7 @@ public class PianoKeyShop : MonoBehaviour
                 ClearCurrentlySelectedItem();
                 KeyItems[itemIndex].GetComponent<Item>().isCurrentlySelected = true;
 
-                PersistentData.data._ItemList[itemIndex].isCurrentlySelected = true;
+                PersistentData.data._ItemList[itemIndex + listOffset].isCurrentlySelected = true;
 
                 PersistentData.data.currentKeyItem = KeyItems[itemIndex].GetComponent<KeyItem>().color;
                 PurchaseButtonTextLogic(KeyItems[itemIndex].GetComponent<Item>());
@@ -80,7 +86,27 @@ public class PianoKeyShop : MonoBehaviour
         else
         {
             Debug.Log("Insufficient Funds");
+            StartCoroutine(ShopTextAnimation("Insufficient Funds"));
         }
+    }
+
+    public IEnumerator ShopTextAnimation(string text)
+    {
+        if (text == "Insufficient Funds")
+        {
+            InsufficientFundsText.text = text;
+            InsufficientFundsText.color = Color.red;
+        }
+        else if (text == "Purchase Complete")
+        {
+            InsufficientFundsText.text = text;
+            InsufficientFundsText.color = Color.green;
+        }
+        InsufficientFundsText.gameObject.SetActive(true);
+        InsufficientFundsText.gameObject.LeanMoveLocal(new Vector3(0, 460, 0), 1).setEaseOutSine();
+        yield return new WaitForSeconds(2f);
+        InsufficientFundsText.gameObject.LeanMoveLocal(new Vector3(0, 600, 0), 1);
+        yield return null;
     }
 
     public void LeftPianoKeyButtonClicked()

@@ -28,7 +28,7 @@ public class Shop : MonoBehaviour
     public GameObject[] NoteItems;
     public int itemIndex;
 
-    
+    public TextMeshProUGUI InsufficientFundsText;
 
     // SHOP TITLES
     public TextMeshProUGUI ShopTitle;
@@ -145,7 +145,7 @@ public class Shop : MonoBehaviour
 
     public void PurchaseButtonClicked()
     {
-        if (NoteItems[itemIndex].GetComponent<Item>().price < PersistentData.data.money)
+        if (NoteItems[itemIndex].GetComponent<Item>().price <= PersistentData.data.money || NoteItems[itemIndex].GetComponent<Item>().isPurchased)
         {
             if (NoteItems[itemIndex].GetComponent<Item>().isPurchased == false)
             {
@@ -167,6 +167,8 @@ public class Shop : MonoBehaviour
                 PlayerMoney.text = PersistentData.data.money.ToString();
                 PurchaseButtonTextLogic(NoteItems[itemIndex].GetComponent<Item>());
 
+                StartCoroutine(ShopTextAnimation("Purchase Complete"));
+
 
             }
             else
@@ -187,7 +189,27 @@ public class Shop : MonoBehaviour
         else
         {
             Debug.Log("Insufficient Funds");
+            StartCoroutine(ShopTextAnimation("Insufficient Funds"));
+            
         }
+    }
+
+    public IEnumerator ShopTextAnimation(string text)
+    {
+        if (text == "Insufficient Funds")
+        {
+            InsufficientFundsText.text = text;
+            InsufficientFundsText.color = Color.red;
+        }else if (text == "Purchase Complete")
+        {
+            InsufficientFundsText.text = text;
+            InsufficientFundsText.color = Color.green;
+        }
+        InsufficientFundsText.gameObject.SetActive(true);
+        InsufficientFundsText.gameObject.LeanMoveLocal(new Vector3(0, 460, 0), 1).setEaseOutSine();
+        yield return new WaitForSeconds(2f);
+        InsufficientFundsText.gameObject.LeanMoveLocal(new Vector3(0, 600, 0), 1);
+        yield return null;
     }
 
     public void SetCurrentlySelectedItem()

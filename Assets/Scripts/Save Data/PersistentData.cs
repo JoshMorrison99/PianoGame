@@ -144,6 +144,11 @@ public class PersistentData : MonoBehaviour, ISaveable
                 item.isCurrentlySelected = true;
             }
 
+            if (item.id == 211)
+            {
+                item.isPurchased = true;
+            }
+
             if (item.id == 306)
             {
                 currentKeyItem = item.GetComponent<KeyItem>().color;

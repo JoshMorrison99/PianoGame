@@ -81,7 +81,15 @@ public class PlayUILogic : MonoBehaviour
         settingsPanel.SetActive(false);
         pauseBtn.gameObject.SetActive(true);
 
-        pianoBarVideo.clip = PersistentData.data.currentPianoBarItem;
+        if (PersistentData.data.currentPianoBarItem == null)
+        {
+            pianoBarVideo.gameObject.SetActive(false);
+        }
+        else
+        {
+            pianoBarVideo.clip = PersistentData.data.currentPianoBarItem;
+        }
+        
 
 
         //PauseMenuPressed();
@@ -234,6 +242,7 @@ public class PlayUILogic : MonoBehaviour
         pauseBtn.gameObject.SetActive(false);
         pianoBarVideo.gameObject.SetActive(false);
         settingsPanel.GetComponent<Settings>().StartupApplyButton();
+        pianoKeyLabels.SetActive(false);
 
         // play button clicked sfx
         if (buttonClickedEvent != null)
@@ -252,6 +261,11 @@ public class PlayUILogic : MonoBehaviour
         pauseManuPanel.SetActive(true);
         pauseBtn.gameObject.SetActive(true);
         pianoBarVideo.gameObject.SetActive(true);
+
+        if (PlayerPrefs.GetFloat("isPianoLabelled") == 1)
+        {
+            pianoKeyLabels.SetActive(true);
+        }
 
         InitSettings();
 
