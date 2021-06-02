@@ -104,7 +104,7 @@ public class detectorScript : MonoBehaviour
 
     }
 
-    void Video(string note, int color)
+/*    void Video(string note, int color)
     {
         if (color == 1)
         {
@@ -134,7 +134,7 @@ public class detectorScript : MonoBehaviour
                 }
             }
         }
-    }
+    }*/
 
     void PianoKeyLiftedUI(string notePressed)
     {
@@ -156,7 +156,7 @@ public class detectorScript : MonoBehaviour
         {
             overlapNote = true;
             currentOverlappedNotes.Add(collision.GetComponentInParent<Note_Falling>().gameObject);
-            Video(collision.GetComponentInParent<Note_Falling>().noteName, 1);
+            //Video(collision.GetComponentInParent<Note_Falling>().noteName, 1);
         }
     }
 
@@ -167,7 +167,7 @@ public class detectorScript : MonoBehaviour
             overlapNote = false;
             isPressed = false;
             currentOverlappedNotes.Remove(collision.GetComponentInParent<Note_Falling>().gameObject);
-            Video(collision.GetComponentInParent<Note_Falling>().noteName, 0);
+            //Video(collision.GetComponentInParent<Note_Falling>().noteName, 0);
         }
     }
 

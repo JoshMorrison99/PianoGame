@@ -4718,10 +4718,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 260078032}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c40bf2111f06db641b30d54598c55005, type: 3}
+  m_Script: {fileID: 11500000, guid: de537c35651ada446902f35458a2997b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  data: {fileID: 0}
 --- !u!4 &260078034
 Transform:
   m_ObjectHideFlags: 0
@@ -8855,7 +8854,6 @@ MonoBehaviour:
   InsufficientFundsText: {fileID: 1196152607}
   PlayerMoney: {fileID: 1496982972}
   itemIndex: 0
-  listOffset: 11
 --- !u!1 &475851906
 GameObject:
   m_ObjectHideFlags: 0
@@ -9099,7 +9097,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53c8fea5e14c50049881a3d6f5c7ba4f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  data: {fileID: 0}
 --- !u!1 &499070065
 GameObject:
   m_ObjectHideFlags: 0
@@ -16525,10 +16522,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 790628736}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c40bf2111f06db641b30d54598c55005, type: 3}
+  m_Script: {fileID: 11500000, guid: dce8a44b860c6db4494c1724f96e995f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  data: {fileID: 0}
 --- !u!4 &790628738
 Transform:
   m_ObjectHideFlags: 0
@@ -20217,7 +20213,6 @@ MonoBehaviour:
   ItemName: {fileID: 666301312}
   ItemPrice: {fileID: 1974607245}
   PurchaseButton: {fileID: 38444108}
-  listOffset: 22
   PlayerMoney: {fileID: 1496982972}
   InsufficientFundsText: {fileID: 1196152607}
   itemIndex: 0
@@ -20387,7 +20382,7 @@ MonoBehaviour:
   id: 211
   item: None
   price: 0
-  isPurchased: 1
+  isPurchased: 0
   isCurrentlySelected: 0
   itemType: pianobar
   video: {fileID: 0}
@@ -23254,9 +23249,6 @@ MonoBehaviour:
   NotesShopHolder: {fileID: 322885757}
   PianoBarShopHolder: {fileID: 469989844}
   KeysShopHolder: {fileID: 945185018}
-  NotesRootHolder: {fileID: 762386643}
-  PianoBarRootHolder: {fileID: 433234487}
-  KeysRootHolder: {fileID: 2079982384}
   NotesHolderHolder: {fileID: 2034868614}
   PianoBarHolderHolder: {fileID: 260078032}
   KeysHolderHolder: {fileID: 790628736}
@@ -23275,6 +23267,9 @@ MonoBehaviour:
   MainMenu_playerExpSliderUI: {fileID: 2074087535}
   SongImportErrorMessagePanel: {fileID: 1615148162}
   songSelectionClass: {fileID: 1064524075}
+  PianoKeyShopRef: {fileID: 945185020}
+  PianoBarShopRef: {fileID: 469989846}
+  PianoNoteShopRef: {fileID: 1568627044}
   path: 
 --- !u!1 &1105992256
 GameObject:
@@ -32426,7 +32421,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 76366e2796b955e43bd99f766c3f560b, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.1
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -43258,7 +43253,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c40bf2111f06db641b30d54598c55005, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  data: {fileID: 0}
 --- !u!4 &2034868616
 Transform:
   m_ObjectHideFlags: 0

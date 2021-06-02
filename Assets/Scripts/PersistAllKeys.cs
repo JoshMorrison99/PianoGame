@@ -2,10 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PersistAllItems : MonoBehaviour
+public class PersistAllKeys : MonoBehaviour
 {
-    public static PersistAllItems data;
-
+    public static PersistAllKeys data;
     private void Awake()
     {
         if (data == null)

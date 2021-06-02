@@ -47,13 +47,38 @@ public class Shop : MonoBehaviour
 
     private void Start()
     {
+        LoadNoteItems();
         main_NotesShop.SetActive(false);
         main_PianoBarShop.SetActive(false);
         main_LightsShop.SetActive(false);
         ShopMenu_BackButton.gameObject.SetActive(false);
         itemIndex = 0;
         NoteItems[itemIndex].gameObject.SetActive(true);
-        SetCurrentlySelectedItem();
+        PurchaseButtonTextLogic(NoteItems[itemIndex].GetComponent<Item>());
+    }
+
+    public void LoadNoteItems()
+    {
+        GameObject NotesRootHolder = GameObject.Find("NotesHolder");
+
+        int counter = 0;
+        foreach (Transform item in NotesRootHolder.transform)
+        {
+            NoteItems[counter] = item.gameObject;
+            counter += 1;
+        }
+    }
+
+    public void SetCurrentlySelectedItem()
+    {
+        foreach (var item in NoteItems)
+        {
+            if (item.GetComponent<Item>().isCurrentlySelected)
+            {
+                PersistentData.data.currentNoteItemWhite = NoteItems[itemIndex].GetComponent<NoteItem>().whiteNoteColor;
+                PersistentData.data.currentNoteItemBlack = NoteItems[itemIndex].GetComponent<NoteItem>().blackNoteColor;
+            }
+        }
     }
 
     public void PurchaseButtonTextLogic(Item _item)
@@ -210,14 +235,6 @@ public class Shop : MonoBehaviour
         yield return new WaitForSeconds(2f);
         InsufficientFundsText.gameObject.LeanMoveLocal(new Vector3(0, 600, 0), 1);
         yield return null;
-    }
-
-    public void SetCurrentlySelectedItem()
-    {
-        foreach (var item in NoteItems)
-        {
-            PurchaseButtonTextLogic(item.GetComponent<Item>());
-        }
     }
 
     public void ClearCurrentlySelectedItem()

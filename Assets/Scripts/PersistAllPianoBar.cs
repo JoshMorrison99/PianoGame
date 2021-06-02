@@ -2,10 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PersistAllItems : MonoBehaviour
+public class PersistAllPianoBar : MonoBehaviour
 {
-    public static PersistAllItems data;
-
+    public static PersistAllPianoBar data;
     private void Awake()
     {
         if (data == null)

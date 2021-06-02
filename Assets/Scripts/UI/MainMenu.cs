@@ -31,9 +31,7 @@ public class MainMenu : MonoBehaviour
 	public GameObject PianoBarShopHolder;
 	public GameObject KeysShopHolder;
 
-	public GameObject NotesRootHolder;
-	public GameObject PianoBarRootHolder;
-	public GameObject KeysRootHolder;
+
 
 	public GameObject NotesHolderHolder;
 	public GameObject PianoBarHolderHolder;
@@ -63,12 +61,21 @@ public class MainMenu : MonoBehaviour
 
 	public SongSelection songSelectionClass;
 
+	public PianoKeyShop PianoKeyShopRef;
+	public PianoBarShop PianoBarShopRef;
+	public Shop PianoNoteShopRef;
+
 	public string path;
 
+	GameObject NotesRootHolder;
+	GameObject PianoBarRootHolder;
+	GameObject KeysRootHolder;
 
 
 	void Start()
 	{
+		SoundManager.soundManager.audioSource.volume = 0.1f;
+
 		SongImportErrorMessagePanel.SetActive(false);
 		SettingsMenuPanel.SetActive(false);
 		SongSelectionPanel.SetActive(false);
@@ -84,9 +91,44 @@ public class MainMenu : MonoBehaviour
 		Title.SetActive(true);
 		ShopPanel.SetActive(false);
 
+		NotesRootHolder = GameObject.Find("NotesHolder"); 
+		PianoBarRootHolder = GameObject.Find("PianoBarHolder");
+		KeysRootHolder = GameObject.Find("KeysHolder");
+
+		NotesHolderHolder = GameObject.Find("DDOL_Notes");
+		PianoBarHolderHolder = GameObject.Find("DDOL_PianoBar");
+		KeysHolderHolder = GameObject.Find("DDOL_Keys");
+
 
 		Debug.Log("LOADING DATA MAIN MENU AGAIN");
 		PersistentData.LoadJsonData(PersistentData.data);
+
+		foreach (var item in PersistentData.data._ItemList)
+		{
+			if (item.isCurrentlySelected && item.itemType == "note")
+			{
+				PersistentData.data.currentNoteItemWhite = item.GetComponent<NoteItem>().whiteNoteColor;
+				PersistentData.data.currentNoteItemBlack = item.GetComponent<NoteItem>().blackNoteColor;
+			}
+		}
+
+		// Set currently Selected PianoBar
+		foreach (var item in PersistentData.data._ItemList)
+		{
+			if (item.isCurrentlySelected && item.itemType == "pianobar")
+			{
+				PersistentData.data.currentPianoBarItem = item.GetComponent<PianoBarItem>().video;
+			}
+		}
+
+		// Set currently Selected PianoBar
+		foreach (var item in PersistentData.data._ItemList)
+		{
+			if (item.isCurrentlySelected && item.itemType == "key")
+			{
+				PersistentData.data.currentKeyItem = item.GetComponent<KeyItem>().color;
+			}
+		}
 
 	}
 

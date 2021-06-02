@@ -11,7 +11,7 @@ public class PianoKeyShop : MonoBehaviour
     public TextMeshProUGUI ItemName;
     public TextMeshProUGUI ItemPrice;
     public TextMeshProUGUI PurchaseButton;
-    private int listOffset = 22;
+    private int listOffset = 23;
 
     // PLAYER STATS
     public TextMeshProUGUI PlayerMoney;
@@ -22,16 +22,21 @@ public class PianoKeyShop : MonoBehaviour
 
     private void Start()
     {
+        LoadNoteItems();
         itemIndex = 0;
         KeyItems[itemIndex].gameObject.SetActive(true);
-        SetCurrentlySelectedItem();
+        PurchaseButtonTextLogic(KeyItems[itemIndex].GetComponent<Item>());
     }
 
-    public void SetCurrentlySelectedItem()
+    public void LoadNoteItems()
     {
-        foreach (var item in KeyItems)
+        GameObject NotesRootHolder = GameObject.Find("KeysHolder");
+
+        int counter = 0;
+        foreach (Transform item in NotesRootHolder.transform)
         {
-            PurchaseButtonTextLogic(item.GetComponent<Item>());
+            KeyItems[counter] = item.gameObject;
+            counter += 1;
         }
     }
 
@@ -40,6 +45,17 @@ public class PianoKeyShop : MonoBehaviour
         foreach (var item in KeyItems)
         {
             item.GetComponent<Item>().isCurrentlySelected = false;
+        }
+    }
+
+    public void SetCurrentlySelectedItem()
+    {
+        foreach (var item in KeyItems)
+        {
+            if (item.GetComponent<Item>().isCurrentlySelected)
+            {
+                PersistentData.data.currentKeyItem = KeyItems[itemIndex].GetComponent<KeyItem>().color;
+            }
         }
     }
 

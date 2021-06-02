@@ -18,23 +18,29 @@ public class PianoBarShop : MonoBehaviour
     public TextMeshProUGUI PlayerMoney;
 
     public int itemIndex;
-    private int listOffset = 10;
+    private int listOffset = 11;
 
 
     private void Start()
     {
+        LoadNoteItems();
         itemIndex = 0;
         PianoBarItems[itemIndex].gameObject.SetActive(true);
         ItemName.text = PianoBarItems[itemIndex].GetComponent<Item>().item;
         ItemPrice.text = PianoBarItems[itemIndex].GetComponent<Item>().price.ToString();
-        SetCurrentlySelectedItem();
+        PurchaseButtonTextLogic(PianoBarItems[itemIndex].GetComponent<Item>());
+        Debug.Log("IS PURCHASED? " + PianoBarItems[itemIndex].GetComponent<Item>().isPurchased);
     }
 
-    public void SetCurrentlySelectedItem()
+    public void LoadNoteItems()
     {
-        foreach (var item in PianoBarItems)
+        GameObject NotesRootHolder = GameObject.Find("PianoBarHolder");
+
+        int counter = 0;
+        foreach (Transform item in NotesRootHolder.transform)
         {
-            PurchaseButtonTextLogic(item.GetComponent<Item>());
+            PianoBarItems[counter] = item.gameObject;
+            counter += 1;
         }
     }
 
@@ -43,6 +49,17 @@ public class PianoBarShop : MonoBehaviour
         foreach (var item in PianoBarItems)
         {
             item.GetComponent<Item>().isCurrentlySelected = false;
+        }
+    }
+
+    public void SetCurrentlySelectedItem()
+    {
+        foreach (var item in PianoBarItems)
+        {
+            if (item.GetComponent<Item>().isCurrentlySelected)
+            {
+                PersistentData.data.currentPianoBarItem = PianoBarItems[itemIndex].GetComponent<PianoBarItem>().video;
+            }
         }
     }
 
@@ -158,6 +175,8 @@ public class PianoBarShop : MonoBehaviour
 
     public void PurchaseButtonTextLogic(Item _item)
     {
+        Debug.Log("Item " + _item.isPurchased);
+        Debug.Log("Item " + _item.item);
         if (_item.isPurchased)
         {
             if (_item.isCurrentlySelected)

@@ -21,6 +21,7 @@ public class SoundManager : MonoBehaviour
 
     private void Awake()
     {
+        audioSource.volume = 0.1f;
         if (soundManager != null && soundManager != this)
         {
             Destroy(this.gameObject);

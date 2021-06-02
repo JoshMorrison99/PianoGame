@@ -205,7 +205,6 @@ public class PersistentData : MonoBehaviour, ISaveable
 
     private void Awake()
     {
-        
         //data = this;
 
         if (data != null && data != this)
@@ -254,7 +253,6 @@ public class PersistentData : MonoBehaviour, ISaveable
 
     public void PopulateSaveData(PersistentDataInformation a_SaveData)
     {
-        Debug.Log("Saving");
         // Player Info
         a_SaveData.m_level = level;
         a_SaveData.m_exp = exp;
@@ -275,16 +273,13 @@ public class PersistentData : MonoBehaviour, ISaveable
             song.PopulateSaveData(a_SaveData);
         }
 
-        if (SceneManager.GetActiveScene().name == "MainMenu")
+        // Item Information
+        foreach (Item item in _ItemList)
         {
-            Debug.Log("Main Menu Scene populate");
-            // Item Information
-            foreach (Item item in _ItemList)
-            {
-                //Debug.Log("item.LoadFromSaveData: " + item);
-                item.PopulateSaveData(a_SaveData);
-            }
+            //Debug.Log("item.LoadFromSaveData: " + item);
+            item.PopulateSaveData(a_SaveData);
         }
+        
         
 
     }
@@ -340,9 +335,10 @@ public class PersistentData : MonoBehaviour, ISaveable
         GameObject PianoBar = GameObject.Find("PianoBarHolder");
         GameObject Keys = GameObject.Find("KeysHolder");
 
+        Debug.Log(Notes.transform.childCount);
+
         for (int i = 0; i < a_SaveData.m_ItemList.Count; i++)
         {
-            
 
             if (a_SaveData.m_ItemList[i].m_itemType == "note")
             {

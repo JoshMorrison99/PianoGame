@@ -5,11 +5,12 @@ using UnityEngine;
 public class PersistSongsAll : MonoBehaviour
 {
 
-    public PersistSongsAll data;
-
+    public static PersistSongsAll data;
     private void Awake()
     {
-        if (data != null && data != this)
+        
+
+        /*if (data != null && data != this)
         {
             Destroy(this.gameObject);
         }
@@ -17,6 +18,21 @@ public class PersistSongsAll : MonoBehaviour
         {
             data = this;
             DontDestroyOnLoad(gameObject);
+        }*/
+
+        if (data == null)
+        {
+            Debug.Log("DATA IS NULL");
+            DontDestroyOnLoad(this);
+            data = this;
+
+            
+
+        }
+        else
+        {
+            Debug.Log("DATA IS NOT NULL");
+            Destroy(this.gameObject);
         }
     }
 }
