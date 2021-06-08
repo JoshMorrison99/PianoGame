@@ -24,7 +24,7 @@ public class MidiMagic : MonoBehaviour
 
     public void ActivateMidi(string Midi_path)
     {
-        
+
         midiFile = MidiFile.Read(Midi_path);
         _outputDevice = OutputDevice.GetById(0);
 
@@ -40,12 +40,6 @@ public class MidiMagic : MonoBehaviour
             CreateTickGeneratorCallback = () => null
         });
 
-        //Debug.Log("TOTAL NOTES: " + midiFile.GetNotes().Count);
-
-        //Debug.Log(_outputDevice.SupportsLeftRightVolumeControl);
-        //Debug.Log(_outputDevice.SupportsVolumeControl);
-        //Debug.Log(_outputDevice.Channels);
-
 
         // Set the volume the same as player prefs
         GetAndSetSongVolume();
@@ -60,8 +54,8 @@ public class MidiMagic : MonoBehaviour
         PersistentData.data.myMidi = midiFile;
         PersistentData.data.myPlayback = _playback;
         PersistentData.data.myPlaybackAudio = _playback_audio;
-        _playback.NotesPlaybackStarted += spawner.spawnNote;
-        
+        _playback.NotesPlaybackStarted += spawner.spawnNoteEfficient;
+
         _playback.InterruptNotesOnStop = true;
         _playback_audio.InterruptNotesOnStop = true;
 

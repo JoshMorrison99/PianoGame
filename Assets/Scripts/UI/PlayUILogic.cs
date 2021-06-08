@@ -81,19 +81,16 @@ public class PlayUILogic : MonoBehaviour
         settingsPanel.SetActive(false);
         pauseBtn.gameObject.SetActive(true);
 
-        if (PersistentData.data.currentPianoBarItem == null)
+        // Set piano bar color
+        if (PersistentData.data.ThemePianoBar == null)
         {
             pianoBarVideo.gameObject.SetActive(false);
         }
         else
         {
-            pianoBarVideo.clip = PersistentData.data.currentPianoBarItem;
+            pianoBarVideo.clip = PersistentData.data.ThemePianoBar;
         }
         
-
-
-        //PauseMenuPressed();
-
         // Disable the slider for playback speed so the user cannot change the speed while playing
         speedSlider.enabled = false;
     }

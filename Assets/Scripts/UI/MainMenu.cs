@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 using TMPro;
 //using UnityEditor;
 using System.IO;
@@ -27,31 +28,20 @@ public class MainMenu : MonoBehaviour
 	public delegate void ButtonClickedSuccessAction();
 	public static event ButtonClickedSuccessAction buttonClickedSuccessEvent;
 
-	public GameObject NotesShopHolder;
-	public GameObject PianoBarShopHolder;
-	public GameObject KeysShopHolder;
-
-
-
-	public GameObject NotesHolderHolder;
-	public GameObject PianoBarHolderHolder;
-	public GameObject KeysHolderHolder;
-
-
 	public Button songSelectionBtn;
 	public Button lessonsBtn;
 	public Button settingsBtn;
 	public Button accountBtn;
 	public Button quitBtn;
-	public Button shopBtn;
+	public Button themesBtn;
+	public Button gamesBtn;
+	public Button freePlayBtn;
 
 	public GameObject Title;
 
-	public GameObject ShopPanel;
-
 	public GameObject SongSelectionPanel;
 	public GameObject SettingsMenuPanel;
-
+	public GameObject ThemesPanel;
 
 	public TextMeshProUGUI MainMenu_playerLevelUI;
 	public TextMeshProUGUI MainMenu_playerMoneyUI;
@@ -61,15 +51,8 @@ public class MainMenu : MonoBehaviour
 
 	public SongSelection songSelectionClass;
 
-	public PianoKeyShop PianoKeyShopRef;
-	public PianoBarShop PianoBarShopRef;
-	public Shop PianoNoteShopRef;
-
 	public string path;
 
-	GameObject NotesRootHolder;
-	GameObject PianoBarRootHolder;
-	GameObject KeysRootHolder;
 
 
 	void Start()
@@ -89,46 +72,7 @@ public class MainMenu : MonoBehaviour
 
 		EnableMainMenuButtons();
 		Title.SetActive(true);
-		ShopPanel.SetActive(false);
-
-		NotesRootHolder = GameObject.Find("NotesHolder"); 
-		PianoBarRootHolder = GameObject.Find("PianoBarHolder");
-		KeysRootHolder = GameObject.Find("KeysHolder");
-
-		NotesHolderHolder = GameObject.Find("DDOL_Notes");
-		PianoBarHolderHolder = GameObject.Find("DDOL_PianoBar");
-		KeysHolderHolder = GameObject.Find("DDOL_Keys");
-
-
-		Debug.Log("LOADING DATA MAIN MENU AGAIN");
-		PersistentData.LoadJsonData(PersistentData.data);
-
-		foreach (var item in PersistentData.data._ItemList)
-		{
-			if (item.isCurrentlySelected && item.itemType == "note")
-			{
-				PersistentData.data.currentNoteItemWhite = item.GetComponent<NoteItem>().whiteNoteColor;
-				PersistentData.data.currentNoteItemBlack = item.GetComponent<NoteItem>().blackNoteColor;
-			}
-		}
-
-		// Set currently Selected PianoBar
-		foreach (var item in PersistentData.data._ItemList)
-		{
-			if (item.isCurrentlySelected && item.itemType == "pianobar")
-			{
-				PersistentData.data.currentPianoBarItem = item.GetComponent<PianoBarItem>().video;
-			}
-		}
-
-		// Set currently Selected PianoBar
-		foreach (var item in PersistentData.data._ItemList)
-		{
-			if (item.isCurrentlySelected && item.itemType == "key")
-			{
-				PersistentData.data.currentKeyItem = item.GetComponent<KeyItem>().color;
-			}
-		}
+		ThemesPanel.gameObject.SetActive(false);
 
 	}
 
@@ -137,20 +81,13 @@ public class MainMenu : MonoBehaviour
 		SongSelectionPanel.SetActive(false);
 		Title.SetActive(true);
 		EnableMainMenuButtons();
-		ShopPanel.SetActive(false);
+		ThemesPanel.gameObject.SetActive(false);
 
 		// play button clcik sfx
 		if (buttonClickedEvent != null)
 		{
 			buttonClickedEvent();
 		}
-
-		NotesRootHolder.transform.SetParent(NotesHolderHolder.transform);
-
-
-		PianoBarRootHolder.transform.SetParent(PianoBarHolderHolder.transform);
-
-		KeysRootHolder.transform.SetParent(KeysHolderHolder.transform);
 	}
 
 	public void songSelectionClicked()
@@ -167,24 +104,35 @@ public class MainMenu : MonoBehaviour
 		
 	}
 
+	public void ThemesButtonClicked()
+    {
+		DisableMainMenuButtons();
+		ThemesPanel.gameObject.SetActive(true);
+	}
+
 	public void DisableMainMenuButtons()
     {
 		accountBtn.gameObject.SetActive(false);
 		songSelectionBtn.gameObject.SetActive(false);
-		shopBtn.gameObject.SetActive(false);
 		settingsBtn.gameObject.SetActive(false);
 		accountBtn.gameObject.SetActive(false);
 		quitBtn.gameObject.SetActive(false);
-    }
+		themesBtn.gameObject.SetActive(false);
+		gamesBtn.gameObject.SetActive(false);
+		freePlayBtn.gameObject.SetActive(false);
+
+	}
 
 	public void EnableMainMenuButtons()
 	{
 		accountBtn.gameObject.SetActive(true);
 		songSelectionBtn.gameObject.SetActive(true);
-		shopBtn.gameObject.SetActive(true);
 		settingsBtn.gameObject.SetActive(true);
 		accountBtn.gameObject.SetActive(true);
 		quitBtn.gameObject.SetActive(true);
+		themesBtn.gameObject.SetActive(true);
+		gamesBtn.gameObject.SetActive(true);
+		freePlayBtn.gameObject.SetActive(true);
 	}
 
 
@@ -197,35 +145,18 @@ public class MainMenu : MonoBehaviour
 
 	}
 
-	public void OnShopButtonClicked()
+
+	public void FreePlayButtonClicked()
     {
-		ShopPanel.SetActive(true);
-		DisableMainMenuButtons();
-		Title.SetActive(false);
+		SoundManager.soundManager.MainMenuMusic.Pause();
+		SceneManager.LoadScene("FreePlay");
+    }
 
-
-		NotesRootHolder.transform.SetParent(NotesShopHolder.transform);
-		NotesRootHolder.transform.localPosition = new Vector3(0,0,0);
-
-		PianoBarRootHolder.transform.SetParent(PianoBarShopHolder.transform);
-		PianoBarRootHolder.transform.localPosition = new Vector3(0, 0, 0);
-
-		KeysRootHolder.transform.SetParent(KeysShopHolder.transform);
-		KeysRootHolder.transform.localPosition = new Vector3(0, 0, 0);
-	}
-
-	public void HelpImportSongBtnClicked()
+	public void GamesButtonClicked()
     {
-		string website = "http://localhost:3000/tutorial";
-		Application.OpenURL(website);
-
-		// play button clcik sfx
-		if (buttonClickedEvent != null)
-		{
-			buttonClickedEvent();
-		}
+		SoundManager.soundManager.MainMenuMusic.Pause();
+		SceneManager.LoadScene("Games");
 	}
-
 
 	private void PlayerStatsLoad()
     {

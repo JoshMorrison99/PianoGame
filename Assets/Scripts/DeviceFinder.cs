@@ -34,6 +34,8 @@ public class DeviceFinder : MonoBehaviour
 
     void Start()
     {
+        
+        
 
         PianoUnpluggErrorText.gameObject.SetActive(false);
 
@@ -113,6 +115,7 @@ public class DeviceFinder : MonoBehaviour
 
     public IEnumerator PianoSuccessText()
     {
+
         PianoUnpluggErrorText.gameObject.SetActive(true);
         PianoUnpluggErrorText.text = "Piano Connected";
         PianoUnpluggErrorText.color = Color.green;

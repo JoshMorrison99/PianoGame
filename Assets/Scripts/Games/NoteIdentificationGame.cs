@@ -6,29 +6,35 @@ using TMPro;
 using Melanchall.DryWetMidi.Interaction;
 using Melanchall.DryWetMidi.Devices;
 using UnityEngine.InputSystem;
-using UnityEngine.Experimental.Rendering.Universal;
 
-public class PianoNoteSpawner : MonoBehaviour
+public class NoteIdentificationGame : MonoBehaviour
 {
+    // Game Logic
+    public bool isBass;
+    string[] noteRange = {"C0","D0","E0","F0","G0","A0","B0",
+                        "C1","D1","E1","F1","G1","A1","B1",
+                        "C2","D2","E2","F2","G2","A2","B2",
+                        "C3","D3","E3","F3","G3","A3","B3",
+                        "C4","D4","E4","F4","G4","A4","B4",
+                        "C5","D5","E5","F5","G5","A5","B5",
+                        "C6","D6","E6","F6","G6","A6","B6",
+                        "C7","D7","E7","F7","G7","A7","B7",
+                        "C8","D8","E8","F8","G8","A8","B8",
+                        "C9","D9","E9","F9","G9","A9","B9" };
+    public string topNote;
+    public int topNoteIndex;
+    public string bottomNote;
+    public int bottomNoteIndex;
+    public int bassLineTrebleIndex;
+    public int bassLineBassIndex;
+    public bool isSharp;
 
-    public GameObject SharpNote;
-    public GameObject Note;
+
 
     public PianoKeyPresses pianoListRef;
 
-    public List<GameObject> spawnedNotes;
-    public List<GameObject> garbageNotes;
-    public List<GameObject> garbageNotesSharp;
-
-    const float NOTE_DESTROY_DEPTH = -20f;
-
-    const float NOTE_LABEL_OFFSET_IF_GREATER_THAN = 0.5f;
-
-    const float NOTE_SCALE = 2.4f;
-
     public bool isNoteLabelled = true;
 
-    public float noteSpeed = 0;
 
     // Piano Notes
     public GameObject C0;
@@ -148,122 +154,94 @@ public class PianoNoteSpawner : MonoBehaviour
     public GameObject Gs8;
     public GameObject As8;
 
-    int uid;
-
-    float noteHeight = 10f;
-    float noteSharpHeight = 9.55f;
+    PianoKeyPresses PianoKeysObject;
+    int index;
+    public bool isPlaying;
 
     private void Start()
     {
-        uid = 0;
+        //setupUI();
+        PianoKeysObject = GameObject.Find("PianoKeyboardUI").GetComponent<PianoKeyPresses>();
+        DeviceFinder.device.GetPianoDeviceErrorText();
         setupUI();
-
-        // Set UI Color for notes
-        Note.transform.GetChild(0).GetChild(0).GetChild(0).GetComponent<Light2D>().color = PersistentData.data.NoteLightColor;
-        SharpNote.transform.GetChild(0).GetChild(0).GetChild(0).GetComponent<Light2D>().color = PersistentData.data.SharpNoteLightColor;
-        Note.transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().color = PersistentData.data.ThemeNoteColor;
-        SharpNote.transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().color = PersistentData.data.ThemeSharpNoteColor;
-    }
+        bassLineTrebleIndex = 34;
+        bassLineBassIndex = 22;
+}
 
     
-   
 
-    private void FixedUpdate()
+    public float CreateRandomPosition(float wholeNoteImage)
     {
-
-        for (int i = 0; i < spawnedNotes.Count; i++)
+        index = Random.Range(bottomNoteIndex, topNoteIndex);
+        Debug.Log("RANDOM INDEX " + index);
+        Debug.Log("TOP INDEX " + topNoteIndex);
+        Debug.Log("Bottom INDEX " + bottomNoteIndex);
+        int indicesToMove = 0;
+        float randomPos = wholeNoteImage;
+        if (isBass)
         {
-            if (spawnedNotes[i].transform.position.y > NOTE_DESTROY_DEPTH)
+            indicesToMove = index - bassLineBassIndex;
+            Debug.Log("indicesToMove " + indicesToMove);
+        }
+        else
+        {
+            indicesToMove = index - bassLineTrebleIndex;
+            Debug.Log("indicesToMove " + indicesToMove);
+        }
+
+        if (indicesToMove > 0)
+        {
+            for (int i = 0; i < indicesToMove; i++)
             {
-                spawnedNotes[i].transform.position = new Vector3(spawnedNotes[i].transform.position.x, spawnedNotes[i].transform.position.y - noteSpeed, spawnedNotes[i].transform.position.z);
+                randomPos += 22.5f;
             }
-            else
+        }else if (indicesToMove < 0)
+        {
+            for (int i = 0; i > indicesToMove; i--)
             {
-                if (spawnedNotes[i].transform.GetChild(0).GetComponent<Note_Falling>().noteName.Contains("#"))
-                {
-                    garbageNotesSharp.Add(spawnedNotes[i]);
-                }
-                else
-                {
-                    garbageNotes.Add(spawnedNotes[i]);
-                }
-                spawnedNotes[i].transform.GetChild(1).GetChild(0).localPosition = new Vector2(0, 0);
-                spawnedNotes[i].SetActive(false);
-                spawnedNotes.RemoveAt(i);
-                i--;
+                randomPos -= 22.5f;
             }
         }
+
+        Debug.Log("RANDOM POSITION " + randomPos);
+        return randomPos;
     }
 
-    public void spawnNoteEfficient(object sender, NotesEventArgs notesArgs)
+    public void StartGame(GameObject wholeNoteImage)
     {
-        var notesList = notesArgs.Notes;
+        wholeNoteImage.transform.localPosition = new Vector3(wholeNoteImage.transform.localPosition.x, 0, 0);
+        float randomPos = CreateRandomPosition(wholeNoteImage.transform.localPosition.y);
+        wholeNoteImage.transform.localPosition = new Vector3(wholeNoteImage.transform.localPosition.x, wholeNoteImage.transform.localPosition.y + randomPos, 0);
 
-        foreach (Note item in notesList)
+        foreach(GameObject note in pianoListRef.currentPressedNotes)
         {
-            string noteName = item.ToString();
-            string displayNoteName = item.NoteName.ToString();
-            if (displayNoteName.Contains("Sharp"))
-            {
-                displayNoteName = displayNoteName.Remove(1);
-                displayNoteName += "#";
-            }
-
-            TempoMap tempoMap = PersistentData.data.myMidi.GetTempoMap();
-            MetricTimeSpan metricLength = item.LengthAs<MetricTimeSpan>(tempoMap);
-
-            float duration = (float)metricLength.Seconds + ((float)metricLength.Milliseconds) / 1000;
-
-            GameObject spawnedNote;
-            if (noteName.Contains("#"))
-            {
-                
-                if (garbageNotesSharp.Count > 0)
-                {
-                    spawnedNote = garbageNotesSharp[0];
-                    garbageNotesSharp.RemoveAt(0);
-                    spawnedNote.SetActive(true);
-                }
-                else
-                {
-                    spawnedNote = Instantiate(SharpNote); 
-                }
-                
-            }
-            else
-            {
-                if (garbageNotes.Count > 0)
-                {
-                    spawnedNote = garbageNotes[0];
-                    garbageNotes.RemoveAt(0);
-                    spawnedNote.SetActive(true);
-                }
-                else
-                {
-                    spawnedNote = Instantiate(Note); 
-                }
-            }
-
-            foreach (GameObject note in pianoListRef.PianoKeys)
-            {
-                if (note.GetComponent<Note_Mine>().noteName == noteName)
-                {
-                    spawnedNote.transform.position = new Vector3(note.transform.position.x, note.transform.position.y + (noteName.Contains("#") ? noteSharpHeight : noteHeight), note.transform.position.z);
-                    break;
-                }
-            }
-
-            spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
-            spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
-            spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = isNoteLabelled ? spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = displayNoteName : spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "";
-            spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
-            spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<BoxCollider2D>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
-            spawnedNote.transform.position = new Vector3(spawnedNote.transform.position.x, spawnedNote.transform.position.y + (NOTE_SCALE * duration / 2), 0);
-            spawnedNote.transform.GetChild(1).GetChild(0).position = (duration > NOTE_LABEL_OFFSET_IF_GREATER_THAN) ? new Vector2(spawnedNote.transform.GetChild(1).GetChild(0).position.x, spawnedNote.transform.GetChild(1).GetChild(0).position.y - duration + 0.2f) : new Vector2(spawnedNote.transform.GetChild(1).GetChild(0).position.x, spawnedNote.transform.GetChild(1).GetChild(0).position.y);
-            spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().gameObject.transform.position = new Vector3(spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().gameObject.transform.position.x, spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().gameObject.transform.position.y, -2);
-            spawnedNotes.Add(spawnedNote);
-            uid += 1;
+            Debug.Log(note.GetComponent<Note_Mine>().noteName);
         }
+        Debug.Log(noteRange[index]);
+        isPlaying = true;
+        StartCoroutine(Looper(wholeNoteImage));
+        
+
+    }
+
+    public IEnumerator Looper(GameObject wholeNoteImage)
+    {
+        while (isPlaying)
+        {
+            foreach (GameObject note in pianoListRef.currentPressedNotes)
+            {
+                Debug.Log(note.GetComponent<Note_Mine>().noteName);
+                if(note.GetComponent<Note_Mine>().noteName == noteRange[index])
+                {
+                    isPlaying = false;
+                }
+            }
+            yield return null;
+
+        }
+
+        StartGame(wholeNoteImage);
+
     }
 
     public void setupUI()

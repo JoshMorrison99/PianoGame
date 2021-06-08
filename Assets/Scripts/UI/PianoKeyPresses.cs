@@ -119,14 +119,14 @@ public class PianoKeyPresses : MonoBehaviour
     public void AddDevices()
     {
         DeviceFinder.device.midiDevice.onWillNoteOn += (note, velocity) => {
-            if (SceneManager.GetActiveScene().name == "Play")
+            if (SceneManager.GetActiveScene().name == "Play" || SceneManager.GetActiveScene().name == "FreePlay" || SceneManager.GetActiveScene().name == "Games")
             {
                 PianoKeyPressedUI(note.shortDisplayName);
             }
         };
 
         DeviceFinder.device.midiDevice.onWillNoteOff += (note) => {
-            if (SceneManager.GetActiveScene().name == "Play")
+            if (SceneManager.GetActiveScene().name == "Play" || SceneManager.GetActiveScene().name == "FreePlay" || SceneManager.GetActiveScene().name == "Games")
             {
                 PianoKeyLiftedUI(note.shortDisplayName);
             }
@@ -135,6 +135,7 @@ public class PianoKeyPresses : MonoBehaviour
 
     void PianoKeyPressedUI(string notePressed)
     {
+
         foreach (GameObject each in PianoKeys)
         {
             if (each == null) { return; }
@@ -146,7 +147,7 @@ public class PianoKeyPresses : MonoBehaviour
 
                 currentPressedNotes.Add(each);
 
-                each.GetComponent<SpriteRenderer>().color = new Color(PersistentData.data.currentKeyItem.r, PersistentData.data.currentKeyItem.g, PersistentData.data.currentKeyItem.b, 255);
+                each.GetComponent<SpriteRenderer>().color = PersistentData.data.ThemeKeyColor;
 
 
                 if(PlayerPrefs.GetInt("isVFX") == 1)
@@ -184,14 +185,12 @@ public class PianoKeyPresses : MonoBehaviour
                     each.GetComponent<SpriteRenderer>().color = Color.white;
                 }
 
-
-                // turn off the note light if the setting is on
-                each.transform.GetChild(2).gameObject.SetActive(false);
-
-
+                if (SceneManager.GetActiveScene().name == "Play")
+                {
+                    // turn off the note light if the setting is on
+                    each.transform.GetChild(2).gameObject.SetActive(false);
+                }
             }
         }
     }
-
-
-        }
+}

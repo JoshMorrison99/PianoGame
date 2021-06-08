@@ -11,6 +11,12 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Play.unity
     guid: 8fe6d8a3f3310b542a88d220bf176a48
+  - enabled: 1
+    path: Assets/Scenes/FreePlay.unity
+    guid: 35ff627fb24ce41448c24e04db08ccfd
+  - enabled: 1
+    path: Assets/Scenes/Games.unity
+    guid: 35156b90a178aff4fb7837d81e79cbaf
   m_configObjects:
     com.unity.addressableassets: {fileID: 11400000, guid: 5bcec98828c3103458b432f92ee524e2, type: 2}
     com.unity.input.settings: {fileID: 11400000, guid: e5ef103720ecda4438a9f8468d826d56, type: 2}

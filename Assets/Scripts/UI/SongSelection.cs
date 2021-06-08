@@ -62,16 +62,11 @@ public class SongSelection : MonoBehaviour
 
     private void Start()
     {
-        //PersistentData.data.ReInitializeData();
-        //Debug.Log("===========================================================" + PersistentData.data._SongList.Count);
-        //PersistentData.LoadJsonData(PersistentData.data);
 
         createSongsFromTemplate("all");
 
         GameObject buttonHolder = GameObject.Find("Content");
         setDefaultSongSelection();
-        //Button firstBtn = buttonHolder.transform.GetChild(0).GetComponent<Button>();
-        //firstBtn.onClick.Invoke();
 
         
         updatePercentageUI();
@@ -193,20 +188,14 @@ public class SongSelection : MonoBehaviour
 
     public void updatePercentageUI()
     {
-        Debug.Log("==============================START================================");
         GameObject content = GameObject.Find("Content");
         int loopIndex = 0;
         foreach (Transform child in content.transform)
         {
-            //Debug.Log(child.gameObject);
             Transform percentageText = child.gameObject.transform.Find("Percentage");
-            //Debug.Log("PersistentData.data._SongList[loopIndex]._songCompletionPercentage.ToString() " + PersistentData.data._SongList[loopIndex]._songCompletionPercentage);
-            //Debug.Log(loopIndex);
-            //Debug.Log(PersistentData.data._SongList);
             percentageText.gameObject.GetComponentInChildren<TextMeshProUGUI>().text = PersistentData.data._SongList[loopIndex]._songCompletionPercentage.ToString() + "%";
             loopIndex += 1;
         }
-        //Debug.Log("==============================END================================");
     }
 
 

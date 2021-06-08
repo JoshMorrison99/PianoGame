@@ -7,28 +7,14 @@ using Melanchall.DryWetMidi.Interaction;
 using Melanchall.DryWetMidi.Devices;
 using UnityEngine.InputSystem;
 using UnityEngine.Experimental.Rendering.Universal;
+using UnityEngine.SceneManagement;
 
-public class PianoNoteSpawner : MonoBehaviour
+public class FreePlayLogic : MonoBehaviour
 {
 
-    public GameObject SharpNote;
-    public GameObject Note;
-
-    public PianoKeyPresses pianoListRef;
-
-    public List<GameObject> spawnedNotes;
-    public List<GameObject> garbageNotes;
-    public List<GameObject> garbageNotesSharp;
-
-    const float NOTE_DESTROY_DEPTH = -20f;
-
-    const float NOTE_LABEL_OFFSET_IF_GREATER_THAN = 0.5f;
-
-    const float NOTE_SCALE = 2.4f;
 
     public bool isNoteLabelled = true;
 
-    public float noteSpeed = 0;
 
     // Piano Notes
     public GameObject C0;
@@ -148,121 +134,156 @@ public class PianoNoteSpawner : MonoBehaviour
     public GameObject Gs8;
     public GameObject As8;
 
+    public GameObject NoteObject;
+    public GameObject SharpNoteObject;
+
+    public List<GameObject> spawnedNotes;
+    public List<GameObject> spawnedNotesNotPressed;
+    int NOTE_DESTROY_HEIGHT = 200;
+    float noteSpeed = 0.03f;
+    float scaleSpeed = 0.05f;
+    float scaleMoveSpeed = 0.015f;
     int uid;
 
-    float noteHeight = 10f;
-    float noteSharpHeight = 9.55f;
+    public PianoKeyPresses pianoListRef;
 
     private void Start()
     {
+        Debug.Log("Starteed");
+        ClearScene();
         uid = 0;
         setupUI();
+        pianoListRef = GameObject.Find("PianoKeyboardUI").GetComponent<PianoKeyPresses>();
+        Debug.Log("pianoListRef.PianoKeys " + pianoListRef.PianoKeys);
+        foreach (GameObject note in pianoListRef.PianoKeys) {
+            Debug.Log(note.GetComponent<Note_Mine>().noteName);
+        }
+        DeviceFinder.DeviceAddedEvent += AddDevices;
+        if (DeviceFinder.device.midiDevice != null)
+        {
+            AddDevices();
+        }
 
-        // Set UI Color for notes
-        Note.transform.GetChild(0).GetChild(0).GetChild(0).GetComponent<Light2D>().color = PersistentData.data.NoteLightColor;
-        SharpNote.transform.GetChild(0).GetChild(0).GetChild(0).GetComponent<Light2D>().color = PersistentData.data.SharpNoteLightColor;
-        Note.transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().color = PersistentData.data.ThemeNoteColor;
-        SharpNote.transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().color = PersistentData.data.ThemeSharpNoteColor;
+        // Set colors
+        NoteObject.transform.GetChild(0).GetComponent<SpriteRenderer>().color = PersistentData.data.ThemeNoteColor;
+        NoteObject.transform.GetChild(0).GetChild(0).GetComponent<Light2D>().color = PersistentData.data.NoteLightColor;
+        SharpNoteObject.transform.GetChild(0).GetComponent<SpriteRenderer>().color = PersistentData.data.ThemeSharpNoteColor;
+        SharpNoteObject.transform.GetChild(0).GetChild(0).GetComponent<Light2D>().color = PersistentData.data.SharpNoteLightColor;
     }
 
-    
-   
+    public void ClearScene()
+    {
+        spawnedNotes.Clear();
+        spawnedNotesNotPressed.Clear();
+        Debug.Log(pianoListRef.PianoKeys.Length);
+    }
 
+    public void AddDevices()
+    {
+        DeviceFinder.device.midiDevice.onWillNoteOn += (note, velocity) => {
+            PianoKeyPressedUI(note.shortDisplayName);
+        };
+
+        DeviceFinder.device.midiDevice.onWillNoteOff += (note) => {
+            PianoKeyLiftedUI(note.shortDisplayName);
+        };
+    }
     private void FixedUpdate()
     {
 
         for (int i = 0; i < spawnedNotes.Count; i++)
         {
-            if (spawnedNotes[i].transform.position.y > NOTE_DESTROY_DEPTH)
+            if (spawnedNotes[i].transform.position.y < NOTE_DESTROY_HEIGHT)
             {
-                spawnedNotes[i].transform.position = new Vector3(spawnedNotes[i].transform.position.x, spawnedNotes[i].transform.position.y - noteSpeed, spawnedNotes[i].transform.position.z);
+                spawnedNotes[i].transform.GetChild(0).GetComponent<SpriteRenderer>().size = new Vector2(spawnedNotes[i].transform.GetChild(0).GetComponent<SpriteRenderer>().size.x, spawnedNotes[i].transform.GetChild(0).GetComponent<SpriteRenderer>().size.y + scaleSpeed);
+                spawnedNotes[i].transform.GetChild(0).transform.position = new Vector2(spawnedNotes[i].transform.GetChild(0).transform.position.x, spawnedNotes[i].transform.GetChild(0).transform.position.y + scaleMoveSpeed);
             }
             else
             {
-                if (spawnedNotes[i].transform.GetChild(0).GetComponent<Note_Falling>().noteName.Contains("#"))
-                {
-                    garbageNotesSharp.Add(spawnedNotes[i]);
-                }
-                else
-                {
-                    garbageNotes.Add(spawnedNotes[i]);
-                }
-                spawnedNotes[i].transform.GetChild(1).GetChild(0).localPosition = new Vector2(0, 0);
-                spawnedNotes[i].SetActive(false);
                 spawnedNotes.RemoveAt(i);
                 i--;
+                Destroy(spawnedNotes[i]);
+            }
+        }
+
+        for (int i = 0; i < spawnedNotesNotPressed.Count; i++)
+        {
+            if (spawnedNotesNotPressed[i].transform.position.y < NOTE_DESTROY_HEIGHT)
+            {
+                spawnedNotesNotPressed[i].transform.GetChild(0).GetComponent<SpriteRenderer>().size = new Vector2(spawnedNotesNotPressed[i].transform.GetChild(0).GetComponent<SpriteRenderer>().size.x, spawnedNotesNotPressed[i].transform.GetChild(0).GetComponent<SpriteRenderer>().size.y);
+                spawnedNotesNotPressed[i].transform.position = new Vector3(spawnedNotesNotPressed[i].transform.position.x, spawnedNotesNotPressed[i].transform.position.y + noteSpeed, spawnedNotesNotPressed[i].transform.position.z);
+            }
+            else
+            {
+                spawnedNotesNotPressed.RemoveAt(i);
+                i--;
+                Destroy(spawnedNotesNotPressed[i]);
             }
         }
     }
 
-    public void spawnNoteEfficient(object sender, NotesEventArgs notesArgs)
+    void PianoKeyPressedUI(string notePressed)
     {
-        var notesList = notesArgs.Notes;
+        Debug.Log("2");
 
-        foreach (Note item in notesList)
+        foreach (GameObject each in pianoListRef.PianoKeys)
         {
-            string noteName = item.ToString();
-            string displayNoteName = item.NoteName.ToString();
-            if (displayNoteName.Contains("Sharp"))
+            if (each == null) { return; }
+            if (each.name == notePressed)
             {
-                displayNoteName = displayNoteName.Remove(1);
-                displayNoteName += "#";
-            }
+                // Activate the Note
+                each.GetComponent<Note_Mine>().isPressed = true;
+                each.GetComponent<Note_Mine>().initialPress = true;
 
-            TempoMap tempoMap = PersistentData.data.myMidi.GetTempoMap();
-            MetricTimeSpan metricLength = item.LengthAs<MetricTimeSpan>(tempoMap);
-
-            float duration = (float)metricLength.Seconds + ((float)metricLength.Milliseconds) / 1000;
-
-            GameObject spawnedNote;
-            if (noteName.Contains("#"))
-            {
-                
-                if (garbageNotesSharp.Count > 0)
+                if (each.name.Contains("#"))
                 {
-                    spawnedNote = garbageNotesSharp[0];
-                    garbageNotesSharp.RemoveAt(0);
-                    spawnedNote.SetActive(true);
+                    GameObject SpawnedNote = Instantiate(SharpNoteObject);
+                    SpawnedNote.transform.position = new Vector3(each.transform.position.x, SpawnedNote.transform.position.y, SpawnedNote.transform.position.z);
+                    SpawnedNote.GetComponent<FreePlaySpawnedNote>().noteName = each.name;
+                    SpawnedNote.GetComponent<FreePlaySpawnedNote>().id = uid;
+                    each.GetComponent<Note_Mine>().initalPressID = uid;
+                    spawnedNotes.Add(SpawnedNote);
                 }
                 else
                 {
-                    spawnedNote = Instantiate(SharpNote); 
+                    GameObject SpawnedNote = Instantiate(NoteObject);
+                    SpawnedNote.transform.position = new Vector3(each.transform.position.x, SpawnedNote.transform.position.y, SpawnedNote.transform.position.z);
+                    SpawnedNote.GetComponent<FreePlaySpawnedNote>().noteName = each.name;
+                    SpawnedNote.GetComponent<FreePlaySpawnedNote>().id = uid;
+                    each.GetComponent<Note_Mine>().initalPressID = uid;
+                    spawnedNotes.Add(SpawnedNote);
                 }
-                
-            }
-            else
-            {
-                if (garbageNotes.Count > 0)
-                {
-                    spawnedNote = garbageNotes[0];
-                    garbageNotes.RemoveAt(0);
-                    spawnedNote.SetActive(true);
-                }
-                else
-                {
-                    spawnedNote = Instantiate(Note); 
-                }
-            }
+                uid += 1;
 
-            foreach (GameObject note in pianoListRef.PianoKeys)
-            {
-                if (note.GetComponent<Note_Mine>().noteName == noteName)
-                {
-                    spawnedNote.transform.position = new Vector3(note.transform.position.x, note.transform.position.y + (noteName.Contains("#") ? noteSharpHeight : noteHeight), note.transform.position.z);
-                    break;
-                }
-            }
+                Debug.Log("Spawning at location " + notePressed);
 
-            spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
-            spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
-            spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = isNoteLabelled ? spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = displayNoteName : spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "";
-            spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
-            spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<BoxCollider2D>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
-            spawnedNote.transform.position = new Vector3(spawnedNote.transform.position.x, spawnedNote.transform.position.y + (NOTE_SCALE * duration / 2), 0);
-            spawnedNote.transform.GetChild(1).GetChild(0).position = (duration > NOTE_LABEL_OFFSET_IF_GREATER_THAN) ? new Vector2(spawnedNote.transform.GetChild(1).GetChild(0).position.x, spawnedNote.transform.GetChild(1).GetChild(0).position.y - duration + 0.2f) : new Vector2(spawnedNote.transform.GetChild(1).GetChild(0).position.x, spawnedNote.transform.GetChild(1).GetChild(0).position.y);
-            spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().gameObject.transform.position = new Vector3(spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().gameObject.transform.position.x, spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().gameObject.transform.position.y, -2);
-            spawnedNotes.Add(spawnedNote);
-            uid += 1;
+            }
+        }
+    }
+
+    void PianoKeyLiftedUI(string notePressed)
+    {
+        foreach (GameObject each in pianoListRef.PianoKeys)
+        {
+            if (each == null) { return; }
+            if (each.name == notePressed)
+            {
+                // Deactivate the Note
+                each.GetComponent<Note_Mine>().isPressed = false;
+                each.GetComponent<Note_Mine>().initialPress = false;
+
+                for (int i = 0; i < spawnedNotes.Count; i++)
+                {
+                    if (each.name == spawnedNotes[i].GetComponent<FreePlaySpawnedNote>().noteName)
+                    {
+                        spawnedNotesNotPressed.Add(spawnedNotes[i]);
+                        spawnedNotes.Remove(spawnedNotes[i]);
+                    }
+                }
+
+                each.GetComponent<Note_Mine>().initalPressID = -1;
+                Debug.Log("No longer Spawning at location " + notePressed);
+            }
         }
     }
 
