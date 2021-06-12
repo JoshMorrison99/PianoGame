@@ -64,6 +64,7 @@ public class PersistentData : MonoBehaviour, ISaveable
         {
             Debug.Log("NOT EXISTS " + Application.persistentDataPath + "/SaveData01.dat");
             SetTotalSongNotes();
+            ThemeName = "Default";
             PlayerPrefs.SetString("Theme", "Default");
             SaveJsonData(this);
         }

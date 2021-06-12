@@ -20207,7 +20207,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Games
+  m_text: Mini Games
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: e6c92414f7fc5724b9ecf2b1b2ff9ef5, type: 2}
   m_sharedMaterial: {fileID: 5654862015372511659, guid: e6c92414f7fc5724b9ecf2b1b2ff9ef5, type: 2}

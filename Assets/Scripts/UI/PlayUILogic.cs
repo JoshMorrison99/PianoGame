@@ -47,6 +47,9 @@ public class PlayUILogic : MonoBehaviour
 
     public Slider speedSlider;
 
+    public GameObject SongTitleBanner;
+    public TextMeshProUGUI SongTitleBannerText;
+
 
     public int songPercentage;
 
@@ -65,6 +68,9 @@ public class PlayUILogic : MonoBehaviour
         isPaused = false;
         ActivateGame();
 
+        SongTitleBanner.SetActive(true);
+        SongTitleBannerText.text = PersistentData.data._SongList[PersistentData.data.selectedSong - 1]._SongTitle;
+        StartCoroutine(SongBannerAnim());
 
         pauseBtn.onClick.AddListener(PauseMenuPressed);
         pauseMainMenuButton.onClick.AddListener(PauseMainMenuClicked);
@@ -94,6 +100,14 @@ public class PlayUILogic : MonoBehaviour
         // Disable the slider for playback speed so the user cannot change the speed while playing
         speedSlider.enabled = false;
     }
+
+    IEnumerator SongBannerAnim()
+    {
+        yield return new WaitForSeconds(1);
+        SongTitleBanner.LeanScaleY(0, 0.5f).setEaseInOutSine();
+    }
+
+    
 
     // Update is called once per frame
     void Update()
