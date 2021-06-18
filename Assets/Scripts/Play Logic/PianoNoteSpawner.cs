@@ -7,6 +7,7 @@ using Melanchall.DryWetMidi.Interaction;
 using Melanchall.DryWetMidi.Devices;
 using UnityEngine.InputSystem;
 using UnityEngine.Experimental.Rendering.Universal;
+using System.Linq;
 
 public class PianoNoteSpawner : MonoBehaviour
 {
@@ -16,7 +17,6 @@ public class PianoNoteSpawner : MonoBehaviour
     public TextMeshProUGUI endTime;
     public float currentTimeValue;
     public float endTimeValue;
-    public bool isFirstRun = true;
 
     public GameObject SharpNote;
     public GameObject Note;
@@ -227,53 +227,61 @@ public class PianoNoteSpawner : MonoBehaviour
         
     }
 
+    public void audioPlaybackSpawn(object sender, NotesEventArgs notesArgs)
+    {
+        if (PersistentData.data.StutterMode)
+        {
+            StartCoroutine(StutterMode(notesArgs));
+            Debug.Log("FIRE");
+        }
+    }
+
     IEnumerator StutterMode(NotesEventArgs notesArgs)
     {
-        if (isFirstRun)
-        {
-            yield return new WaitForSeconds(3.51f);
-            isFirstRun = false;
-        }
         isCorrectlyPressed = false;
         var notesList = notesArgs.Notes;
 
         PersistentData.data.myPlayback.Stop();
         PersistentData.data.myPlaybackAudio.Stop();
-        
+
+        Debug.Log("---------------------------------------");
+        foreach (Note item in notesList)
+        {
+            Debug.Log("NOTE TO PRESS IS: " + item.ToString());
+
+        }
+        Debug.Log("---------------------------------------");
+        TempoMap tempoMap = PersistentData.data.myMidi.GetTempoMap();
         while (isCorrectlyPressed == false)
         {
             foreach (Note item in notesList)
             {
-                foreach (GameObject key in pianoListRef.currentPressedNotes)
+                foreach (GameObject key in pianoListRef.currentPressedNotes.ToList())
                 {
-                    string noteName = item.ToString();
-                    Debug.Log("Current note is " + noteName + " currently pressed note is " + key.GetComponent<Note_Mine>().noteName);
-                    if (noteName == key.GetComponent<Note_Mine>().noteName)
+                    Debug.Log("PLAYBACK COUNT: " + notesList.Count() + " piano count " + pianoListRef.currentPressedNotes.Count);
+                    if (notesList.Count() == pianoListRef.currentPressedNotes.Count)
                     {
-                        isCorrectlyPressed = true;
-                        PersistentData.data.myPlayback.Start();
-                        PersistentData.data.myPlaybackAudio.Start();
-
-                        TempoMap tempoMap = PersistentData.data.myMidi.GetTempoMap();
-                        MetricTimeSpan metricLength = item.LengthAs<MetricTimeSpan>(tempoMap);
-
-                        float duration = (float)metricLength.Seconds + ((float)metricLength.Milliseconds) / 1000;
-                        yield return new WaitForSeconds(duration);
+                        Debug.Log("Current note is " + item.ToString() + " currently pressed note is " + key.GetComponent<Note_Mine>().noteName);
+                        if (item.ToString() == key.GetComponent<Note_Mine>().noteName)
+                        {
+                            isCorrectlyPressed = true;
+                            PersistentData.data.myPlayback.Start();
+                            PersistentData.data.myPlaybackAudio.Start();
+                            //yield return new WaitForSeconds(duration);
+                            yield return null;
+                        }
                     }
+                    
                 }
             }
-            Debug.Log(isCorrectlyPressed + " is it true or false");
             yield return null;
+
         }
         yield return null;
     }
 
     public void spawnNoteEfficient(object sender, NotesEventArgs notesArgs)
     {
-        if (PersistentData.data.StutterMode)
-        {
-            StartCoroutine(StutterMode(notesArgs));
-        }
 
         var notesList = notesArgs.Notes;
 
