@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Melanchall.DryWetMidi.Core;
 using Melanchall.DryWetMidi.Devices;
 using Melanchall.DryWetMidi.Interaction;
@@ -40,7 +41,6 @@ public class MidiMagic : MonoBehaviour
             CreateTickGeneratorCallback = () => null
         });
 
-
         // Set the volume the same as player prefs
         GetAndSetSongVolume();
 
@@ -49,6 +49,7 @@ public class MidiMagic : MonoBehaviour
 
         isFirstRun = true;
 
+        GetDurationOfMidi();
 
         // Change midi length the english AKA metric
         PersistentData.data.myMidi = midiFile;
@@ -63,7 +64,23 @@ public class MidiMagic : MonoBehaviour
         Debug.Log("VOLUME Device: " + _outputDevice.Name);
         ResumePlayback();
 
+        PlaybackCurrentTimeWatcher.Instance.AddPlayback(_playback_audio, TimeSpanType.Midi);
+        PlaybackCurrentTimeWatcher.Instance.CurrentTimeChanged += spawner.OnCurrentTimeChanged;
+        PlaybackCurrentTimeWatcher.Instance.Start();
     }
+
+   public void GetDurationOfMidi()
+    {
+        var tempoMap = midiFile.GetTempoMap();
+        var TimeOfLastEvent = midiFile.GetTimedEvents().Last().TimeAs<MetricTimeSpan>(tempoMap);
+
+        var MidiTime = midiFile.GetTimedEvents().Last().TimeAs<MidiTimeSpan>(tempoMap);
+
+        spawner.endTimeValue = MidiTime;
+
+        spawner.endTime.text = TimeOfLastEvent.Minutes.ToString() + ":" + (TimeOfLastEvent.Seconds < 10 ? "0" + TimeOfLastEvent.Seconds.ToString() : TimeOfLastEvent.Seconds.ToString());
+    }
+
 
     public void ChangeMidiPlaybackSpeed(float speed)
     {
@@ -119,7 +136,7 @@ public class MidiMagic : MonoBehaviour
     private IEnumerator StartMusic()
     {
         _playback.Start();
-        while (_playback.IsRunning || PersistentData.data.isPaused)
+        while (_playback.IsRunning || PersistentData.data.isPaused || PersistentData.data.StutterMode)
         {
             
              
@@ -149,11 +166,11 @@ public class MidiMagic : MonoBehaviour
     {
         if (isFirstRun)
         {
-            yield return new WaitForSeconds(3.23f);
+            yield return new WaitForSeconds(3.51f);
             isFirstRun = false;
         }
         _playback_audio.Start();
-        while (_playback_audio.IsRunning || PersistentData.data.isPaused)
+        while (_playback_audio.IsRunning || PersistentData.data.isPaused || PersistentData.data.StutterMode)
         {
 
              
@@ -161,6 +178,7 @@ public class MidiMagic : MonoBehaviour
             {
                 //Debug.Log("ACTIVE StartAudio------");
                 _playback_audio.TickClock();
+                PlaybackCurrentTimeWatcher.Instance.TickClock();
             }
 
             yield return null;

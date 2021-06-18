@@ -15,6 +15,12 @@ using Melanchall.DryWetMidi.Interaction;
 //[System.Serializable]
 public class PersistentData : MonoBehaviour, ISaveable
 {
+    // Play Modes
+    public bool StutterMode = false;
+    public bool StubbornMode = false;
+    public bool TimelineActivate = false;
+
+
     //Temp Persistent Data
     public int selectedSong;
     public float songSpeed;

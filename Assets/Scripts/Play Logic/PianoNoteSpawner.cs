@@ -11,6 +11,13 @@ using UnityEngine.Experimental.Rendering.Universal;
 public class PianoNoteSpawner : MonoBehaviour
 {
 
+    public Slider TimelineSlider;
+    public TextMeshProUGUI currentTime;
+    public TextMeshProUGUI endTime;
+    public float currentTimeValue;
+    public float endTimeValue;
+    public bool isFirstRun = true;
+
     public GameObject SharpNote;
     public GameObject Note;
 
@@ -152,9 +159,16 @@ public class PianoNoteSpawner : MonoBehaviour
 
     float noteHeight = 10f;
     float noteSharpHeight = 9.55f;
+    bool isCorrectlyPressed = false;
 
     private void Start()
     {
+        isCorrectlyPressed = true;
+        if (PersistentData.data.StutterMode == false)
+        {
+            isCorrectlyPressed = true;
+        }
+
         uid = 0;
         setupUI();
 
@@ -165,38 +179,102 @@ public class PianoNoteSpawner : MonoBehaviour
         SharpNote.transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().color = PersistentData.data.ThemeSharpNoteColor;
     }
 
-    
-   
+
+    public void OnCurrentTimeChanged(object sender, PlaybackCurrentTimeChangedEventArgs e)
+    {
+        foreach (var playbackTime in e.Times)
+        {
+            var time = (MidiTimeSpan)playbackTime.Time;
+            TempoMap tempoMap = PersistentData.data.myMidi.GetTempoMap();
+            MetricTimeSpan metricTime = TimeConverter.ConvertTo<MetricTimeSpan>(time.TimeSpan, tempoMap);
+            currentTime.text = metricTime.Minutes.ToString() + ":" + (metricTime.Seconds < 10 ? "0" + metricTime.Seconds.ToString() : metricTime.Seconds.ToString());
+
+            MidiTimeSpan midiTime = TimeConverter.ConvertTo<MidiTimeSpan>(time.TimeSpan, tempoMap);
+            currentTimeValue = midiTime;
+
+            TimelineSlider.value = currentTimeValue / endTimeValue;
+        }
+    }
+
 
     private void FixedUpdate()
     {
-
-        for (int i = 0; i < spawnedNotes.Count; i++)
+        if (isCorrectlyPressed)
         {
-            if (spawnedNotes[i].transform.position.y > NOTE_DESTROY_DEPTH)
+            for (int i = 0; i < spawnedNotes.Count; i++)
             {
-                spawnedNotes[i].transform.position = new Vector3(spawnedNotes[i].transform.position.x, spawnedNotes[i].transform.position.y - noteSpeed, spawnedNotes[i].transform.position.z);
-            }
-            else
-            {
-                if (spawnedNotes[i].transform.GetChild(0).GetComponent<Note_Falling>().noteName.Contains("#"))
+                if (spawnedNotes[i].transform.position.y > NOTE_DESTROY_DEPTH)
                 {
-                    garbageNotesSharp.Add(spawnedNotes[i]);
+                    spawnedNotes[i].transform.position = new Vector3(spawnedNotes[i].transform.position.x, spawnedNotes[i].transform.position.y - noteSpeed, spawnedNotes[i].transform.position.z);
                 }
                 else
                 {
-                    garbageNotes.Add(spawnedNotes[i]);
+                    if (spawnedNotes[i].transform.GetChild(0).GetComponent<Note_Falling>().noteName.Contains("#"))
+                    {
+                        garbageNotesSharp.Add(spawnedNotes[i]);
+                    }
+                    else
+                    {
+                        garbageNotes.Add(spawnedNotes[i]);
+                    }
+                    spawnedNotes[i].transform.GetChild(1).GetChild(0).localPosition = new Vector2(0, 0);
+                    spawnedNotes[i].SetActive(false);
+                    spawnedNotes.RemoveAt(i);
+                    i--;
                 }
-                spawnedNotes[i].transform.GetChild(1).GetChild(0).localPosition = new Vector2(0, 0);
-                spawnedNotes[i].SetActive(false);
-                spawnedNotes.RemoveAt(i);
-                i--;
             }
         }
+        
+    }
+
+    IEnumerator StutterMode(NotesEventArgs notesArgs)
+    {
+        if (isFirstRun)
+        {
+            yield return new WaitForSeconds(3.51f);
+            isFirstRun = false;
+        }
+        isCorrectlyPressed = false;
+        var notesList = notesArgs.Notes;
+
+        PersistentData.data.myPlayback.Stop();
+        PersistentData.data.myPlaybackAudio.Stop();
+        
+        while (isCorrectlyPressed == false)
+        {
+            foreach (Note item in notesList)
+            {
+                foreach (GameObject key in pianoListRef.currentPressedNotes)
+                {
+                    string noteName = item.ToString();
+                    Debug.Log("Current note is " + noteName + " currently pressed note is " + key.GetComponent<Note_Mine>().noteName);
+                    if (noteName == key.GetComponent<Note_Mine>().noteName)
+                    {
+                        isCorrectlyPressed = true;
+                        PersistentData.data.myPlayback.Start();
+                        PersistentData.data.myPlaybackAudio.Start();
+
+                        TempoMap tempoMap = PersistentData.data.myMidi.GetTempoMap();
+                        MetricTimeSpan metricLength = item.LengthAs<MetricTimeSpan>(tempoMap);
+
+                        float duration = (float)metricLength.Seconds + ((float)metricLength.Milliseconds) / 1000;
+                        yield return new WaitForSeconds(duration);
+                    }
+                }
+            }
+            Debug.Log(isCorrectlyPressed + " is it true or false");
+            yield return null;
+        }
+        yield return null;
     }
 
     public void spawnNoteEfficient(object sender, NotesEventArgs notesArgs)
     {
+        if (PersistentData.data.StutterMode)
+        {
+            StartCoroutine(StutterMode(notesArgs));
+        }
+
         var notesList = notesArgs.Notes;
 
         foreach (Note item in notesList)
@@ -217,7 +295,7 @@ public class PianoNoteSpawner : MonoBehaviour
             GameObject spawnedNote;
             if (noteName.Contains("#"))
             {
-                
+
                 if (garbageNotesSharp.Count > 0)
                 {
                     spawnedNote = garbageNotesSharp[0];
@@ -226,9 +304,9 @@ public class PianoNoteSpawner : MonoBehaviour
                 }
                 else
                 {
-                    spawnedNote = Instantiate(SharpNote); 
+                    spawnedNote = Instantiate(SharpNote);
                 }
-                
+
             }
             else
             {
@@ -240,7 +318,7 @@ public class PianoNoteSpawner : MonoBehaviour
                 }
                 else
                 {
-                    spawnedNote = Instantiate(Note); 
+                    spawnedNote = Instantiate(Note);
                 }
             }
 
@@ -264,6 +342,7 @@ public class PianoNoteSpawner : MonoBehaviour
             spawnedNotes.Add(spawnedNote);
             uid += 1;
         }
+        
     }
 
     public void setupUI()

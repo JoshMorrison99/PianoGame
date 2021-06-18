@@ -5,11 +5,24 @@ using UnityEngine.UI;
 
 public class PlayOptions : MonoBehaviour
 {
-    public Toggle SheetMusicViewer;
+    public Toggle StutterMode;
+    public Toggle StubbornMode;
+    public Toggle TimelineActivate;
 
-    public void PlayOptionsSheetMusicViewerToggled()
+
+    public void StutterModeToggled()
     {
+        PersistentData.data.StutterMode = StutterMode.isOn;
+    }
 
+    public void StubbornModeToggled()
+    {
+        PersistentData.data.StubbornMode = StubbornMode.isOn;
+    }
+
+    public void TimelineActivateToggled()
+    {
+        PersistentData.data.TimelineActivate = TimelineActivate.isOn;
     }
 
     public void PlayOptionsSettingsButtonClicked()
