@@ -95,6 +95,8 @@ public class detectorScript : MonoBehaviour
 
             Logic.currentScore += 1;
 
+            
+
             yield return null;
 
         }
@@ -157,6 +159,13 @@ public class detectorScript : MonoBehaviour
             overlapNote = true;
             currentOverlappedNotes.Add(collision.GetComponentInParent<Note_Falling>().gameObject);
             //Video(collision.GetComponentInParent<Note_Falling>().noteName, 1);
+
+            if (PersistentData.data.StutterMode)
+            {
+                PersistentData.data.myPlayback.Stop();
+                PersistentData.data.myPlaybackAudio.Stop();
+                PersistentData.data.stutterModeLogic = false;
+            }
         }
     }
 
@@ -178,6 +187,13 @@ public class detectorScript : MonoBehaviour
         {
             // Note successfully hit
             Logic.numNotesHit += 1;
+
+            if (PersistentData.data.StutterMode)
+            {
+                PersistentData.data.myPlayback.Start();
+                PersistentData.data.myPlaybackAudio.Start();
+                PersistentData.data.stutterModeLogic = true;
+            }
 
             // Increment exp
             PersistentData.data.exp += 1;
