@@ -287,6 +287,7 @@ public class PianoNoteSpawner : MonoBehaviour
 
             spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().uid = uid + 1;
             spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().noteName = noteName;
+            spawnedNote.transform.GetChild(0).GetComponent<Note_Falling>().isHit = false;
             spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = isNoteLabelled ? spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = displayNoteName : spawnedNote.transform.GetChild(1).GetChild(0).GetComponent<TextMeshPro>().text = "";
             spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<SpriteRenderer>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
             spawnedNote.transform.GetChild(0).GetChild(0).GetComponent<BoxCollider2D>().size = new Vector2(spawnedNote.transform.GetChild(0).localScale.x, NOTE_SCALE * duration);
