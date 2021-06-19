@@ -19,6 +19,7 @@ public class PersistentData : MonoBehaviour, ISaveable
     public bool StutterMode = false;
     public bool StubbornMode = false;
     public bool TimelineActivate = false;
+    public bool stutterModeLogic = false;
 
 
     //Temp Persistent Data

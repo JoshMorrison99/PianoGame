@@ -56,7 +56,6 @@ public class MidiMagic : MonoBehaviour
         PersistentData.data.myPlayback = _playback;
         PersistentData.data.myPlaybackAudio = _playback_audio;
         _playback.NotesPlaybackStarted += spawner.spawnNoteEfficient;
-        _playback_audio.NotesPlaybackStarted += spawner.audioPlaybackSpawn;
 
         _playback.InterruptNotesOnStop = true;
         _playback_audio.InterruptNotesOnStop = true;
@@ -167,7 +166,7 @@ public class MidiMagic : MonoBehaviour
     {
         if (isFirstRun)
         {
-            yield return new WaitForSeconds(3.51f);
+            yield return new WaitForSeconds(3.3f);
             isFirstRun = false;
         }
         _playback_audio.Start();

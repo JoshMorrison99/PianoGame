@@ -159,14 +159,13 @@ public class PianoNoteSpawner : MonoBehaviour
 
     float noteHeight = 10f;
     float noteSharpHeight = 9.55f;
-    bool isCorrectlyPressed = false;
 
     private void Start()
     {
-        isCorrectlyPressed = true;
+        PersistentData.data.stutterModeLogic = true;
         if (PersistentData.data.StutterMode == false)
         {
-            isCorrectlyPressed = true;
+            PersistentData.data.stutterModeLogic = true;
         }
 
         uid = 0;
@@ -199,7 +198,7 @@ public class PianoNoteSpawner : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (isCorrectlyPressed)
+        if (PersistentData.data.stutterModeLogic)
         {
             for (int i = 0; i < spawnedNotes.Count; i++)
             {
@@ -225,59 +224,6 @@ public class PianoNoteSpawner : MonoBehaviour
             }
         }
         
-    }
-
-    public void audioPlaybackSpawn(object sender, NotesEventArgs notesArgs)
-    {
-        if (PersistentData.data.StutterMode)
-        {
-            StartCoroutine(StutterMode(notesArgs));
-            Debug.Log("FIRE");
-        }
-    }
-
-    IEnumerator StutterMode(NotesEventArgs notesArgs)
-    {
-        isCorrectlyPressed = false;
-        var notesList = notesArgs.Notes;
-
-        PersistentData.data.myPlayback.Stop();
-        PersistentData.data.myPlaybackAudio.Stop();
-
-        Debug.Log("---------------------------------------");
-        foreach (Note item in notesList)
-        {
-            Debug.Log("NOTE TO PRESS IS: " + item.ToString());
-
-        }
-        Debug.Log("---------------------------------------");
-        TempoMap tempoMap = PersistentData.data.myMidi.GetTempoMap();
-        while (isCorrectlyPressed == false)
-        {
-            foreach (Note item in notesList)
-            {
-                foreach (GameObject key in pianoListRef.currentPressedNotes.ToList())
-                {
-                    Debug.Log("PLAYBACK COUNT: " + notesList.Count() + " piano count " + pianoListRef.currentPressedNotes.Count);
-                    if (notesList.Count() == pianoListRef.currentPressedNotes.Count)
-                    {
-                        Debug.Log("Current note is " + item.ToString() + " currently pressed note is " + key.GetComponent<Note_Mine>().noteName);
-                        if (item.ToString() == key.GetComponent<Note_Mine>().noteName)
-                        {
-                            isCorrectlyPressed = true;
-                            PersistentData.data.myPlayback.Start();
-                            PersistentData.data.myPlaybackAudio.Start();
-                            //yield return new WaitForSeconds(duration);
-                            yield return null;
-                        }
-                    }
-                    
-                }
-            }
-            yield return null;
-
-        }
-        yield return null;
     }
 
     public void spawnNoteEfficient(object sender, NotesEventArgs notesArgs)
