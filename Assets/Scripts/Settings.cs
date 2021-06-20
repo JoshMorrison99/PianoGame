@@ -21,7 +21,9 @@ public class Settings : MonoBehaviour
 
     // Main Menu
     public GameObject mainMenuTitle;
-    public GameObject MainMenuShopButton;
+    public GameObject MainMenuThemesButton;
+    public GameObject MainMenuMiniGamesButton;
+    public GameObject MainMenuFreePlayButton;
     public GameObject MainMenuSelectionButton;
     public GameObject MainMenuSettingsButton;
     public GameObject MainMenuAccountButton;
@@ -309,11 +311,14 @@ public class Settings : MonoBehaviour
         {
             this.gameObject.SetActive(false);
             mainMenuTitle.SetActive(true);
-            MainMenuShopButton.SetActive(true);
+            MainMenuThemesButton.SetActive(true);
+            MainMenuMiniGamesButton.SetActive(true);
+            MainMenuFreePlayButton.SetActive(true);
             MainMenuSelectionButton.SetActive(true);
             MainMenuSettingsButton.SetActive(true);
             MainMenuAccountButton.SetActive(true);
             MainMenuQuitButton.SetActive(true);
+            
         }
         else
         {
@@ -700,7 +705,9 @@ public class Settings : MonoBehaviour
         ApplySettingsPanel.SetActive(false);
         this.gameObject.SetActive(false);
         mainMenuTitle.SetActive(true);
-        MainMenuShopButton.SetActive(true);
+        MainMenuThemesButton.SetActive(true);
+        MainMenuMiniGamesButton.SetActive(true);
+        MainMenuFreePlayButton.SetActive(true);
         MainMenuSelectionButton.SetActive(true);
         MainMenuSettingsButton.SetActive(true);
         MainMenuAccountButton.SetActive(true);
@@ -731,7 +738,9 @@ public class Settings : MonoBehaviour
         ApplySettingsPanel.SetActive(false);
         this.gameObject.SetActive(false);
         mainMenuTitle.SetActive(true);
-        MainMenuShopButton.SetActive(true);
+        MainMenuThemesButton.SetActive(true);
+        MainMenuMiniGamesButton.SetActive(true);
+        MainMenuFreePlayButton.SetActive(true);
         MainMenuSelectionButton.SetActive(true);
         MainMenuSettingsButton.SetActive(true);
         MainMenuAccountButton.SetActive(true);

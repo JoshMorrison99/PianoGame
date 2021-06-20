@@ -9,6 +9,12 @@ public class PlayOptions : MonoBehaviour
     public Toggle StubbornMode;
     public Toggle TimelineActivate;
 
+    private void Start()
+    {
+        StutterMode.isOn = PersistentData.data.StutterMode;
+        StubbornMode.isOn = PersistentData.data.StubbornMode;
+        TimelineActivate.isOn = PersistentData.data.TimelineActivate;
+    }
 
     public void StutterModeToggled()
     {

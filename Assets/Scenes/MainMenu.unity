@@ -5459,7 +5459,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mainMenuTitle: {fileID: 1259622923}
-  MainMenuShopButton: {fileID: 1255211380}
+  MainMenuThemesButton: {fileID: 1255211380}
+  MainMenuMiniGamesButton: {fileID: 935862484}
+  MainMenuFreePlayButton: {fileID: 865829356}
   MainMenuSelectionButton: {fileID: 537082615}
   MainMenuSettingsButton: {fileID: 350843403}
   MainMenuAccountButton: {fileID: 2032795297}
@@ -6757,6 +6759,8 @@ MonoBehaviour:
   StutterMode: 0
   StubbornMode: 0
   TimelineActivate: 0
+  stutterModeLogic: 0
+  canStutterModeAdvance: []
   selectedSong: 0
   songSpeed: 0
   isPaused: 0
@@ -32131,7 +32135,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1734964592
 RectTransform:
   m_ObjectHideFlags: 0

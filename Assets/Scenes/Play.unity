@@ -48635,6 +48635,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Logic: {fileID: 1623551345}
   midi: {fileID: 583643342}
+  Timeline: {fileID: 1721534237}
   songFinishedPanel: {fileID: 2032058006}
   progressSong: {fileID: 632527311}
   healperLines: {fileID: 279033360}
@@ -53910,7 +53911,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mainMenuTitle: {fileID: 0}
-  MainMenuShopButton: {fileID: 0}
+  MainMenuThemesButton: {fileID: 0}
+  MainMenuMiniGamesButton: {fileID: 0}
+  MainMenuFreePlayButton: {fileID: 0}
   MainMenuSelectionButton: {fileID: 0}
   MainMenuSettingsButton: {fileID: 0}
   MainMenuAccountButton: {fileID: 0}

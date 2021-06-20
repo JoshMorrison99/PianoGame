@@ -17,6 +17,8 @@ public class PlayUILogic : MonoBehaviour
 
     public MidiMagic midi;
 
+    public GameObject Timeline;
+
     public GameObject songFinishedPanel;
 
     public TextMeshProUGUI progressSong;
@@ -59,6 +61,14 @@ public class PlayUILogic : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        if (PersistentData.data.TimelineActivate)
+        {
+            Timeline.SetActive(true);
+        }
+        else
+        {
+            Timeline.SetActive(false);
+        }
 
         DeviceFinder deviceFinder = GameObject.Find("DeviceFinder").GetComponent<DeviceFinder>();
         deviceFinder.GetPianoDeviceErrorText();

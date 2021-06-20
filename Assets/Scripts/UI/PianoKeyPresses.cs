@@ -150,7 +150,7 @@ public class PianoKeyPresses : MonoBehaviour
                 each.GetComponent<SpriteRenderer>().color = PersistentData.data.ThemeKeyColor;
 
 
-                if(PlayerPrefs.GetInt("isVFX") == 1)
+                if(PlayerPrefs.GetInt("isVFX") == 1 && SceneManager.GetActiveScene().name == "Play")
                 {
                     // turn on the note light if the setting is on
                     each.transform.GetChild(2).gameObject.SetActive(true);

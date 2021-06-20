@@ -80,7 +80,12 @@ public class PersistentData : MonoBehaviour, ISaveable
 
         //SaveJsonData(this);             // During development Activate this function first to reset the song list
         ThemeName = PlayerPrefs.GetString("Theme");
-    }
+
+        StutterMode = false;
+        StubbornMode = false;
+        TimelineActivate = false;
+        stutterModeLogic = false;
+}
 
     public void SetTotalSongNotes()
     {
