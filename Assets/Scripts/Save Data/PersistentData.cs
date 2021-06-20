@@ -20,6 +20,7 @@ public class PersistentData : MonoBehaviour, ISaveable
     public bool StubbornMode = false;
     public bool TimelineActivate = false;
     public bool stutterModeLogic = false;
+    public List<GameObject> canStutterModeAdvance = new List<GameObject>();
 
 
     //Temp Persistent Data

@@ -198,7 +198,7 @@ public class PianoNoteSpawner : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (PersistentData.data.stutterModeLogic)
+        if (PersistentData.data.stutterModeLogic && PersistentData.data.canStutterModeAdvance.Count == 0)
         {
             for (int i = 0; i < spawnedNotes.Count; i++)
             {

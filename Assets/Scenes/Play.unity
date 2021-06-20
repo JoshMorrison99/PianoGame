@@ -39478,6 +39478,8 @@ MonoBehaviour:
   TimelineSlider: {fileID: 1721534239}
   currentTime: {fileID: 1767407639}
   endTime: {fileID: 1286167219}
+  currentTimeValue: 0
+  endTimeValue: 0
   SharpNote: {fileID: 832847288344303280, guid: 662ab4a2bafcfbb489b14161f12784fc, type: 3}
   Note: {fileID: 5427637444596897990, guid: 1fcfd642b5991354a95002369f267c58, type: 3}
   pianoListRef: {fileID: 1094638095}

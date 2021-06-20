@@ -10,6 +10,8 @@ public class detectorScript : MonoBehaviour
     public bool overlapNote = false;
     public int initalId;
 
+    
+
     public Minis.MidiDevice midiDevice;
 
     public PlayLogic Logic;
@@ -22,7 +24,6 @@ public class detectorScript : MonoBehaviour
 
     void Start()
     {
-        
         PianoKeysObject = GameObject.Find("PianoKeyboardUI").GetComponent<PianoKeyPresses>();
         DeviceFinder.DeviceAddedEvent += AddDevices;
 
@@ -162,6 +163,10 @@ public class detectorScript : MonoBehaviour
 
             if (PersistentData.data.StutterMode)
             {
+                if (!PersistentData.data.canStutterModeAdvance.Contains(collision.GetComponentInParent<Note_Falling>().gameObject))
+                {
+                    PersistentData.data.canStutterModeAdvance.Add(collision.GetComponentInParent<Note_Falling>().gameObject);
+                }
                 PersistentData.data.myPlayback.Stop();
                 PersistentData.data.myPlaybackAudio.Stop();
                 PersistentData.data.stutterModeLogic = false;
@@ -190,9 +195,15 @@ public class detectorScript : MonoBehaviour
 
             if (PersistentData.data.StutterMode)
             {
-                PersistentData.data.myPlayback.Start();
-                PersistentData.data.myPlaybackAudio.Start();
-                PersistentData.data.stutterModeLogic = true;
+                PersistentData.data.canStutterModeAdvance.RemoveAt(0);
+                if (PersistentData.data.canStutterModeAdvance.Count == 0)
+                {
+                    PersistentData.data.myPlayback.Start();
+                    PersistentData.data.myPlaybackAudio.Start();
+                    PersistentData.data.stutterModeLogic = true;
+                }
+                
+                
             }
 
             // Increment exp
