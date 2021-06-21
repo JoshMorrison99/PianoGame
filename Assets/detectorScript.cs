@@ -161,12 +161,18 @@ public class detectorScript : MonoBehaviour
             currentOverlappedNotes.Add(collision.GetComponentInParent<Note_Falling>().gameObject);
             //Video(collision.GetComponentInParent<Note_Falling>().noteName, 1);
 
-            if (PersistentData.data.StutterMode)
+            if (PersistentData.data.StutterModeStrict)
             {
                 if (!PersistentData.data.canStutterModeAdvance.Contains(collision.GetComponentInParent<Note_Falling>().gameObject))
                 {
                     PersistentData.data.canStutterModeAdvance.Add(collision.GetComponentInParent<Note_Falling>().gameObject);
                 }
+                PersistentData.data.myPlayback.Stop();
+                PersistentData.data.myPlaybackAudio.Stop();
+                PersistentData.data.stutterModeLogic = false;
+            }
+            else if (PersistentData.data.StutterModeChill)
+            {
                 PersistentData.data.myPlayback.Stop();
                 PersistentData.data.myPlaybackAudio.Stop();
                 PersistentData.data.stutterModeLogic = false;
@@ -193,7 +199,7 @@ public class detectorScript : MonoBehaviour
             // Note successfully hit
             Logic.numNotesHit += 1;
 
-            if (PersistentData.data.StutterMode)
+            if (PersistentData.data.StutterModeStrict)
             {
                 PersistentData.data.canStutterModeAdvance.RemoveAt(0);
                 if (PersistentData.data.canStutterModeAdvance.Count == 0)
@@ -202,8 +208,11 @@ public class detectorScript : MonoBehaviour
                     PersistentData.data.myPlaybackAudio.Start();
                     PersistentData.data.stutterModeLogic = true;
                 }
-                
-                
+            }else if (PersistentData.data.StutterModeChill)
+            {
+                PersistentData.data.myPlayback.Start();
+                PersistentData.data.myPlaybackAudio.Start();
+                PersistentData.data.stutterModeLogic = true;
             }
 
             // Increment exp

@@ -4748,7 +4748,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Falling notes freeze until the ALL correct notes are played.
+  m_text: Falling notes freeze until ALL the correct notes are played.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f56ff1b9ae84e240b25ef0d5fa73097, type: 2}
   m_sharedMaterial: {fileID: -779380639807703501, guid: 8f56ff1b9ae84e240b25ef0d5fa73097, type: 2}
@@ -5348,7 +5348,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1734964593}
         m_TargetAssemblyTypeName: PlayOptions, Assembly-CSharp
-        m_MethodName: StutterModeToggled
+        m_MethodName: StutterModeStrictToggled
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -7067,7 +7067,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84c72fc5ee272fd47bfb46daf0ff6c73, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  StutterMode: 0
+  StutterModeStrict: 0
+  StutterModeChill: 0
   StubbornMode: 0
   TimelineActivate: 0
   stutterModeLogic: 0
@@ -17804,7 +17805,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1734964593}
         m_TargetAssemblyTypeName: PlayOptions, Assembly-CSharp
-        m_MethodName: StutterModeToggled
+        m_MethodName: StutterModeChillToggled
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -33447,7 +33448,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02fe6f8ba935ef54da1a6f987ab269c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  StutterMode: {fileID: 293184219}
+  StutterModeStrict: {fileID: 293184219}
+  StutterModeChill: {fileID: 909535803}
   StubbornMode: {fileID: 887801350}
   TimelineActivate: {fileID: 1488401173}
 --- !u!1 &1738912360

@@ -5,20 +5,31 @@ using UnityEngine.UI;
 
 public class PlayOptions : MonoBehaviour
 {
-    public Toggle StutterMode;
+    public Toggle StutterModeStrict;
+    public Toggle StutterModeChill;
     public Toggle StubbornMode;
     public Toggle TimelineActivate;
 
     private void Start()
     {
-        StutterMode.isOn = PersistentData.data.StutterMode;
+        StutterModeStrict.isOn = PersistentData.data.StutterModeStrict;
+        StutterModeChill.isOn = PersistentData.data.StutterModeChill;
         StubbornMode.isOn = PersistentData.data.StubbornMode;
         TimelineActivate.isOn = PersistentData.data.TimelineActivate;
     }
 
-    public void StutterModeToggled()
+    public void StutterModeStrictToggled()
     {
-        PersistentData.data.StutterMode = StutterMode.isOn;
+        PersistentData.data.StutterModeStrict = StutterModeStrict.isOn;
+        PersistentData.data.StutterModeChill = false;
+        StutterModeChill.isOn = false;
+    }
+
+    public void StutterModeChillToggled()
+    {
+        PersistentData.data.StutterModeChill = StutterModeChill.isOn;
+        PersistentData.data.StutterModeStrict = false;
+        StutterModeStrict.isOn = false;
     }
 
     public void StubbornModeToggled()

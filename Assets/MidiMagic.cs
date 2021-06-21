@@ -136,7 +136,7 @@ public class MidiMagic : MonoBehaviour
     private IEnumerator StartMusic()
     {
         _playback.Start();
-        while (_playback.IsRunning || PersistentData.data.isPaused || PersistentData.data.StutterMode)
+        while (_playback.IsRunning || PersistentData.data.isPaused || PersistentData.data.StutterModeStrict || PersistentData.data.StutterModeChill)
         {
             
              
@@ -170,7 +170,7 @@ public class MidiMagic : MonoBehaviour
             isFirstRun = false;
         }
         _playback_audio.Start();
-        while (_playback_audio.IsRunning || PersistentData.data.isPaused || PersistentData.data.StutterMode)
+        while (_playback_audio.IsRunning || PersistentData.data.isPaused || PersistentData.data.StutterModeStrict || PersistentData.data.StutterModeChill)
         {
 
              

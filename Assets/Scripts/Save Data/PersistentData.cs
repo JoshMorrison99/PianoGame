@@ -16,7 +16,8 @@ using Melanchall.DryWetMidi.Interaction;
 public class PersistentData : MonoBehaviour, ISaveable
 {
     // Play Modes
-    public bool StutterMode = false;
+    public bool StutterModeStrict = false;
+    public bool StutterModeChill = false;
     public bool StubbornMode = false;
     public bool TimelineActivate = false;
     public bool stutterModeLogic = false;
@@ -82,7 +83,8 @@ public class PersistentData : MonoBehaviour, ISaveable
         //SaveJsonData(this);             // During development Activate this function first to reset the song list
         ThemeName = PlayerPrefs.GetString("Theme");
 
-        StutterMode = false;
+        StutterModeStrict = false;
+        StutterModeChill = false;
         StubbornMode = false;
         TimelineActivate = false;
         stutterModeLogic = false;

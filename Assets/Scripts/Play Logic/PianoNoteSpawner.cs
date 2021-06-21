@@ -167,10 +167,6 @@ public class PianoNoteSpawner : MonoBehaviour
     {
         PersistentData.data.stutterModeLogic = true;
         PersistentData.data.canStutterModeAdvance.Clear();
-        if (PersistentData.data.StutterMode == false)
-        {
-            PersistentData.data.stutterModeLogic = true;
-        }
 
         uid = 0;
         setupUI();
