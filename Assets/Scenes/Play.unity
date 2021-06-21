@@ -42372,8 +42372,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1094638092}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.05, y: 0, z: 0}
-  m_LocalScale: {x: 11.8, y: 2.5, z: 1}
+  m_LocalPosition: {x: 5.65, y: 0, z: 0}
+  m_LocalScale: {x: 21.2, y: 2.5, z: 1}
   m_Children:
   - {fileID: 1203741208}
   - {fileID: 60054215}
@@ -42534,6 +42534,8 @@ MonoBehaviour:
   garbageNotesSharp: []
   isNoteLabelled: 0
   noteSpeed: 0
+  NOTEXSCALE: 0
+  NOTESHARPXSCALE: 0
   C0: {fileID: 0}
   D0: {fileID: 0}
   E0: {fileID: 0}
@@ -57991,6 +57993,15 @@ MonoBehaviour:
   Reset_YES_button: {fileID: 1473171964}
   Reset_NO_button: {fileID: 2025029578}
   speedSlider: {fileID: 1902112755}
+  left_pianoTypeBtn: {fileID: 0}
+  right_pianoTypeBtn: {fileID: 0}
+  pianoTypeIndex: 0
+  pianoTypeText: {fileID: 0}
+  pianoTypes:
+  - 49 Keys
+  - 61 Keys
+  - 76 Keys
+  - 88 Keys
   isPianoLabelled: 0
   isNoteLabelled: 0
   isVFX: 0
@@ -62025,7 +62036,7 @@ RectTransform:
   m_GameObject: {fileID: 1610287359}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.675, y: 1, z: 1}
+  m_LocalScale: {x: 0.775, y: 1, z: 1}
   m_Children:
   - {fileID: 1345935309}
   - {fileID: 417035356}
@@ -62115,7 +62126,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 25.5, y: 0}
+  m_AnchoredPosition: {x: 4.15, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1614100931

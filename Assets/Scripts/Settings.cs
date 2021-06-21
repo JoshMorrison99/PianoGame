@@ -48,7 +48,7 @@ public class Settings : MonoBehaviour
     public Button right_pianoTypeBtn;
     public int pianoTypeIndex;
     public TextMeshProUGUI pianoTypeText;
-    public string[] pianoTypes = new string[] { "49 Keys", "61 Keys", "76 Keys", "88 Keys" };
+    public string[] pianoTypes = new string[] { "49 Keys", "61 Keys", "76 Keys" };
 
     // Audio
     const string volume_Pref = "Volume";

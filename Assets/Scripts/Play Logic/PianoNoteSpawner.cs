@@ -37,6 +37,9 @@ public class PianoNoteSpawner : MonoBehaviour
 
     public float noteSpeed = 0;
 
+    public float NOTEXSCALE;
+    public float NOTESHARPXSCALE;
+
     // Piano Notes
     public GameObject C0;
     public GameObject D0;
@@ -163,6 +166,7 @@ public class PianoNoteSpawner : MonoBehaviour
     private void Start()
     {
         PersistentData.data.stutterModeLogic = true;
+        PersistentData.data.canStutterModeAdvance.Clear();
         if (PersistentData.data.StutterMode == false)
         {
             PersistentData.data.stutterModeLogic = true;
@@ -170,6 +174,7 @@ public class PianoNoteSpawner : MonoBehaviour
 
         uid = 0;
         setupUI();
+        SetNoteXSize();
 
         // Set UI Color for notes
         Note.transform.GetChild(0).GetChild(0).GetChild(0).GetComponent<Light2D>().color = PersistentData.data.NoteLightColor;
@@ -197,6 +202,32 @@ public class PianoNoteSpawner : MonoBehaviour
             }
         }
         
+    }
+
+    public void SetNoteXSize()
+    {
+        if (PlayerPrefs.GetInt("PianoType") == 0) // 49 key piano
+        {
+            NOTEXSCALE = 0.54f;
+            NOTESHARPXSCALE = 0.36f;
+        }
+        else if (PlayerPrefs.GetInt("PianoType") == 1) // 61 key piano
+        {
+            NOTEXSCALE = 0.45f;
+            NOTESHARPXSCALE = 0.3f;
+        }
+        else if (PlayerPrefs.GetInt("PianoType") == 2) // 76 key piano
+        {
+            NOTEXSCALE = 0.35f;
+            NOTESHARPXSCALE = 0.23f;
+        }
+        else
+        {
+            Debug.Log("Error occured getting piano type UI");
+        }
+
+        Note.transform.GetChild(0).GetChild(0).localScale = new Vector3(NOTEXSCALE, Note.transform.localScale.y, Note.transform.localScale.z);
+        SharpNote.transform.GetChild(0).GetChild(0).localScale = new Vector3(NOTESHARPXSCALE, SharpNote.transform.localScale.y, SharpNote.transform.localScale.z);
     }
 
 
@@ -227,6 +258,8 @@ public class PianoNoteSpawner : MonoBehaviour
                 }
             }
         }
+        
+        
         
     }
 
