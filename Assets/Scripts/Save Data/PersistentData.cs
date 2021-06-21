@@ -74,6 +74,7 @@ public class PersistentData : MonoBehaviour, ISaveable
             SetTotalSongNotes();
             ThemeName = "Default";
             PlayerPrefs.SetString("Theme", "Default");
+            PlayerPrefs.SetInt("pianoType_Pref", 2); // This sets the default piano type to 76 keys
             SaveJsonData(this);
         }
         LoadJsonData(this);

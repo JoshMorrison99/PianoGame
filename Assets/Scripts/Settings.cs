@@ -43,6 +43,12 @@ public class Settings : MonoBehaviour
     // Gameplay
     const string speed_Pref = "Speed";
     public Slider speedSlider;
+    const string pianoType_Pref = "PianoType";
+    public Button left_pianoTypeBtn;
+    public Button right_pianoTypeBtn;
+    public int pianoTypeIndex;
+    public TextMeshProUGUI pianoTypeText;
+    public string[] pianoTypes = new string[] { "49 Keys", "61 Keys", "76 Keys", "88 Keys" };
 
     // Audio
     const string volume_Pref = "Volume";
@@ -153,6 +159,7 @@ public class Settings : MonoBehaviour
     {
         PlayerPrefs.SetFloat(volume_Pref, MasterVolume.value);
         PlayerPrefs.SetFloat(speed_Pref, speedSlider.value);
+        PlayerPrefs.SetInt(pianoType_Pref, pianoTypeIndex);
         PlayerPrefs.SetInt(pianoLabel_Pref, isPianoLabelled);
         PlayerPrefs.SetInt(noteLabel_Pref, isNoteLabelled);
         PlayerPrefs.SetInt(vfx_Pref, isVFX);
@@ -187,6 +194,7 @@ public class Settings : MonoBehaviour
     {
         MasterVolume.value = PlayerPrefs.GetFloat(volume_Pref);
         speedSlider.value = PlayerPrefs.GetFloat(speed_Pref);
+        pianoTypeIndex = PlayerPrefs.GetInt(pianoType_Pref);
         isPianoLabelled = PlayerPrefs.GetInt(pianoLabel_Pref);
         isNoteLabelled = PlayerPrefs.GetInt(noteLabel_Pref);
         isVFX = PlayerPrefs.GetInt(vfx_Pref);
@@ -233,6 +241,9 @@ public class Settings : MonoBehaviour
         }
 
         isFirstLoad = false;
+
+        // Load the pinao type setting text
+        pianoTypeText.text = pianoTypes[pianoTypeIndex];
 
         // Load the screen windowed setting text
         WindowedText.text = PlayerPrefs.GetString(screenMode_Pref);
@@ -570,6 +581,53 @@ public class Settings : MonoBehaviour
         }
     }
 
+    public void LeftPianoTypeButtonClicked()
+    {
+        if (pianoTypeIndex == 0)
+        {
+            pianoTypeIndex = pianoTypes.Length - 1;
+        }
+        else
+        {
+            pianoTypeIndex -= 1;
+        }
+
+        pianoTypeText.text = pianoTypes[pianoTypeIndex];
+
+        // Show apply button so the user can see that they can save their settings.
+        ApplyButton.gameObject.SetActive(true);
+
+        // Play button clicked SFX
+        if (buttonClickedEvent != null)
+        {
+            buttonClickedEvent();
+        }
+
+    }
+
+    public void RightPianoTypeButtonClicked()
+    {
+        if (pianoTypeIndex == pianoTypes.Length-1)
+        {
+            pianoTypeIndex = 0;
+        }
+        else
+        {
+            pianoTypeIndex += 1;
+        }
+
+        pianoTypeText.text = pianoTypes[pianoTypeIndex];
+
+        // Show apply button so the user can see that they can save their settings. 
+        ApplyButton.gameObject.SetActive(true);
+
+        // Play button clicked SFX
+        if (buttonClickedEvent != null)
+        {
+            buttonClickedEvent();
+        }
+    }
+
     public void LeftWindowedButtonClicked()
     {
         if (screenModesIndex == 0)
@@ -662,6 +720,8 @@ public class Settings : MonoBehaviour
 
     public void ResetYESButtonPressed()
     {
+        PlayerPrefs.SetInt(pianoType_Pref, 2); // 76 key piano by default
+        pianoTypeIndex = 2;
         PlayerPrefs.SetInt(keyPress_Pref, 1); // Trun on key press labels by default
         isKeyPressLabel = 1;
         PlayerPrefs.SetInt(pianoLabel_Pref, 0); // Trun off pinao labels by default

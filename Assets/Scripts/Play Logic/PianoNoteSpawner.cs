@@ -181,18 +181,22 @@ public class PianoNoteSpawner : MonoBehaviour
 
     public void OnCurrentTimeChanged(object sender, PlaybackCurrentTimeChangedEventArgs e)
     {
-        foreach (var playbackTime in e.Times)
+        if (PersistentData.data.TimelineActivate)
         {
-            var time = (MidiTimeSpan)playbackTime.Time;
-            TempoMap tempoMap = PersistentData.data.myMidi.GetTempoMap();
-            MetricTimeSpan metricTime = TimeConverter.ConvertTo<MetricTimeSpan>(time.TimeSpan, tempoMap);
-            currentTime.text = metricTime.Minutes.ToString() + ":" + (metricTime.Seconds < 10 ? "0" + metricTime.Seconds.ToString() : metricTime.Seconds.ToString());
+            foreach (var playbackTime in e.Times)
+            {
+                var time = (MidiTimeSpan)playbackTime.Time;
+                TempoMap tempoMap = PersistentData.data.myMidi.GetTempoMap();
+                MetricTimeSpan metricTime = TimeConverter.ConvertTo<MetricTimeSpan>(time.TimeSpan, tempoMap);
+                currentTime.text = metricTime.Minutes.ToString() + ":" + (metricTime.Seconds < 10 ? "0" + metricTime.Seconds.ToString() : metricTime.Seconds.ToString());
 
-            MidiTimeSpan midiTime = TimeConverter.ConvertTo<MidiTimeSpan>(time.TimeSpan, tempoMap);
-            currentTimeValue = midiTime;
+                MidiTimeSpan midiTime = TimeConverter.ConvertTo<MidiTimeSpan>(time.TimeSpan, tempoMap);
+                currentTimeValue = midiTime;
 
-            TimelineSlider.value = currentTimeValue / endTimeValue;
+                TimelineSlider.value = currentTimeValue / endTimeValue;
+            }
         }
+        
     }
 
 
