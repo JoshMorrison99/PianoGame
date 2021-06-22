@@ -189,6 +189,7 @@ MonoBehaviour:
   initialPress: 0
   initalPressID: 0
   noteName: 
+  noteFixName: 
 --- !u!61 &535187
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -332,6 +333,7 @@ MonoBehaviour:
   initialPress: 0
   initalPressID: 0
   noteName: 
+  noteFixName: 
 --- !u!61 &10096442
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1419,6 +1421,7 @@ MonoBehaviour:
   initialPress: 0
   initalPressID: 0
   noteName: 
+  noteFixName: 
 --- !u!61 &73263712
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2134,6 +2137,7 @@ MonoBehaviour:
   initialPress: 0
   initalPressID: 0
   noteName: 
+  noteFixName: 
 --- !u!61 &91480727
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2446,6 +2450,7 @@ MonoBehaviour:
   initialPress: 0
   initalPressID: 0
   noteName: 
+  noteFixName: 
 --- !u!61 &96077453
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2603,6 +2608,7 @@ MonoBehaviour:
   initialPress: 0
   initalPressID: 0
   noteName: 
+  noteFixName: 
 --- !u!61 &97059198
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2977,6 +2983,7 @@ MonoBehaviour:
   initialPress: 0
   initalPressID: 0
   noteName: 
+  noteFixName: 
 --- !u!61 &118020462
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3445,6 +3452,7 @@ MonoBehaviour:
   initialPress: 0
   initalPressID: 0
   noteName: 
+  noteFixName: 
 --- !u!61 &147939927
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3588,6 +3596,7 @@ MonoBehaviour:
   initialPress: 0
   initalPressID: 0
   noteName: 
+  noteFixName: 
 --- !u!61 &154808803
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -4162,6 +4171,7 @@ MonoBehaviour:
   initialPress: 0
   initalPressID: 0
   noteName: 
+  noteFixName: 
 --- !u!61 &197116395
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -4914,6 +4924,7 @@ MonoBehaviour:
   initialPress: 0
   initalPressID: 0
   noteName: 
+  noteFixName: 
 --- !u!61 &218937375
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -5259,6 +5270,7 @@ MonoBehaviour:
   initialPress: 0
   initalPressID: 0
   noteName: 
+  noteFixName: 
 --- !u!61 &239715361
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -6107,6 +6119,7 @@ MonoBehaviour:
   initialPress: 0
   initalPressID: 0
   noteName: 
+  noteFixName: 
 --- !u!61 &282235916
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -6543,6 +6556,7 @@ MonoBehaviour:
   initialPress: 0
   initalPressID: 0
   noteName: 
+  noteFixName: 
 --- !u!61 &309346665
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -6686,6 +6700,7 @@ MonoBehaviour:
   initialPress: 0
   initalPressID: 0
   noteName: 
+  noteFixName: 
 --- !u!61 &314584460
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -7303,6 +7318,7 @@ MonoBehaviour:
   initialPress: 0
   initalPressID: 0
   noteName: 
+  noteFixName: 
 --- !u!61 &358010189
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -7615,6 +7631,7 @@ MonoBehaviour:
   initialPress: 0
   initalPressID: 0
   noteName: 
+  noteFixName: 
 --- !u!61 &367122768
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -8081,6 +8098,7 @@ MonoBehaviour:
   initialPress: 0
   initalPressID: 0
   noteName: 
+  noteFixName: 
 --- !u!61 &388691962
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -9237,6 +9255,7 @@ MonoBehaviour:
   initialPress: 0
   initalPressID: 0
   noteName: 
+  noteFixName: 
 --- !u!61 &437067212
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -10060,6 +10079,7 @@ MonoBehaviour:
   initialPress: 0
   initalPressID: 0
   noteName: 
+  noteFixName: 
 --- !u!61 &470091156
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -10417,6 +10437,7 @@ MonoBehaviour:
   initialPress: 0
   initalPressID: 0
   noteName: 
+  noteFixName: 
 --- !u!61 &476705826
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -11131,6 +11152,7 @@ MonoBehaviour:
   initialPress: 0
   initalPressID: 0
   noteName: 
+  noteFixName: 
 --- !u!61 &492940065
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -11382,6 +11404,7 @@ MonoBehaviour:
   initialPress: 0
   initalPressID: 0
   noteName: 
+  noteFixName: 
 --- !u!61 &518538247
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -11541,6 +11564,7 @@ MonoBehaviour:
   initialPress: 0
   initalPressID: 0
   noteName: 
+  noteFixName: 
 --- !u!61 &518725735
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -11684,6 +11708,7 @@ MonoBehaviour:
   initialPress: 0
   initalPressID: 0
   noteName: 
+  noteFixName: 
 --- !u!61 &523519030
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -13134,6 +13159,7 @@ MonoBehaviour:
   initialPress: 0
   initalPressID: 0
   noteName: 
+  noteFixName: 
 --- !u!61 &603889552
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -13522,6 +13548,7 @@ MonoBehaviour:
   initialPress: 0
   initalPressID: 0
   noteName: 
+  noteFixName: 
 --- !u!61 &626661410
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -13727,6 +13754,7 @@ MonoBehaviour:
   initialPress: 0
   initalPressID: 0
   noteName: 
+  noteFixName: 
 --- !u!61 &630060414
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -14039,6 +14067,7 @@ MonoBehaviour:
   initialPress: 0
   initalPressID: 0
   noteName: 
+  noteFixName: 
 --- !u!61 &639493294
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -14429,6 +14458,7 @@ MonoBehaviour:
   initialPress: 0
   initalPressID: 0
   noteName: 
+  noteFixName: 
 --- !u!61 &653459358
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -15558,6 +15588,7 @@ MonoBehaviour:
   initialPress: 0
   initalPressID: 0
   noteName: 
+  noteFixName: 
 --- !u!61 &742542215
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -15717,6 +15748,7 @@ MonoBehaviour:
   initialPress: 0
   initalPressID: 0
   noteName: 
+  noteFixName: 
 --- !u!61 &747296240
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -16572,6 +16604,7 @@ MonoBehaviour:
   initialPress: 0
   initalPressID: 0
   noteName: 
+  noteFixName: 
 --- !u!61 &796628922
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -17261,6 +17294,7 @@ MonoBehaviour:
   initialPress: 0
   initalPressID: 0
   noteName: 
+  noteFixName: 
 --- !u!61 &851813961
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -17724,6 +17758,7 @@ MonoBehaviour:
   initialPress: 0
   initalPressID: 0
   noteName: 
+  noteFixName: 
 --- !u!61 &862465855
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -17867,6 +17902,7 @@ MonoBehaviour:
   initialPress: 0
   initalPressID: 0
   noteName: 
+  noteFixName: 
 --- !u!61 &883482247
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -18179,6 +18215,7 @@ MonoBehaviour:
   initialPress: 0
   initalPressID: 0
   noteName: 
+  noteFixName: 
 --- !u!61 &895500167
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -18943,6 +18980,7 @@ MonoBehaviour:
   initialPress: 0
   initalPressID: 0
   noteName: 
+  noteFixName: 
 --- !u!61 &945904217
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -19148,6 +19186,7 @@ MonoBehaviour:
   initialPress: 0
   initalPressID: 0
   noteName: 
+  noteFixName: 
 --- !u!61 &955397211
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -19925,6 +19964,7 @@ MonoBehaviour:
   initialPress: 0
   initalPressID: 0
   noteName: 
+  noteFixName: 
 --- !u!61 &985064856
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -20524,6 +20564,7 @@ MonoBehaviour:
   initialPress: 0
   initalPressID: 0
   noteName: 
+  noteFixName: 
 --- !u!61 &1003728274
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -20759,6 +20800,7 @@ MonoBehaviour:
   initialPress: 0
   initalPressID: 0
   noteName: 
+  noteFixName: 
 --- !u!61 &1016314910
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -20888,6 +20930,7 @@ MonoBehaviour:
   initialPress: 0
   initalPressID: 0
   noteName: 
+  noteFixName: 
 --- !u!61 &1021011178
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -21708,6 +21751,7 @@ MonoBehaviour:
   initialPress: 0
   initalPressID: 0
   noteName: 
+  noteFixName: 
 --- !u!61 &1074387450
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -21915,6 +21959,7 @@ MonoBehaviour:
   initialPress: 0
   initalPressID: 0
   noteName: 
+  noteFixName: 
 --- !u!61 &1099109332
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -22072,6 +22117,7 @@ MonoBehaviour:
   initialPress: 0
   initalPressID: 0
   noteName: 
+  noteFixName: 
 --- !u!61 &1108935111
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -22277,6 +22323,7 @@ MonoBehaviour:
   initialPress: 0
   initalPressID: 0
   noteName: 
+  noteFixName: 
 --- !u!61 &1117847837
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -22420,6 +22467,7 @@ MonoBehaviour:
   initialPress: 0
   initalPressID: 0
   noteName: 
+  noteFixName: 
 --- !u!61 &1126104508
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -22611,6 +22659,7 @@ MonoBehaviour:
   initialPress: 0
   initalPressID: 0
   noteName: 
+  noteFixName: 
 --- !u!61 &1135421415
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -22768,6 +22817,7 @@ MonoBehaviour:
   initialPress: 0
   initalPressID: 0
   noteName: 
+  noteFixName: 
 --- !u!61 &1144733163
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -23548,6 +23598,7 @@ MonoBehaviour:
   initialPress: 0
   initalPressID: 0
   noteName: 
+  noteFixName: 
 --- !u!61 &1192719127
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -23844,6 +23895,7 @@ MonoBehaviour:
   initialPress: 0
   initalPressID: 0
   noteName: 
+  noteFixName: 
 --- !u!61 &1211935186
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -24126,6 +24178,7 @@ MonoBehaviour:
   initialPress: 0
   initalPressID: 0
   noteName: 
+  noteFixName: 
 --- !u!61 &1230315474
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -24607,6 +24660,7 @@ MonoBehaviour:
   initialPress: 0
   initalPressID: 0
   noteName: 
+  noteFixName: 
 --- !u!61 &1261485327
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -24917,6 +24971,7 @@ MonoBehaviour:
   initialPress: 0
   initalPressID: 0
   noteName: 
+  noteFixName: 
 --- !u!61 &1279500109
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -25273,6 +25328,7 @@ MonoBehaviour:
   initialPress: 0
   initalPressID: 0
   noteName: 
+  noteFixName: 
 --- !u!61 &1317235692
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -25416,6 +25472,7 @@ MonoBehaviour:
   initialPress: 0
   initalPressID: 0
   noteName: 
+  noteFixName: 
 --- !u!61 &1331279756
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -25838,6 +25895,7 @@ MonoBehaviour:
   initialPress: 0
   initalPressID: 0
   noteName: 
+  noteFixName: 
 --- !u!61 &1343452100
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -26011,6 +26069,7 @@ MonoBehaviour:
   initialPress: 0
   initalPressID: 0
   noteName: 
+  noteFixName: 
 --- !u!61 &1354442650
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -26280,6 +26339,7 @@ MonoBehaviour:
   initialPress: 0
   initalPressID: 0
   noteName: 
+  noteFixName: 
 --- !u!61 &1362224288
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -26792,6 +26852,7 @@ MonoBehaviour:
   initialPress: 0
   initalPressID: 0
   noteName: 
+  noteFixName: 
 --- !u!61 &1381342485
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -27059,6 +27120,7 @@ MonoBehaviour:
   initialPress: 0
   initalPressID: 0
   noteName: 
+  noteFixName: 
 --- !u!61 &1386124148
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -27266,6 +27328,7 @@ MonoBehaviour:
   initialPress: 0
   initalPressID: 0
   noteName: 
+  noteFixName: 
 --- !u!61 &1392239767
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -28533,6 +28596,7 @@ MonoBehaviour:
   initialPress: 0
   initalPressID: 0
   noteName: 
+  noteFixName: 
 --- !u!61 &1472190785
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -29214,6 +29278,7 @@ MonoBehaviour:
   initialPress: 0
   initalPressID: 0
   noteName: 
+  noteFixName: 
 --- !u!61 &1489656827
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -29357,6 +29422,7 @@ MonoBehaviour:
   initialPress: 0
   initalPressID: 0
   noteName: 
+  noteFixName: 
 --- !u!61 &1490440078
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -29701,6 +29767,7 @@ MonoBehaviour:
   initialPress: 0
   initalPressID: 0
   noteName: 
+  noteFixName: 
 --- !u!61 &1510988803
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -30415,6 +30482,7 @@ MonoBehaviour:
   PausePanel: {fileID: 1195833812}
   PauseButton: {fileID: 206050901}
   ErrorText: {fileID: 543849165}
+  piano: {fileID: 1709128738}
 --- !u!114 &1559636046
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -30640,6 +30708,7 @@ MonoBehaviour:
   initialPress: 0
   initalPressID: 0
   noteName: 
+  noteFixName: 
 --- !u!61 &1593760965
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -30783,6 +30852,7 @@ MonoBehaviour:
   initialPress: 0
   initalPressID: 0
   noteName: 
+  noteFixName: 
 --- !u!61 &1594172946
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -31157,6 +31227,7 @@ MonoBehaviour:
   initialPress: 0
   initalPressID: 0
   noteName: 
+  noteFixName: 
 --- !u!61 &1604138193
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -31300,6 +31371,7 @@ MonoBehaviour:
   initialPress: 0
   initalPressID: 0
   noteName: 
+  noteFixName: 
 --- !u!61 &1611118580
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -31718,6 +31790,7 @@ MonoBehaviour:
   initialPress: 0
   initalPressID: 0
   noteName: 
+  noteFixName: 
 --- !u!61 &1616823725
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -31999,6 +32072,7 @@ MonoBehaviour:
   initialPress: 0
   initalPressID: 0
   noteName: 
+  noteFixName: 
 --- !u!61 &1637667858
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -32467,6 +32541,7 @@ MonoBehaviour:
   initialPress: 0
   initalPressID: 0
   noteName: 
+  noteFixName: 
 --- !u!61 &1654433242
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -32596,6 +32671,7 @@ MonoBehaviour:
   initialPress: 0
   initalPressID: 0
   noteName: 
+  noteFixName: 
 --- !u!61 &1657077551
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -32877,6 +32953,7 @@ MonoBehaviour:
   initialPress: 0
   initalPressID: 0
   noteName: 
+  noteFixName: 
 --- !u!61 &1668666679
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -33036,6 +33113,7 @@ MonoBehaviour:
   initialPress: 0
   initalPressID: 0
   noteName: 
+  noteFixName: 
 --- !u!61 &1671324695
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -33165,6 +33243,7 @@ MonoBehaviour:
   initialPress: 0
   initalPressID: 0
   noteName: 
+  noteFixName: 
 --- !u!61 &1671959747
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -34046,6 +34125,7 @@ MonoBehaviour:
   initialPress: 0
   initalPressID: 0
   noteName: 
+  noteFixName: 
 --- !u!61 &1705785417
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -34389,6 +34469,7 @@ MonoBehaviour:
   initialPress: 0
   initalPressID: 0
   noteName: 
+  noteFixName: 
 --- !u!61 &1711919555
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -34546,6 +34627,7 @@ MonoBehaviour:
   initialPress: 0
   initalPressID: 0
   noteName: 
+  noteFixName: 
 --- !u!61 &1717096160
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -34936,6 +35018,7 @@ MonoBehaviour:
   initialPress: 0
   initalPressID: 0
   noteName: 
+  noteFixName: 
 --- !u!61 &1737222894
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -35140,6 +35223,7 @@ MonoBehaviour:
   initialPress: 0
   initalPressID: 0
   noteName: 
+  noteFixName: 
 --- !u!61 &1746215727
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -35297,6 +35381,7 @@ MonoBehaviour:
   initialPress: 0
   initalPressID: 0
   noteName: 
+  noteFixName: 
 --- !u!61 &1750335434
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -35504,6 +35589,7 @@ MonoBehaviour:
   initialPress: 0
   initalPressID: 0
   noteName: 
+  noteFixName: 
 --- !u!61 &1753853790
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -35703,6 +35789,7 @@ MonoBehaviour:
   initialPress: 0
   initalPressID: 0
   noteName: 
+  noteFixName: 
 --- !u!61 &1766102644
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -35970,6 +36057,7 @@ MonoBehaviour:
   initialPress: 0
   initalPressID: 0
   noteName: 
+  noteFixName: 
 --- !u!61 &1770588137
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -36193,6 +36281,7 @@ MonoBehaviour:
   initialPress: 0
   initalPressID: 0
   noteName: 
+  noteFixName: 
 --- !u!61 &1793714014
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -36490,6 +36579,7 @@ MonoBehaviour:
   initialPress: 0
   initalPressID: 0
   noteName: 
+  noteFixName: 
 --- !u!61 &1804225288
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -37020,6 +37110,7 @@ MonoBehaviour:
   initialPress: 0
   initalPressID: 0
   noteName: 
+  noteFixName: 
 --- !u!61 &1841243263
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -37223,6 +37314,7 @@ MonoBehaviour:
   initialPress: 0
   initalPressID: 0
   noteName: 
+  noteFixName: 
 --- !u!61 &1847716526
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -37550,6 +37642,7 @@ MonoBehaviour:
   initialPress: 0
   initalPressID: 0
   noteName: 
+  noteFixName: 
 --- !u!61 &1866468069
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -38495,6 +38588,7 @@ MonoBehaviour:
   initialPress: 0
   initalPressID: 0
   noteName: 
+  noteFixName: 
 --- !u!61 &1899363339
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -39137,6 +39231,7 @@ MonoBehaviour:
   initialPress: 0
   initalPressID: 0
   noteName: 
+  noteFixName: 
 --- !u!61 &1924200539
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -39575,6 +39670,7 @@ MonoBehaviour:
   initialPress: 0
   initalPressID: 0
   noteName: 
+  noteFixName: 
 --- !u!61 &1934425410
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -40149,6 +40245,7 @@ MonoBehaviour:
   initialPress: 0
   initalPressID: 0
   noteName: 
+  noteFixName: 
 --- !u!61 &1973283127
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -40292,6 +40389,7 @@ MonoBehaviour:
   initialPress: 0
   initalPressID: 0
   noteName: 
+  noteFixName: 
 --- !u!61 &1974832928
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -41422,6 +41520,7 @@ MonoBehaviour:
   initialPress: 0
   initalPressID: 0
   noteName: 
+  noteFixName: 
 --- !u!61 &2011125223
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -41579,6 +41678,7 @@ MonoBehaviour:
   initialPress: 0
   initalPressID: 0
   noteName: 
+  noteFixName: 
 --- !u!61 &2012221680
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -42000,6 +42100,7 @@ MonoBehaviour:
   initialPress: 0
   initalPressID: 0
   noteName: 
+  noteFixName: 
 --- !u!61 &2022406250
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -42372,6 +42473,7 @@ MonoBehaviour:
   initialPress: 0
   initalPressID: 0
   noteName: 
+  noteFixName: 
 --- !u!61 &2031810480
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -42579,6 +42681,7 @@ MonoBehaviour:
   initialPress: 0
   initalPressID: 0
   noteName: 
+  noteFixName: 
 --- !u!61 &2036289478
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -42722,6 +42825,7 @@ MonoBehaviour:
   initialPress: 0
   initalPressID: 0
   noteName: 
+  noteFixName: 
 --- !u!61 &2039946002
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -42927,6 +43031,7 @@ MonoBehaviour:
   initialPress: 0
   initalPressID: 0
   noteName: 
+  noteFixName: 
 --- !u!61 &2054798855
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -43148,6 +43253,7 @@ MonoBehaviour:
   initialPress: 0
   initalPressID: 0
   noteName: 
+  noteFixName: 
 --- !u!61 &2058346586
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -43431,6 +43537,7 @@ MonoBehaviour:
   initialPress: 0
   initalPressID: 0
   noteName: 
+  noteFixName: 
 --- !u!61 &2080274436
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -43728,6 +43835,7 @@ MonoBehaviour:
   initialPress: 0
   initalPressID: 0
   noteName: 
+  noteFixName: 
 --- !u!61 &2091826901
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -43933,6 +44041,7 @@ MonoBehaviour:
   initialPress: 0
   initalPressID: 0
   noteName: 
+  noteFixName: 
 --- !u!61 &2099975754
 BoxCollider2D:
   m_ObjectHideFlags: 0

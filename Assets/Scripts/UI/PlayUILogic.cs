@@ -123,7 +123,7 @@ public class PlayUILogic : MonoBehaviour
     {
         if (PlayerPrefs.GetInt("PianoType") == 0) // 49 key piano
         {
-            piano.transform.localPosition = new Vector3(5.65f, piano.transform.localPosition.y, piano.transform.localPosition.z);
+            piano.transform.localPosition = new Vector3(1.4f, piano.transform.localPosition.y, piano.transform.localPosition.z);
             piano.transform.localScale = new Vector3(21.2f, piano.transform.localScale.y, piano.transform.localScale.z);
 
             pianoKeyLabels.transform.localPosition = new Vector3(196.5f, pianoKeyLabels.transform.localPosition.y, pianoKeyLabels.transform.localPosition.z);
@@ -131,7 +131,7 @@ public class PlayUILogic : MonoBehaviour
         }
         else if (PlayerPrefs.GetInt("PianoType") == 1) // 61 key piano
         {
-            piano.transform.localPosition = new Vector3(2.84f, piano.transform.localPosition.y, piano.transform.localPosition.z);
+            piano.transform.localPosition = new Vector3(-0.6f, piano.transform.localPosition.y, piano.transform.localPosition.z);
             piano.transform.localScale = new Vector3(17f, piano.transform.localScale.y, piano.transform.localScale.z);
 
             pianoKeyLabels.transform.localPosition = new Vector3(-23.5f, pianoKeyLabels.transform.localPosition.y, pianoKeyLabels.transform.localPosition.z);
@@ -139,7 +139,7 @@ public class PlayUILogic : MonoBehaviour
         }
         else if (PlayerPrefs.GetInt("PianoType") == 2) // 76 key piano
         {
-            piano.transform.localPosition = new Vector3(2.48f, piano.transform.localPosition.y, piano.transform.localPosition.z);
+            piano.transform.localPosition = new Vector3(0.5f, piano.transform.localPosition.y, piano.transform.localPosition.z);
             piano.transform.localScale = new Vector3(13.6f, piano.transform.localScale.y, piano.transform.localScale.z);
 
             pianoKeyLabels.transform.localPosition = new Vector3(4.15f, pianoKeyLabels.transform.localPosition.y, pianoKeyLabels.transform.localPosition.z);

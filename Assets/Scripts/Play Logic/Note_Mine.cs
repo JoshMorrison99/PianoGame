@@ -18,6 +18,7 @@ public class Note_Mine : MonoBehaviour
     public bool initialPress = false;
     public int initalPressID;
     public string noteName;
+    public string noteFixName;
 
 /*    IEnumerator ExecuteAfterTime(float time)
     {
