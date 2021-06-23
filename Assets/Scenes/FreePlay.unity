@@ -8390,6 +8390,8 @@ MonoBehaviour:
   SharpNoteObject: {fileID: 7849406731773310324, guid: 986caf6047de89242868702308a81c4a, type: 3}
   spawnedNotes: []
   spawnedNotesNotPressed: []
+  NOTEXSCALE: 0
+  NOTESHARPXSCALE: 0
   pianoListRef: {fileID: 1709128740}
 --- !u!4 &407337740
 Transform:

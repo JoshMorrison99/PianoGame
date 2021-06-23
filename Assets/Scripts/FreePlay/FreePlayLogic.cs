@@ -145,6 +145,9 @@ public class FreePlayLogic : MonoBehaviour
     float scaleMoveSpeed = 0.015f;
     int uid;
 
+    public float NOTEXSCALE;
+    public float NOTESHARPXSCALE;
+
     public PianoKeyPresses pianoListRef;
 
     private void Start()
@@ -169,6 +172,8 @@ public class FreePlayLogic : MonoBehaviour
         NoteObject.transform.GetChild(0).GetChild(0).GetComponent<Light2D>().color = PersistentData.data.NoteLightColor;
         SharpNoteObject.transform.GetChild(0).GetComponent<SpriteRenderer>().color = PersistentData.data.ThemeSharpNoteColor;
         SharpNoteObject.transform.GetChild(0).GetChild(0).GetComponent<Light2D>().color = PersistentData.data.SharpNoteLightColor;
+
+        SetNoteXSize();
     }
 
     public void ClearScene()
@@ -176,6 +181,29 @@ public class FreePlayLogic : MonoBehaviour
         spawnedNotes.Clear();
         spawnedNotesNotPressed.Clear();
         Debug.Log(pianoListRef.PianoKeys.Length);
+    }
+
+    public void SetNoteXSize()
+    {
+        if (PlayerPrefs.GetInt("PianoType") == 0) // 49 key piano
+        {
+            NOTEXSCALE = 0.54f;
+            NOTESHARPXSCALE = 0.36f;
+        }
+        else if (PlayerPrefs.GetInt("PianoType") == 1) // 61 key piano
+        {
+            NOTEXSCALE = 0.45f;
+            NOTESHARPXSCALE = 0.3f;
+        }
+        else if (PlayerPrefs.GetInt("PianoType") == 2) // 76 key piano
+        {
+            NOTEXSCALE = 0.35f;
+            NOTESHARPXSCALE = 0.23f;
+        }
+        else
+        {
+            Debug.Log("Error occured getting piano type UI");
+        }
     }
 
     public void AddDevices()
@@ -239,6 +267,7 @@ public class FreePlayLogic : MonoBehaviour
                 {
                     GameObject SpawnedNote = Instantiate(SharpNoteObject);
                     SpawnedNote.transform.position = new Vector3(each.transform.position.x, SpawnedNote.transform.position.y, SpawnedNote.transform.position.z);
+                    SpawnedNote.transform.localScale = new Vector3(NOTESHARPXSCALE, SpawnedNote.transform.localScale.y, SpawnedNote.transform.localScale.z);
                     SpawnedNote.GetComponent<FreePlaySpawnedNote>().noteName = each.name;
                     SpawnedNote.GetComponent<FreePlaySpawnedNote>().id = uid;
                     each.GetComponent<Note_Mine>().initalPressID = uid;
@@ -248,6 +277,7 @@ public class FreePlayLogic : MonoBehaviour
                 {
                     GameObject SpawnedNote = Instantiate(NoteObject);
                     SpawnedNote.transform.position = new Vector3(each.transform.position.x, SpawnedNote.transform.position.y, SpawnedNote.transform.position.z);
+                    SpawnedNote.transform.localScale = new Vector3(NOTEXSCALE, SpawnedNote.transform.localScale.y, SpawnedNote.transform.localScale.z);
                     SpawnedNote.GetComponent<FreePlaySpawnedNote>().noteName = each.name;
                     SpawnedNote.GetComponent<FreePlaySpawnedNote>().id = uid;
                     each.GetComponent<Note_Mine>().initalPressID = uid;

@@ -28,6 +28,7 @@ public class NoteIdentificationGame : MonoBehaviour
     public int bassLineTrebleIndex;
     public int bassLineBassIndex;
     public bool isSharp;
+    public int CorrectlyHitNotes;
 
 
 
@@ -157,6 +158,8 @@ public class NoteIdentificationGame : MonoBehaviour
     PianoKeyPresses PianoKeysObject;
     int index;
     public bool isPlaying;
+    public TextMeshProUGUI correctlyHitNoteText;
+
 
     private void Start()
     {
@@ -166,6 +169,9 @@ public class NoteIdentificationGame : MonoBehaviour
         setupUI();
         bassLineTrebleIndex = 34;
         bassLineBassIndex = 22;
+
+        CorrectlyHitNotes = 0;
+        correctlyHitNoteText.text = CorrectlyHitNotes.ToString();
 }
 
     
@@ -213,11 +219,6 @@ public class NoteIdentificationGame : MonoBehaviour
         float randomPos = CreateRandomPosition(wholeNoteImage.transform.localPosition.y);
         wholeNoteImage.transform.localPosition = new Vector3(wholeNoteImage.transform.localPosition.x, wholeNoteImage.transform.localPosition.y + randomPos, 0);
 
-        foreach(GameObject note in pianoListRef.currentPressedNotes)
-        {
-            Debug.Log(note.GetComponent<Note_Mine>().noteName);
-        }
-        Debug.Log(noteRange[index]);
         isPlaying = true;
         StartCoroutine(Looper(wholeNoteImage));
         
@@ -234,6 +235,9 @@ public class NoteIdentificationGame : MonoBehaviour
                 if(note.GetComponent<Note_Mine>().noteName == noteRange[index])
                 {
                     isPlaying = false;
+                    CorrectlyHitNotes += 1;
+                    correctlyHitNoteText.text = CorrectlyHitNotes.ToString();
+                    break;
                 }
             }
             yield return null;

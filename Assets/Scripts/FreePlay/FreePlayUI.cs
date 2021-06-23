@@ -14,6 +14,7 @@ public class FreePlayUI : MonoBehaviour
     public GameObject piano;
 
 
+
     private void Start()
     {
         PausePanel.SetActive(false);
@@ -65,4 +66,5 @@ public class FreePlayUI : MonoBehaviour
         }
     }
 
+    
 }
