@@ -8,6 +8,7 @@ using TMPro;
 using System.IO;
 using System;
 using SFB;
+using UnityEngine.Networking;
 
 public class MainMenu : MonoBehaviour
 {
@@ -37,11 +38,16 @@ public class MainMenu : MonoBehaviour
 	public Button gamesBtn;
 	public Button freePlayBtn;
 
+	public TextMeshProUGUI currentUserText;
+
 	public GameObject Title;
 
 	public GameObject SongSelectionPanel;
 	public GameObject SettingsMenuPanel;
 	public GameObject ThemesPanel;
+	public GameObject AccountMenuPanel;
+	public GameObject RegisterPanel;
+	public GameObject LoginPanel;
 
 	public TextMeshProUGUI MainMenu_playerLevelUI;
 	public TextMeshProUGUI MainMenu_playerMoneyUI;
@@ -51,12 +57,46 @@ public class MainMenu : MonoBehaviour
 
 	public SongSelection songSelectionClass;
 
+	// Register Logic
+	public TMP_InputField Register_UsernameInputField;
+	public TextMeshProUGUI Register_UsernameError;
+	public TMP_InputField Register_EmailInputField;
+	public TextMeshProUGUI Register_EmailError;
+	public TMP_InputField Register_PasswordInputField;
+	public TextMeshProUGUI Register_PasswordError;
+	public TMP_InputField Register_PasswordConfirmInputField;
+
+	// Login Logic
+	public TMP_InputField Login_EmailInputField;
+	public TextMeshProUGUI Login_EmailError;
+	public TMP_InputField Login_PasswordInputField;
+	public TextMeshProUGUI Login_PasswordError;
+
+	// Logout Logic
+	public GameObject LogoutPanel;
+
 	public string path;
 
 
 
 	void Start()
 	{
+        if (PlayerPrefs.GetString("username") == "")
+        {
+			currentUserText.text = "Local";
+        }
+        else
+        {
+			currentUserText.text = PlayerPrefs.GetString("username");
+		}
+
+		AccountMenuPanel.SetActive(false);
+		Register_EmailError.text = "";
+		Register_PasswordError.text = "";
+		Register_UsernameError.text = "";
+		Login_EmailError.text = "";
+		Login_PasswordError.text = "";
+
 		SoundManager.soundManager.audioSource.volume = 0.1f;
 
 		SongImportErrorMessagePanel.SetActive(false);
@@ -81,12 +121,138 @@ public class MainMenu : MonoBehaviour
 		SongSelectionPanel.SetActive(false);
 		Title.SetActive(true);
 		EnableMainMenuButtons();
+		AccountMenuPanel.SetActive(false);
 		ThemesPanel.gameObject.SetActive(false);
 
 		// play button clcik sfx
 		if (buttonClickedEvent != null)
 		{
 			buttonClickedEvent();
+		}
+	}
+
+	public void LogoutButtonClicked()
+    {
+		PlayerPrefs.DeleteKey("userID");
+		PlayerPrefs.DeleteKey("username");
+
+		currentUserText.text = "Local";
+		showMainMenu();
+	}
+
+	public void LoginButtonClickedValidation()
+    {
+		StartCoroutine(Login(Login_EmailInputField.text, Login_PasswordInputField.text));
+    }
+
+	IEnumerator Login(string email, string password)
+	{
+		Debug.Log("clicked");
+		WWWForm form = new WWWForm();
+		form.AddField("email", email);
+		form.AddField("password", password);
+
+		using (UnityWebRequest www = UnityWebRequest.Post("http://localhost:5000/api/login", form))
+		{
+			yield return www.SendWebRequest();
+
+			if (www.result != UnityWebRequest.Result.Success)
+			{
+				Debug.Log(www.downloadHandler.text);
+			}
+			else
+			{
+				Debug.Log("Form upload complete!");
+				User myUser = JsonUtility.FromJson<User>(www.downloadHandler.text);
+				Debug.Log(www.downloadHandler.text);
+				Debug.Log(myUser.email);
+				AccountMenuPanel.SetActive(false);
+				showMainMenu();
+				currentUserText.text = myUser.username;
+				PlayerPrefs.SetString("userID", myUser._id);
+				PlayerPrefs.SetString("username", myUser.username);
+			}
+		}
+	}
+
+	public void RegisterButtonClickedValidation()
+    {
+		bool isError = false;
+
+        if (Register_UsernameInputField.text.Length < 4)
+        {
+			Register_UsernameError.text = "Username must be 4 characters or longer";
+			isError = true;
+        }
+        else
+        {
+			Register_UsernameError.text = "";
+		}
+
+        if (Register_EmailInputField.text == "")
+        {
+			Register_EmailError.text = "Email cannot be empty";
+			isError = true;
+		}else if (Register_EmailInputField.text.Contains("@") == false)
+        {
+			Register_EmailError.text = "Email must be a valid email";
+			isError = true;
+        }
+        else
+        {
+			Register_EmailError.text = "";
+		}
+
+        if (Register_PasswordInputField.text.Length < 6)
+        {
+			Register_PasswordError.text = "Password must be 6 characters or longer";
+			isError = true;
+		}
+		else if (Register_PasswordInputField.text != Register_PasswordConfirmInputField.text)
+        {
+			Register_PasswordError.text = "Password fields must match";
+			isError = true;
+        }
+        else
+        {
+			Register_PasswordError.text = "";
+		}
+
+        if (!isError)
+        {
+			Debug.Log("Successful input");
+			Debug.Log("username " + Register_UsernameInputField.text);
+			Debug.Log("email " + Register_EmailInputField.text);
+			Debug.Log("password " + Register_PasswordInputField.text);
+			StartCoroutine(Register(Register_UsernameInputField.text, Register_EmailInputField.text, Register_PasswordInputField.text));
+		}
+    }
+
+	IEnumerator Register(string username, string email, string password)
+	{
+		WWWForm form = new WWWForm();
+		form.AddField("username", username);
+		form.AddField("email", email);
+		form.AddField("password", password);
+
+		using (UnityWebRequest www = UnityWebRequest.Post("http://localhost:5000/api/signup", form))
+		{
+			yield return www.SendWebRequest();
+
+			if (www.result != UnityWebRequest.Result.Success)
+			{
+				Register_UsernameError.text = "Username or Email already exist";
+			}
+			else
+			{
+				Debug.Log("Form upload complete!");
+				User myUser = JsonUtility.FromJson<User>(www.downloadHandler.text);
+				AccountMenuPanel.SetActive(false);
+				showMainMenu();
+				currentUserText.text = myUser.username;
+				PlayerPrefs.SetString("userID", myUser._id);
+				PlayerPrefs.SetString("username", myUser.username);
+			}
 		}
 	}
 
@@ -103,6 +269,41 @@ public class MainMenu : MonoBehaviour
         }
 		
 	}
+
+	public void AccountButtonClicked()
+    {
+        if (PlayerPrefs.GetString("userID") != "")
+        {
+			DisableMainMenuButtons();
+			AccountMenuPanel.SetActive(true);
+			LogoutPanel.SetActive(true);
+			RegisterPanel.SetActive(false);
+			LoginPanel.SetActive(false);
+		}
+        else
+        {
+			DisableMainMenuButtons();
+			AccountMenuPanel.SetActive(true);
+			RegisterPanel.SetActive(true);
+			LoginPanel.SetActive(false);
+			LogoutPanel.SetActive(false);
+		}
+		
+	}
+
+	public void RegisterButtonClicked()
+    {
+		RegisterPanel.SetActive(true);
+		LoginPanel.SetActive(false);
+    }
+
+	public void LoginButtonClicked()
+    {
+		RegisterPanel.SetActive(false);
+		LoginPanel.SetActive(true);
+    }
+
+
 
 	public void ThemesButtonClicked()
     {
@@ -339,6 +540,18 @@ public class MainMenu : MonoBehaviour
 
 
 
+}
+
+[Serializable]
+public class User
+{
+	public int money;
+	public int level;
+	public int exp;
+	public string _id;
+	public string username;
+	public string email;
+	public string password;
 }
 
 

@@ -57,6 +57,7 @@ public class PersistentData : MonoBehaviour, ISaveable
     public int songsUnlocked;
     public int money;
 
+
     // Persistent Player Song Import Data
     public int songImportIndex;
 
@@ -88,7 +89,7 @@ public class PersistentData : MonoBehaviour, ISaveable
         StubbornMode = false;
         TimelineActivate = false;
         stutterModeLogic = false;
-}
+    }
 
     public void SetTotalSongNotes()
     {
