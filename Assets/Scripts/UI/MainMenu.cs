@@ -152,7 +152,16 @@ public class MainMenu : MonoBehaviour
 		form.AddField("email", email);
 		form.AddField("password", password);
 
-		using (UnityWebRequest www = UnityWebRequest.Post("http://localhost:5000/api/login", form))
+		string url = "";
+        if (Config.ENV == "development")
+        {
+			url = "http://localhost:5000/api/login";
+        }
+        else
+        {
+			url = "https://primepianist.com/api/login";
+		}
+		using (UnityWebRequest www = UnityWebRequest.Post(url, form))
 		{
 			yield return www.SendWebRequest();
 
@@ -171,6 +180,11 @@ public class MainMenu : MonoBehaviour
 				currentUserText.text = myUser.username;
 				PlayerPrefs.SetString("userID", myUser._id);
 				PlayerPrefs.SetString("username", myUser.username);
+				if (PlayerPrefs.GetString("userID") != "")
+				{
+					Debug.Log("here");
+					StartCoroutine(SaveSong());
+				}
 			}
 		}
 	}
@@ -235,7 +249,16 @@ public class MainMenu : MonoBehaviour
 		form.AddField("email", email);
 		form.AddField("password", password);
 
-		using (UnityWebRequest www = UnityWebRequest.Post("http://localhost:5000/api/signup", form))
+		string url = "";
+        if (Config.ENV == "development")
+        {
+			url = "http://localhost:5000/api/signup";
+        }
+        else
+        {
+			url = "https://primepianist.com/api/signup";
+		}
+		using (UnityWebRequest www = UnityWebRequest.Post(url, form))
 		{
 			yield return www.SendWebRequest();
 
@@ -252,6 +275,11 @@ public class MainMenu : MonoBehaviour
 				currentUserText.text = myUser.username;
 				PlayerPrefs.SetString("userID", myUser._id);
 				PlayerPrefs.SetString("username", myUser.username);
+				if (PlayerPrefs.GetString("userID") != "")
+				{
+					Debug.Log("here");
+					StartCoroutine(SaveSong());
+				}
 			}
 		}
 	}
@@ -537,6 +565,61 @@ public class MainMenu : MonoBehaviour
 		SongImportErrorMessagePanel.SetActive(false);
 	}
 
+	IEnumerator SaveSong()
+	{
+
+		SaveSongList mySaveSongs = new SaveSongList();
+		mySaveSongs.Songs = new SaveSongInstance[50];
+		foreach (SongInfo song in PersistentData.data._SongList)
+		{
+			Debug.Log("--> " + song._SongTitle);
+			mySaveSongs.Songs[song._songID] = new SaveSongInstance();
+			mySaveSongs.Songs[song._songID].author = song._SongAuthor;
+			mySaveSongs.Songs[song._songID].title = song._SongTitle;
+			mySaveSongs.Songs[song._songID].stars = song._stars;
+			mySaveSongs.Songs[song._songID].songID = song._songID;
+			mySaveSongs.Songs[song._songID].plays = song._plays;
+			mySaveSongs.Songs[song._songID].percentage = song._songCompletionPercentage;
+			mySaveSongs.Songs[song._songID].notesHit = song._notesHit;
+			mySaveSongs.Songs[song._songID].totalNotes = song._totalNote;
+			mySaveSongs.Songs[song._songID].highscore = song._highScore;
+			mySaveSongs.Songs[song._songID].difficulty = song._Difficulty;
+		}
+
+		foreach (SaveSongInstance s in mySaveSongs.Songs)
+		{
+			Debug.Log("--------> " + s.title);
+		}
+
+		string json = JsonUtility.ToJson(mySaveSongs);
+
+		string url = "";
+        if (Config.ENV == "development")
+        {
+			url = "http://localhost:5000/api/songs?user=";
+        }
+        else
+        {
+			url = "https://primepianist.com/api/songs?user=";
+		}
+		using (UnityWebRequest www = UnityWebRequest.Put(url + PlayerPrefs.GetString("userID"), json))
+		{
+			www.SetRequestHeader("Accept", "application/json");
+			www.SetRequestHeader("Content-Type", "application/json");
+			www.method = UnityWebRequest.kHttpVerbPUT;
+			yield return www.SendWebRequest();
+
+			if (www.result != UnityWebRequest.Result.Success)
+			{
+				Debug.Log(www.downloadHandler.text);
+			}
+			else
+			{
+				Debug.Log("Form upload complete!");
+			}
+		}
+	}
+
 
 
 
@@ -554,4 +637,23 @@ public class User
 	public string password;
 }
 
+[Serializable]
+class SaveSongInstance
+{
+	public int songID;
+	public string title;
+	public string author;
+	public int highscore;
+	public int plays;
+	public string stars;
+	public int totalNotes;
+	public float notesHit;
+	public float percentage;
+	public string difficulty;
+}
 
+[Serializable]
+class SaveSongList
+{
+	public SaveSongInstance[] Songs;
+}

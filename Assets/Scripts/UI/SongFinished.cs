@@ -6,6 +6,8 @@ using UnityEngine.SceneManagement;
 using TMPro;
 using UnityEngine.Events;
 using UnityEngine.Video;
+using UnityEngine.Networking;
+using System;
 
 public class SongFinished : MonoBehaviour
 {
@@ -120,10 +122,98 @@ public class SongFinished : MonoBehaviour
         UpdateUserMoneyUI();
         UpdateExpBar();
 
-
         // Save data computer
         PersistentData.SaveJsonData(PersistentData.data);
+
+        if (PlayerPrefs.GetString("userID") != "")
+        {
+            StartCoroutine(UpdateUser(PlayerPrefs.GetString("username"), PlayerPrefs.GetString("userID"), PersistentData.data.money, PersistentData.data.level, PersistentData.data.exp)) ;
+            StartCoroutine(UpdateSong(PersistentData.data.selectedSong));
+        }
+        
        
+    }
+
+    IEnumerator UpdateSong(int songID)
+    {
+        Debug.Log("SONG PLAYED --> " + PersistentData.data._SongList[songID -1]._SongTitle);
+        SaveSongInstance mySong = new SaveSongInstance();
+        mySong.songID = songID - 1;
+        mySong.title = PersistentData.data._SongList[songID - 1]._SongTitle;
+        mySong.author = PersistentData.data._SongList[songID - 1]._SongAuthor;
+        mySong.highscore = PersistentData.data._SongList[songID - 1]._highScore;
+        mySong.plays = PersistentData.data._SongList[songID - 1]._plays;
+        mySong.stars = PersistentData.data._SongList[songID - 1]._stars;
+        mySong.totalNotes = PersistentData.data._SongList[songID - 1]._totalNote;
+        mySong.notesHit = PersistentData.data._SongList[songID - 1]._notesHit;
+        mySong.percentage = PersistentData.data._SongList[songID - 1]._songCompletionPercentage;
+        mySong.difficulty = PersistentData.data._SongList[songID - 1]._Difficulty;
+
+        string json = JsonUtility.ToJson(mySong);
+
+        string url = "";
+        if (Config.ENV == "development")
+        {
+            url = "http://localhost:5000/api/song?user=";
+        }
+        else
+        {
+            url = "https://primepianist.com/api/song?user=";
+        }
+        using (UnityWebRequest www = UnityWebRequest.Put(url + PlayerPrefs.GetString("userID"), json))
+        {
+            www.SetRequestHeader("Accept", "application/json");
+            www.SetRequestHeader("Content-Type", "application/json");
+            www.method = UnityWebRequest.kHttpVerbPUT;
+            yield return www.SendWebRequest();
+
+            if (www.result != UnityWebRequest.Result.Success)
+            {
+                Debug.Log(www.downloadHandler.text);
+            }
+            else
+            {
+                Debug.Log("Form upload complete!");
+            }
+        }
+    }
+
+    IEnumerator UpdateUser(string username, string id, int money, int level, int exp)
+    {
+        UserPutRequest myUser = new UserPutRequest();
+        myUser.exp = exp;
+        myUser.level = level;
+        myUser.money = money;
+        myUser.username = username;
+        myUser.id = id;
+
+        string json = JsonUtility.ToJson(myUser);
+
+        string url = "";
+        if (Config.ENV == "development")
+        {
+            url = "http://localhost:5000/api/user";
+        }
+        else
+        {
+            url = "https://primepianist.com/api/user";
+        }
+        using (UnityWebRequest www = UnityWebRequest.Put(url, json))
+        {
+            www.SetRequestHeader("Accept", "application/json");
+            www.SetRequestHeader("Content-Type", "application/json");
+            www.method = UnityWebRequest.kHttpVerbPUT;
+            yield return www.SendWebRequest();
+
+            if (www.result != UnityWebRequest.Result.Success)
+            {
+                Debug.Log(www.downloadHandler.text);
+            }
+            else
+            {
+                Debug.Log("Form upload complete!");
+            }
+        }
     }
 
     void updatePercentage()
@@ -360,4 +450,13 @@ public class SongFinished : MonoBehaviour
         LeanTween.scale(star5.gameObject, new Vector3(1, 1, 1), 0.5f).setDelay(2.5f).setEaseOutSine();
     }
 
+}
+
+[Serializable]
+class UserPutRequest{
+    public string username;
+    public string id;
+    public int money;
+    public int level;
+    public int exp;
 }

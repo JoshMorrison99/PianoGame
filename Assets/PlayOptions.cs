@@ -7,14 +7,12 @@ public class PlayOptions : MonoBehaviour
 {
     public Toggle StutterModeStrict;
     public Toggle StutterModeChill;
-    public Toggle StubbornMode;
     public Toggle TimelineActivate;
 
     private void Start()
     {
         StutterModeStrict.isOn = PersistentData.data.StutterModeStrict;
         StutterModeChill.isOn = PersistentData.data.StutterModeChill;
-        StubbornMode.isOn = PersistentData.data.StubbornMode;
         TimelineActivate.isOn = PersistentData.data.TimelineActivate;
     }
 
@@ -30,11 +28,6 @@ public class PlayOptions : MonoBehaviour
         PersistentData.data.StutterModeChill = StutterModeChill.isOn;
         PersistentData.data.StutterModeStrict = false;
         StutterModeStrict.isOn = false;
-    }
-
-    public void StubbornModeToggled()
-    {
-        PersistentData.data.StubbornMode = StubbornMode.isOn;
     }
 
     public void TimelineActivateToggled()
