@@ -41,6 +41,8 @@ public class PlayUILogic : MonoBehaviour
 
     public GameObject settingsPanel;
 
+    public GameObject pianoCanvasUI;
+
     public bool isPaused;
 
     public GameObject pianoBackground;
@@ -126,7 +128,7 @@ public class PlayUILogic : MonoBehaviour
             piano.transform.localPosition = new Vector3(1.4f, piano.transform.localPosition.y, piano.transform.localPosition.z);
             piano.transform.localScale = new Vector3(21.2f, piano.transform.localScale.y, piano.transform.localScale.z);
 
-            pianoKeyLabels.transform.localPosition = new Vector3(196.5f, pianoKeyLabels.transform.localPosition.y, pianoKeyLabels.transform.localPosition.z);
+            pianoKeyLabels.transform.localPosition = new Vector3(204f, pianoKeyLabels.transform.localPosition.y, pianoKeyLabels.transform.localPosition.z);
             pianoKeyLabels.transform.localScale = new Vector3(1.21f, pianoKeyLabels.transform.localScale.y, pianoKeyLabels.transform.localScale.z);
         }
         else if (PlayerPrefs.GetInt("PianoType") == 1) // 61 key piano
@@ -144,6 +146,15 @@ public class PlayUILogic : MonoBehaviour
 
             pianoKeyLabels.transform.localPosition = new Vector3(4.15f, pianoKeyLabels.transform.localPosition.y, pianoKeyLabels.transform.localPosition.z);
             pianoKeyLabels.transform.localScale = new Vector3(0.775f, pianoKeyLabels.transform.localScale.y, pianoKeyLabels.transform.localScale.z);
+
+            // Disable all sharp note labels
+            foreach (Transform child in pianoKeyLabels.transform)
+            {
+                if (child.name.Contains("#"))
+                {
+                    child.gameObject.SetActive(false);
+                }
+            }
         }
         else
         {
@@ -289,6 +300,7 @@ public class PlayUILogic : MonoBehaviour
     public void PauseSettingsClicked()
     {
         piano.SetActive(false);
+        pianoCanvasUI.SetActive(false);
         settingsPanel.SetActive(true);
         pianoBackground.SetActive(false);
         scoreText.gameObject.SetActive(false);
@@ -309,6 +321,7 @@ public class PlayUILogic : MonoBehaviour
     public void PauseSettingBackButtonClicked()
     {
         piano.SetActive(true);
+        pianoCanvasUI.SetActive(true);
         settingsPanel.SetActive(false);
         pianoBackground.SetActive(true);
         scoreText.gameObject.SetActive(true);

@@ -242,8 +242,12 @@ public class Settings : MonoBehaviour
 
         isFirstLoad = false;
 
-        // Load the pinao type setting text
-        pianoTypeText.text = pianoTypes[pianoTypeIndex];
+        if (SceneManager.GetActiveScene().name == "MainMenu")
+        {
+            // Load the pinao type setting text
+            pianoTypeText.text = pianoTypes[pianoTypeIndex];
+        }
+        
 
         // Load the screen windowed setting text
         WindowedText.text = PlayerPrefs.GetString(screenMode_Pref);
