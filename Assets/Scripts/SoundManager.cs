@@ -46,6 +46,7 @@ public class SoundManager : MonoBehaviour
 
         // Main Menu Sounds
         MainMenu.buttonClickedEvent += ButtonHitSoundPlay;
+        Themes.buttonClickedEvent += ButtonHitSoundPlay;
         MainMenu.buttonClickedSuccessEvent += ButtonSuccessSoundPlay;
         MainMenu.buttonClickedErrorEvent += ButtonHitSoundErrorPlay;
         SongSelection.buttonClickAction += ButtonHitSoundPlay;

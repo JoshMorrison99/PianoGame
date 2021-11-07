@@ -259,6 +259,7 @@ public class Settings : MonoBehaviour
 
     public void ApplyButtonPressed()
     {
+        Debug.Log("ApplyButtonPressed");
         SaveSettings();
         ApplyButton.gameObject.SetActive(false);
 

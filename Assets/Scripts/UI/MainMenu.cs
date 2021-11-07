@@ -316,7 +316,13 @@ public class MainMenu : MonoBehaviour
 			LoginPanel.SetActive(false);
 			LogoutPanel.SetActive(false);
 		}
-		
+
+		// play button clcik sfx
+		if (buttonClickedEvent != null)
+		{
+			buttonClickedEvent();
+		}
+
 	}
 
 	public void RegisterButtonClicked()
@@ -337,6 +343,12 @@ public class MainMenu : MonoBehaviour
     {
 		DisableMainMenuButtons();
 		ThemesPanel.gameObject.SetActive(true);
+
+		// play button clcik sfx
+		if (buttonClickedEvent != null)
+		{
+			buttonClickedEvent();
+		}
 	}
 
 	public void DisableMainMenuButtons()
@@ -383,6 +395,13 @@ public class MainMenu : MonoBehaviour
 
 	public void GamesButtonClicked()
     {
+
+		// play button clcik sfx
+		if (buttonClickedEvent != null)
+		{
+			buttonClickedEvent();
+		}
+
 		SoundManager.soundManager.MainMenuMusic.Pause();
 		SceneManager.LoadScene("Games");
 	}

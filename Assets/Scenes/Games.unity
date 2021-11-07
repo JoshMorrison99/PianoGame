@@ -36015,7 +36015,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Practise Bass Clef or Treble Clef?
+  m_text: Practice Bass Clef or Treble Clef?
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 9e50cc7575c2af24ba777eaa2f67d287, type: 2}
   m_sharedMaterial: {fileID: -7136361054378909042, guid: 9e50cc7575c2af24ba777eaa2f67d287, type: 2}

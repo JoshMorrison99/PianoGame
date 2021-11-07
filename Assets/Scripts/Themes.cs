@@ -16,6 +16,9 @@ public class Themes : MonoBehaviour
     public VideoClip TopBar;
     public Color KeyColor;
 
+    public delegate void ButtonClickedAction();
+    public static event ButtonClickedAction buttonClickedEvent;
+
     private void Start()
     {
         foreach (Transform theme in ContentScrollView.transform)
@@ -53,5 +56,11 @@ public class Themes : MonoBehaviour
         gameObject.GetComponent<Image>().color = new Color(255f/255f, 0f/255f, 0f/255f, 160f / 255f);
 
         PlayerPrefs.SetString("Theme", themeName);
+
+        // play button clcik sfx
+        if (buttonClickedEvent != null)
+        {
+            buttonClickedEvent();
+        }
     }
 }
